@@ -1,0 +1,5 @@
+{
+  "slug": "capstone-design",
+  "note": "개별 대학 공학교육혁신센터 공지사항이나 ricee.or.kr(회원가입 필요)을 보고 확인되는 대로 이 배열에 항목을 추가하세요. 형식은 lib/types.ts의 Idea를 참고하세요.",
+  "items": []
+}

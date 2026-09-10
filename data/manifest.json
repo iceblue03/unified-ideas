@@ -1,0 +1,77 @@
+{
+  "generatedAt": "2026-09-10T11:15:11.008Z",
+  "competitions": [
+    {
+      "slug": "esw-contest",
+      "name": "임베디드 소프트웨어 경진대회",
+      "tier": "auto",
+      "method": "eswcontest.or.kr의 역대수상작 게시판(/data/award.php?page=N&code=award)을 페이지가 빌 때까지 순차적으로 HTML 파싱",
+      "homepage": "https://www.eswcontest.or.kr/data/award.php?code=award",
+      "count": 488,
+      "updatedAt": "2026-09-10T11:14:41.142Z"
+    },
+    {
+      "slug": "public-data-startup",
+      "name": "범정부 공공데이터 활용 창업경진대회",
+      "tier": "auto",
+      "method": "서울 열린데이터광장(data.seoul.go.kr)이 매년 갱신해 올리는 공식 수상작 원본 파일(OA-22583, OA-22582)을 헤드리스 브라우저로 내려받아 xlsx 파싱",
+      "homepage": "https://data.seoul.go.kr/dataList/OA-22583/S/1/datasetView.do",
+      "count": 2249,
+      "updatedAt": "2026-09-10T11:14:50.347Z"
+    },
+    {
+      "slug": "youth-startup",
+      "name": "대한민국 청소년 창업경진대회",
+      "tier": "auto",
+      "method": "온라인창업체험교육 플랫폼 YEEP의 '우수 동아리 소개' 게시판(POST /cpthb/contestCaseList.do)을 페이지가 빌 때까지 순회하며 '대한민국 청소년 창업경진대회' 항목만 추출",
+      "homepage": "https://yeep.go.kr/cpthb/contestCaseList.do",
+      "count": 351,
+      "updatedAt": "2026-09-10T11:15:07.722Z"
+    },
+    {
+      "slug": "code-fair",
+      "name": "코드페어 (SW공모전·해커톤)",
+      "tier": "semi-auto",
+      "method": "kcf.or.kr 공지사항 게시판(/84)을 페이지 끝까지 순회해 '수상작/수상팀/결과 발표' 키워드가 든 공지를 찾아 본문을 통째로 저장. 공식 사이트가 매 시즌 과거 아카이브를 지우기 때문에, 이 수집기가 실행될 때마다 발견한 공지를 우리 저장소에 축적해 자체 히스토리를 만든다. (향후 개선 과제: 최종 수상작 발표 공지에 표/PDF가 붙는 경우 팀 단위로 더 잘게 파싱)",
+      "homepage": "https://www.kcf.or.kr/84",
+      "count": 0,
+      "updatedAt": "2026-09-10T11:15:10.996Z"
+    },
+    {
+      "slug": "student-invention",
+      "name": "대한민국학생발명전시회",
+      "tier": "manual",
+      "method": "발명교육포털(ip-edu.net)의 수상작 e-전시관에서 대통령상 전시관은 서버 렌더링되지만, 우수상격/동상·장려상 전시관 목록은 페이지 내부 AJAX 호출로 채워지며 해당 API를 아직 특정하지 못했다. 현재는 연도별 페이지를 열람해 대통령상 수상작만 신뢰성 있게 자동 추출 가능한 상태 — data/manual/student-invention.json에 수동으로 추가·보완이 필요하다.",
+      "homepage": "https://www.ip-edu.net/home/kor/award/festival2024/exhibition/index.do",
+      "count": 0,
+      "updatedAt": null
+    },
+    {
+      "slug": "k-startup",
+      "name": "도전! K-스타트업",
+      "tier": "manual",
+      "method": "k-startup.go.kr / challengek.org에는 연도별 '왕중왕전' 최종 수상팀을 모아둔 공개 게시판·API가 없고, 결과는 창업진흥원 보도자료·뉴스 기사로만 흩어져 공개된다. data/manual/k-startup.json에 보도자료 기반으로 연도별 수상팀명/아이템을 수동 정리해 축적한다.",
+      "homepage": "https://www.k-startup.go.kr",
+      "count": 0,
+      "updatedAt": null
+    },
+    {
+      "slug": "capstone-design",
+      "name": "창의적종합설계경진대회",
+      "tier": "manual",
+      "method": "공학교육혁신연구정보센터(ricee.or.kr)의 수상작 게시판은 회원가입 후에만 열람 가능해 무인증 자동 수집이 불가능하다. 대회를 주최하는 개별 대학 공학교육혁신센터 공지사항에 단편적으로 수상 내역이 올라오는 정도라 data/manual/capstone-design.json에 확인되는 대로 수동 보강한다.",
+      "homepage": "http://e2festa.kr/",
+      "count": 0,
+      "updatedAt": null
+    },
+    {
+      "slug": "chungjuyung-startup",
+      "name": "정주영 창업경진대회",
+      "tier": "manual",
+      "method": "아산나눔재단은 선발팀 전체 명단을 표/파일로 공개하지 않고 보도자료(asan-nanum.org/press)와 네이버 블로그에 기수별로 소개 글을 올리는 방식이라 구조화된 자동 수집원이 없다. data/manual/chungjuyung-startup.json에 보도자료 기반으로 기수별 선발팀을 수동 정리해 축적한다.",
+      "homepage": "https://startup.asan-nanum.org/",
+      "count": 0,
+      "updatedAt": null
+    }
+  ]
+}
