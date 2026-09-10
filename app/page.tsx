@@ -229,8 +229,8 @@ export default function Home() {
           ))}
         </ul>
         <p className="text-[11px] text-zinc-400">
-          기본 검색은 AI API를 전혀 사용하지 않는 문자열 유사도 방식이며, &quot;AI 정밀 분석&quot;을 눌렀을 때만
-          상위 후보 5건에 한해 Claude를 호출합니다.
+          기본 검색은 AI API를 전혀 사용하지 않는 단어 가중치(TF-IDF) 기반 유사도 방식이며, &quot;AI 정밀
+          분석&quot;을 눌렀을 때만 상위 후보 5건에 한해 무료 AI 모델을 호출합니다.
         </p>
       </section>
     </main>

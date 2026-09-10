@@ -6,12 +6,17 @@
 
 ## 왜 AI API를 거의 안 쓰는가
 
-- 기본 검색(`app/api/search`)은 문자 bigram Dice 계수([`lib/similarity.ts`](lib/similarity.ts))로
-  동작합니다. 임베딩 모델이나 LLM 호출이 전혀 없어 완전히 무료이고, 한국어 형태소 분석기 없이도
-  띄어쓰기 차이에 꽤 강합니다.
-- "✨ AI 정밀 분석" 버튼을 눌렀을 때만, 이미 1차로 걸러진 상위 5개 후보에 한해 Claude Haiku를
-  호출합니다([`app/api/ai-review`](app/api/ai-review/route.ts)). `ANTHROPIC_API_KEY`를 설정하지
-  않으면 이 기능은 자동으로 꺼집니다(501 응답 → UI에서 안내 메시지만 표시).
+- 기본 검색(`app/api/search`)은 단어 단위 TF-IDF(BM25 스타일) 가중치 기반 유사도
+  ([`lib/similarity.ts`](lib/similarity.ts))로 동작합니다. 제목과 요약/분류(내용) 텍스트를 함께
+  토큰화해서, 코퍼스 전체에서 자주 등장하는 흔한 단어("시스템", "서비스" 등)는 자동으로 덜
+  중요하게, 드물고 구별력 있는 단어는 더 중요하게 반영합니다. 제목에는 더 큰 가중치를 주고,
+  한국어 특유의 띄어쓰기 없는 복합명사("시각장애인" 안의 "장애인" 등)는 부분 문자열 매칭으로
+  보완하며, 문자 bigram 유사도를 아주 작은 비중으로 안전망 삼아 섞습니다. 임베딩 모델이나 LLM
+  호출이 전혀 없어 완전히 무료입니다.
+- "✨ AI 정밀 분석" 버튼을 눌렀을 때만, 이미 1차로 걸러진 상위 5개 후보에 한해 OpenRouter의
+  무료 모델(`nex-n2.5-pro:free`)을 호출합니다([`app/api/ai-review`](app/api/ai-review/route.ts)).
+  환경변수 `openrouter_key`를 설정하지 않으면 이 기능은 자동으로 꺼집니다(501 응답 → UI에서
+  안내 메시지만 표시).
 
 ## 대회별 수집 방법과 상태
 
@@ -50,7 +55,7 @@ npm run dev          # http://localhost:3000
 1. 이 저장소를 GitHub에 올린다.
 2. [vercel.com](https://vercel.com)에서 "New Project" → 이 GitHub 저장소를 선택 → Framework는
    Next.js로 자동 인식됨 → Deploy. (선택) AI 정밀 분석을 쓰려면 Vercel 프로젝트의 Environment
-   Variables에 `ANTHROPIC_API_KEY`를 추가.
+   Variables에 [OpenRouter](https://openrouter.ai) API 키를 `openrouter_key`라는 이름으로 추가.
 3. 그 이후로는 `main` 브랜치에 push될 때마다 Vercel이 자동 재배포한다.
 
 ## 매달 자동 수집되는 구조

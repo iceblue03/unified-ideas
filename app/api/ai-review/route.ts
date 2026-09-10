@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * 선택 기능: 문자 유사도 기반 1차 검색(app/api/search)으로 이미 추려낸
- * 상위 후보 몇 개에 대해서만, 사용자가 버튼을 눌렀을 때만 Claude를 호출한다.
+ * 선택 기능: 무료 검색(app/api/search)으로 이미 추려낸 상위 후보 몇 개에 대해서만,
+ * 사용자가 버튼을 눌렀을 때만 OpenRouter의 무료 모델을 호출한다.
  * - 기본 검색 경로는 AI API를 전혀 쓰지 않는다 (lib/similarity.ts).
  * - 여기서도 전체 데이터셋이 아니라 이미 걸러진 top 5 후보 텍스트만 프롬프트에 넣어
  *   토큰을 최소화한다.
- * - ANTHROPIC_API_KEY가 설정되지 않은 배포에서는 501을 반환해 기능이 자연스럽게 꺼진다.
+ * - openrouter_key가 설정되지 않은 배포에서는 501을 반환해 기능이 자연스럽게 꺼진다.
  */
 
-const MODEL = "claude-haiku-4-5-20251001";
+const MODEL = "nex-n2.5-pro:free";
 
 interface CandidateInput {
   competitionName: string;
@@ -21,10 +21,10 @@ interface CandidateInput {
 }
 
 export async function POST(req: NextRequest) {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.openrouter_key;
   if (!apiKey) {
     return NextResponse.json(
-      { error: "AI 분석 기능이 이 배포에는 설정되어 있지 않습니다 (ANTHROPIC_API_KEY 미설정)." },
+      { error: "AI 분석 기능이 이 배포에는 설정되어 있지 않습니다 (openrouter_key 미설정)." },
       { status: 501 },
     );
   }
@@ -47,28 +47,26 @@ export async function POST(req: NextRequest) {
       (c, i) =>
         `${i + 1}. [${c.competitionName}${c.year ? ` ${c.year}` : ""}${c.award ? ` · ${c.award}` : ""}] ${c.title}` +
         (c.summary ? `\n   설명: ${c.summary.slice(0, 300)}` : "") +
-        `\n   (문자 유사도 점수: ${(c.score * 100).toFixed(0)}%)`,
+        `\n   (검색 유사도 점수: ${(c.score * 100).toFixed(0)}%)`,
     )
     .join("\n\n");
 
   const prompt =
     `사용자가 다음과 같은 아이디어를 구상 중입니다:\n"""\n${query.slice(0, 1500)}\n"""\n\n` +
-    `아래는 국내 대회 역대 수상작 중 문자열 유사도가 가장 높았던 후보들입니다:\n\n${candidateText}\n\n` +
+    `아래는 국내 대회 역대 수상작 중 검색 유사도가 가장 높았던 후보들입니다:\n\n${candidateText}\n\n` +
     `이 후보들과 사용자 아이디어를 비교해서, (1) 실제로 핵심 아이디어/문제해결 방식이 겹치는 후보가 있는지, ` +
     `(2) 있다면 어떤 점이 유사하고 어떤 점이 다른지, (3) 전반적으로 이 아이디어가 얼마나 참신해 보이는지를 ` +
     `한국어로 5줄 이내로 간결하게 평가해주세요. 과장하지 말고 사실 기반으로 말해주세요.`;
 
   try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
+    const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
+        authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 500,
         messages: [{ role: "user", content: prompt }],
       }),
     });
@@ -78,9 +76,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: `AI 호출 실패: ${res.status} ${errText}` }, { status: 502 });
     }
 
-    const data = (await res.json()) as { content?: Array<{ type: string; text?: string }> };
-    const text = data.content?.find((c) => c.type === "text")?.text ?? "";
+    const data = (await res.json()) as {
+      choices?: Array<{ message?: { content?: string } }>;
+      error?: { message?: string };
+    };
 
+    if (data.error) {
+      return NextResponse.json({ error: `AI 호출 실패: ${data.error.message}` }, { status: 502 });
+    }
+
+    const text = data.choices?.[0]?.message?.content ?? "";
     return NextResponse.json({ analysis: text });
   } catch (e) {
     return NextResponse.json(

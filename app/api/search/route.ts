@@ -1,13 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAllIdeas, getManifest } from "../../../lib/dataset";
-import { topMatches } from "../../../lib/similarity";
+import { buildIndex, search, getDocs } from "../../../lib/similarity";
 import type { Idea } from "../../../lib/types";
 
 const ALL_IDEAS = getAllIdeas();
-const CANDIDATES = ALL_IDEAS.map((item) => ({
-  item,
-  text: [item.title, item.summary, item.category].filter(Boolean).join(" "),
-}));
+const INDEX = buildIndex(
+  ALL_IDEAS.map((item) => ({
+    item,
+    title: item.title,
+    body: [item.summary, item.category].filter(Boolean).join(" "),
+  })),
+);
+const ALL_DOCS = getDocs(INDEX);
 
 export interface SearchMatch {
   score: number;
@@ -38,14 +42,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "query가 너무 깁니다 (2000자 이하)" }, { status: 400 });
   }
 
-  const overallRaw = topMatches(query, CANDIDATES, 15);
+  const overallRaw = search(INDEX, query, ALL_DOCS, 15);
   const overall: SearchMatch[] = overallRaw.map((m) => ({ score: m.score, idea: m.item }));
 
   const byCompetition: Record<string, SearchMatch[]> = {};
   const competitionSlugs = [...new Set(ALL_IDEAS.map((i) => i.competition))];
   for (const slug of competitionSlugs) {
-    const subset = CANDIDATES.filter((c) => c.item.competition === slug);
-    const matches = topMatches(query, subset, 5).map((m) => ({ score: m.score, idea: m.item }));
+    const subset = ALL_DOCS.filter((d) => (d.item as Idea).competition === slug);
+    const matches = search(INDEX, query, subset, 5).map((m) => ({ score: m.score, idea: m.item }));
     byCompetition[slug] = matches;
   }
 
