@@ -4,11 +4,10 @@ import eswContest from "../data/auto/esw-contest.json";
 import publicDataStartup from "../data/auto/public-data-startup.json";
 import youthStartup from "../data/auto/youth-startup.json";
 import codeFair from "../data/auto/code-fair.json";
-
-import studentInvention from "../data/manual/student-invention.json";
-import kStartup from "../data/manual/k-startup.json";
-import capstoneDesign from "../data/manual/capstone-design.json";
-import chungjuyungStartup from "../data/manual/chungjuyung-startup.json";
+import kipaInventionPatent from "../data/auto/kipa-invention-patent.json";
+import mafraPublicDataStartup from "../data/auto/mafra-public-data-startup.json";
+import studentInvention from "../data/auto/student-invention.json";
+import kStartup from "../data/auto/k-startup.json";
 
 import manifestJson from "../data/manifest.json";
 import { MANUAL_COMPETITIONS } from "./competitions";
@@ -30,13 +29,17 @@ interface ManualFile {
   items: Idea[];
 }
 
-const AUTO_FILES = [eswContest, publicDataStartup, youthStartup, codeFair] as AutoFile[];
-const MANUAL_FILES: Record<string, ManualFile> = {
-  "student-invention": studentInvention as ManualFile,
-  "k-startup": kStartup as ManualFile,
-  "capstone-design": capstoneDesign as ManualFile,
-  "chungjuyung-startup": chungjuyungStartup as ManualFile,
-};
+const AUTO_FILES = [
+  eswContest,
+  publicDataStartup,
+  youthStartup,
+  codeFair,
+  kipaInventionPatent,
+  mafraPublicDataStartup,
+  studentInvention,
+  kStartup,
+] as AutoFile[];
+const MANUAL_FILES: Record<string, ManualFile> = {};
 
 export function getAllIdeas(): Idea[] {
   const all: Idea[] = [];

@@ -6,12 +6,25 @@ import * as eswContest from "./collectors/esw-contest";
 import * as publicDataStartup from "./collectors/public-data-startup";
 import * as youthStartup from "./collectors/youth-startup";
 import * as codeFair from "./collectors/code-fair";
+import * as kipaInventionPatent from "./collectors/kipa-invention-patent";
+import * as mafraPublicDataStartup from "./collectors/mafra-public-data-startup";
+import * as studentInvention from "./collectors/student-invention";
+import * as kStartup from "./collectors/k-startup";
 
 const DATA_DIR = path.join(__dirname, "..", "data");
 const AUTO_DIR = path.join(DATA_DIR, "auto");
 const MANUAL_DIR = path.join(DATA_DIR, "manual");
 
-const COLLECTORS = [eswContest, publicDataStartup, youthStartup, codeFair];
+const COLLECTORS = [
+  eswContest,
+  publicDataStartup,
+  youthStartup,
+  codeFair,
+  kipaInventionPatent,
+  mafraPublicDataStartup,
+  studentInvention,
+  kStartup,
+];
 
 async function readExisting(slug: string): Promise<Idea[]> {
   try {
