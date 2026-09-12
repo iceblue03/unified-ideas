@@ -4,7 +4,7 @@
   "tier": "auto",
   "method": "eswcontest.or.kr의 역대수상작 게시판(/data/award.php?page=N&code=award)을 페이지가 빌 때까지 순차적으로 HTML 파싱",
   "homepage": "https://www.eswcontest.or.kr/data/award.php?code=award",
-  "updatedAt": "2026-09-10T11:14:41.142Z",
+  "updatedAt": "2026-09-11T12:46:12.066Z",
   "count": 488,
   "items": [
     {
