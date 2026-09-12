@@ -1,18 +1,27 @@
 /**
  * OpenRouter 무료 모델 호출 공용 클라이언트.
  *
- * 무료 티어 모델은 트래픽이 몰리면 업스트림에서 언제든 429(rate-limited)를 반환할 수
- * 있다 — 실제로 google/gemma-4-26b-a4b-it:free 단독 사용 중 이 문제를 겪었다. 그래서
- * 모델 하나에 의존하지 않고, 지연시간이 짧고 비추론(<think> 트레이스 없음)인 순으로
- * 정렬한 후보 목록을 순서대로 시도하다 429/5xx 등 "빠르게 실패하는" 응답을 만나면
- * 다음 후보로 넘어간다. 타임아웃(응답 자체가 너무 느림)은 재시도해도 시간만 배로
- * 드니 재시도하지 않고 바로 실패로 반환한다.
+ * 모델 선택 기준: OpenRouter 모델 목록의 data_policy 메타데이터를 직접 확인해
+ * "프롬프트를 모델 학습에 쓰지 않음(training:false)"이 명시된 모델만 후보로 둔다 —
+ * nex-agi 계열은 training:false, trainingOpenRouter:false이면서 retainsPrompts:true
+ * (30일 보관)라, "데이터는 수집(로그)해도 학습에는 쓰지 않는" 정책과 정확히 일치한다.
+ * (google/gemma-4-26b-a4b-it:free 등 다른 후보들은 이 스냅샷에 data_policy 자체가
+ * 노출되지 않아 학습 여부를 확인할 수 없었으므로 제외했다 — 확인 안 된 모델을 끼워
+ * 넣느니 검증된 벤더 하나로 좁히는 쪽을 택함.)
+ *
+ * 이 벤더의 모델은 기본적으로 추론(사고) 모델이라 <think> 트레이스가 붙어 느려질 수
+ * 있는데, nex-n2.5-mini/pro 둘 다 "reasoning effort: none"을 지원하므로 요청에
+ * `reasoning: { effort: "none" }`을 실어 매번 사고 트레이스 없이 즉답하게 만든다.
+ *
+ * 무료 티어는 트래픽이 몰리면 업스트림에서 언제든 429(rate-limited)를 반환할 수 있으므로
+ * (실제로 이전에 쓰던 google/gemma-4-26b-a4b-it:free에서 겪음), 같은 데이터 정책을 가진
+ * mini→pro 순으로 시도하다 429/5xx 등 "빠르게 실패하는" 응답을 만나면 다음 후보로
+ * 넘어간다. 타임아웃(응답 자체가 너무 느림)은 재시도해도 시간만 배로 드니 재시도하지
+ * 않고 바로 실패로 반환한다.
  */
 const MODEL_CANDIDATES = [
-  "google/gemma-4-26b-a4b-it:free", // ~855ms, 비추론, MoE 활성 파라미터 약 4B
-  "liquid/lfm-2.5-2.6b:free", // ~535ms, 비추론 소형 general 모델
-  "nex-agi/nex-n2.5-mini:free", // ~609ms, 이전에 쓰던 벤더의 모델(추론형 — <think> 트레이스가 섞여도 JSON 추출 로직이 이미 이를 감안해 처리함)
-  "nvidia/nemotron-3-super-120b-a12b:free", // ~944ms, general nvidia 모델
+  "nex-agi/nex-n2.5-mini:free", // ~609ms 기준, training:false
+  "nex-agi/nex-n2.5-pro:free", // ~2.0s 기준(느리지만 동일한 데이터 정책의 벤더 폴백)
 ];
 
 export type OpenRouterResult = { ok: true; text: string } | { ok: false; error: string };
@@ -32,6 +41,8 @@ async function callModel(apiKey: string, model: string, prompt: string, timeoutM
       body: JSON.stringify({
         model,
         messages: [{ role: "user", content: prompt }],
+        // nex-agi 모델은 기본이 추론(사고) 모드라 <think> 트레이스로 느려지므로 끈다.
+        reasoning: { effort: "none" },
       }),
       signal: AbortSignal.timeout(timeoutMs),
     });

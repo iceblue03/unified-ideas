@@ -16,7 +16,9 @@
 - 검색창 옆의 "AI 검색" 토글(기본 ON)을 켠 채로 검색하면, 한 번의 검색으로 로컬 TF-IDF(대회) +
   KIPRIS 특허 검색([`lib/kipris.ts`](lib/kipris.ts)) + 네이버쇼핑 검색
   ([`lib/naver-shopping.ts`](lib/naver-shopping.ts))을 함께 조회하고, OpenRouter의 무료 모델
-  (`google/gemma-4-26b-a4b-it:free`)이 (1) 아이디어의 핵심 기술을 KIPRIS 키워드로, 실제 유사
+  (`nex-agi/nex-n2.5-mini:free`, 지연시간/장애 시 `nex-n2.5-pro:free`로 자동 폴백 — 두 모델 모두
+  프롬프트를 학습에 쓰지 않음이 명시된 데이터 정책을 가짐, [`lib/openrouter.ts`](lib/openrouter.ts))이
+  (1) 아이디어의 핵심 기술을 KIPRIS 키워드로, 실제 유사
   제품이 나올 법한 쇼핑 검색어로 각각 변환한 뒤([`lib/ai-query-gen.ts`](lib/ai-query-gen.ts)),
   (2) 대회·제품·특허 결과 전체를 하나의 관련성 기준으로 재평가해 "이미 존재함 / 일부 겹침 /
   블루오션" 진단과 가장 관련성 높은 3건을 구조화된 리포트로 만듭니다
