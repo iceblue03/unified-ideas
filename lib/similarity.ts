@@ -14,8 +14,8 @@
  * 4) 위 방식이 통 안 맞는 경우를 대비해 문자 bigram Dice 유사도를 아주 작은
  *    비중으로 섞어 최후의 안전망으로 둔다.
  *
- * AI API는 여기서 전혀 쓰지 않는다 — 이 랭커로 1차로 걸러낸 상위 후보에 대해서만
- * app/api/ai-review가 선택적으로 LLM을 호출한다.
+ * AI API는 여기서 전혀 쓰지 않는다 — "대회" 결과는 항상 이 랭커로만 계산되고, AI 검색
+ * 토글을 켰을 때만 app/api/search가 이 결과에 KIPRIS/쇼핑 검색을 더해 LLM으로 재평가한다.
  */
 
 const STOPWORDS = new Set([

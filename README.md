@@ -13,12 +13,17 @@
   한국어 특유의 띄어쓰기 없는 복합명사("시각장애인" 안의 "장애인" 등)는 부분 문자열 매칭으로
   보완하며, 문자 bigram 유사도를 아주 작은 비중으로 안전망 삼아 섞습니다. 임베딩 모델이나 LLM
   호출이 전혀 없어 완전히 무료입니다.
-- "AI 정밀 분석" 버튼을 눌렀을 때만, 이미 1차로 걸러진 상위 5개 후보에 한해 OpenRouter의
-  무료 모델(`nex-n2.5-pro:free`)을 호출합니다([`app/api/ai-review`](app/api/ai-review/route.ts)).
-  환경변수 `openrouter_key`를 설정하지 않으면 이 기능은 자동으로 꺼집니다(501 응답 → UI에서
-  안내 메시지만 표시). 모델 응답은 자유 서술형 텍스트가 아니라 고정 JSON 스키마(`AiReviewResult`)로
-  강제해서, 참신도 평가와 키워드를 칩으로, 그리고 가장 유사한 후보 하나는 공유하는 핵심 아이디어를
-  강조하고 유사점/차이점을 구조화된 카드로 렌더링합니다([`app/page.tsx`](app/page.tsx)).
+- 검색창 옆의 "AI 검색" 토글(기본 ON)을 켠 채로 검색하면, 한 번의 검색으로 로컬 TF-IDF(대회) +
+  KIPRIS 특허 검색([`lib/kipris.ts`](lib/kipris.ts)) + 네이버쇼핑 검색
+  ([`lib/naver-shopping.ts`](lib/naver-shopping.ts))을 함께 조회하고, OpenRouter의 무료 모델
+  (`google/gemma-4-26b-a4b-it:free`)이 (1) 아이디어의 핵심 기술을 KIPRIS 키워드로, 실제 유사
+  제품이 나올 법한 쇼핑 검색어로 각각 변환한 뒤([`lib/ai-query-gen.ts`](lib/ai-query-gen.ts)),
+  (2) 대회·제품·특허 결과 전체를 하나의 관련성 기준으로 재평가해 "이미 존재함 / 일부 겹침 /
+  블루오션" 진단과 가장 관련성 높은 3건을 구조화된 리포트로 만듭니다
+  ([`lib/ai-rank.ts`](lib/ai-rank.ts), [`app/api/search`](app/api/search/route.ts)). 토글을 끄면
+  기존과 동일하게 로컬 TF-IDF만 즉시 동작합니다. `openrouter_key`/`NAVER_CLIENT_ID`+
+  `NAVER_CLIENT_SECRET`/`KIPRIS_SERVICE_KEY` 중 설정되지 않은 게 있으면 해당 기능만 조용히
+  꺼지고(대회 탭은 항상 정상 동작), 관련 안내가 리포트 아래 경고 문구로 표시됩니다.
 
 ## 대회별 수집 방법과 상태
 
@@ -62,8 +67,11 @@ npm run dev          # http://localhost:3000
 
 1. 이 저장소를 GitHub에 올린다.
 2. [vercel.com](https://vercel.com)에서 "New Project" → 이 GitHub 저장소를 선택 → Framework는
-   Next.js로 자동 인식됨 → Deploy. (선택) AI 정밀 분석을 쓰려면 Vercel 프로젝트의 Environment
-   Variables에 [OpenRouter](https://openrouter.ai) API 키를 `openrouter_key`라는 이름으로 추가.
+   Next.js로 자동 인식됨 → Deploy. (선택) AI 검색을 쓰려면 Vercel 프로젝트의 Environment
+   Variables에 [OpenRouter](https://openrouter.ai) API 키를 `openrouter_key`라는 이름으로, 제품/특허
+   검증까지 쓰려면 [네이버 개발자센터](https://developers.naver.com) 키를 `NAVER_CLIENT_ID`/
+   `NAVER_CLIENT_SECRET`으로, [KIPRIS Plus](https://plus.kipris.or.kr) 키를 `KIPRIS_SERVICE_KEY`로
+   추가 (자세한 설명은 [`.env.example`](.env.example) 참고).
 3. 그 이후로는 `main` 브랜치에 push될 때마다 Vercel이 자동 재배포한다.
 
 ## 매달 자동 수집되는 구조
