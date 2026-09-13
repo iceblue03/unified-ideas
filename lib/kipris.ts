@@ -202,18 +202,22 @@ export async function searchPatents(keywords: string[], numOfRows = 10): Promise
 
   for (let depth = cleaned.length; depth >= 1; depth--) {
     const attemptKeywords = cleaned.slice(0, depth);
+    // readableQuery는 화면/로그 표시용(사람이 읽는 "키워드1*키워드2"), word는 실제
+    // URL에 실리는 encodeURIComponent된 값 — 인코딩된 값을 그대로 표시하면
+    // "%EB%B0%98..." 같은 읽을 수 없는 문자열이 UI에 노출된다.
+    const readableQuery = attemptKeywords.join("*");
     const word = buildAndQuery(attemptKeywords);
     const result = await callKipris(word, serviceKey, numOfRows);
 
     if (!result.ok) {
-      console.log(`[kipris] query="${word}" (depth ${depth}/${cleaned.length}) → error: ${result.error}`);
-      return { ok: false, items: [], error: result.error, queryUsed: word };
+      console.log(`[kipris] query="${readableQuery}" (depth ${depth}/${cleaned.length}) → error: ${result.error}`);
+      return { ok: false, items: [], error: result.error, queryUsed: readableQuery };
     }
 
     const relevant = result.items.filter((item) => isRelevant(item, attemptKeywords));
     const noiseCount = result.items.length - relevant.length;
     console.log(
-      `[kipris] query="${word}" (depth ${depth}/${cleaned.length}) → ${result.items.length}건 ` +
+      `[kipris] query="${readableQuery}" (depth ${depth}/${cleaned.length}) → ${result.items.length}건 ` +
         `(관련 ${relevant.length}건${noiseCount > 0 ? `, 무관한 결과 ${noiseCount}건 제외` : ""})`,
     );
 
@@ -221,7 +225,7 @@ export async function searchPatents(keywords: string[], numOfRows = 10): Promise
       return {
         ok: true,
         items: relevant,
-        queryUsed: word,
+        queryUsed: readableQuery,
         fallbackUsed: depth < cleaned.length,
         fallbackDepth: depth,
       };
