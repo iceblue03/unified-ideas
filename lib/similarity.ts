@@ -15,7 +15,7 @@
  *    비중으로 섞어 최후의 안전망으로 둔다.
  *
  * AI API는 여기서 전혀 쓰지 않는다 — 이 랭커로 1차로 걸러낸 상위 후보에 대해서만
- * app/api/ai-review가 선택적으로 LLM을 호출한다.
+ * app/api/search가 (useAi 옵션 켰을 때만) 선택적으로 LLM을 호출한다.
  */
 
 const STOPWORDS = new Set([

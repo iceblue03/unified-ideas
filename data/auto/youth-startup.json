@@ -4,7 +4,7 @@
   "tier": "auto",
   "method": "온라인창업체험교육 플랫폼 YEEP의 '우수 동아리 소개' 게시판(POST /cpthb/contestCaseList.do)을 페이지가 빌 때까지 순회하며 '대한민국 청소년 창업경진대회' 항목만 추출. 목록 카드의 '아이템 개요'는 한 줄 슬로건 수준이라, 카드마다 있는 상세페이지(POST /cpthb/contestCaseDetail.do)를 한 번 더 열어 '동아리소개'/'아이디어 개요'/'창업전략' 카드뉴스 이미지의 alt 텍스트(OCR 없이도 평문으로 들어있음)를 summary에 합친다.",
   "homepage": "https://yeep.go.kr/cpthb/contestCaseList.do",
-  "updatedAt": "2026-09-13T04:21:56.444Z",
+  "updatedAt": "2026-09-13T05:35:27.134Z",
   "count": 351,
   "items": [
     {

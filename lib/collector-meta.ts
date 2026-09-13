@@ -41,6 +41,37 @@ export const YOUTH_STARTUP_META: CompetitionMeta = {
     "한 번 더 열어 '동아리소개'/'아이디어 개요'/'창업전략' 카드뉴스 이미지의 alt 텍스트(OCR 없이도 평문으로 들어있음)를 summary에 합친다.",
 };
 
+export const CAPSTONE_DESIGN_META: CompetitionMeta = {
+  slug: "capstone-design",
+  name: "창의적종합설계경진대회",
+  homepage: "https://e2festa.kr/",
+  tier: "auto",
+  method:
+    "행사 사이트(e2festa.kr) 공지사항에서 그 해 '출품작 온라인 디렉토리북' PDF 공지를 찾아 첨부 PDF를 내려받는다. " +
+    "이 PDF는 한글 본문이 CID 폰트라 pdf-parse 같은 텍스트 추출 라이브러리로는 한글이 통째로 누락된다(확인함) — " +
+    "대신 Playwright(Chromium)로 pdf.js를 브라우저 안에서 직접 돌려 페이지를 <canvas>에 렌더링한 뒤(node-canvas " +
+    "조합은 버전 호환성 문제로 렌더링이 깨져서 포기함, lib/pdf-render.ts 참고), 좌(본문)/우(학교·팀 정보) " +
+    "컬럼을 나눠 각각 OCR(tesseract.js, lib/ocr.ts)한다 — 한 이미지를 통째로 OCR하면 두 컬럼 텍스트가 줄 " +
+    "단위로 뒤섞여서 컬럼별로 잘라야 한다. 팀명/팀원은 '팀명'/'팀원' 라벨을 앵커로, 제목은 원문에 함께 실린 " +
+    "영문 부제(OCR 정확도가 더 높음)를 우선 사용한다. 이 도록은 '수상작'이 아니라 그 해 전체 참가팀(출품작) " +
+    "목록이라 award는 비워둔다. 사진/그래픽이 겹치는 영역은 OCR 노이즈가 섞일 수 있음.",
+};
+
+export const STUDENT_INVENTION_META: CompetitionMeta = {
+  slug: "student-invention",
+  name: "대한민국학생발명전시회",
+  homepage: "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+  tier: "auto",
+  method:
+    "발명교육포털(ip-edu.net)의 '발명창의력대회 수상작품집'에서 그 해 '대한민국학생발명전시회 수상작품집' PDF를 " +
+    "찾아 POST https://www.ip-edu.net/fileDownload.do (body: filename, downname)로 내려받는다. 이 PDF는 앞부분에 " +
+    "'수상작 목록' 표(페이지/이름/학교/학년/지역/출품명)가 있고, 표의 '페이지' 번호가 가리키는 뒤쪽 개별 페이지에 " +
+    "작품별 발명동기/발명내용/용도 및 효과 설명이 있다(확인함). Playwright+pdf.js로 페이지를 렌더링해 OCR한다 " +
+    "(lib/pdf-render.ts, lib/ocr.ts) — 표는 글자가 작아 이름/학교 컬럼 OCR 정확도가 다소 떨어지고, 개별 페이지는 " +
+    "제목/훈격(예: '산업통상부장관상')이 장식 배경과 겹쳐 있어 완벽하지 않지만, 본문 문단(발명동기 등)은 정확도가 " +
+    "높다. 대통령상~특별상 구간만 개별 페이지가 있고 그 밖의 등급은 표 항목(제목만)으로만 남을 수 있다.",
+};
+
 export const CODE_FAIR_META: CompetitionMeta = {
   slug: "code-fair",
   name: "코드페어 (SW공모전·해커톤)",

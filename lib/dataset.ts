@@ -4,10 +4,10 @@ import eswContest from "../data/auto/esw-contest.json";
 import publicDataStartup from "../data/auto/public-data-startup.json";
 import youthStartup from "../data/auto/youth-startup.json";
 import codeFair from "../data/auto/code-fair.json";
+import capstoneDesign from "../data/auto/capstone-design.json";
+import studentInvention from "../data/auto/student-invention.json";
 
-import studentInvention from "../data/manual/student-invention.json";
 import kStartup from "../data/manual/k-startup.json";
-import capstoneDesign from "../data/manual/capstone-design.json";
 import chungjuyungStartup from "../data/manual/chungjuyung-startup.json";
 
 import manifestJson from "../data/manifest.json";
@@ -30,11 +30,16 @@ interface ManualFile {
   items: Idea[];
 }
 
-const AUTO_FILES = [eswContest, publicDataStartup, youthStartup, codeFair] as AutoFile[];
+const AUTO_FILES = [
+  eswContest,
+  publicDataStartup,
+  youthStartup,
+  codeFair,
+  capstoneDesign,
+  studentInvention,
+] as AutoFile[];
 const MANUAL_FILES: Record<string, ManualFile> = {
-  "student-invention": studentInvention as ManualFile,
   "k-startup": kStartup as ManualFile,
-  "capstone-design": capstoneDesign as ManualFile,
   "chungjuyung-startup": chungjuyungStartup as ManualFile,
 };
 

@@ -1,0 +1,1040 @@
+{
+  "slug": "student-invention",
+  "name": "대한민국학생발명전시회",
+  "tier": "auto",
+  "method": "발명교육포털(ip-edu.net)의 '발명창의력대회 수상작품집'에서 그 해 '대한민국학생발명전시회 수상작품집' PDF를 찾아 POST https://www.ip-edu.net/fileDownload.do (body: filename, downname)로 내려받는다. 이 PDF는 앞부분에 '수상작 목록' 표(페이지/이름/학교/학년/지역/출품명)가 있고, 표의 '페이지' 번호가 가리키는 뒤쪽 개별 페이지에 작품별 발명동기/발명내용/용도 및 효과 설명이 있다(확인함). Playwright+pdf.js로 페이지를 렌더링해 OCR한다 (lib/pdf-render.ts, lib/ocr.ts) — 표는 글자가 작아 이름/학교 컬럼 OCR 정확도가 다소 떨어지고, 개별 페이지는 제목/훈격(예: '산업통상부장관상')이 장식 배경과 겹쳐 있어 완벽하지 않지만, 본문 문단(발명동기 등)은 정확도가 높다. 대통령상~특별상 구간만 개별 페이지가 있고 그 밖의 등급은 표 항목(제목만)으로만 남을 수 있다.",
+  "homepage": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+  "updatedAt": "2026-09-13T12:35:52.682Z",
+  "count": 49,
+  "items": [
+    {
+      "id": "474b8799c5e60a35",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "5학년 / 경남",
+      "title": "초기화재다피호흡그립톡",
+      "team": "김지온",
+      "org": "칠천초등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "a1ca48f919b296f6",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "3학년",
+      "title": "대전 . 환풍기 외부 SAIN 미로형 챔버 내장 소음 저감 패널",
+      "team": "윤재형",
+      "org": "대전대신고등학교",
+      "summary": "발명동기\n저는 매년 독감으로 입원하며 무거운 수액 폴대 때문에 신책조차 마음대로 하지 못하는 답답함을 겪었습니다. 특히 일반 배낭 BE 이동 중 수액줄이 자꾸\n꼬여 위험했습니다. 그러다 조카의 카시트를 보고 무릎을 Ef 쳤습니다. 아이를 I 잡아주면서도 줄이 꼬이지 않게 고정해 주는 4점식 안전벨트 구소를 수액\n거치대에 적용하면 좋겠다고 생각했습니다.저처럼 매년 입원하는 친구들과 어르신들이 줄 꼬임 걱정 없이 가방처럼 편하게 메고 안전하게 이동하기를 바라는\n마음에서 시작했습니다.\n3. 발명내용\n1. 범용 자석식(395206형) 도킹 스테이션: 백팩 프레임의 거치 부위를 자석형으로 설계하여 침다, 휠체어, 일반 폴대 등 어디에나 즉시 결합됩니다.\n로봇청소기처럼 근처에 가면 자석 힘으로 위치를 잡아 고정되므로 환자가 수액을 일일이 옮겨 거는 번거로움과 낙하 위험을 UUSLICE\n2.카시트착안 4점식 하네스 구조: 일반적인 어깨끈 방식은 수액줄이 끈에 걸리는 문제가 있습니다. 이를 해결하기 위해 조카의 카시트에서 아이디어를 얻어,\n머리를 먼저 넣는 방식의 4점식 하네스 TES 적용했습니다. 수액줄이 하네스 외부로 자연스럽게 흐르게 하여 걸림 문제를 원천 차단하고, 4개 지점으로\n무게를 분산해 환자의 피로도를 낮쳤습니다.\n3. 인체공학적 보조 어깨패드: 하네스 구조에 폭신한 어깨 THES 추가하여 장시간 착용 시에도 환자의 어깨에 무리가 가지 않도록 착용감을 보완했습니다.\n4.스마트 위치 추적 시스템:위치 추적 태그를 장착하여 보호자가 환자의 위치를 실시간 확인하고 비상 시 호출 기능을 사용할 수 있게 설계했습니다.\nRe\n용도 및 효과\n1.수액줄 간섭 해결 및 안전성: ATA 하네스 구조로 이동 중 수액줄이 꼬이거나 당겨지는 사고를 방지하여 환자의 안전을 획기적으로 높였습니다.\n2.범용적 호환성:자석 도킹을 통해 침다, 휠체어, 일반 폴대 등 다양한 의료 환경에서 유기적인 이동을 지원합니다.\n3.흰자의 심리적신체적회복지원:하중 분산 설계와 어깨패드로 노약사도 무리 없이 적용 가능하며,활동성 증가를 통해 빠른 건강 회복을 돕습니다.\n14",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "bffc6e131aa17c3d",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "6학년 / 광주",
+      "title": "환자의 이동자유를 위한자석 도킹형 4점식 백팩 수액",
+      "team": "김태인",
+      "org": "수완초등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "afc3f15b3554ca95",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "과학기술정보통신부장관상",
+      "category": "2학년",
+      "title": "인천 . 재난취약거주 환경을 위한 유체 기반 팽창형차수 장치",
+      "team": "황재혁",
+      "org": "인천과학고등학교",
+      "summary": "발명동기\n시각장애 학생들이 미끄럼들을 탈 때 손끝으로 전해지는 규칙적인 촉각 신호로 이동 SES 스스로 예측하여, 공포감 없이 안전하게\n놀이를 즐기도록 돕기 위해 발명했습니다.\ndg\n1 발명내용\n말랑한 TPU 소재와 사선 219) 구조로 만든 촉각 스트립을 미끄럼틀 구간별로 벽면에 부착하여 시각장애 학생이 손끝으로 주행 흐름과\n도착 시점을 예측하여 안전하게 놀 수 있게 합니다.\nSRE              ==\n《 : 응도및효과\n본 발명품은 시각장애 학생이 미끄럼틀을 탈 때 가이드 벽면의 촉각 신호로 위치를 인지해 안전하게 탑승하도록 돕는 용도입니다. 기존\n시설 벽면에 간편하게 부착하여 맞춤형 안내 라인을 즉각 조성할 수 있습니다. 구간별 촉각 신호를 통해 출발, 진행, 멈춤 시점을 스스로\n예측할 수 있어 탑승 시 느끼는 막연한 두려움을 근본적으로 해소합니다. 또한, 말랑한 TPU 소재와 곡선의 구조를 적용하여 피부\n쓸림을 차단함으로써, 시각장애 학생이 낙상 사고 걱정 없이 주도적으로 놀 권리를 누릴 수 있는 안전한 놀이 환경을 구축하는 효과가\n있습니다\n16",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "56cdb020b37ad14d",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "고학기술정보통신부장관상",
+      "category": "6학년",
+      "title": "경남 . 시각장애학생을위한리듬촉각 미끄럼틀 안전 가이드",
+      "team": "김단우",
+      "org": "사량초등학교",
+      "summary": "발명내용\n우편함 입구 상하단에 회전 롤러를 설치해 마찰력을 줄임으로써 어린이와 어르신이 우편물을 아래로 당겨 안전하고 쉼게 꺼낼 수\n있도록 설계하였습니다. 기존 우편함의 부품만 교체하면 되어 경제적이며 실용적입니다.\n용도 및 효과\n편의성 및 성취감: 아래로 살짝 당기는 동작만으로 수령이 가능해 누구나 스스로 우편물을 챙기는 78S 느낄수 있음.\n실용성 및 보호: 롤러 방식이 마찰을 최소화하여 소중한 우편물이 끼이거나 WOK] 파손을 방지.\n경제성: 복잡한 장치 없이 기존 우편함의 덮개 부품만 교체하여 저렴한 비용으로 빠르게 보급할수 있는 '모두를 위한 착한 |S\n17",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "14ff0094a275560f",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "과학기술정보통신부장관상",
+      "category": "5학년",
+      "title": "경남 . 회전롤러로 아래로 쉽게 당겨 내는 어린이 우편함",
+      "team": "김도언",
+      "org": "충무공초등학교",
+      "summary": "발명내용\n스케이트 날을 \\자 홈에 끼우고 누르면 극세사 패드가 밀착되어 물기를 흡수하며 자석과 벨크로 구조로 분리-건조가 쉽다.\n.\n용도 및 효과\n피겨스케이팅 훈련 후 스케이트를 신은 상태에서 날과 신발 하부의 물기를 제거하는 데 사용한다. 스케이트 날을 \\자 홈에 끼우고\n앞뒤로 움직이면 양쪽 극세사 패드가 날을 감싸 물기를 흡수하고 위쪽 패드가 신발 하부와 옆부분의 물기도 함께 Sot 준다. 허리를\n굽히거나 손으로 날을 직접 HX| 않아도 되어 편리하고 안전하며 물기 제거를 통해 날의 = 발생과 손상을 줄이는 데 도움이 된다. 또한\n네오디움 자석과 벨크로를 이용해 패드와 스펀지 받침대를 쉽게 분리-결합할 수 있어 사용 후 건조와 관리가 쉽고 카라비너를 이용해\n휴대와 보관도 편리하다.\n18",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "ab46859151c3f720",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "과학기술정보통신부장관상",
+      "category": "6학년 / 대구",
+      "title": "SOR She 휴대용 스케이트 날 건조장치",
+      "team": "박혜담",
+      "org": "계성초등학교",
+      "summary": "발명동기\n지구과학 수업에서 해저 확장설의 근거인 지자기 역전 현상을 배웠으나, 교과서 그림만으로는 직관적으로 이해하기 어려워 이를 직접\n조작하고 시각화할 수 있는 장치를 개발하고자 하였다.\n= 발명내용\n지구본 내부 솔레노이드에 역전 스위치, 가변 저항을 연결하고, 투명 아크릴 아치 레일과 나침반 RES 결합하여 편각'복각 측정 및\n지자기 역전 현상을 시각화하는 장치이다.\n용도 및 효과\n00) 교육적 직관성 제고: 편각복각자기력선 등 추상적 개념을 시각화하여 학습자의 정확한 개념 형성을 돕고 학업 흥미를 높인다.\n(3 자기주도 탐구 환경 제공: 전류 방향 세기를 직접 조절하며 자기장 변화 원리를 탐구하는 실험 중심 수업에 효과적으로 활용할 수\n있다\n(3) 대중 교육 전시물 확장: 과학관-전시관의 체험형 콘텐츠로 설치 가능하며 일반 대중의 지구과학적 소양 함양에 기여한다.\n(3)저비용고효율: 솔레노이드, 지구본, 아크릴 레일 등 저렴한 부품으로 제작이 가능하며 대량 보급에 유리하다.\n19",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "11339865f0a72461",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "고학기술정보통신부장관상",
+      "category": "2학년",
+      "title": "인천 . 가변 솔레노이드 기반지구자기장시뮬레이터",
+      "team": "Fd",
+      "org": "인천과학고등학교",
+      "summary": "발명동기\n학교 근처 해안가의 엄청난 해양 쓰레기를 어르신들이 허리를 굽혀 힘들게 치우시는 모습을 보고 쉽게 쓰레기를 수거할 수 있는 장치의\n필요성을 느껴 발명했습니다.\nSEE\n쓰레기를 AS 뜨는 앞부분의 빗살 AF, AONE 잘 밀리는 uf 모양의 하체, 걷기만 해도 모래와 HS 탁탁 털어나는 진동망을\n결합한 무동력 수륙양용 수거기입니다.\n용도 및 죠과\n바닷가나 4H SHO 2 밀려온 쓰레기와 수초를 치우는 환경 정화 SAE 도구입니다. 어르신들이 허리를 굽히거나 무거운 쓰레기를\n털어낼 필요가 없어 신체적 피로도가 크게 줄어듭니다. 빗살이 돌멤이를 거르고 진동망이 WY Hef 등을 자동으로 털어주어, 같은 힘으로\n편리하고 빠르게 더 넓은 면적을 청소할 수 있습니다. 전기가 필요 없고 녹슬지 않아 고장 없이 오래 쓰며 바닷가를 깨끗하게 청소하고\n지킬 수 있습니다.\n20",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "f6ba7449d3ccea4f",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "5학년",
+      "title": "경남 . 스욕뜨고탁틱!빗살구조와 탄성망의 부유물 수거기",
+      "team": "uy",
+      "org": "칠천초등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "5afeacf2d3524da8",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "기학기술정보통신부장관상",
+      "category": "3학년",
+      "title": "대전 . 모듈형3축면진 및 방진 복합장치",
+      "team": "송치완",
+      "org": "대전대신고등학교",
+      "summary": "발명내용\n지렛대 원리와 Ｌ자 레버를 응용한 순수 기계식 링크 구조입니다. 문 표면에서 떠 있는 플로팅 손잡이가 상하좌우-전후의 힘을 받아\n하나의 통합 출력축으로 모아 래치를 품니다.\n< To\n용도 및 효과\n학교요양원'병원-대형 쇼핑몰 등 다중이용시설의 비상계단 출입문과 방화문에 설치합니다. 판단력이 흐려지는 재난 상황에서도\n피난자가 방향에 상관없이 손잡이를 조작해 신속하게 탈출로를 확보하도록 돕습니다.\n문 조작 실수로 생기는 대피 지연을 없애고, 넘어지거나 매달리는 본능적인 움직임까지 '문 열림'으로 연결해 압사-질식 사고를\n예방합니다. 전자 부품이 없어 화재 시 전자식 도어락의 오작동 문제도 완전히 해결합니다.\n22",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "93333043f8f7adda",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "-",
+      "title": "제주 . 방향상관없이 열리는 전방위 작동 비상문 손잡이",
+      "team": "이영진",
+      "org": "-",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "fd950b70b9912923",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "1학년 인천 . 질식경고안전모",
+      "title": "1학년 인천 . 질식경고안전모",
+      "team": ". 이유림",
+      "org": "명신여자고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "066f95d8cc2f5348",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "교육부장관상",
+      "category": "3학년",
+      "title": "경기 함수율에따라공중부양하는 자동급수화분",
+      "team": "강태윤",
+      "org": "미사강변중학교",
+      "summary": "발명내용\n{IH S22) LH] 2ifAl 기어와 스프링을 탑재하여,천천히 당기면 부드럽게 열리고 소매치기처럼 빠르게 낚아차면 자동으로 잠기는 구조이다.\n:\n: 용도및효과\n백팩등 이중 지퍼가 있는 모든 가방에 범용 클립 방식으로 쉽게 부착해 사용한다.\n혼잡한 지하철이나 해외여행지에서 소지품을 상시 보호하며, 비밀번로나 열쇠가 필요 없어 아동과 노약사도 편리하게 쓸 수 있다.\n전기가 없는 무동력 기계식 구조라 배터리 방전 걱정이 없고 반영구적이다.\n무엇보다 사용자의 편의성은 그대로 유지하면서 외부의 위협적인 가속도에만 선택적으로 반응하므로, 번거로움 없이 안전성을 극대화하는\n실용적인 보안 효과가있다.\n25",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "5643a38d5820190b",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "교육부장관상",
+      "category": "10학년",
+      "title": "경기 . 태그세이프속도감지래첫 구조의자동잠금지퍼클립",
+      "team": "Ooi = WAYMAKERSCHOOL",
+      "org": "10학년",
+      "summary": "발명내용\n밴드 폭을 고려해 2줄의 미세 슬릿을 넣어 3가닥 구조로 최적화했습니다.\n특히 '선(%) 박리지 커팅, F(t) 원단 슬릿' 공정을 적용하여 박리지가 가이드 역할을 해 엉킴을 원천 차단하게 만들었습니다.\n용도 및 효과\n[용도] 1.관절, 마디 등 입체 굴곡 부위 상처 보호 및 야외 비상용 드레싱 고정.\n2.활동량이 많아 관절 부위 상처 이탈이 FHS 어린이 및 스포츠 활동가 지원.\n3. 가위 등 커팅 도구가 없는 야외 비상 상황에서의 맞춤형 상처보호.\n[효과] 1. 역학적 밀착: 3분할 날개가 곡면을 위아래로 감싸는 3점 교차 방식을 통해 SET 오염물 유입을 완벽히 차단하고 상처\n치유 속도를 높입니다\n2. 편의성 혁신: 박리지 선커팅 공정으로 가닥의 뼈대를 유지하여 엉킴 없이 한 손으로 순차적 부착이 가능한 유니버셜\n디자인을 실현했습니다.\n3. 산업적 가치: 기존 라인에 하프 컷팅 공정만 추가하면 되므로 즉시 양산이 가능하며 밴드 교체 주기를 늘려 의료 소모품\n쓰레기를 줄입니다.\n26",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "e9d0490bd554c713",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "대통령상",
+      "category": "1학년",
+      "title": "전북 . 생체모방 기술을 활용한다가닥 교차 밀착형 오징어 밴드",
+      "team": "전현준",
+      "org": "영선중학교",
+      "summary": "발명내용\n하이드로겔 마이크로니들로 진피층 HAUS 흡수하는 '체액 흡수 3, 효소 반응(040, 00)으로 히스타민을 감지해 갈색으로 변하는\n\"염증 반응 감지 층; BTB 용액으로 pH 산성화를 감지하는 ‘pH 변화 감지 층'으로 구성되는 염증감지 패치를 제작하였다\n용도 및 효과\n본 패치는 야외 활동가나 농업 종사자 등이 곤충에 물렸을 때 위험도를 현장에서 즉시 확인하는 용도로 쓰인다. 마이크로니들로 채취한\n체액의 히스타민농도와 마1에따라 패치 40] 길색, 노란색, 녹색, 파란색 SO 변해 아나필락시스 쇼크 및 염증 MEE 시각적으로\n알 수 있다. 이를 통해 쇼크 발생 전 골든타임 내에 조기 대응이 가능해져 생명을 보호하고, 향후 웨어러블 기기나 원격 의료와 결합해\n실시간 건강 모니터링 분야로 확장될 수 있어 사회적.산업적 가치가 높다.\n27",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "c74516e1dc391064",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "교육부장관상",
+      "category": "3학년",
+      "title": "인천 . 곤충물림쇼크예방실시간염증진단마이크로패치",
+      "team": "김시윤",
+      "org": "인천과학고등학교",
+      "summary": "발명내용\n나사 원리로 작동하는 8개의 집게가 다양한 전구를 잡고, 모듈형 봉으로 길이를 조절해 높은 곳의 전구를 교체할 수 있습니다.\n용도 및 효과\n전구 교체기 마크3는 사다리 없이 높은 곳의 전구를 안전하게 교체할 수 있는 장치입니다.\n8개의 집게가 1.5~5인치의 다양한 전구 지름에 대응하며, 실리콘 패드와 나사 회전 방식으로 미끄러짐 없이 안정적으로 전구를 고정:\n교체할 수 있습니다.\n모듈형 봉 구조로 다양한 높이에 대응하고, 폭이 좁은 공간에서도 사용이 가능합니다.\n낙상사고를 예방하고 작업 시간을 단축하여 안전성과 작업 효율을 동시에 높일 수 있습니다.\n28",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "17ebee6e19d7db4d",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "4학년 인천 . 최고의전구교체기\\4<",
+      "title": "4학년 인천 . 최고의전구교체기\\4<",
+      "team": ". 서승환",
+      "org": "채드위송도국제학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "402a33e033dfa0d0",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "교육부장관상",
+      "category": "6학년 / 경남",
+      "title": "Feld alee 부착보조상자",
+      "team": "송설",
+      "org": "신안초등학교",
+      "summary": "발명내용\n폐타이어 스트랩을 격자형으로 엮고 내측에 역방향 돌기를 설계하여 염소가 ES 당길 때 뿌리를 보호합니다. 훼손지 경계면에\n자중만으로 고정되며, 격자 와류로 씨앗을 포집하고 검은 소재의 흡열로 동절기 융설 기능을 수행합니다.\n호 요도 및 승교\n: 용도 및 효과\n몽골 현지의 폐타이어를 활용한 역돌기형 격자 매트를 훼손 경계면에 자중만으로 설치하여, 염소의 뿌리 섭식 차단씨앗 포집-동절기\n융설 기능을 동시에 수행하는 사막화 방지 적정기술입니다.\n1.역방향 돌기가 줄기를 압착 고정하여 뿌리와 생장점을 보존하고, 격자가 발굽 하중을 분산시켜 토양 경화를 방지합니다. 대조군 대비\n인장 저항력 150% 이상 향상, 실제 염소 밝기 실험에서도 뿌리와 토양 보존을 실증하였습니다.\n2. 격자 내 미세 와류가 씨앗과 토양을 포집하여 자생적 식생 복원을 촉진합니다. 내부 보존율 및 비산 포집 실험에서 씨앗 보존율이\n대조군 대비 최대 12.7배 증가하여 포집 효과를 검증하였습니다.\n3. 검은 소재의 흡열로 동절기 융설 기능을 수행하며, 유목민이 직접 제작'관리하는 적정기술로 지속 가능한 순환 경제를 실현합니다.\n30",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "c5c654224c43192d",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "2학년",
+      "title": "경기 . 몽골사막화방지용역돌기형'지상 인공어초'매트",
+      "team": "이상언",
+      "org": "하남고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "383caa746fa1594e",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "교육부장관상",
+      "category": "6학년",
+      "title": "경남 . 경사중력흐름기반이중거름하수구장치",
+      "team": ". 이민호",
+      "org": "밀양초등학교",
+      "summary": "발명내용\n손가락과 당는 나노 실리카 분산액은 낮은 표면에너지로 지문을 완전히 밀어낸다. 또한 모세관에 저장된 나노 실리카 분산액은 gral\n경우 라플라스 압력차에 의해 자가치유가 가능하다.\n스            ==\n: 용도및 효과\n본 발명은 도어락에 부착하는 자가 복구형 지문 방지 필름으로 터치 패널에 잔류하는 지문을 원천 차단하여 비밀번호 유추 및 지문\n복제와 같은 범죄를 예방하는 보안 솔루션으로 활용된다. 본 발명의 효과는 지문을 원천 차단하는 것이다. 빚을 난반사시켜 지문을\n덜 보이게 만들던 시중 TEN 달리 지문보다 낮은 표면에너지를 가진 오일을 이용해 지문의 유분이 겉돌며 흘러내리게 만든다. 또한\n마찰에 의해 코팅이 닮아 없어지던 문제를 모세관에 저장된 오일이 라플라스 압력차에 의해 HIYUS 때 다시 올라와 자가치유 구조를\n만드는 것으로 해결한다.\n32",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "ef4c4f2499ee8948",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "교육부장관상",
+      "category": "1학년",
+      "title": "인천 . 나노실리카 분산의 액체장벽을 이용한지문방지 필름",
+      "team": "ds",
+      "org": "인천진산과학고등학교",
+      "summary": "발명동기\n1. 자동문 끼임 사고가 빈번하게 발생함.\n2. 부상자가 10세 미만의 어린이나 60세 이상의 노약자가 다수 발생함.\n3. 대부분 센서 기반의 자동문이라 몸이 끼이고 난 뒤 재개방되는 시스템이라 안전사고가 끊이지 않음.\nXu\nTr els\n1. 자동문 9 LED 색상과 부저음으로 자동문 개폐시기를 시각적, 음성으로 지원하여 안전 사고를 줄임.\n2. 무리한 진입을 줄이고 자동문 끼임 사고 및 충돌을 사전에 예방하는 시스템\nwo              —-—\n: 용도및 효과\n본 발명품은 자동문이 열리고 난 뒤 자동문 앞ㄴ6ㅁ(초록색, 주황색, 빨간색)와 부저음으로 시각적, 음성으로 진입 여부를 판단할 수\n있도록 지원하는 장치이다. 자동문 닫힘까지 남은 시간을 직관적으로 제공하여 이용자의 안전한 진입 판단을 유도하고 무리한 통과를\n감소시킨다. 또한 끼임 및 충돌 등 안전사고를 사전에 예방하여 이용자의 부상 위험과 시설 관리자의 부담을 줄일 수 있어 치료비 등 직-\n간접적인 비용을 절감하는데 효과가 있다. 그리고 어린이, 노약자 등 모든 이용자가 직관적으로 문닫힘 상황을 이해할 수 있어 공공시설\n전반에서 안전성을 확보하고 이용자의 만족도를 높인다.\n33",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "f7f777d3cc523f2e",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "산업통상부장관상",
+      "category": "6학년",
+      "title": "경남 . 스마트패싱타임자동문",
+      "team": ". 박가윤",
+      "org": "거제고현초등학교",
+      "summary": "발명내용\n1층에는 면진 설계를 활용하여 노면으로부터 전이되는 진동 에너지를 흡수하고, 2층에는 다중 질량 구조를 적용하여 각 적재 차량으로\n전해지는 진동 에너지를 분산시킬 수 있도록 제작하였습니다.\n용도 및 효과\n본 진동 제어 시스템은 노면 진동 누적으로 인한 카캐리어의 적재 차량 낙하를 방지하는 장치입니다. 1층에는 면진 패드와 감쇄 장치를\n활용한 면진 설계를 적용해 진동 전달을 줄이고 에너지를 소모시키며, 2층에는 다수개의 플랫폼으로 이루어진 다중 질량 PEE\n구현하여 진동 에너지를 2MAZLICE 이는 카캐리어뿐만 아니라 다양한 화물 운송 차량에도 적용될 수 있으며, 사고 예방에 따른\n사회적-경제적 비용 감소, 도로 교통 안전 향상에 기여할 수 있습니다.\n34",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "c9210382f6604d24",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "산업통상부장관상",
+      "category": "1학년",
+      "title": "인천 . 면진및다중질량 구조활용카캐리어진동억제장치",
+      "team": "최서윤",
+      "org": "명신여자고등학교",
+      "summary": "발명내용\n이 발명품은 차들이 넘어갈 수 있는 방지턱 형태로 제작됨. 방지턱 형태의 케이스 속에 있는 2RE pre-wetting®| 원리를 이용해 Sat\n염화칼슴을 함께 뿌려서 제설의 효과를 증폭시켜줌.\n“Hr\n용도 및 효과\n이 로봇을 블랙아이스 상습 구간에 배치하면 블랙아이스를 효과적으로 제거할 수 있으며, Kol 로봇을 넘어 다닐 수 있도록\n과속방지턱과 유사한 형태로 만들어졌기 때문에 도로 통행을 방해하지 않고도 제설 작업을 진행할 수 있음. 더불어 운전자로 하여금\n블랙아이스 주의 구간임을 시각적으로 인지시켜 안전 및 주의 운전을 유도할 수 있음.\n또한, 사람이 직접 운전해야하는 제설차를 대신해 무인 로봇 기술을 사용하므로 제설에 필요한 비용과 시간을 효과적으로 줄여\n경제적임. 이 로봇이 블랙아이스 상습 발생 구역에 적용 된다면, 블랙아이스 사고로 발생되는 인명 피해와 사회적인 비용을 획기적으로\n줄일 수 있음.\n35",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "c625ea0c37ba7444",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "산업통상부장관상",
+      "category": "6학년",
+      "title": "서울 . 방지턱형태의 도로 블랙아이스자동제거로봇",
+      "team": ". 이윤슬",
+      "org": "성동초등학교",
+      "summary": "발명동기\n눈대중으로 인덱스 ACHE 붙일 때 간격과 높이가 들쑥날쑥해져 책이 지저분해지는 작은 불편함을 해결하고, 인덱스를 한 번에\n똑바르고 예쁘게 붙일 수 있는 도구를 만들고자 연구를 시작함.\n접착제 없이 정전기 유도 현상으로 밀착되는 투명 필름 시트임. 유리처럼 투명해 글자를 가리지 않으며, 투명 정밀 모눈 격자와 시중\n인덱스책 사이즈를 반영한 가이드라인 및 3가지 크기로 제작함.\n용도 및 효과\n용도 : 모든 도서 및 자료 정리 시 인덱스 스티커를 일정하고 정밀하게 정렬하여 부착하는 가이드로 활용\n효과 : 편리성 : 자를 대지 않고 격자 칸과 가이드라인만으로 1초 만에 완벽한 간격으로 빠르게 부작 가능.\n경제성 : 단순 구조로 대량 생산이 가능해 제작비가 저렴하며 반영구적 사용으로 비용 절감.\n실용성 : 접착 흔적 없이 깔끔하게 떼어내 다른 책으로 이동 가능하며| 책 가치를 100% 보존.\n독창성 : 정전기 유도 현상과 돌출형 가이드를 결합해 기존 종이 고정 방식의 밀림 한계를 극복.\n36",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "0062527c081548ab",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "5학년",
+      "title": "경남 . HEHE 고민 끝!격자무늬 정전기 인덱스 가이드",
+      "team": "Fed",
+      "org": "석산초등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "81b441bb1b7b058c",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "산언통상부장관상",
+      "category": "2학년",
+      "title": "경남 . 만타아가미 구조 기반 선택형 어망 시스템",
+      "team": "한유일",
+      "org": "경남과학고등학교",
+      "summary": "발명내용\n칼날을 8등분으로 분리하여 교체할 수 있도록 고안하여, 테이프의 절단 길이를 4단계(3.7007, 7.4cm, 1110, 14.8cm) 2 조절할 수\n있습니다\n(이이              =\n: 용도및효과\n- 물레방아 테이프의 절단길이를 4단계로 조절할 수 있는 커터기 입니다.\n- 기존 제품이 3.700로만 잘리는 것과 달리, 칼날을 분리-교체할 수 있도록 만들어 3.7cm, 7400, 11.100), 14.8cm 길이로 사용할 수\n있습니다.\n- 테이프 폭에 따라 of 20단계의 길이 조절이 가능해 학교, 가정, 상점 등 다양한 곳에서 편리하게 활용할 수 있으며, 테이프 낭비를\n줄이고 안전성과 작업 효율을 높일 수 있습니다.\n38",
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "7448e4c7649784c1",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "4학년",
+      "title": "경남 . 절단길이를 4단계로 조절할 수 있는 물레방아 커터기",
+      "team": ". 이경민",
+      "org": "진교초등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "6d0f11e68b3d7448",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "3학년 / 대구",
+      "title": "탱크로리용 유체관성 에너지 분산 프로펠러 구조",
+      "team": "ogy",
+      "org": "경북기계공업고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "5a5512fa11200da4",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "。 1학년 , 인천, 개폐가쉬운704원단기반오염물흡수 방지 프레시백",
+      "title": "。 1학년 , 인천, 개폐가쉬운704원단기반오염물흡수 방지 프레시백",
+      "team": "조윤형",
+      "org": "인천진산과학고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "93b3f87eaf00ed3a",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "1학년 경남 스프링장력제한구조의 유리기구다목적 고정 홀더",
+      "title": "1학년 경남 스프링장력제한구조의 유리기구다목적 고정 홀더",
+      "team": "이지원",
+      "org": "증산고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "c8db309e30b61882",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "2학년 대구 무전원자동배수와압력분산구조의동파방지호스",
+      "title": "2학년 대구 무전원자동배수와압력분산구조의동파방지호스",
+      "team": "탁현수.",
+      "org": "경북기계공업고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "912eb7b2e61a788f",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "1학년 서울. 햄스터(소동물배셀물자동처리장치",
+      "title": "1학년 서울. 햄스터(소동물배셀물자동처리장치",
+      "team": "송유찬",
+      "org": "원촌중학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "9753b156be01493b",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "2학년, 경북 개구리폐 공진구조를 모사한 선택적 소음감쇠 보청기",
+      "title": "2학년, 경북 개구리폐 공진구조를 모사한 선택적 소음감쇠 보청기",
+      "team": "김시안",
+      "org": "경북과학고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "2b9a629846dafe16",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "5학년 Ze 액세서리를재밌게 꺼내는,피아노 건반 모형 액세서리함",
+      "title": "5학년 Ze 액세서리를재밌게 꺼내는,피아노 건반 모형 액세서리함",
+      "team": ", 김재경",
+      "org": "아라초등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "db081ea9a81cd6f9",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "1학년",
+      "title": "인천. 물때방지싱크대",
+      "team": "심자우",
+      "org": "명신여자고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "e9cf0a42acf9a9e0",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "。 2학년 , 광주 수납식자동상승맨홀",
+      "title": "。 2학년 , 광주 수납식자동상승맨홀",
+      "team": "Weld",
+      "org": "광주여자상업고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "4d3e78f187d1030b",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "5학년 , 경남 . 에너지 하베스팅 원리를 이용한 시각장애인 점형 점자블록",
+      "title": "5학년 , 경남 . 에너지 하베스팅 원리를 이용한 시각장애인 점형 점자블록",
+      "team": ". 박라온",
+      "org": "악양초등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "be3d2d280020b11d",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "6학년, 경남 작은힘으로 골든타임을지키는 유체압력식 088 보조기",
+      "title": "6학년, 경남 작은힘으로 골든타임을지키는 유체압력식 088 보조기",
+      "team": "zie",
+      "org": "주촌초등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "aeb88bf71adc532d",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "1학년 . 광주 잘 보이게 흔들리는 소화기 받침대",
+      "title": "1학년 . 광주 잘 보이게 흔들리는 소화기 받침대",
+      "team": "박도희",
+      "org": "광주자연과학고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "9717952d5baacc36",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "6학년",
+      "title": "경북 실외기가뜨거울수록 똑똑해지는 '무건전지'화재 경보기",
+      "team": "Uz",
+      "org": "풍북초등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "c98486afea30dee0",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "3학년 . 강원 발목과회전 감지 자동 잠금형 등산화 보조 장치",
+      "title": "3학년 . 강원 발목과회전 감지 자동 잠금형 등산화 보조 장치",
+      "team": "김서영",
+      "org": "관동중학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "811a4b9bdad6d11e",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "2학년 . 경기",
+      "title": "1 기반15\\ 일체형 지능형 열 고속도로시스템",
+      "team": "김다인",
+      "org": "화성고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "d790aa6a24faa5a4",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "6학년 . 경남 손목압력으로 쉽게 벗는 자동 분리 고무장갑",
+      "title": "6학년 . 경남 손목압력으로 쉽게 벗는 자동 분리 고무장갑",
+      "team": "최정훈",
+      "org": "밀양초등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "9cc7d303e6e88fd3",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "2학년 . 인천 식물냉해를막기 위한냉기 숨통 장치",
+      "title": "2학년 . 인천 식물냉해를막기 위한냉기 숨통 장치",
+      "team": "이서정",
+      "org": "인천과학고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "b816e2612877f29a",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "2학년 . 경기. 보온배드민턴라켓커버",
+      "title": "2학년 . 경기. 보온배드민턴라켓커버",
+      "team": "OFM",
+      "org": "삼일공업고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "263d082d22bf40f4",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "2학년 . 경기 베이퍼 가드 DHE (Vapor Guard Mat)",
+      "title": "2학년 . 경기 베이퍼 가드 DHE (Vapor Guard Mat)",
+      "team": "김도현",
+      "org": "삼일공업고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "4090253c4a3bdeb6",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "2학년 . 경기. 온촉각이중 알림 세이프 샤워기",
+      "title": "2학년 . 경기. 온촉각이중 알림 세이프 샤워기",
+      "team": "강민서",
+      "org": "삼일공업고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "74dd70fcb4f2a6e9",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "1학년 . 경남",
+      "title": "6맛기반버스,지하철 손잡이",
+      "team": "백서윤",
+      "org": "증산고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    },
+    {
+      "id": "2b567d8d8cc673a9",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": null,
+      "category": "1학년 . 부산 교통약자들을 위한 휴대용 원터치 손잡이",
+      "title": "1학년 . 부산 교통약자들을 위한 휴대용 원터치 손잡이",
+      "team": "차연지",
+      "org": "대광고등학교",
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+      "attachments": [
+        {
+          "url": "https://www.ip-edu.net/home/kor/education/material/work/index.do?menuPos=84",
+          "kind": "file",
+          "label": "제39회 대한민국학생발명전시회 수상 작품집.pdf (원본 PDF, 사이트에서 다운로드)"
+        }
+      ]
+    }
+  ]
+}
