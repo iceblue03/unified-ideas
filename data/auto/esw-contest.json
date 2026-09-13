@@ -2,9 +2,9 @@
   "slug": "esw-contest",
   "name": "임베디드 소프트웨어 경진대회",
   "tier": "auto",
-  "method": "eswcontest.or.kr의 역대수상작 게시판(/data/award.php?page=N&code=award)을 페이지가 빌 때까지 순차적으로 HTML 파싱",
+  "method": "eswcontest.or.kr의 역대수상작 게시판(/data/award.php?page=N&code=award)을 페이지가 빌 때까지 순차적으로 HTML 파싱. 각 항목의 상세페이지(ptype=view)까지 한 번 더 열어보는데, 실제 작품 설명(\"작품개요\"/\"특징\")은 텍스트가 아니라 JPG 한 장으로만 게시되어 있어 텍스트 summary는 뽑을 수 없고, 대신 원본 이미지 URL을 attachments로 보존한다(브라우저로 직접 확인, 2026년 기준 전 항목 동일 형식).",
   "homepage": "https://www.eswcontest.or.kr/data/award.php?code=award",
-  "updatedAt": "2026-09-10T11:14:41.142Z",
+  "updatedAt": "2026-09-13T04:18:53.162Z",
   "count": 488,
   "items": [
     {
@@ -19,7 +19,14 @@
       "team": null,
       "org": "수원대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5649&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5649&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260115134016_rpucfsek.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "ee2ee5b4f3252840",
@@ -33,7 +40,14 @@
       "team": null,
       "org": "명지대학교 자연캠퍼스",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5648&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5648&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260115133904_dpqyxpvn.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "1fd673e1ec038ca0",
@@ -47,7 +61,14 @@
       "team": null,
       "org": "건국대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5646&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5646&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260115133508_xlsqobqv.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "8838c084083c6217",
@@ -61,7 +82,14 @@
       "team": null,
       "org": "충북대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5645&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5645&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260115131003_udyuxtik.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "c7e22657fe8cd8a0",
@@ -75,7 +103,14 @@
       "team": null,
       "org": "건국대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5644&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5644&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260115130637_fqiqwhvs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "5cae867c737b2849",
@@ -89,7 +124,14 @@
       "team": null,
       "org": "명지대학교 자연캠퍼스",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5647&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5647&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260115133615_dmxlkonr.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "7292c0db2a40c260",
@@ -103,7 +145,14 @@
       "team": null,
       "org": "서울시립대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5643&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5643&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114145306_nokyhpcb.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "9256155ae61b3cbd",
@@ -117,7 +166,14 @@
       "team": null,
       "org": "한경국립대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5642&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5642&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114145242_newrlmho.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "8af6813813d4a697",
@@ -131,7 +187,14 @@
       "team": null,
       "org": "서울시립대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5641&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5641&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260119095114_aqhegwbt.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "511cf5449ca05f48",
@@ -145,7 +208,14 @@
       "team": null,
       "org": "숭실대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5640&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5640&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114144628_viutkzzs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "3b1680087fdc368c",
@@ -159,7 +229,14 @@
       "team": null,
       "org": "중앙대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5639&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5639&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114144602_izulaceb.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "5176506a5e4dcf23",
@@ -173,7 +250,14 @@
       "team": null,
       "org": "이화여자대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5638&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5638&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114144517_lwbkpltm.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "b6d585766bb1509f",
@@ -187,7 +271,14 @@
       "team": null,
       "org": "아주대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5637&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5637&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114144431_ydgxqury.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "2d53558f91ba94ec",
@@ -201,7 +292,14 @@
       "team": null,
       "org": "인하대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5636&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5636&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114144157_rqnwgsvs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "60be71b959ac890a",
@@ -215,7 +313,14 @@
       "team": null,
       "org": "경희대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5635&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5635&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114144052_nhahucln.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "e82b110a218d7587",
@@ -229,7 +334,14 @@
       "team": null,
       "org": "유석초등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5634&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5634&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114143931_nsanigsb.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "4b6fbf9c2d3f91fc",
@@ -243,7 +355,14 @@
       "team": null,
       "org": "월촌초등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5633&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5633&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114143843_ehxbdzgg.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "5bc54bcdd0a9253a",
@@ -257,7 +376,14 @@
       "team": null,
       "org": "개포초등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5632&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5632&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114143639_axihzcng.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "a1b293acd4bfe941",
@@ -271,7 +397,14 @@
       "team": null,
       "org": "남외초등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5631&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5631&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114143350_mzevzvzw.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "4f616f09b427bc4a",
@@ -285,7 +418,14 @@
       "team": null,
       "org": "울산제일중학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5630&page=1&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5630&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114143153_stxsmhft.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "22eb9cebc28f56f7",
@@ -299,7 +439,14 @@
       "team": null,
       "org": "소현중학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5629&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5629&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114142124_eukcocbl.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "bcd251cfd18b1578",
@@ -313,7 +460,14 @@
       "team": null,
       "org": "동백중학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5628&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5628&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114142055_txkicpfw.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "699490075d26ba36",
@@ -327,7 +481,14 @@
       "team": null,
       "org": "건국대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5211&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5211&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134546_psvqwhgn.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "f471881d9e0a97df",
@@ -341,7 +502,14 @@
       "team": null,
       "org": "대덕소프트웨어마이스터고등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5210&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5210&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134508_nfvhdkln.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "02098d878eff264e",
@@ -355,7 +523,14 @@
       "team": null,
       "org": "건국대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5209&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5209&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134430_nnyfhrrs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "79d5f729c9a49142",
@@ -369,7 +544,14 @@
       "team": null,
       "org": "성균관대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5208&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5208&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134346_ktfpzvqk.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "3869eb0dfa3b251a",
@@ -383,7 +565,14 @@
       "team": null,
       "org": "경희대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5207&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5207&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134308_ylxygdrs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "849f2e9561c66f00",
@@ -397,7 +586,14 @@
       "team": null,
       "org": "서울시립대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5206&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5206&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134221_kbudeqkr.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "1b33103fb9267fcb",
@@ -411,7 +607,14 @@
       "team": null,
       "org": "금오공과대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5205&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5205&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134129_dmrxhrlb.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "b5445885d9edce27",
@@ -425,7 +628,14 @@
       "team": null,
       "org": "계명대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5204&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5204&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134044_qqnrtmrq.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "9c8765517b1a3d6c",
@@ -439,7 +649,14 @@
       "team": null,
       "org": "대구경북과학기술원",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5203&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5203&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133949_hdcbqmam.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "7c14d04f69bf5269",
@@ -453,7 +670,14 @@
       "team": null,
       "org": "숭실대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5202&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5202&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133906_vctokmrs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "8983e4e396fb50e7",
@@ -467,7 +691,14 @@
       "team": null,
       "org": "한양대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5201&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5201&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133812_dhisxnur.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "8913f00f0ce698ef",
@@ -481,7 +712,14 @@
       "team": null,
       "org": null,
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5200&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5200&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133723_boxfocwd.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "156a710e41bb93c9",
@@ -495,7 +733,14 @@
       "team": null,
       "org": "IVS",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5199&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5199&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133647_ddkarvpo.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "561b0a7face16352",
@@ -509,7 +754,14 @@
       "team": null,
       "org": "건국대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5198&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5198&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133619_rsvyiqov.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "c7b04b2164ed64f3",
@@ -523,7 +775,14 @@
       "team": null,
       "org": "트리즈엔지니어링",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5197&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5197&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133539_uuhxfxui.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "afaaf3f35531d04f",
@@ -537,7 +796,14 @@
       "team": null,
       "org": "소현중학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5196&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5196&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133444_ocgbrkrq.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "7495c44358afc08a",
@@ -551,7 +817,14 @@
       "team": null,
       "org": "수내중학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5195&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5195&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133404_nybivetf.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "415a7127c48da903",
@@ -565,7 +838,14 @@
       "team": null,
       "org": "상당초등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5194&page=2&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5194&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133307_uwklwzit.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "705b0de8f065800c",
@@ -579,7 +859,14 @@
       "team": null,
       "org": "광남중학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5193&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5193&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133206_klvmmhob.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "181f97016f13f04d",
@@ -593,7 +880,14 @@
       "team": null,
       "org": "대덕소프트웨어마이스터고등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5192&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5192&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133048_umkcbisf.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "207b0b66cbfb5f94",
@@ -607,7 +901,14 @@
       "team": null,
       "org": "부산소프트웨어마이스터고등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5191&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5191&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124132919_makruafm.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "2687d2264b1acd85",
@@ -621,7 +922,14 @@
       "team": null,
       "org": "Cornerstone Academy of Seoul",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5190&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5190&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124132823_wnfcoilz.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "26e05a8397ac483a",
@@ -677,7 +985,14 @@
       "team": null,
       "org": "경남대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4775&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4775&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100543_ascpuwrt.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "39fe7f10fb494d86",
@@ -691,7 +1006,14 @@
       "team": null,
       "org": "인천대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4774&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4774&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100449_xiufczmf.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "ffdaee0eaf7c5757",
@@ -705,7 +1027,14 @@
       "team": null,
       "org": "금오공과대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4773&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4773&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100405_ndstfvzg.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "145a7d0913a6c849",
@@ -719,7 +1048,14 @@
       "team": null,
       "org": "한국기술교육대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4772&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4772&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100317_pgmivgrs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "60f8b375b3ef8dd1",
@@ -733,7 +1069,14 @@
       "team": null,
       "org": "창원대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4771&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4771&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100235_hnmsfdyg.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "8157b706ebc5d821",
@@ -747,7 +1090,14 @@
       "team": null,
       "org": "한양대학교 ERICA",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4770&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4770&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100150_nqrfnwzh.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "b3cdd921ac3bbc36",
@@ -761,7 +1111,14 @@
       "team": null,
       "org": "서울시립대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4769&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4769&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100105_aqzpzkgs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "e5cb83083035df8a",
@@ -775,7 +1132,14 @@
       "team": null,
       "org": "상명대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4768&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4768&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100020_enzfmsuf.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "f1a243de5150edc4",
@@ -789,7 +1153,14 @@
       "team": null,
       "org": "한국공학대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4767&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4767&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503095933_dubduwvi.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "4979b1e13c92bcc1",
@@ -845,7 +1216,14 @@
       "team": null,
       "org": "국민대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4763&page=3&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4763&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503095448_dbsbcqcr.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "67495618c21a9fe8",
@@ -859,7 +1237,14 @@
       "team": null,
       "org": "한양대학교 ERICA",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4762&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4762&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503095407_mbcvbgwe.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "0a441a4076878a11",
@@ -873,7 +1258,14 @@
       "team": null,
       "org": "서울과학기술대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4761&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4761&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503095328_smmznibo.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "6ade9e1d4fb6e51a",
@@ -887,7 +1279,14 @@
       "team": null,
       "org": "경북대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4760&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4760&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503094929_dnxnxnco.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "f3384c37d7de08a5",
@@ -901,7 +1300,14 @@
       "team": null,
       "org": "한국항공대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4759&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4759&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503094838_gshwytwe.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "73b82e73d6c78316",
@@ -915,7 +1321,14 @@
       "team": null,
       "org": "홍익대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4758&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4758&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503094709_ktntyvvo.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "e6c2a4c8cf0ed7f6",
@@ -929,7 +1342,14 @@
       "team": null,
       "org": "공주마이스터고등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4783&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4783&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240513112554_rcmckvbp.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "946087bc25656bec",
@@ -943,7 +1363,14 @@
       "team": null,
       "org": "서울대도초등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4757&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4757&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503094123_zqggdphw.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "53dc9670ddf82f22",
@@ -957,7 +1384,14 @@
       "team": null,
       "org": "서울구남초등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4756&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4756&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503094043_unfdbahp.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "68b0951b327c8f85",
@@ -971,7 +1405,14 @@
       "team": null,
       "org": "영덕초등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4755&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4755&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503093918_iuuznntg.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "3fcd58e27d16de87",
@@ -985,7 +1426,14 @@
       "team": null,
       "org": "WMS",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4754&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4754&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503093834_wutellie.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "5e1c2b5124fed23e",
@@ -999,7 +1447,14 @@
       "team": null,
       "org": "상당중학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4753&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4753&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503093750_xnkoewzc.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "21e463010af4bbcd",
@@ -1013,7 +1468,14 @@
       "team": null,
       "org": "인천청라고등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4752&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4752&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503093626_oxndwwbl.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "8b1190461a1d3ed7",
@@ -1027,7 +1489,14 @@
       "team": null,
       "org": "국민대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4423&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4423&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2305/20230522153701_sdmpqfmp.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "d783ad532dbe3f20",
@@ -1041,7 +1510,14 @@
       "team": null,
       "org": "서강대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4422&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4422&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144858_knlzzrlp.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "cc3ebb06f013e440",
@@ -1055,7 +1531,14 @@
       "team": null,
       "org": "광운대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4421&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4421&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144821_mzyknhvn.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "fe7d57efb0dd950c",
@@ -1069,7 +1552,14 @@
       "team": null,
       "org": "한국기술교육대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4420&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4420&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144741_mgivhkph.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "34d138bf928a183b",
@@ -1083,7 +1573,14 @@
       "team": null,
       "org": "수원대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4419&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4419&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144641_qnnwzfcx.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "a9f15cdac79f5cf9",
@@ -1097,7 +1594,14 @@
       "team": null,
       "org": "한성대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4418&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4418&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144607_meubqaih.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "504c11e604fe35e2",
@@ -1111,7 +1615,14 @@
       "team": null,
       "org": "서울과학기술대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4417&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4417&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144526_vhwpyzoa.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "6c25e24e473a7c10",
@@ -1125,7 +1636,14 @@
       "team": null,
       "org": "한양대학교 ERICA",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4416&page=4&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4416&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144437_hxtxtkif.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "e128165f9dfd2b5a",
@@ -1139,7 +1657,14 @@
       "team": null,
       "org": "서울과학기술대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4415&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4415&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144351_pkwbymds.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "d13e64534fee3069",
@@ -1153,7 +1678,14 @@
       "team": null,
       "org": "금오공과대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4414&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4414&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144321_qsvmsdpe.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "c657f7489b98bc1a",
@@ -1167,7 +1699,14 @@
       "team": null,
       "org": "건국대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4413&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4413&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144213_cryvrndx.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "06bbc6eecb7b9af1",
@@ -1251,7 +1790,14 @@
       "team": null,
       "org": "충북대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4407&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4407&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143520_wemwddou.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "6311cec28645e3c2",
@@ -1265,7 +1811,14 @@
       "team": null,
       "org": "강남대학교, 한성대학교, 동국대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4406&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4406&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143437_qifoauqu.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "7d5b88865bed5867",
@@ -1279,7 +1832,14 @@
       "team": null,
       "org": "서울과학기술대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4405&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4405&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143406_tmkavkte.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "1ec89e9eb7ed9fae",
@@ -1293,7 +1853,14 @@
       "team": null,
       "org": "국민대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4404&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4404&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143323_gqzlovyv.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "32d0d5c35843e873",
@@ -1307,7 +1874,14 @@
       "team": null,
       "org": "건국대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4403&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4403&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143251_omqtznas.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "9e6875ea0bf99f05",
@@ -1321,7 +1895,14 @@
       "team": null,
       "org": "건국대학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4402&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4402&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143205_vlsmawfv.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "5b3839412d177dfd",
@@ -1335,7 +1916,14 @@
       "team": null,
       "org": "선린인터넷고등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4401&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4401&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143002_llahxkby.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "309b41f8dec023c1",
@@ -1349,7 +1937,14 @@
       "team": null,
       "org": "대치초등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4400&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4400&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228142906_kabgxsoh.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "298973a2512cde2a",
@@ -1363,7 +1958,14 @@
       "team": null,
       "org": "서울교육대학교부설초등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4399&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4399&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228142827_hwafkeho.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "845c60a610463cd3",
@@ -1377,7 +1979,14 @@
       "team": null,
       "org": "신풍초등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4398&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4398&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228142743_kexqqhvp.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "c69f4d1fe34e3f75",
@@ -1391,7 +2000,14 @@
       "team": null,
       "org": "광교고등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4397&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4397&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228142535_asntkkcs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "4e7d855721f35a76",
@@ -1405,7 +2021,14 @@
       "team": null,
       "org": "선린인터넷고등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4396&page=5&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4396&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228142348_fmgnmghq.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "95dad3d24601ccf6",
@@ -1419,7 +2042,14 @@
       "team": null,
       "org": "숭덕여자고등학교",
       "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4395&page=6&code=award"
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4395&page=6&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228142249_xkmekwmr.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "7119880395442484",

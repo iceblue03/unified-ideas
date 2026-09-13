@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio";
-import type { Collector, Idea } from "../../lib/types";
+import type { Attachment, Collector, Idea } from "../../lib/types";
 import { makeId } from "../../lib/id";
 import { CODE_FAIR_META } from "../../lib/collector-meta";
 
@@ -39,15 +39,57 @@ function parseListPage(html: string): Post[] {
   return posts;
 }
 
-async function fetchPostBody(idx: string): Promise<string | null> {
+interface PostBody {
+  summary: string | null;
+  attachments: Attachment[];
+}
+
+/**
+ * kcf.or.kr(imweb 빌더)은 공지 본문을 .board_view > .board_txt_area(fr-view,
+ * Froala 에디터)에 렌더링한다. <meta name="description">은 에디터 본문 앞부분을
+ * 짧게 잘라 넣은 것이라 "수상작 발표" 공지처럼 본문이 표/이미지 위주면 거의
+ * 의미 없는 텍스트만 남는다 — 그래서 og:description 대신 실제 본문 텍스트를
+ * 우선 사용한다.
+ *
+ * 실제로 이 게시판은 "부문별 이미지를 확인하거나 첨부파일을 참조하라"는 식으로
+ * 결과를 통째로 JPG(팀명 표)나 첨부파일로만 올리는 경우가 흔하다(2026년 시즌
+ * "1차 서면심사 결과" 공지에서 확인). 이런 이미지 안에는 보통 "팀명"만 있고
+ * "작품명" 컬럼은 없으므로, 이 수집기는 이미지/첨부파일 링크를 attachments로만
+ * 보존하고 절대 그 안의 텍스트를 title/team으로 추측해 넣지 않는다 — 팀명을
+ * 작품명으로 오인하는 사고를 피하기 위한 안전장치다. title은 항상 공지 제목
+ * 그대로 유지한다.
+ */
+async function fetchPostBody(idx: string): Promise<PostBody> {
   const url = `${BOARD_URL}?bmode=view&idx=${idx}&t=board`;
   const html = await fetchHtml(url);
   const $ = cheerio.load(html);
-  const meta = $('meta[name="description"]').attr("content");
-  if (meta && meta.trim().length > 0) return meta.trim();
-  // fallback: visible content area text
-  const bodyText = $(".board_view, .conArea, .article_view").first().text().trim();
-  return bodyText.length ? bodyText : null;
+
+  const content = $(".board_txt_area").first();
+  const bodyText = (content.text() || "").replace(/\s+\n/g, "\n").trim();
+  const meta = $('meta[name="description"]').attr("content")?.trim() || null;
+  const summary = bodyText.length > 0 ? bodyText : meta;
+
+  const attachments: Attachment[] = [];
+  content.find("img").each((_, img) => {
+    const src = $(img).attr("src");
+    if (!src) return;
+    attachments.push({
+      url: new URL(src, BOARD_URL).toString(),
+      kind: "image",
+      label: "공지 첨부 이미지 (결과표 등)",
+    });
+  });
+  $(".file_area a, .bo_v_file a").each((_, a) => {
+    const href = $(a).attr("href");
+    if (!href) return;
+    attachments.push({
+      url: new URL(href, BOARD_URL).toString(),
+      kind: "file",
+      label: $(a).text().trim() || "첨부파일",
+    });
+  });
+
+  return { summary: summary && summary.length > 0 ? summary : null, attachments };
 }
 
 export const meta = CODE_FAIR_META;
@@ -95,7 +137,8 @@ export async function collect(): Promise<Idea[]> {
       title: post.title,
       team: null,
       org: null,
-      summary: body,
+      summary: body.summary,
+      attachments: body.attachments,
       sourceUrl,
     });
 

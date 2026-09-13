@@ -58,16 +58,30 @@ function MatchCard({ match }: { match: SearchMatch }) {
           <div className="mt-1 text-[10px] text-zinc-400">{scoreLabel(score)}</div>
         </div>
       </div>
-      {idea.sourceUrl && (
-        <a
-          href={idea.sourceUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-2 inline-block text-xs text-blue-600 hover:underline"
-        >
-          출처 보기 →
-        </a>
-      )}
+      <div className="mt-2 flex flex-wrap items-center gap-3">
+        {idea.sourceUrl && (
+          <a
+            href={idea.sourceUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-block text-xs text-blue-600 hover:underline"
+          >
+            출처 보기 →
+          </a>
+        )}
+        {idea.attachments?.map((att, i) => (
+          <a
+            key={i}
+            href={att.url}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-block text-xs text-zinc-500 hover:underline"
+            title={att.label ?? undefined}
+          >
+            {att.kind === "image" ? "🖼️" : "📎"} 원본 {att.kind === "image" ? "이미지" : "첨부"} 보기 →
+          </a>
+        ))}
+      </div>
     </li>
   );
 }
@@ -132,6 +146,8 @@ export default function Home() {
             award: m.idea.award,
             year: m.idea.year,
             score: m.score,
+            sourceUrl: m.idea.sourceUrl,
+            hasAttachments: (m.idea.attachments?.length ?? 0) > 0,
           })),
         }),
       });
