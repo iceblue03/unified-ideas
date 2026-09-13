@@ -162,6 +162,14 @@ export default function Home() {
             </ul>
           )}
 
+          {result.useAi && result.aiMeta.patentAvailable && result.aiMeta.kiprisQuery && (
+            <p className="text-[11px] font-medium text-zinc-400">
+              KIPRIS 검색어: <code className="text-zinc-500">{result.aiMeta.kiprisQuery}</code>
+              {result.aiMeta.kiprisItemCount !== null && ` · ${result.aiMeta.kiprisItemCount}건`}
+              {result.aiMeta.kiprisFallbackUsed && " (키워드를 줄여 재검색함)"}
+            </p>
+          )}
+
           <CategoryTabs
             active={activeCategory}
             onChange={setActiveCategory}

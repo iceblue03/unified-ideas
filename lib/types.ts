@@ -165,7 +165,17 @@ export interface AiMeta {
   shoppingAvailable: boolean;
   /** KIPRIS_SERVICE_KEY 설정 여부 */
   patentAvailable: boolean;
+  /** 실제로 KIPRIS에 전송된 최종 불리언 검색식 (AI가 준 원문이 아니라 조립 후 값) */
   kiprisQuery: string | null;
+  /** AI가 추출한 원본 키워드 (불용어 필터링 전) */
+  kiprisKeywords: string[] | null;
+  /**
+   * KIPRIS 응답이 정상적으로 도착했을 때만 채워지는 건수(0 포함).
+   * null이면 "확인 안 됨"(키 미설정/호출 실패)이라 진짜 0건과 구분된다.
+   */
+  kiprisItemCount: number | null;
+  /** 키워드 전체 AND가 0건이라 키워드를 줄여 재시도했는지 */
+  kiprisFallbackUsed: boolean;
   shoppingQuery: string | null;
   report: AiReport | null;
   /** 실패한 단계별 한글 경고 (전체 검색 실패로 이어지지 않음) */

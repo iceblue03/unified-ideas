@@ -76,6 +76,9 @@ export async function POST(req: NextRequest) {
     shoppingAvailable: isShoppingConfigured(),
     patentAvailable: isPatentSearchConfigured(),
     kiprisQuery: null,
+    kiprisKeywords: null,
+    kiprisItemCount: null,
+    kiprisFallbackUsed: false,
     shoppingQuery: null,
     report: null,
     warnings: [],
@@ -86,13 +89,13 @@ export async function POST(req: NextRequest) {
 
   if (useAi) {
     const gen = await generateExternalQueries(query);
-    aiMeta.kiprisQuery = gen.kiprisQuery;
+    aiMeta.kiprisKeywords = gen.kiprisKeywords;
     aiMeta.shoppingQuery = gen.shoppingQuery;
     if (gen.warning) aiMeta.warnings.push(gen.warning);
 
     const [shopRes, patRes] = await Promise.allSettled([
       searchShopping(gen.shoppingQuery),
-      searchPatents(gen.kiprisQuery),
+      searchPatents(gen.kiprisKeywords),
     ]);
 
     if (shopRes.status === "fulfilled" && shopRes.value.ok) {
@@ -111,6 +114,10 @@ export async function POST(req: NextRequest) {
         score: 1 - i / 10,
         patent,
       }));
+      // 성공했을 때만 채운다 — 그래야 "확인 안 됨"(null)과 "확인했지만 0건"이 구분된다.
+      aiMeta.kiprisQuery = patRes.value.queryUsed ?? null;
+      aiMeta.kiprisItemCount = patRes.value.items.length;
+      aiMeta.kiprisFallbackUsed = patRes.value.fallbackUsed ?? false;
     } else if (aiMeta.patentAvailable) {
       aiMeta.warnings.push("특허 검색을 불러오지 못했습니다.");
     }
