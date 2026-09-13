@@ -46,19 +46,30 @@ export const CATEGORY_LABEL: Record<ResultCategory, string> = {
 };
 
 export interface ShoppingProduct {
-  /** 네이버쇼핑 productId */
+  /** eBay itemId */
   id: string;
-  /** HTML 태그(<b> 등)가 제거된 상품명 */
+  /** HTML 태그가 제거된 상품명 */
   title: string;
   link: string;
   image: string | null;
   lprice: number | null;
   hprice: number | null;
+  /** 통화 코드, 예: "USD", "KRW". null이면 KRW로 취급(원화 표시) */
+  currency: string | null;
   mallName: string | null;
   brand: string | null;
   maker: string | null;
-  /** category1..4를 " > "로 이어붙인 값 */
   category: string | null;
+}
+
+/** lprice/hprice를 currency에 맞게 사람이 읽을 문자열로 변환 (KRW면 "12,000원", 그 외는 통화 기호) */
+export function formatMoney(amount: number, currency: string | null): string {
+  if (!currency || currency === "KRW") return `${amount.toLocaleString()}원`;
+  try {
+    return new Intl.NumberFormat("en-US", { style: "currency", currency }).format(amount);
+  } catch {
+    return `${amount.toLocaleString()} ${currency}`;
+  }
 }
 
 export interface PatentItem {
@@ -66,12 +77,16 @@ export interface PatentItem {
   id: string;
   /** 발명의명칭 */
   title: string;
+  /** 초록(astrtCont) — AI가 실제 기술 내용을 비교하는 데 쓰는 핵심 필드 */
+  summary: string | null;
   applicationNumber: string | null;
   applicantName: string | null;
   /** yyyyMMdd 원문 */
   applicationDate: string | null;
-  publicationNumber: string | null;
+  /** 공개/등록/거절/취하 등 (registerStatus) */
   registrationStatus: string | null;
+  /** IPC 특허분류코드, "|"로 구분된 원문 그대로 */
+  ipcNumber: string | null;
   sourceUrl: string | null;
 }
 
@@ -132,7 +147,7 @@ export interface AiReport {
 
 export interface AiMeta {
   used: boolean;
-  /** NAVER_CLIENT_ID/SECRET 설정 여부 */
+  /** EBAY_CLIENT_ID/SECRET 설정 여부 */
   shoppingAvailable: boolean;
   /** KIPRIS_SERVICE_KEY 설정 여부 */
   patentAvailable: boolean;

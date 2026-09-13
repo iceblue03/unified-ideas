@@ -3,11 +3,11 @@ import type { PatentItem } from "./types";
 
 /**
  * KIPRIS Plus - 특허실용신안 정보 검색 서비스 (patUtiModInfoSearchSevice.getWordSearch)
- * https://plus.kipris.or.kr 가입 후 발급받은 ServiceKey로 호출하는 무료 API. XML 응답.
- *
- * 주의: 정확한 host/path/필드명은 실제 서비스키로 검증되지 않았다 (data.go.kr 공개 문서
- * 기준 추정). parseKiprisXml을 순수 함수로 분리해두었으니, 실제 응답 샘플이 생기면
- * 이 함수만 조정하면 된다. KIPRIS_SERVICE_KEY가 없으면 이 데이터소스는 조용히 스킵된다.
+ * https://plus.kipris.or.kr / 공공데이터포털에서 발급받은 ServiceKey로 호출하는 무료 API.
+ * XML 응답. 아래 필드 매핑은 실제 서비스키로 라이브 호출해 확인한 실제 응답 스키마
+ * 기준이다(추측이 아님) — response.header.successYN/resultCode로 성공 여부를 확인하고,
+ * response.body.items.item[] 각 항목에 inventionTitle/applicantName/applicationDate/
+ * applicationNumber/astrtCont(초록)/ipcNumber/registerStatus 등이 들어있다.
  */
 
 const KIPRIS_ENDPOINT =
@@ -27,11 +27,25 @@ const parser = new XMLParser({
 
 interface KiprisItem {
   inventionTitle?: string;
-  applicationNumber?: string;
   applicantName?: string;
   applicationDate?: string;
-  openNumber?: string;
+  applicationNumber?: string;
+  astrtCont?: string;
+  ipcNumber?: string;
   registerStatus?: string;
+}
+
+interface KiprisResponse {
+  response?: {
+    header?: {
+      successYN?: string;
+      resultCode?: string;
+      resultMsg?: string;
+    };
+    body?: {
+      items?: { item?: KiprisItem | KiprisItem[] };
+    };
+  };
 }
 
 function asArray<T>(value: T | T[] | undefined): T[] {
@@ -46,37 +60,40 @@ function textOf(value: unknown): string | null {
   return trimmed.length > 0 ? trimmed : null;
 }
 
-export function parseKiprisXml(xml: string): PatentItem[] {
+export function parseKiprisXml(xml: string): { ok: true; items: PatentItem[] } | { ok: false; error: string } {
+  let doc: KiprisResponse;
   try {
-    const doc = parser.parse(xml) as {
-      response?: {
-        body?: {
-          items?: { item?: KiprisItem | KiprisItem[] };
-        };
-      };
-    };
-    const rawItems = asArray(doc.response?.body?.items?.item);
-
-    return rawItems
-      .map((item): PatentItem | null => {
-        const title = textOf(item.inventionTitle);
-        if (!title) return null;
-        const applicationNumber = textOf(item.applicationNumber);
-        return {
-          id: applicationNumber ?? title,
-          title,
-          applicationNumber,
-          applicantName: textOf(item.applicantName),
-          applicationDate: textOf(item.applicationDate),
-          publicationNumber: textOf(item.openNumber),
-          registrationStatus: textOf(item.registerStatus),
-          sourceUrl: null,
-        };
-      })
-      .filter((item): item is PatentItem => item !== null);
+    doc = parser.parse(xml) as KiprisResponse;
   } catch {
-    return [];
+    return { ok: false, error: "KIPRIS 응답을 해석하지 못했습니다." };
   }
+
+  const header = doc.response?.header;
+  if (header && header.successYN !== "Y") {
+    return { ok: false, error: `KIPRIS 오류: ${header.resultMsg ?? header.resultCode ?? "알 수 없는 오류"}` };
+  }
+
+  const rawItems = asArray(doc.response?.body?.items?.item);
+  const items = rawItems
+    .map((item): PatentItem | null => {
+      const title = textOf(item.inventionTitle);
+      if (!title) return null;
+      const applicationNumber = textOf(item.applicationNumber);
+      return {
+        id: applicationNumber ?? title,
+        title,
+        summary: textOf(item.astrtCont),
+        applicationNumber,
+        applicantName: textOf(item.applicantName),
+        applicationDate: textOf(item.applicationDate),
+        registrationStatus: textOf(item.registerStatus),
+        ipcNumber: textOf(item.ipcNumber),
+        sourceUrl: null,
+      };
+    })
+    .filter((item): item is PatentItem => item !== null);
+
+  return { ok: true, items };
 }
 
 export function isPatentSearchConfigured(): boolean {
@@ -104,8 +121,9 @@ export async function searchPatents(query: string, numOfRows = 10): Promise<Pate
     }
 
     const xml = await res.text();
-    const items = parseKiprisXml(xml);
-    return { ok: true, items };
+    const parsed = parseKiprisXml(xml);
+    if (!parsed.ok) return { ok: false, items: [], error: parsed.error };
+    return { ok: true, items: parsed.items };
   } catch (e) {
     return { ok: false, items: [], error: e instanceof Error ? e.message : String(e) };
   }

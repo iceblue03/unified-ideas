@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAllIdeas, getManifest } from "../../../lib/dataset";
 import { buildIndex, search, getDocs } from "../../../lib/similarity";
 import { generateExternalQueries } from "../../../lib/ai-query-gen";
-import { isShoppingConfigured, searchShopping } from "../../../lib/naver-shopping";
+import { isShoppingConfigured, searchShopping } from "../../../lib/ebay-shopping";
 import { isPatentSearchConfigured, searchPatents } from "../../../lib/kipris";
 import { rankAndDiagnose } from "../../../lib/ai-rank";
 import type {

@@ -14,18 +14,20 @@
   보완하며, 문자 bigram 유사도를 아주 작은 비중으로 안전망 삼아 섞습니다. 임베딩 모델이나 LLM
   호출이 전혀 없어 완전히 무료입니다.
 - 검색창 옆의 "AI 검색" 토글(기본 ON)을 켠 채로 검색하면, 한 번의 검색으로 로컬 TF-IDF(대회) +
-  KIPRIS 특허 검색([`lib/kipris.ts`](lib/kipris.ts)) + 네이버쇼핑 검색
-  ([`lib/naver-shopping.ts`](lib/naver-shopping.ts))을 함께 조회하고, OpenRouter의 무료 모델
-  (`nex-agi/nex-n2.5-mini:free`, 지연시간/장애 시 `nex-n2.5-pro:free`로 자동 폴백 — 두 모델 모두
-  프롬프트를 학습에 쓰지 않음이 명시된 데이터 정책을 가짐, [`lib/openrouter.ts`](lib/openrouter.ts))이
-  (1) 아이디어의 핵심 기술을 KIPRIS 키워드로, 실제 유사
-  제품이 나올 법한 쇼핑 검색어로 각각 변환한 뒤([`lib/ai-query-gen.ts`](lib/ai-query-gen.ts)),
-  (2) 대회·제품·특허 결과 전체를 하나의 관련성 기준으로 재평가해 "이미 존재함 / 일부 겹침 /
-  블루오션" 진단과 가장 관련성 높은 3건을 구조화된 리포트로 만듭니다
-  ([`lib/ai-rank.ts`](lib/ai-rank.ts), [`app/api/search`](app/api/search/route.ts)). 토글을 끄면
-  기존과 동일하게 로컬 TF-IDF만 즉시 동작합니다. `openrouter_key`/`NAVER_CLIENT_ID`+
-  `NAVER_CLIENT_SECRET`/`KIPRIS_SERVICE_KEY` 중 설정되지 않은 게 있으면 해당 기능만 조용히
-  꺼지고(대회 탭은 항상 정상 동작), 관련 안내가 리포트 아래 경고 문구로 표시됩니다.
+  KIPRIS 특허 검색([`lib/kipris.ts`](lib/kipris.ts)) + eBay 상품 검색
+  ([`lib/ebay-shopping.ts`](lib/ebay-shopping.ts) — 네이버쇼핑 검색 API가 서비스 종료되어 대체)을
+  함께 조회하고, OpenRouter의 무료 모델(`nex-agi/nex-n2.5-mini:free`, 지연시간/장애 시
+  `nex-n2.5-pro:free`로 자동 폴백 — 두 모델 모두 프롬프트를 학습에 쓰지 않음이 명시된 데이터
+  정책을 가짐, [`lib/openrouter.ts`](lib/openrouter.ts))이 (1) 아이디어의 핵심 기술을 KIPRIS
+  키워드로, 실제 유사 제품이 나올 법한 쇼핑 검색어로 각각 변환한 뒤
+  ([`lib/ai-query-gen.ts`](lib/ai-query-gen.ts)), (2) 대회·제품·특허 결과 전체를 특허 심사관처럼
+  엄격한 기준(핵심 기술/작동 방식이 실질적으로 겹칠 때만 "관련 있음"으로 판단, 단순 키워드·분야
+  일치는 배제)으로 재평가해 "이미 존재함 / 일부 겹침 / 블루오션" 진단과 관련도 0.6 이상인
+  것만 최대 3건 구조화된 리포트로 만듭니다([`lib/ai-rank.ts`](lib/ai-rank.ts),
+  [`app/api/search`](app/api/search/route.ts)). 토글을 끄면 기존과 동일하게 로컬 TF-IDF만 즉시
+  동작합니다. `openrouter_key`/`EBAY_CLIENT_ID`+`EBAY_CLIENT_SECRET`/`KIPRIS_SERVICE_KEY` 중
+  설정되지 않은 게 있으면 해당 기능만 조용히 꺼지고(대회 탭은 항상 정상 동작), 관련 안내가
+  리포트 아래 경고 문구로 표시됩니다.
 
 ## 대회별 수집 방법과 상태
 
@@ -71,9 +73,9 @@ npm run dev          # http://localhost:3000
 2. [vercel.com](https://vercel.com)에서 "New Project" → 이 GitHub 저장소를 선택 → Framework는
    Next.js로 자동 인식됨 → Deploy. (선택) AI 검색을 쓰려면 Vercel 프로젝트의 Environment
    Variables에 [OpenRouter](https://openrouter.ai) API 키를 `openrouter_key`라는 이름으로, 제품/특허
-   검증까지 쓰려면 [네이버 개발자센터](https://developers.naver.com) 키를 `NAVER_CLIENT_ID`/
-   `NAVER_CLIENT_SECRET`으로, [KIPRIS Plus](https://plus.kipris.or.kr) 키를 `KIPRIS_SERVICE_KEY`로
-   추가 (자세한 설명은 [`.env.example`](.env.example) 참고).
+   검증까지 쓰려면 [eBay 개발자센터](https://developer.ebay.com) 키를 `EBAY_CLIENT_ID`/
+   `EBAY_CLIENT_SECRET`으로, [KIPRIS](https://www.data.go.kr/data/15058788/openapi.do) 키를
+   `KIPRIS_SERVICE_KEY`로 추가 (자세한 설명은 [`.env.example`](.env.example) 참고).
 3. 그 이후로는 `main` 브랜치에 push될 때마다 Vercel이 자동 재배포한다.
 
 ## 매달 자동 수집되는 구조

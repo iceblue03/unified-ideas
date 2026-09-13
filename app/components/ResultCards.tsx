@@ -1,3 +1,4 @@
+import { formatMoney } from "../../lib/types";
 import type { CompetitionResultItem, PatentResultItem, ProductResultItem } from "../../lib/types";
 import { Chip, ScoreRing, awardTone, scoreLabel } from "./ui";
 
@@ -51,8 +52,8 @@ export function ProductCard({ item, rank }: { item: ProductResultItem; rank: num
   const price =
     product.lprice != null
       ? product.hprice != null && product.hprice !== product.lprice
-        ? `${product.lprice.toLocaleString()}~${product.hprice.toLocaleString()}원`
-        : `${product.lprice.toLocaleString()}원`
+        ? `${formatMoney(product.lprice, product.currency)}~${formatMoney(product.hprice, product.currency)}`
+        : formatMoney(product.lprice, product.currency)
       : null;
 
   return (
@@ -105,6 +106,9 @@ export function PatentCard({ item, rank }: { item: PatentResultItem; rank: numbe
         {patent.registrationStatus && <Chip tone="violet">{patent.registrationStatus}</Chip>}
       </div>
       <p className="mt-2 font-semibold text-zinc-900 break-words">{patent.title}</p>
+      {patent.summary && (
+        <p className="mt-1 text-sm leading-relaxed text-zinc-500 line-clamp-2 break-words">{patent.summary}</p>
+      )}
       <p className="mt-1.5 text-xs text-zinc-400">
         {[patent.applicationNumber, patent.applicantName].filter(Boolean).join(" · ")}
       </p>
