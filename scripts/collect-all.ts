@@ -6,6 +6,7 @@ import * as eswContest from "./collectors/esw-contest";
 import * as publicDataStartup from "./collectors/public-data-startup";
 import * as youthStartup from "./collectors/youth-startup";
 import * as codeFair from "./collectors/code-fair";
+import * as capstoneDesign from "./collectors/capstone-design";
 import * as kipaInventionPatent from "./collectors/kipa-invention-patent";
 import * as mafraPublicDataStartup from "./collectors/mafra-public-data-startup";
 import * as studentInvention from "./collectors/student-invention";
@@ -20,6 +21,7 @@ const COLLECTORS = [
   publicDataStartup,
   youthStartup,
   codeFair,
+  capstoneDesign,
   kipaInventionPatent,
   mafraPublicDataStartup,
   studentInvention,

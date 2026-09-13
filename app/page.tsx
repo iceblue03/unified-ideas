@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { SearchResponse } from "./api/search/route";
+import type { SearchResponse, SearchStreamEvent } from "./api/search/route";
 import type { Manifest } from "../lib/dataset";
 import type { ResultCategory } from "../lib/types";
 import { AiToggle } from "./components/AiToggle";
 import { AiReportPanel } from "./components/AiReportPanel";
 import { CategoryTabs } from "./components/CategoryTabs";
 import { MatchCard, PatentCard, ProductCard } from "./components/ResultCards";
+import { SearchProgress, type SearchStage } from "./components/SearchProgress";
+import { GoogleSignInButton, type GoogleUser } from "./components/GoogleSignInButton";
 import { SearchIcon, Spinner, TierIcon } from "./components/ui";
 
 const TIER_LABEL: Record<string, string> = {
@@ -30,27 +32,38 @@ const EXAMPLE_IDEAS = [
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [stage, setStage] = useState<SearchStage>("idle");
   const [result, setResult] = useState<SearchResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [manifest, setManifest] = useState<Manifest | null>(null);
   const [useAi, setUseAi] = useState(true);
   const [activeCategory, setActiveCategory] = useState<ResultCategory>("competition");
+  const [user, setUser] = useState<GoogleUser | null>(null);
 
   useEffect(() => {
     fetch("/api/manifest")
       .then((r) => r.json())
       .then(setManifest)
       .catch(() => {});
+    fetch("/api/auth/me")
+      .then((r) => r.json())
+      .then(setUser)
+      .catch(() => {});
   }, []);
+
+  function handleSignOut() {
+    setUser(null);
+    fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
+  }
 
   const competitions = result?.manifest.competitions ?? manifest?.competitions ?? [];
   const totalItems = competitions.reduce((sum, c) => sum + c.count, 0);
 
   const shownCount = result ? result.results[activeCategory].length : 0;
+  const isSearching = stage !== "idle" && stage !== "done" && stage !== "stream_error";
 
   async function handleSearch() {
-    setLoading(true);
+    setStage("competition");
     setError(null);
     setActiveCategory("competition");
     // 이전 검색의 AI 진단 리포트/결과 목록이 새 검색이 끝날 때까지(AI 켜짐 시 몇 초
@@ -62,17 +75,72 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query, useAi }),
       });
-      const data = await res.json();
       if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
         setError(data.error ?? "검색 중 오류가 발생했습니다");
-        setResult(null);
-      } else {
-        setResult(data as SearchResponse);
+        setStage("idle");
+        return;
+      }
+      if (!res.body) {
+        setError("검색 중 오류가 발생했습니다");
+        setStage("idle");
+        return;
+      }
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+      let sawTerminalEvent = false;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        buffer = lines.pop() ?? "";
+
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          let event: SearchStreamEvent;
+          try {
+            event = JSON.parse(line);
+          } catch {
+            console.warn("검색 스트림 파싱 실패, 이 줄은 건너뜁니다:", line);
+            continue;
+          }
+          switch (event.stage) {
+            case "competition_done":
+              setStage("query_gen");
+              break;
+            case "query_gen_done":
+              setStage("external");
+              break;
+            case "external_search_done":
+              setStage("ranking");
+              break;
+            case "ai_rank_done":
+              break;
+            case "complete":
+              setResult(event.result);
+              setStage("done");
+              sawTerminalEvent = true;
+              break;
+            case "error":
+              setError(event.message);
+              setStage("idle");
+              sawTerminalEvent = true;
+              break;
+          }
+        }
+      }
+
+      if (!sawTerminalEvent) {
+        setError("검색이 중단되었습니다. 다시 시도해주세요.");
+        setStage("stream_error");
       }
     } catch (e) {
       setError(e instanceof Error ? e.message : "검색 중 오류가 발생했습니다");
-    } finally {
-      setLoading(false);
+      setStage("stream_error");
     }
   }
 
@@ -82,7 +150,18 @@ export default function Home() {
         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-zinc-900 text-white">
           <SearchIcon className="h-4 w-4" />
         </span>
-        <h1 className="text-xl font-bold tracking-tight text-zinc-900">아이디어 중복 체크</h1>
+        <h1 className="flex-1 text-xl font-bold tracking-tight text-zinc-900">아이디어 중복 체크</h1>
+        {user ? (
+          <button
+            onClick={handleSignOut}
+            className="text-xs font-medium text-zinc-400 hover:text-zinc-600 hover:underline"
+            title="로그아웃"
+          >
+            {user.name ?? user.email}
+          </button>
+        ) : (
+          <GoogleSignInButton onSignedIn={setUser} />
+        )}
       </header>
 
       <section className="group/search space-y-2">
@@ -97,10 +176,10 @@ export default function Home() {
           />
           <button
             onClick={handleSearch}
-            disabled={loading || query.trim().length < 2}
+            disabled={isSearching || query.trim().length < 2}
             className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-zinc-900 px-3.5 py-2.5 text-sm font-semibold text-white transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            {loading ? <Spinner /> : <SearchIcon />}
+            {isSearching ? <Spinner /> : <SearchIcon />}
             <span className="hidden sm:inline">검색</span>
           </button>
         </div>
@@ -129,17 +208,32 @@ export default function Home() {
         </div>
 
         <div className="flex items-center justify-between px-1">
-          {error ? <p className="text-xs font-medium text-red-600">{error}</p> : <span />}
+          {error ? (
+            <p className="flex items-center gap-2 text-xs font-medium text-red-600">
+              {error}
+              {stage === "stream_error" && (
+                <button onClick={handleSearch} className="underline hover:text-red-700">
+                  다시 시도
+                </button>
+              )}
+            </p>
+          ) : (
+            <span />
+          )}
           <span className="text-[11px] font-medium text-zinc-400">{query.trim().length}/2000자</span>
         </div>
       </section>
 
-      {loading && !result && (
-        <p className="flex items-center gap-2 text-sm text-zinc-400">
-          <Spinner />
-          {useAi ? "AI가 대회·제품·특허를 종합 분석 중입니다..." : "검색 중입니다..."}
-        </p>
-      )}
+      {isSearching &&
+        !result &&
+        (useAi ? (
+          <SearchProgress stage={stage} />
+        ) : (
+          <p className="flex items-center gap-2 text-sm text-zinc-400">
+            <Spinner />
+            검색 중입니다...
+          </p>
+        ))}
 
       {result && (
         <section className="space-y-4">
@@ -160,6 +254,14 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+          )}
+
+          {result.useAi && result.aiMeta.patentAvailable && result.aiMeta.kiprisQuery && (
+            <p className="text-[11px] font-medium text-zinc-400">
+              KIPRIS 검색어: <code className="text-zinc-500">{result.aiMeta.kiprisQuery}</code>
+              {result.aiMeta.kiprisItemCount !== null && ` · ${result.aiMeta.kiprisItemCount}건`}
+              {result.aiMeta.kiprisFallbackUsed && " (키워드를 줄여 재검색함)"}
+            </p>
           )}
 
           <CategoryTabs

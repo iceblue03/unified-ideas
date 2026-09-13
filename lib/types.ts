@@ -1,3 +1,10 @@
+export interface Attachment {
+  url: string;
+  kind: "image" | "file";
+  /** 사람이 읽을 수 있는 설명, e.g. "작품 설명 이미지" */
+  label: string | null;
+}
+
 export interface Idea {
   /** stable id: sha1(competition|year|title|team) */
   id: string;
@@ -18,6 +25,13 @@ export interface Idea {
   /** 소속 학교/기관 */
   org: string | null;
   summary: string | null;
+  /**
+   * summary만으로 담기 어려운 원본 자료(포스터 이미지, 첨부파일 등).
+   * 일부 대회는 작품 설명이 텍스트가 아니라 이미지로만 게시되어(예: esw-contest
+   * 상세페이지, code-fair 결과 공지) summary를 뽑아낼 수 없는데, 이런 경우에도
+   * 원본 링크는 여기 보존해 사람이나 (선택적으로) AI가 나중에 읽을 수 있게 한다.
+   */
+  attachments?: Attachment[];
   sourceUrl: string | null;
 }
 
@@ -151,7 +165,17 @@ export interface AiMeta {
   shoppingAvailable: boolean;
   /** KIPRIS_SERVICE_KEY 설정 여부 */
   patentAvailable: boolean;
+  /** 실제로 KIPRIS에 전송된 최종 불리언 검색식 (AI가 준 원문이 아니라 조립 후 값) */
   kiprisQuery: string | null;
+  /** AI가 추출한 원본 키워드 (불용어 필터링 전) */
+  kiprisKeywords: string[] | null;
+  /**
+   * KIPRIS 응답이 정상적으로 도착했을 때만 채워지는 건수(0 포함).
+   * null이면 "확인 안 됨"(키 미설정/호출 실패)이라 진짜 0건과 구분된다.
+   */
+  kiprisItemCount: number | null;
+  /** 키워드 전체 AND가 0건이라 키워드를 줄여 재시도했는지 */
+  kiprisFallbackUsed: boolean;
   shoppingQuery: string | null;
   report: AiReport | null;
   /** 실패한 단계별 한글 경고 (전체 검색 실패로 이어지지 않음) */

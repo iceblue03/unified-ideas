@@ -4,10 +4,13 @@ import eswContest from "../data/auto/esw-contest.json";
 import publicDataStartup from "../data/auto/public-data-startup.json";
 import youthStartup from "../data/auto/youth-startup.json";
 import codeFair from "../data/auto/code-fair.json";
+import capstoneDesign from "../data/auto/capstone-design.json";
 import kipaInventionPatent from "../data/auto/kipa-invention-patent.json";
 import mafraPublicDataStartup from "../data/auto/mafra-public-data-startup.json";
 import studentInvention from "../data/auto/student-invention.json";
 import kStartup from "../data/auto/k-startup.json";
+
+import chungjuyungStartup from "../data/manual/chungjuyung-startup.json";
 
 import manifestJson from "../data/manifest.json";
 import { MANUAL_COMPETITIONS } from "./competitions";
@@ -34,12 +37,15 @@ const AUTO_FILES = [
   publicDataStartup,
   youthStartup,
   codeFair,
+  capstoneDesign,
   kipaInventionPatent,
   mafraPublicDataStartup,
   studentInvention,
   kStartup,
 ] as AutoFile[];
-const MANUAL_FILES: Record<string, ManualFile> = {};
+const MANUAL_FILES: Record<string, ManualFile> = {
+  "chungjuyung-startup": chungjuyungStartup as ManualFile,
+};
 
 export function getAllIdeas(): Idea[] {
   const all: Idea[] = [];

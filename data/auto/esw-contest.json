@@ -2,9 +2,9 @@
   "slug": "esw-contest",
   "name": "임베디드 소프트웨어 경진대회",
   "tier": "auto",
-  "method": "eswcontest.or.kr의 역대수상작 게시판(/data/award.php?page=N&code=award)을 페이지가 빌 때까지 순차적으로 HTML 파싱",
+  "method": "eswcontest.or.kr의 역대수상작 게시판(/data/award.php?page=N&code=award)을 페이지가 빌 때까지 순차적으로 HTML 파싱. 각 항목의 상세페이지(ptype=view)까지 한 번 더 열어보는데, 실제 작품 설명(\"작품개요\"/\"특징\")은 텍스트가 아니라 JPG 한 장으로만 게시되어 있어 텍스트 summary는 뽑을 수 없고, 대신 원본 이미지 URL을 attachments로 보존한다(브라우저로 직접 확인, 2026년 기준 전 항목 동일 형식).",
   "homepage": "https://www.eswcontest.or.kr/data/award.php?code=award",
-  "updatedAt": "2026-09-11T12:46:12.066Z",
+  "updatedAt": "2026-09-13T05:32:58.352Z",
   "count": 488,
   "items": [
     {
@@ -18,8 +18,15 @@
       "title": "EARS",
       "team": null,
       "org": "수원대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5649&page=1&code=award"
+      "summary": "작품개요\n1. 청각약자 운전 중, 마이크 센서를 통해 사이렌, 경적과 같은 긴급소리와 해당 음원의 위치를\n감지하고, 사각지대 영상을 포함한 시.족각 멀티 모달 피드백을 제공하여 운전자가 긴급상황을\n즉시 인지하고 대처하도록 한다.\n2. 마이크 센서에서 감지된 소리는 Saf 기반 분석을 통해 스티어링 휠 진동, 방향 LED,        |\n엠비언트라이트 등의 피드백을 HZ SHH HUD ES 통해서도 시선분산 없이 상황판단이 가능하다.\n3. 사이렌, 경적에 따라 스티어링 휠 진동 패턴, 방향 LED 색상, 엠비언트라이트 패턴을 달리\n제공하여 운전자가 즉각적인 상황 인지가 가능하도록 지원한다.\n작품의 특징 및 장점\nㆍ고샘플링 마이크로 차량 외부 소리를 수집한다.\nㆍ감마톤그램 변환으로 주행소음 환경에서 특징 출력을 강화한다.\nㆍ직접 개발한 CNN 기반 모델로 긴급차량 사이렌-경적 소리를 분류한다.\nㆍ분류 결과를 4방향 | ED, 스티어링 휠 진동, HUD oll 동시 전송하여 운전자가 직관적으로\n상황을 인지하도록 한다.\nㆍ청각약자 운전자의 교통 안전을 보장하고, 긴급차량 이동 지연을 줄여 교통 약자의 접근성을\n개선했다.\nㆍ동승자의 음성을 텍스트로 변환-표시하여, 주행 중에도 대화를 시각적으로 확인할 수있도록\n편의성을 높였다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5649&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260115134016_rpucfsek.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "ee2ee5b4f3252840",
@@ -32,8 +39,15 @@
       "title": "설몽",
       "team": null,
       "org": "명지대학교 자연캠퍼스",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5648&page=1&code=award"
+      "summary": "작품개요\n시각장애인의 현저히 낮은 점자 활용률과 심각한 교육 격차 문제를 해결하기 위해, 시 기반 저\n비용 점자 학습기기 설몽(출홍)'이 개발되었습니다. 본 기기는 보조 인력이나 특수교사 없이도\n아동 스스로 '독립 학습'이 가능하도록, 하드웨어와 소프트웨어를 유기적으로 통합했습니다. 점\n자 '읽기' 훈련, 촉각 안내를 통한 쓰기' 연습, 시 '피드백'까지 점자 학습의 전 과정을 하나의 기\n기에서 종체적으로 지원하여, 기존의 파편화된 학습을 벗어나 끊김 없는 교육 경험을 제공합니\n다.\n나아가, 직관적인 음성:문자인식 기술(577/1715)과 다국어 학습 기능을 깊이 있게 결합하여,\n사용자가 언어 장벽 없이 지식을 습득하도록 돕습니다. '설몽'은 이처럼 기술을 통해 교육의 형\n평성과 접근성을 실질적으로 구현하며, 모든 시각장애 아동이 교육 기회를 '공평하게 누릴 수\n있는' 사회적 가치를 실현하고자 합니다.\n프     로\n작품의 특징 및 장점\n설몽은 기존 솔레노이드 방식 대신 단일 ARTES} 기어비를 활용한 혁신적인 구동 구조를\n채택하여, 72가지 점자상태를빠르고 정밀하게 구현하였으며 UH AS HH 소모를 획기적으로\n낮춘 것이 특징입니다.\n내장된 115는 보호자나 교사 등 아동에게 익숙한 음성으로 훈련 하여 친숙한 피드백으로        |\n학습 몰입도를 높였습니다.\n설몽 본체는 30 프린터로만 설계 되어 기타 본드나 칼 없이 조립 가능하여 제작 비용을 절감하고,\n유지 보수 및 사용자 개인 수정이 용이합니다. 이러한 장점으로 예산이 제한적인 특수학교 및\n관련 기관에 대량으로 보급$확산될 수 있는 높은 잠재력을 지닙니다.\n이렇듯 설몽은 유사 프로젝트들과 달리 TTS/STT, 다국어 대응, 필기 유도 시스템 SS 하나의\n기기에 통합하였습니다. 자기주도 학습은 물론, 공공 교육 현장에서의 활용까지 염두에 둔 교육\n혁신형 신규 창작 기기로서 높은 독창성, 확장성을 지닙니다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5648&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260115133904_dpqyxpvn.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "1fd673e1ec038ca0",
@@ -46,8 +60,15 @@
       "title": "소시지",
       "team": null,
       "org": "건국대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5646&page=1&code=award"
+      "summary": "작품개요                                                              |\nA        =                                                                       7\nEh      _—                                              asd\n소방관들은 고온, 질은 연기, 제한된 시야 속에서 구조 BES 수행해야 합니다. 그러나 |\n. 구조 환경과 장비가 열악하여 요구조자의 구조뿐만 아니라 구조대원의 탈출조차 쉽지 않은 、ㆍ\n실정입니다.실제로 화재 현장에서 고립되어 순직하는 사례도 발생하고 있습니다. 이러한원인은 _\n;           시야 확보 장비의 부족에서 비롯되기도 합니다. 열화상 카메라가 있더라도 일부 대원만 사용할 |\n수 있으며, 사용 시 한 손이 점유되어 구조 활동의 효율이 떨어집니다. 또한 구조 현장 내에서\n대원 간 위치 확인이 어렵고, 고립이나 통신 두절 등의 상황이 발생하기도 합니다. 이에 따라         ]\n구조대원의 생존율과 구조 성공률을 높이기 위해 새로운 장비를 개발하였습니다.\n저희 작품은 열화상/적외선 영상을 가상현실 HMD(Head Mount 미5013)/)방식으로\n사용자에게 영상을 제공합니다. 또, 다양한 기능을 주가하여 작업자의 시야개선 및 다양한\n정보를 효과적으로 제공하여 앞선 문제들을 해결하고자 합니다.\n) |\n작품의 특징 및 장점\n사용자가 필요한 모듈만 선택적으로 장착할 수 있어 경량화 및 유지보수, 업그레이드가\n용이합니다. 110방식을 채택하여 양손을 자유롭게 사용할 수 있으며, 0013009 Lens\n와 볼 조인트 구조로 다양한 각도로 조절이 가능해 사용자 시야에 맞춘 편안한 영상 제공이\n가능합니다.\n\\/8[08063하와 RTP 프로토콜을 적용해 외부 통신망 없이도 안정적인 영상.음성 전송이\n가능하고, 노드 AAS Dikstra 알고리즘을 통해 통신 거리 확장 및 최적 경로 탐색이\n이루어집니다. 임베디드 환경에서 실시간성을 확보했으며, GPIO 리모컨 니로 영상 모드 전환과\n설정 변경을 직관적으로 제어할 수 있습니다.\n105만 원의 제작비로 상용 열화상 카메라 대비 75% 저렴하면서도 동급 성능을 제공하여\n1인 1장비 보급이 현실적입니다. 또한, 군사, 재난 구조, 산업 안전 등 다양한 분야에 확장\n가능하며, 향후 가스 감지, 생체신호 모니터링, 위치 파악 등으로 발전 가능한 범용 스마트 안전\n플랫폼입니다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5646&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260115133508_xlsqobqv.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "8838c084083c6217",
@@ -60,8 +81,15 @@
       "title": "찾아줘드론",
       "team": null,
       "org": "충북대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5645&page=1&code=award"
+      "summary": "작품개요\n*찾아줘드론'은 저가의 UWB(Ultra Wide Band) 센서와 군집 드론을 활용한 실종자 탐색\n시스템입니다.                                                                             |\n7|Z GPS/GNSS7t 불가능한 환경(산속, 숲속, 인파 속 등)에서 산악 실종자, 미아 탐색에서\n통신 부재영상 한계로 인한 골든타임 내 구조 어려움을 해결하기 위해 실종자를 신속하고\n정확하게 찾아낼 수 있도록 개발되었습니다.\n목표: Movable UWB Anchor 기반 위치 측위, 영상인식(701), 군집 드론 편대 비행, Digital\nTwin 시각화 기술을 결합해 탐색 료율을 극대화.\nHE 특징 및 장점\nㆍ저비용고효율 구조\nㆍ상용 저가 부품과 오픈소스를 활용 > 도입 장벽 낮음.                                                  |\nㆍ헬기 투입 대비 운영 비용 대폭 절감.                                                                    |\nㆍ기존 단일 드론 + 영상 탐색 - 군집 드론 + UNBZA 융합으로 확장.                               |\n- J-Fi 기반 통신으로 Wi-Fi 대비 신뢰성 강화.                                                                      |\n- UWB+YOLO 융합 > 오탐/누락률 감소.                                                                      |\n- Particle Filter, Potential Field, Digital Twin 시뮬레이션을 통한 고도화.                       men\nㆍ실종자 수색 외에도 가축 관리, 군중 관리, 안전 모니터링, 재난 대응 등으로 확장 가능.             ne\noe\nㆍ탐색부터 시각화까지 완전 자동화.                                                                  …\n|g                                                                                        BE\nㆍ탐색 결과를 직관적 3D 화면으로 제공 > 구조팀 대응력 강화.                                 =i\n(  4                                     =        -                     md            A",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5645&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260115131003_udyuxtik.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "c7e22657fe8cd8a0",
@@ -74,8 +102,15 @@
       "title": "5INT",
       "team": null,
       "org": "건국대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5644&page=1&code=award"
+      "summary": "작품개요\n'80/'는 UWB 통신과 로봇팔을 이용한 자율주행 테이블 클리닝 로봇으로, 식사를 마친 손님이\n떠난 테이블을 ㅇㅇ1\\가 인식하면 로봇이 테이블까지 자율주행하며 도착 후 로봇팔의 부착된\n청소도구로 테이블을 클리닝 하는 구조입니다.\n패스트푸드점이나 학생식당, 푸드 코트 같이 손님이 사용한 식기를 직접 반납하는 셀프 리턴\n음식점에서 손님들에게 항상 깨끗한 테이블을 제공하며 업주에게는 직원의 업무 효율을 높이고\n인건비를 절감하는 효과를 제공하기 위해 개발하였습니다.\n작품의 특징 및 장점\n자동화 시스템: CCTV 연동으로'인식ㅎ주행>클리닝'전 과정을 사용자 개입 없이 수행합니다.\n지능형 클리닝: 오염도 판별로 불필요한 반복 동작을 방지하고, 쓸기*분사닭기 순으로\n청결도를 극대화합니다.\n지속 가능한 클리닝 설계: 스프링식 카트리지 교체와 걸레면 회전 구조를 통해 위생적이면서도           |\n연속적인 작업 수행이 가능합니다.\nHW-SW Sgt 설계: BnW Manager(2)ollA] 배터리, 소모품의 실시간 모니터링과 제어가\n가능해 품질 관리에 용이합니다.\n긍정적인 시장 가치: 매장 운영 효율을 높이고 브랜드를 차별화하며, 83명을 대상으로 한 자체       .\n설문조사 결과 80% 이상의 긍정 반응으로 높은 시장 수용성을 입증했습니다.\nㅣ\n= 고",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5644&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260115130637_fqiqwhvs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "5cae867c737b2849",
@@ -88,8 +123,15 @@
       "title": "RATS",
       "team": null,
       "org": "명지대학교 자연캠퍼스",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5647&page=1&code=award"
+      "summary": "작품개요\n주행 보조 기술은 꾸준히 발전하며 운전에 큰 도움을 주고 있지만, 초보 운전자가 이에 과도하게\n의존할 경우 근본적인 운전 실력 향상에는 한계가 존재할 수 있다. 이에 본 프로젝트는 초보\n운전자가 자주 겪는 좁은 시야 폭, 미숙한 차선 유지, BEES 안전거리 확보 등의 문제를\n실시간으로 감지하고 분석하는 시스템을 개발하였다\n주행중에는ㅁ001630-40미5008/)를통해차선편향및차간 거리를직관적으로피드백하여\n운전자가 즉각적으로 인지하고 대응할수있도록돕는다.주행 종료후에는 전용 애플리케이션을\n통해 주행 중의 시선 분포, 차선 편향 차간 거리 유지 상태 등에 대한 통계 데이터를 기반으로\n종합적인 피드백을 제공한다\n이를 통해 초보 운전자는 정량화된 데이터 기반 피드백을 바탕으로 자신의 운전 습관을\n객관적으로 인식하고 개선할 수 있으며, 결과적으로 운전 숙련도 향상 기간을 단축하는 것을\n목표로 한다.\n|\nIx     로\n작품의 특징 및 장점\n@ 운전 숙련도 향상\n- 본 프로젝트 디바이스의 정량적이고 정확한 피드백을 통해 초보 운전자의 운전 실력을 빠르게\n향상시키는데 도움을 줄 수 있음.\n- 도로 흐름이 원활해지고, 운전 미숙으로 인한 불필요한 사고도 줄어들 수 있을 것으로 기대됨             |\n© Jul 연동                                                                                           |\n- 내비게이션 운전 점수 기능과 연동하여, 보다 정확한 피드백 및 평가 제공 보험 할인 등 부가\n혜택으로 확장 가능\n@ 신규 비즈니스 모델 창출\n- 차량 제조사는 내장된 운전 보조 장치1//를기반으로 본 프로젝트의 SWE 구독형 서비스로             |\n제공할 수 있음\n- 초보 문전자는 필요한 시기만 구독하여 사용하고, 제조사는 새로운 40 모델을 확보할 수\n있음                                                                                                 =\n@ 교육 시장 진출\n- 문전 교육 기관에서 실습 보조 장치로 활용하여 교육의 질 향상                                          :\n- 개인 학습을 위한 보조 수단으로 활용할 수 있으며, 대여 시스템도 도입 가능.                     :\nFN",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5647&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260115133615_dmxlkonr.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "7292c0db2a40c260",
@@ -102,8 +144,15 @@
       "title": "IMBEDDED",
       "team": null,
       "org": "서울시립대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5643&page=1&code=award"
+      "summary": "작품개요\nTabletop Projectors 프로젝터와 터치패드를 결합해 보드게임을 디지털로 즐길 수 있게 만든\n상호작용적 시스템이다. 터치 입력과 카메라 MME 통해 사용자의 카드나 게임 기물 움직임을\n인식하고, 이를 기반으로 게임이 자동으로 진행된다. 복잡한 규칙은 알고리즘으로 처리되어\n누구나 직관적이고 몰입감있게 플레이할 수 있으며, 터치 감지와 영상 투사를 통해 현실 테이블\n위에서 생동감 있는 게임 환경을 구현한다.                                                         |\n작품의 특징 및 장점                                                   |\n0 보드게임의 한계 혁신\n복잡하고 다양한 규칙을 알고리즘으로 구현할 수 있으며, 지속적인 소프트웨어 업데이트와\n확장팩 추가를 통해 새로운 콘텐츠로 발전이 가능하다.\n0 플레이의 직관성 및 편의성 향상\n시스템이 규칙을 자동으로 보조하여 플레이어는 복잡한 룰을 모두 숙지하지 않아도 원활하게\n게임을 진행할 수 있다. 또한 다수의 게임 기물(말, 카드 5)2 사용하는 보드게임의 경우, 분실\n및 관리 BEES 최소화한다.                                                                              |\n0 사회적 교류와 접근성 제고\n온라인 게임으로 인한 사회적 단절 문제를 보완하며, 초심자도 쉽게 참여할 수 있는 공동 참여형          |\n오프라인 레저 콘텐츠로서 사회적 소통과 협동의 가치를 강화한다.\n0 플랫폼 확장 가능성\n보드게임에 국한되지 않고, 유아용 학습 놀이나 회의-교육 도구 등으로 확장 활용이 가능하다.\n프로젝터, 터치, 카메라 센서 기술을 결합한 멀티센서 상호작용적 플랫폼으로 발전할 잠재력을\n가진다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5643&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114145306_nokyhpcb.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "9256155ae61b3cbd",
@@ -116,8 +165,15 @@
       "title": "GMR",
       "team": null,
       "org": "한경국립대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5642&page=1&code=award"
+      "summary": "작품개요\nㆍ배경:전세계적 곡물 생산량증가에도 불구 보관 과정에서해충,습도, 곰팡이 및 통풍 불량으로\n약 40%의 막대한 손실 발생.\n* 필요성: 곡물 평탄화 작업 시 작업자 안전사고가 반복되어, 곡물 품질 향상, 손실 최소화,\n작업자 안전 확보가 시급함.\nㆍ목표:곡물및 비정형지형에서 안정적 위치추정 및 자율주행으로효율적인 환기:평탄화작업을\n수행하는 로봇 개발.\nㆍ궁극적 목표: 주어진 임무를 스스로 탐지, 계획, 완수하는 완전 자율 운영 체계 구축.\n작품의 특징 및 장점\nㆍ 독창적 |1/\\/ (뱀 로봇) 뱀을 모방한 스크류 기반 다관절 구조를 채택하여, 기존 로봇이 접근\n불가한 곡물 내부나 비정형/불규칙한 지형에서도 실질적인 이동 및 작업 수행이 가능함.\nㆍ지능형 자율주행: 단순 주행을 넘어, RTAB-Mapit 포인트 클라우드 분석을 통해 '언덕 인식\n및 파괴' '전역 순회(ㅇㅎ\\6「[396)' 등 주어진 임무를 능동적으로 계획하고 수행함.\n*고도화된제어/인지:센서 FF (V-SLAM + UWB +1\\)으로 위치추정의 신뢰성을 확보하고,             |\n하이브리드 H|O{(MPC+PID)E 통해 주행 효율성과 자세 안정성을 동시에 확보함.\n* 검증된 성능: 스크류 회전을 통한 환기 성능을 정량적으로 입증(녹색 입자 농도 0.4% >\n72.6% 증가)하여, 곡물 표층부 아니라 심증부까지 효과가 있음을 확인함.\n* 높은 확장성: 곡물 관리 외에도 농업 분야 토사 탐사, 지하 환경 모니터링, 재난 구조 탐색 등 [BEE\n다양한 분야로의 확장이 용이함.\npr —                                                                         |",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5642&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114145242_newrlmho.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "8af6813813d4a697",
@@ -130,8 +186,15 @@
       "title": "SUN넘었조",
       "team": null,
       "org": "서울시립대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5641&page=1&code=award"
+      "summary": "작품개요\n[개발 배경]\n* 운전 중 발생하는 순간적인 전방 시야 상실은 비나 눈과 같은 기상 관련 현상보다 두 배 이상의\n교통사고를 유발하며, 운전자가 운전 중 직접 선바이저를 조작하거나 선글라스를 착용하는\n행위는 운전자의 주행 안전성을 저해합니다. 이러한 문제를 해결하기 위해 선바이저 로봇을\n개발하였습니다.\n[개발 목표]\n* 정확하고 강건한 Glare(=24]) 인식\n* 실시간 동작\n* 운전자 친화적 설계\n* 차량의 물리적 상황을 고려한 설계\n프     트\n작품의 특징 및 장점\n[이3(6의 광학적 & 기하학적 특성을 반영한 정확하고 강건한 인식 알고리즘]\n* 광학적 특성: 높은 밝기(7660516/), 낮은 Mx (saturation), 낮은 CH|(contrast)E 반영\n* 기하학적 특성: 낮 시간에 가장 큰 영향을 미치는 Glare 태양의 원형 특성 반영\n* 실제 운전 상황을 Bhs Test Dataset0i| Af Accuracy 0.9, loU(Intersection over Union)\n0.720 달성\n[신속한 동작을 위한 연산 & 이동 로직 최적화]\n+ Raspberry 민의 Multi CoreE 활용한 행렬 연산의 병렬 처리 진행\n+ 원형률 계산 알고리즘 및 마스크 사이즈 최적화\n* A 모터 제어 수치 최적화                                                                         |\n[운전자 친화적 & 차량의 물리적 상황을 고려한 설계]\n＊ 저소음 특성으로 인한 운전자의 주의 분산 방지 설계                                                         |\n* 자체 중량을 최소화하여 과속 방지턱, 급정거 등의 상황에서도 안정적으로 동작                ㅁㅁ [대\ni\nㅣ                                                                                                an\nne 렐\n| [결과] 기존 고정형 선바이저 방식 대비 of 2배의 차광 범위를 확보하면서도, 눈부심 상황에서 BE\n2         운전자의 대응 부담을 줄이고 주행 안정성을 확보하는 스마트 솔루션 제공                           메레.\n|                                                                                                BY\n©.                                     FIER                Np J              중\n/                      y             [|                                     <\nm—                            | |                \\",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5641&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260119095114_aqhegwbt.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "511cf5449ca05f48",
@@ -144,8 +207,15 @@
       "title": "동방예의지국",
       "team": null,
       "org": "숭실대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5640&page=1&code=award"
+      "summary": "작품개요                                                                                             |\n'SOOM'2 Wi-Fi Sensing 기반의 비접촉 수면 감지 시스템입니다.                                         |\nWi-Fi CSI 데이터를 분석하여 사용자의 수면 및 활동 상태를 인식하고, 그 결과에 따라 조명:\n커튼-에어컨 등 101 기기를 자동 제어합니다. 이를 통해 사용자가 별소의 조작 없이도 쾌적한\n수면 환경이 유지되는 지능형 수면 관리 솔루션을 제공합니다.\n작품의 특징 및 장점                                                                             |\n1. 비접촉“무의식 수면 감지:\n카메라나 웨어러블 기기 없이 Wi-Fi 신호만으로 활동을 인식하므로, 착용 부담이 없고\n프라이버시 보호에 최적화되어 있습니다.\n2. 자동 환경 제어:\n수면 및 활동 상태에 따라 조명 밝기커튼 개방:온습도 SS 자동 조절하여 최적의 수면 환경을\n실시간으로 구성합니다.\n3. 코어 시스템 분리 설계:\n6나음성 제어ㅎ9! 수집$활동 분류 시스템이 독립적으로 구동되어, 일시적 통신 오류나\n인터페이스 지연이 발생하더라도 수면 감지와 환경 제어는 중단없이 유지됩니다.\n4. webOS 기반 대시보드:                                                                         Can\nweb0S OSE 환경에서 React 기반 Enact 프레임워크를 활용해 구현된 대시보드를 통해 | ©\n실시간 환경 모니터링, 수면 리포트 시각화, 101 통합 제어가 가능하며, webOS 탑재 기기에서 _ = 5\n애플리케이션 형태로 손쉽게 실행할 수 있습니다.                                                       [비복삐\n@       는 1                        、\n33-229999999999빌                               |                                                         |",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5640&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114144628_viutkzzs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "3b1680087fdc368c",
@@ -158,8 +228,15 @@
       "title": "공감저장소",
       "team": null,
       "org": "중앙대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5639&page=1&code=award"
+      "summary": "작품개요\nMomentBoxi= 사용자가 ARH 자연스럽게 대화하며 하루의 일과와 감정을 기록할 수 있는\n스마트 가전입니다. 최근 1인 가구의 증가와 개인화된 라이프스타일 확산으로 일상과 추억을\n손쉽게 기록하려는 수요가 커지고 있습니다. 그러나 기존의 일기나 블로그 방식은 작성 과정이\n번거롭고 지속성이 떨어집니다. MomentBox= 이러한 불편을 줄이고, 대화만으로 간단하게\nSIRE 기록할 수 있는 새로운 YAS 제시합니다. 또한 가전 데이터와 연동되어 사용자가\n기기를 등록하면 주간 퀘스트가 자동 부여되고, 수행 결과에 따라 캐릭터를 꾸밀 수 있는 보상\n시스템이 작동합니다. 이를 통해 기록과 행동이 자연스럽게 이어져, 사용자가 지속적인 참여\n동기를 얻습니다. \\00760180>는 음성 대화 기반의 일상 기록, 감정사진 중심의 Ul, 가전 사용\n루틴과 보상 기능의 결합을 통해 단순한 기록을 넘어 생활 속 습관으로 확장되는 새로운 형태의\n스마트 가전을 목표로 합니다.\n프     트\n작품의 특징 및 장점\n기존의 일기 Ho|Lt 대화형 스피커가 단순한 기록-정보 제공에 그친 반면,\\40060080×는'기록-\n보상-루틴 형성'이 연결된 구조를 구현했습니다. 사용자는 음성 대화만으로 하루를 기록하고,\nSEE 가전과 연동되어 주간 퀘스트가 자동 부여되며 수행 시 리워드를 얻습니다. 이를 통해           |\n단순한 기록을 넘어 일상의 행동과 습관이 자연스럽게 이어지는 REIS 형성할 수 있습니다.\n또한 기존 고가 가전에 비해 합리적인 단가와 쉬운 유지보수를 확보했으며, 1인 가구나 개인 ㅣ\n사용자가 부담 없이 접근할 수 있는 가격 구조를 지향합니다. 결과적으로 MomentBoxs 감정             |\n기록과 실용 기능을 결합한 저비용고료율형 가전으로, 음성 기반 일기 기록과 감정 관리,집안의 |        |\n루틴 형성을 통합 지원하는 새로운 생활 경험을 제공합니다.                                             |        |\nPASI",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5639&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114144602_izulaceb.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "5176506a5e4dcf23",
@@ -172,8 +249,15 @@
       "title": "SOUNDLINK",
       "team": null,
       "org": "이화여자대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5638&page=1&code=award"
+      "summary": "작품개요\n본 작품은 가정 내에서 발생하는 다양한 소리 정보로부터 소외된 청각장애인을 위한 지능형\n실내 알림 시스템입니다. 기존 시각 알림 장치가 '어떤 소리'인지 구분하지 못하고 '고정된\n위치'에서만 작동하는 한계를 극복하기 위해, Al 음향 분석 기술과 실시간 위치 측정 기술을\n융합하였습니다.\n본 시스템은 화재 경보, 아기 울음 등 위험 소리를 정확히 분류하고, 사용자의 현재 위치를\n실시간으로파악하여가장가까운가전의_ㄷㅁ및화면을통해즉각적인시각알림을제공합니다.\n또한 Home Assistantet 연동하여 생활 가전의 완료 상태까지 TV 팝업 등으로 알려주어,\n청각장애인의 안전 확보와 일상의 편의성을 획기적으로 높이는 것을 목표로 합니다\n=\n작품의 특징 및 장점                                                  |\n1) ‘A= geld 기반 Al 소리 판별                                                                     |\n깨끗한' 소리뿐만 아니라 '실제 소음 환경' 속에서도 화재 경보, 아기 울음 등을 정확히 구별하는\n높은 신뢰성을 보장합니다. 또한, 지속성 및 쿨타운 필터 로직을 적용하여 오탐지로 인한 '알림\n스팸'을 방지합니다.\n2) '지능성\": 능동형 위치 기반 선택적 알림\n시스템이 사용자의 위치를 '능동적'으로 추적합니다. 이를 통해 사용자와 가장 가까운 장치\n(ㄴ60/화면)에만 알림을 선택적으로 전송합니다.\n3) '확장성\": Home Assistant + ESPHome 기반 통합 아키텍처\nHome AssistantE 중앙 허브로 사용하여, 서로 다른 장치들을 유기적으로 완벽하게 |\n통합했습니다.\n이를 통해 소리 알림 외 가전 상태, '카메라' 등 모든 101 장치와 연동이 가능하며, 1\\; ‘LED!\n외 HE ZIS) 등 어떤 출력 장치로도 무한히 확장할 수 있습니다.                                 니니\n JB.                     @",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5638&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114144517_lwbkpltm.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "b6d585766bb1509f",
@@ -186,8 +270,15 @@
       "title": "ATM",
       "team": null,
       "org": "아주대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5637&page=1&code=award"
+      "summary": "작품개요\n- 시 TETRISE 사진 촬영만으로 탑승 인원과 짐에 맞춰 차량 내 최적의 시트 배치를 빠르고          |\n똑똑하게 구성해준다.\n- ASAPH AS Soll §S 인원과짐 사진을 입력하면, 인공지능이 최적의 시트 배치를 설계하고,               |\n자유롭게 이동하는 시트를 통해 구현한다.\n- 사용사가 시트 배치를 구상하고 직접 조정하는 HARES 줄이며, 자유롭게 이동하는 시트를\n통해 유연한 공간 구성을 가능하게 한다.\n작품의 특징 및 장점\nD> 공간 배치 고민 없이 자동 설계를 통한 높은 편의성\nD> 시트 조작이 필요 없는 자동 전환을 통한 손쉬운 적재 공간 확보\n[> 간단한 입력만으로 누구나 쉼게 사용할 수 있는 직관적 사용성\n1> 캠핑, 이사 등 다양한 상황에 적용 가능한 높은 실용성\n1\"          개)                               yl  Ee\n기       주     = 별 >                            r Ly:\n존         i         ~                                : B\n|            =,       =<                  y\n|\n[          될 _놀\n|            |                                              [\n'             ng              PR                       - CL\n7 it                El                          J                    06\n선        그      f 을                    =               .……\n|           논의       [ J         L,                                               …\n      |     :                           내\n              BEELER                     -\n;",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5637&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114144431_ydgxqury.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "2d53558f91ba94ec",
@@ -200,8 +291,15 @@
       "title": "AUTONAV",
       "team": null,
       "org": "인하대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5636&page=1&code=award"
+      "summary": "작품개요\n최근 차량 인터페이스는 음성 기반 Al 중심으로 발전하고 있으나, 언어-청각 장애 사용자는\n이러한 기능을 충분히 활용하기 어렵다는 접근성의 한계가 존재한다.\n본 ZZ SignNave 수어 및 제스처를 실시간으로 인식하여 자연어 명령으로 변환하는 생성형\n시 기반 차량 인터페이스로, 직접 수집한 데이터셋을 기반으로 학습한 Al 모델을 활용한다.\n수어 QAI APIS 상호작용을 통합하여 내비게이션, 수어-음성 변환, 긴급 구조\n요청 등의 기능을 제공한다.\n모든 인식 및 제어 프로세스는 8350061>/ Pi 기반의 임베디드 환경에서 동작하며, 카메라. 6565\n센서스피커+100 등의 장치가 연동된 구조를 통해 다양한 기능이 통합적으로 동작하도록\n구현하였다.\n본 시스템은 기존 음성 중심 인터페이스의 한계를 넘어 AIS 활용한 수어 중심의 차세대\n인터페이스 기술을 제시하며 장애 유무와 관계없이 모두가 동등한 주행 경험을 누릴 수 있는\n포용적 모빌리티 UXE 구현하는 것을 SHE 한다.\n작품의 특징 및 장점\n- 언어-청각 장애인의 음성 Al 서비스 접근 한계를 해소하여, 정보 이용의 평등 실현\n- 수어제스처 인식 기반 인터페이스로 발화가 불편한 운전자의 기능 접근성, 편의성 강화\n- 한글 자/모음 단위의 수어를 인식하여, 자유로운 텍스트 입력을 지원\n- 차량의 기존 구조나 장비를 변경하지 않는 비침투형 시스템으로, 도입 비용 최소화\n- 차량 속도에 따른 이용 제한 기능과 긴급 구조 요청 기능을 포함한 안전 중심 설계\n- 인식된 수어를 음성으로 변환출력하여 차량 내 외부와의 원활한 AES 지원\n- 적외선 카메라를 사용하여 저조도 환경에서도 인식 안정성 확보\n- HUD 실시간 피드백으로 운전자의 전방 FAIS 확보하여 주행 안전성, 사용 편의성 향상",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5636&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114144157_rqnwgsvs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "60be71b959ac890a",
@@ -214,8 +312,15 @@
       "title": "차선유지햄",
       "team": null,
       "org": "경희대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5635&page=1&code=award"
+      "summary": "작품개요\n좌회전 상황에서 차선 경계가 사라질 때, 단일 카메라와 실시간 시각정보를 활용해 차량 조향을\n보조하는 운전자 보조 시스템 제작\n작품의 특징 및 장점\n1. 좌회전 중 차선 유지 보조를 위해 카메라 기반 운전자 보조 시스템 제작\nii. 차량에서 사용하는 CAN 통신과 전기전자 장치 간 이더넷 통신을 모방하여 구현함.\niii. 기존의 BMW 사의 좌회전 보조 시스템은 맞은편 직진 차량과의 충돌 방지를 위해 레이저          |\n센서로 감지한다.                                                                                         |\n하지만 우리 운전자 보조 시스템은 '나란히 좌회전' 하는 차량과의 충돌 방지 목적이다. 이를         |\n통해 숨은 위험으로부터 '운전자 중심의 운전자 보호'를 할 수 있다.\niv. 카메라 하나로 상황을 판단하는 저비용 시스템이다. 다수의 센서 등의 설치를 요하지 않아,           |\n차량 뿐만 아니라 이륜차 등, 확장성이 좋다.\nv. 카메라 정보를 실시간으로 처리하기 위해 CUDA 커널을 제작하고, GPU 파이프라인을\n구축하여 지연시간이 매우 낮다.\n비.차선객체인식과ㄴㅅ8/{ㄴ5컬러필터를동시에활용해신뢰도를높였고 Hough Transform\n을 적극 활용하여 목표 차선을 강조해준다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5635&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114144052_nhahucln.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "e82b110a218d7587",
@@ -228,8 +333,15 @@
       "title": "마시멜로코코아",
       "team": null,
       "org": "유석초등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5634&page=1&code=award"
+      "summary": "작품개요\nT-recycler(E|X{-2|Ato|22{)= 시 이미지 분류 7|&1 LEGO SPIKE 만1076을 결합하여\n개발한 '체험형 분리수거 교육 서비스'입니다.\n아이들이 직접 쓰레기 분류 과정을 체험하면서 올바른 분리배출 방법을 배우고, 리워드를 통해            |\n자발적으로 환경 보호 활동을 실천할 수 있도록 설계했습니다.\n작품의 특징 및 장점\n1. 시와 로봇 융합 시스템으로, 자동으로 쓰레기를 인식 및 분류하여 체험 중심의 학습 제공\n2. 잘못된 분리배출 시 피드백을 제공하여 단순 체험이 아닌 '학습형 교육 시스템'으로 발전              |\n3. 리워드 시스템을 통해 아이들의 지속적인 참여와 흥미 유도\n4. 다양한 쓰레기 종류(금속캔, 비닐, 페트병, 종이, 플라스틱)를 인식할 수 있어 아이들에게        |\n교육 확장성 높음                                                                                         |\n5. 다양한 5065가 연계된 서비스로, 아이들에게 환경 보호 및 기후 대응 의식 형성에 기여\n가능",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5634&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114143931_nsanigsb.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "4b6fbf9c2d3f91fc",
@@ -242,8 +354,15 @@
       "title": "PHOENIX",
       "team": null,
       "org": "월촌초등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5633&page=1&code=award"
+      "summary": "작품개요\nU0) (범죄행위를하는 사람의 예방 및 검거 확률을 높이는 로봇)\n(27                                                                      | -\n=i Xj4 가능 발전 목표(5069) 목표 중 하나인 인권 정의 평화를 기반한 무단 투기    NN\n방지 로봇입니다.                                                       A\n)    |\n- 제품의 작동 및 효과 : Al 영상 인식으로 일반 사람/무단 투기 사람을 구분하고, 경고 > 액체\n(형광 페인트+반짝이 가루) 분사의 2단계 대응으로 무단 투기 억제 효과를 높일 수 있습니다.              |\n5                                                                         |\n 작품의 특징 및 장점                                        I's\n7   |                                                                     |\n         <제품의 특징 및 장점>                                                                    ]   |\n:\nS| -시기반 컴퓨터 비전으로 실시간 영상 인식으로 일반 사람 / 무단투기 사람을 구분하며,\n신뢰도 98%초과 + 연속 분석 검증으로 안정성이 있습니다.\n- 무단투기사람를 웹캠으로 인식하여 해당 지점에 분사 높은 BEES 갖고 있습니다.             :\n。  -2단계대응으로 나누어 경고음 > 무단투기사람 확정시에만 물 분사로 안정성이 높습니다.\n- 몸에 해롭지 않은 형광물질+반짝이를 사용하여 확인, 추적에 도움이 됩니다.                       12\n- 배터리 / 거치대를 통한 이동형 설치가 가능합니다.\n<제품 기대 효과>\n@무단투기율 감소\n@도시 미관 개선 : 깨끗한 길거리\n ㅣ ORI 위생 향상 : 악취, 해총 발생 저감                                                        대\nㅣ 쓰레기 처리 비용절감 및 교육효과와 함께 공공질서 의식 제고                                : |\n- 레|                                                                             、 블\nCL (CHE 문제상황에도 확장시켜 사용 할 수 있습니다.                                                Rn\nOMS E 농작물 피해 방지 로봇)                                           HY\n> -           V4",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5633&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114143843_ehxbdzgg.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "5bc54bcdd0a9253a",
@@ -256,8 +375,15 @@
       "title": "코사모",
       "team": null,
       "org": "개포초등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5632&page=1&code=award"
+      "summary": "작품개요\n시각장애인을 위한 Al 스마트 냉장고는 시각장애인들이 사용하기 쉽도록 자동으로 음식이나         |\n식재료를 확인하고 보관하거나 꺼낼 수 있는 냉장고입니다.\n작품의 특징 및 장점\n저희 냉장고를 활용하면 시각장애인들이 냉장고에 넣어둔 음식이나식재료를꺼낼때구분하거나\n찾는 번거로움을 줄여줄 수 있고, 자동으로 출입구에 음식을 꺼내 주기 때문에 몸이 불편한\n사람들도 사용이 가능합니다.\n그리고 냉장고에 보관된 식재료를 활용한 요리를 추천해 주거나 소비기한이 얼마 남지 않은\n식재료나 음식이 있으면 음성 등으로 알려줄 수 있습니다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5632&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114143639_axihzcng.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "a1b293acd4bfe941",
@@ -270,8 +396,15 @@
       "title": "TWO잼민",
       "team": null,
       "org": "남외초등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5631&page=1&code=award"
+      "summary": "작품개요\n우리 팀의 작품 이름은 Al 재활용 시스템입니다. 이 작품은 아파트, 빌라, 기숙사 같은 모든\n건물에서 사람들이 쓰레기를 쉽게 정리하도록 도와주는 시스템입니다. 우리는 사람들이 1\n층까지 내려가서 분리수거하는 번거로움을 해결하고, 더 쉽고 편하게 분리수거를 할 수 있도록\n만들었습니다. 우리 작품은 사람 감지, 쓰레기량 확인, 무게 측정과 포인트 지급, 쓰레기 종류\n판단, 압축과 배출의 과정을 거쳐 작동합니다.\nIx    E\n작품의 특징 및 장점                                                  |\n우리시재활용시스템은사람들이더쉽게재활용을할수있도록도와주는똑똑한시스템입니다.        |\n1층까지 내려가지 않아도 가까운 층에서 버릴 수 있어 편리하고, 사람이 직접 분류하지 않아도\n자동으로 분류됩니다. 또 압축 기능으로 부피를 줄여 같은 공간에 더 많은 쓰레기를 모을 수\n있습니다. 우리는 압축하지 않기 때문에 깨질 걱정이 없어 안전합니다. 무게에 따라 포인트를\n주어 사람들은 재미있게 재활용에 참여할 수 있습니다. 이런 특징들 덕분에 분리수거가 잘\n이루어지고, 환경 보호에도 2 도움이 됩니다.                                                                     |\n|",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5631&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114143350_mzevzvzw.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "4f616f09b427bc4a",
@@ -284,8 +417,15 @@
       "title": "식스틴",
       "team": null,
       "org": "울산제일중학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5630&page=1&code=award"
+      "summary": "작품개요\n코로나 팬데믹 시기에 화장실 물내림에 의한 비말 오염에 관한 대대적인 교육 및 인식 변화가\n있었다.하지만'내리는 사람'은확인하지 못하고.여는 사람'만피해를 보는 구조가 발생한다.물이\n제대로 내려갔는지 확인할 수 있는 시스템이 미흡하기 때문이다. '레버를 3조간 눌러주세요'와\n같은 스티커가 다양하게 판매되는 것을 보면, 정확하게 레버를 누르지 않는 것이 큰 문제라는\n것을 짐작할 수 있다.\n우리는 이를 해결하기 위해, S720] 닫히면 제대로 눌러졌는지 확인하는 시스템의 필요성을\n절실히 20) 우리의 스마트 위생 플러시 모듈'은 자동 위생 관리 시스템으로 공공 위생의\n신뢰를 회복하고, 위생 관리 효율을 극대화하는 저비용 솔루션으로 큰 의미를 가진다.\n해결하는 5065 목표:\nㆍ 500 3 (건강과 웰빙): 위생적인 화장실 사용을 통한 건강 증진\n+ SDG 6 (깨끗한 물과 위생): 공공위생과 환경 개선\nㆍ500 9 (산업혁신인프라): 스마트 위생 인프라 구축\n작품의 특징 및 장점\n@ 기술적 차별성\n조도 사운드 센서 융합으로 정밀한 오염 감지와 세정이 가능함.\n@ 위생적 효과\n항상 깨끗한 변기 상태 유지로 감염 예방 및 청결 신뢰 확보. 공공위생 만족도 향상.\n© 경제적 효과\n고가 전자식 밸브(70~200만 원)대비해서, 약 5~10만 원 수준으로 구축 가능. 설치비와\n유지비 절감.\n@ 사용자 경험 개선\n1Ｌ60표시등으로 시각적 안심 제공, 불쾌감 감소.\n© 확장성 및 지속 가능성\n외장형 구조로 모든 변기에 부착 가능. 향후 WH LITA 강화 및 oT 연동으로 발전 가능.\n이 제품은 단순한 자동 물내림 장치가 아니라,\n깨끗함을 보장하는 스마트 위생 모듈이라는 점에서 차별화된다.\n공공시설 위생 관리의 신뢰를 회복하고, 청소 인력의 부담을 줄이며, 저비용으로 높은 효과를\n기대할 수 있는 실질적 솔루션이다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5630&page=1&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114143153_stxsmhft.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "22eb9cebc28f56f7",
@@ -298,8 +438,15 @@
       "title": "언어의손길",
       "team": null,
       "org": "소현중학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5629&page=2&code=award"
+      "summary": "작품개요\n수어는 청각장애인과의 소통 창구일 뿐만 아니라, 언어를 손과 몸짓으로 표현할 수 있다는\n점에서 중요한 언어이다. 그래서 요즘 들어 수어를 배울 수 있는 수업과 인터넷 강의 등이 많이\n생겼다. 하지만 수어는 기존 언어와 다른 점이 많아 배우기 매우 어렵다. 이러한 이유로 수어를\n쉽고 간편하게 배울 수 있는 시스템이 필요하다 생각하였고, 이에 따라 시와 임베디드 시스템을\n이용한 수어 학습 시스템인 '수어링고'를 개발하게 되었다.\n작품의 특징 및 장점\n기존 수어 학습 프로그램은 대부분 화면 속 영상으로만 수어를 표현해, 사용자가 동작의\n실제 형태나 깊이를 느끼며 배우기 어렵다. 반면 수어링고는 로봇 손을 이용해 수어를 직접\n시연함으로써, 사용자가 눈앞에서 실제 손동작을 보며 보다 실감나게 학습할 수 있다. 또한\n기존 프로그램이나 인터넷 강의는 단순히 수어를 시청하는 데 그치지만, 수어링고는 시 기반\n수어 인식 기능으로 사용자가 직접 수어를 따라 하며 연습할 수 있다. 시는 손동작을 인식해\n정확도와 자연스러움에 대한 피드백을 실시간으로 제공하므로, 사용자는 자신의 실력을\n점검하며 반복적으로 향상시킬 수 있다. 결론적으로, 수어링고는 배우기 어렵고 낮설던 수어를\n쉽고 실감나게 배울 수 있는 혁신적 학습 시스템이다.                                                이",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5629&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114142124_eukcocbl.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "bcd251cfd18b1578",
@@ -312,8 +459,15 @@
       "title": "프라이머스",
       "team": null,
       "org": "동백중학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5628&page=2&code=award"
+      "summary": "작품개요\nㆍ (배경) 꿀벌 개체 수 감소와 기후 변화로 인해 농작물의 자연 수분이 어려워짐에 따라 수확량과\n소득 감소 문제 발생\nㆍ(개발목표)시 영상 인식과 자동 분사 기능을 결합하여스스로 꽃을 인식하고 수분을 수행하는\n스마트 라인 수분 로봇 개발\n.        념      센       인을       3        을 인식하면 블로워로 일     간(3초) 동안\n(작동 개념) 컬러센서로 라인을 따라 주행하며, 꽃을 인식하면 블로워로 일정 시간(3초) 동안\nWIRE 분사하여 수분 지원\n*(시스템 구성) LEGO 스파이크 프라임과 아두이노 우노를 연동하고, Al 이거다 프로그램을\n통해 FOIA LAE 통합 제어\nㆍ(기대효과) 수분 효율 향상과 꽃가루 낭비 절감, 농가의 작업 부담 완화 및 교육용 스마트농업\n교구로 활용 가능\nㆍ(5065 연계) 목표 213-15(기아 종식기후 대응-생태계 보전) 달성에 기여하는 친환경 기술\n기반 로봇\n작품의 특징 및 장점\nes\nㆍ(시자동 수분) Al 영상 인식으로 꽃을 스스로 판별하고, 인식된 순간에만 블로워를 작동시켜\n효율적인 수분 수행\nㆍ(통합 제어 구조)ㄴ6ㅇ0 스파이크 프라임과 아두이노 우노를 연동하여 FH QUAL LAL [SS\n시 이거다 프로그램 하나로 통합 제어                                                                  Tis\nㆍ(기술 완성도) 자체 성능평가 결과: 꽃 인식률 85%, 라인 주행 안정도 90%, 전체 시스템 ET\n|        완성도 78%                                                                                     oe\ng     . (OF 운용) 전방 장애물 인식용 초음파 MME 구성하고. 부저 경고와 비상 정지 기능을 Fe\nod To) do oViE 닫어춘 소습  닌시늘  =  》 1 =   © ©  =22 6\n<         병행하여 안전성 확보 가능                                                                 …ㅁ\n|                 y                                         4\n2           y         | |          CX                                 |",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5628&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2601/20260114142055_txkicpfw.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "699490075d26ba36",
@@ -326,8 +480,15 @@
       "title": "커피바라",
       "team": null,
       "org": "건국대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5211&page=2&code=award"
+      "summary": "대상 - 산업통상자원부 장관상\n=a]\nol 회 요 = 라스 티커\n=      oo 2d— 브\n완전 자동 분리 시스템\nㄴㄴ     oO =        _ㅡ — |\n자유공모 / 커피바라(건국대학교)\n개      em\n1  1/               제\n기        [     i\npie     ㅣ\nSes.      bi     |.\n『     Balt 10    i\n                   =\n=      프\n[작품 개요\nEmbedded Al 이미지 처리를 통해 플라스틱 음료 컵을 자동으로 분리 - 세척 - 적재하는\n장비로, 재활용 효율을 높이고 환경 오염을 줄이기 위해 개발한 시스템입니다.\n사용자 편의성을 극대화하여 복잡한 분리 배출 과정을 자동화하고, 자원 회수율을 높이는 _ㅇ _ㅡ\n데 중점을 두고 개발했습니다.                                                                           i\n-                                                                           20\n0                 —    =    o                                                     도 J\n| 9 작품의 특징 및 장점                               Reva\n         | ASEAN 컵 투입 후, FY 빨대, 홀더 등을 자동으로 분리하고 컵을 세척해재활 |\n~... 용을용이하게합니다.                                                       [\nPo      자원 회수율 증가: 사용자의 간편한 참여로 자원 회수율이 향상되고, 지역 사회의 환경 보         NE\n|            호에 기여합니다.                                                                                N—\nS| 실시간 처리 시스템: YOLOVE 모델을 활용한 실시간 영상 인식을 통해 CIR 크기와종류 _ 튼  _\n의 컵을 정확하게 처리합니다.                                                                  =\n© ㆍ 환경친화적솔루션: ESG 경영에 기여하는 장비로, 공공기관, 카페 등 다양한 장소에서활 |\n용 가능합니다.                                                                                               <\n3\n| ——\n— —\n|\nTHR           ~ = 08888 =\nI                     -_—  Seaman.  20\n=       ——\n=                       =      Bai ERS\n—                              0 a    \"HE EE NE EN      >",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5211&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134546_psvqwhgn.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "f471881d9e0a97df",
@@ -340,8 +501,15 @@
       "title": "KOTORI",
       "team": null,
       "org": "대덕소프트웨어마이스터고등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5210&page=2&code=award"
+      "summary": "최우수상 - 산업통상자원부 장관상\n=\nloT-VehiCALL (LoRaS2! 기반\n= 노오      느ㄴ\n=\n통합 버스 승차 요청 시스템)\n> —|      —_—O          [=]      —_— = |\n자유공모 / 10100[(대덕소프트웨어마이스터고등학교)\nPy    쁘~~ =: ]      OF\nb            18       i  dm  -   >,         pr\n|        7         | | BE Lo               )\n24          A       oe\ni           4                   LI\"\nㆍ      NIE                       =                      %\n\\     ca “FEVER aa                   BIAS afofznzion        A\nwe                                 gd                 RE\n| 이번 =                          |              [Ee      ® |\niy, (53                                                 -\n「스1 #  he                                <          [TUTTE 를 기\n| 8°) C=                (기            ”             —             0\n           2                            3           |   @\n리                                  :        =          :…… [밸 gre 호  ak\nB       :            mE\n2 5 수                                         Ras © cor     (AL\n0) 27 Se                     Boi 의  on\n=    ‘® ots     pei         Fan   #         년 227 기     =... |\nWl lS       세    [ms 일 |       [\nTE ——                  %   탑승대기                       sb\nBe |      Pad sta pay wey ge? |      7\n[mg Ee cm\n=>      Ix\n[\\ 작품 개요\n101-\\/하1044 은 대중교통 이용의 불편함인 \"버스 무정차 문제“를 개선하는 작품이다.\n경기연구원의 연구에 따르면 경기도에서는 버스 무정차율이 30% 이상이며, 그 원인으로는\n“승객의 탑승 의사 판단의 어려움”이 있다.\n승객이 정류장에 설치된 기기를 통해 탑승 의사를 밝히면, 버스 내에 설치된 장치로 신호가\nHAS 운전자가 이를 확인할 수 있다. 또한, 교통약자 승객이 탐승 ERG 요청할경우，。 |\n별도의 신호가 전달되어 운전기사가 미리 도움을 준비할 수 있도록 한다.\n이를 통해 버스 이용 시의 불편함인 버스 무정차 문제를 개선하고, 교통약자의 대중교통 탑        ”\n승을 돕고자 한다.\n프이 트지 ㅁ\n(9 작품의 특징 및 장점\n| ESTs 이용을 편리하게\n버스가 정류장에 정차하지 않고 통과하는 “버스 SHANE 많은 사람들이 불편을 겪고 있                   =\n다. 경기도에서는 시내버스 전체 민원의 40%를 차지하는 만큼 심각한 문제이다. 이러한                   =\n“버스 무정차”문제를 개선해 대중교통 이용을 더욱 편리하게 한다.\n르 교통약자의 점근성 향상\n자리에서 일어나 탑승 의사를 표시하기 어려운 사람들이나, 탑승에 도움이 필요한 교통약       2\n자가 미리 운전자에게 신호를 보내 도움을 받을 수 있다.\n를 효율적인 버스 노선 운영\n수요 부족으로 인한 적자를 피하기 어려운 도서산간, 촌락 지역의 버스 노선을 수요 맞춤형\n으로 운영하여 효율을 높일 수 있다.\n를 중앙 서버가 Gls Server-Less 시스템\n현재 버스정보시스템은 각 지자체, 운영사별로 파편화되어 상호 호환성이 매우 부족하다.\n“loT-VehiCALL™S 별도의 중앙 서버가 필요하지 않아, 시스템 이식성이 매우 우수하다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5210&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134508_nfvhdkln.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "02098d878eff264e",
@@ -354,8 +522,15 @@
       "title": "DOT보기",
       "team": null,
       "org": "건국대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5209&page=2&code=award"
+      "summary": "우수상 - 한국산업기술기획평가원 원장상\n실시간 점자 변환 도서관 도우미\n=        — 3          [i                 —\n\n자유공모 / 001보기(건국대학교)\n3                         +  ly                 \\\n내        5         {                     {            {\n/                —                                       .\n/      -       -\n=\n|                         :\nML          1 1“ [              ug           wi.\n¢. =           :          1                      a 불)  Ej         기\n/, 고다 1  (UAE\n)         =                      ㅣ                               /                     ㅣ\n~              '          {                     i\n~                                                   ”    |\nWaR               [4    a     Ｌ                 |       ^        oA\n»               ~          .                            /                   ㅣ\n쓰 Be”      7                                 기     —\nhe 2%        ba                              i ©        Ee\n=Cbs me\nars            ㅣ                      d            <\n\\/4     |\nFS                          J\n\\/)\n=        프\n[# 작품 개요\n작품명: 실시간 점자 변환 도서관 도우미\n개발 동기: 대학 입시를 준비하는 시각장애인 학생들이 EBS 수능 특강 교재와 같은 학습\n자료에 접근하는 데 어려움을 겪는 것을 보며, 정보 접근 불평등을 해소해야겠다는 필요성\n을 LBL 시각장애인들이 경제적이고 혁신적인 방법으로 정보에 쉽게 접근할 수 있\n도록 지원하는 기기를 개발하게 되었습니다.\n목표: 도서관 도우미 보드는 시각장애인들이 다양한 문자 매체를 실시간으로 점자로 변환\n하여 손쉽게 읽을 수 있도록 돕는 기기입니다. 이를 통해 정보 접근성을 높이고 학습 기회를\n평등하게 제공하며, 경제적인 가격으로 시각장애인들이 부담 없이 HEE 활용할 수 있도\n록 하는 것을 SHE 합니다.\n>               자푸이 EX 민 자저\n삐      (9  작품의 특징 및 장점\n작품의 특징 및 장점                                                                              :\n- 실시간 점자 변환: 사용자가 버튼을 누르면 즉시 텍스트를 인식하여 점자로 변환하는\n기능으로, 정보 접근성을 크게 향상시킴.\n- 자동화 시스템: 사용자의 개입을 최소화하여 버튼 하나로 텍스트 인식과 점자 출력이\n자동으로 진행되어 시각장애인들이 독립적\n으로 기기를 사용할 수 있음.\n- 경제성 및 확장 가능성: 기존의 고가 특수 기기보다 저렴한 가격으로 제공되어 더 많은\n사용자에게 접근 가능하며, 향후 다국어\n지원, 음성 인식, 자동 요약 등의 기능을 추가할 수 있는 가능성으로 사용자 경험을 개선\n한 스 이으\n=T mo.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5209&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134430_nnyfhrrs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "79d5f729c9a49142",
@@ -368,8 +543,15 @@
       "title": "KST",
       "team": null,
       "org": "성균관대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5208&page=2&code=award"
+      "summary": "우수상 - 한국전자기술연구원 원장상\nel\nAIF -  임피던스와 AIS  o|=st\n= = |        em                =          Oe\n스경재배 스마트 양분관리 시스템\nTO                —       _— OO = =                = [2교\n자유공모 / 51(성균관대학교)\n=    EK             시스템 외관            1. 임피던스 측정부\n4           Pore]  양액에 B38 담가\n|  1.     |                    2    55359          여려 주파수의 전류를\n고       am | 수           PERSE\n=         1                            a | (025         ADCE 통해 전압값 측정\n 이이    eT\ney                          2a mua ae 하다 IN\n|\n|                      ㅣ              ]                     To | 4 가받노이즈필터링후,\n| 제어부 |                                          |] 시(04)기반 임피던스 데이터 분석으로\n5 [한                   ㅣ 양액내영양분농도측정\n[ALS SEFC 7                     양분공급 HOWE 영양분 농도 전달\n<              NEY\ny                    25M       3. 영양소 투입부\nRe =;\nEe    | 4           Be = 8993   3   측정된 양분농도와 목표값을\n가      DEE cn      [개별제 | 넓          비교하여 부족한 양분 자동 투입\n를        = AEE 14017 통신으로 펌프를 제어해\nhad  2d)            fe pr |   a   양분 최적상태 유지\n도        A\n=       프\n[작품 개요\n[개발목적] 수경재배 양액의 영양분 함량을 정밀하게 측정하고, 설정된 작물 생장주기별 영\n양분 함량 SEAS 바탕으로 부족한 영양분을 자동으로 투입하여 최적의 생육환경 제공.\n인건비 절감 및 작물 생산성 BAS 통한 수경재배 농가 수익성 증대.\n[키워드] 임피던스, 시 머신러닝, 자동 양분 공급, 저전력, 저비용\n임피던스 측정부: 양액에 다양한 주파수의 HES 통과시켜 임피던스 측정. MOTT 프로토\n콜을 통해 측정된 데이터를 서버로 전송.\n시 영양소 분석부: AI(CNN)S 이용해 임피던스 데이터를 분석하여 양액 내 영양분 농도 측\n정. 양분공급 제어부로 영양분 농도 전달.\n양분공급 제어부: 측정된 양분농도와 목묘값을 비교하여 부족한 양분 자동으로 공급.\nMQTT 통신으로 펌프를 제어해 양분 최적상태 유지.\n푸이 트지 ㅁ\n(9) 작품의 특징 및 장점\n[기존제품 대비 경제성]\n기존: 영양분 개별 이온센서 구매 (475,000 * 4 = 1,900,000)\nAIF: 단일 제품으로 다수의 영양분 측정 후 통신 및 제어 (00,000)\n= 저렴한 임피던스 측정 방식과 Al 모델을 결합하여, 높은 정확도(99%, 임피던스) 달성 및\n경제성 획기적 개선 (84% 비용 절감)\n[데이터 기반 Al 모델 개선]\n수집된 데이터로 / 모델 재학습 — 정확도 향상 및 환경적응력 강화\n= 향후 맞춤형 양분 관리 솔루션으로 확장하여 농가 생산성 극대화\n[비즈니스 모델 기반 기술 개발]\nADLER 수경재배 시장 성장 (CAGR: 15.7% 2024년 47조 5,200억)\n= 농가의 생산성 향상, 경제적 부담 완화에 실질적으로 기여하도록 실제 농가의 니즈를 반\n영한 비즈니스 모델 수립 후 솔루션 구현",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5208&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134346_ktfpzvqk.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "3869eb0dfa3b251a",
@@ -382,8 +564,15 @@
       "title": "KHUBOT",
       "team": null,
       "org": "경희대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5207&page=2&code=award"
+      "summary": "Sak - 한국전자통신연구원 원장상\n자유공모 / KHUBOT(Z 3H} w)\n<<\n틱                                         빠\n빠\n노세.          나\n  °    fi 89m\nI         208\n§                                swe) Ca\nBE        프\n[작품 개요\nASAP(Accel Stop Assistant Program)2 운전자 및 보행자의 안전을 보장하기 위한 시\n스템으로, 시대적 필요에 따라 개발된 페달 오조작 방지 장치이다.\n고령화되어 가고 있는 사회와, 전기차 보급에 따른 회생제이 보편화 되었다. 이에 가속페달\n을 브레이크 페달로 오인하여 발생하는 사고가 증가하고 있고, 이러한 실정에따라 오조작\n방지 장치의 도입이 시급한 빠르게 이루어져야 함을 알 수 있다.\n이로 인해 발생하는 사회적 비용이 증가하고 있다. 예컨데 급발진 주장 사례에 대응하여 검\n증하는 인력과 시간, 비용 등이 발생하며 또한 보행자의 인명 피해가 발생할 수 있다는 점을\n고려할 수 있다.\n최근 캐스퍼6\\/에 도입된 페달 오조작 방지 장치와 더불어 새로운 차량에는 이에 대응되는\n다양한 장치들이 존재하지만, 정작 기존에 있는 차량에 도입하지 못한다는 점에 한계가 있\n다.\n프로젝트를 통해 이 장치의 필요성을 강조함과 동시에 국가적 차원에서도 오조작 방지에\n대한 관심이 필요함을 제시하고자 한다. 특히 ASAP7} 의무적 안전장치로 발전되기 위한\n사회적 화두를 제시하고자 한다.\n세\n프이 트지 ㅁ                                                                                \"\n(9) 작품의 특징 및 장점                  6\n* 차량을 개조하지 않아도 적용 가능한 모듈형 디자인\n* 핸드폰의 데이터를 활용하여 새로운 센서나 모듈 사용을 최소화\n* 정차 뿐만 아니라 주행 중 상황에도 적절하게 대응할 수 있도록 설계\n* 제동에 개입하지 않고 가속페달의 최대 제한치를 유기적으로 조절- 차량을 개조하지\n않아도 적용 가능한 모듈형 디자인\n* 핸드폰의 데이터를 활용하여 새로운 센서나 모듈 사용을 최소화\n* 정차 뿐만 아니라 주행 중 상황에도 적절하게 대응할 수 있도록 설계\n* 제동에 개입하지 않고 가속페달의 최대 제한치를 유기적으로 조절",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5207&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134308_ylxygdrs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "849f2e9561c66f00",
@@ -396,8 +585,15 @@
       "title": "BARTENDAIRTIST",
       "team": null,
       "org": "서울시립대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5206&page=2&code=award"
+      "summary": "우수상 - 한화비전 미래 기술상\n==\norxsi 이고 지능  스마트  바텐더\nXEo —oAlo UI          —_\n자유공모 / BARTENDAIRTIST(M SAI HE)\nKeo 508     FETS EPE                  쁘          |    TIN (RIE\nml                                                                 ny v)       7\n< Q smart Bartender                               |     | |     ㅣ   \\   i y\n——                                           .              1\n나 오늘 우울해………달콤한 술                   개      (       5 8 7    =\ni     C                  Beaumont,\n우울한 날에는 달콤한 elo]                   | |—       nT    |             “\n마음을 달래줄수 있습니다. 그런                         |                                 !\n날에는 SRA 을 추천드릴게요.                                     기          35 F\n럼과 오렌지 47} 어우러져                                       J             Ep       &\nAas 달콤한 맛이 특징입니다.                             NZ                 4\n열대지방의 LUE 가득 느끼실 수                                                                  \\                                               7\n있을 거예요.                                                                       3\n                                                                     }\n>\n”                  ‘\n1]2]13]14]5]6]7]8]1910\n395953.996를    0. 젝\nN                                     \\\n미니이리히늬111               \\                                      4\nfl = clx|zv||- EE               (|                                        o\n9. - ㅣ 0              TT\n고       프\n[작품 개요\n를 개발 배경: ZEU2 최근에 많은 사람들이 즐기고 있으나, ZH U0] 다양한 재료와\n복잡한 레시피 때문에 실제 ZIE|Y 재료나 레시피에 대한 지식이 있는 사람은 드문 상태\n이며 사람들에게 ZE|F0] 어렵다는 인식을 심어 줌.\n를 개발 목표: ZH 지식이 부족한 사람도 자신의 취향에 맞는 ZEUS 쉽게 만들어\n즐길 수 있는 개인 맞춤형 자동 ZEHY 제조 시스템 개발\n를 주으 개발 내용\n* 개인 맞춤형 서비스 기능 구현: 생성형 Al 기술을 활용하여 사용자의 현재 기분과 취향에\n맞는 ZHU 종류와 레시피 추천. 사용자가 원하는 재료를 사용하는 커스터마이징 가능\n* 자동 ZI HIE 시스템 개발: 사용자 App.OilM 전송된 레시피를 바탕으로 필요한 제출,\n혼합 등 ZHY 제조 과정을 완전 자동화한 저비용 제조 시스템 구현\n잔푸     트지 미 자저\n©  작품의  So = ono\nWHI 맞춤형 ZHU 서비스 기능 제공\n* 생성형 Al 기술을 활용하여 사용자의 현재 기분과 취향에 맞는 ZH Y 종류와 레시피\n추천\n* 원하는 재료와 수량에 맞춰 ZHE|IY 커스터마이징 가능\n를 사용 편의성을 고려한 ul 설계\n* 개인 단말과 제조시스템 간 연동을 위한 블루투스 연결 및 ZHU 제조 지시 등의 Ul\n단순화\n를 스마트 ZH 제조 시스템 관리 편의성\n* 시스템에 장착된 각 기본 재료의 잔량 확인 및 관리 기능을 사용자 HIM 제공\n를 흐율적인 하드웨어 구조 설계\n* 컵 위치 이동을 담당하는 스테핑 모터와 음료 추출을 담당하는 서보 모터 등 모터 2개로\n만 모든 과정을 수행하는 간략한 구조\n를 동작 안정성을 감안한 기능 구현\n* 원판 회전시 Soft start/stop 기능을 적용해 음료가 넘치거나 컵이 넘어지는 문제 방지",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5206&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134221_kbudeqkr.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "1b33103fb9267fcb",
@@ -410,8 +606,15 @@
       "title": "VIST",
       "team": null,
       "org": "금오공과대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5205&page=2&code=award"
+      "summary": "장려상 - \\105테크 대표상\nre                                                    ——          re\n해티 74 트롤러를  화요하\nHH\" e——=         = =20 La\n를    틈                                     mln =,     그\nVision 05 기반 혼합 현실 공포게임\n= mH = Oo                =\n자유공모 / \\151(금오공과대학교)\nVisionPro\n혼합 현실 공포게임\n귀신 충돌 정보\nHEE: .\n카메라형 Hel 컨트롤러\n환경광 정보         현실 공간                          py\nMpa al\n현실 공간                  = 6            ©\nge) =4) EER                                  뷰노트내귀신모습 Ho gga              cus on Az\n심령 카메라 조작 기능        손전등 조작 기능\n진동 피드백         시청각 정보\n진동 피드백 WEEN 시청각정보 .\n빚 피드백.        N\n_비피드백。        \\\n| gost\nEm         S\nal\n찰영,손전등 - Meg -\n스위 진동모터 AHRS              7      카메라        퀴신오브젝드의 58        실제환경 Aus\n^    // 각도조절 。 가상오브젝트상호작용기능 _ 가상 텍스처 증강 기능\n스위치 조작                  기 5자사    1 추적 데이터 전달\nㅇ                                        LHES                        제스처입력 기능\n*AHRS(Attitude Heading Reference System) : x,y,z 축을 기준으로 회전도를 측정하는 시스템\n=>        프\n[작품 개요\n@ 개발 목적\n를 기존 VR 공포게임의 한정된 맵은 반복적인 경험을 유발 ㅡ 긴장감 감소\nMW VisionPro= 컨트롤러가 없어서 직관적인 조작이 어렵고 상호작용에 대한 촉각 피드백\n제공의 어려움 존재 ㅡ 현실감 저하 “사용자에게 항상 새로운 경험을 제공하는 공포게임\n콘텐츠 및 몰입감을 향상시킬 수 있는 전용 컨트롤러의 개발이 필요”\n@ 개발 작품 개요\n를 본 작품은 혼합 현실 공포 게임과 71H HE 컨트롤러로 구성\n를 게임의 컨셈은 “심령 현상을 취재하는 기자”로 설정\n를 사용자가 존재하는 실제 공간 HES 바탕으로 실시간 MS 구성함으로써 무한한 맵을\n생성 ㅡ 현실 공간 형태에 따라 새로운 경험 제공\n를 몰임감을 향상시키기 위해 HE 컨트롤러를 게임 컨셉에 맞춰 카메라 형태로 제작\n를 카메라형 햄틱 컨트롤러를 통한 게임/현실의 손전등 조작 및 게임 내 사진 촬영 기능\n구현\n를 귀신(가상 오브젝트)과 충돌 시 YE 컨트롤러에서 귀신 종류별 HE 피드백을 제공\n를 주변 환경(밝기)에 따라 가상 환경의 밝기를 제어\n잔푸      트지 미 자저\n(3  작품의  =o x ono\n@ 현실 공간 활용: 실제 공간을 공포 환경으로 재구성하여 MER 경험을 제공\n© 카메라형 HE 컨트롤러 : 게임 컨셉에 맞는 카메라형 컨트롤러를 제작하여 사용자들\n에게 높은 몰입감 및 현실감을 제공\n@ 다양한 피드백 : 진동 피드백과 비네팅(/101006500) 효과, 사실적인 게임 사운드를\n통해 시각/촉각/청각을 복합적으로 자극\n@ 멀미와 피로감 감소 : 현실 공간과의 상호작용을 통해 멀미와 피로감 감소",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5205&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134129_dmrxhrlb.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "b5445885d9edce27",
@@ -424,8 +627,15 @@
       "title": "EZ",
       "team": null,
       "org": "계명대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5204&page=2&code=award"
+      "summary": "장려상 - \\&105테크 [HEA\nEZ 601(기차역 내 시각장애인\nwill\n보행보조로봇)\n[=]         ul 르         ^\n자유공모 / 67(계명대학교)\n[개\n누가\nS                                                      =\nLS             그\npn                                                           ~\nyy                                                                                                  NN |\nNO            7\nAN\nEEE 개요\n철도의 미비한 점자 편의시설 설치율과 스크린도어 미설치 등의 환경에서 적절한 안내시스\nHl 없이 탑승 위치를 찾는 것은 시각장애인에게 큰 위험으로 작용한다. 이에 본 작품은 시각\n장애인이 기차역 내에서 플랫폼의 탑승 위치까지의 안전하게 이동 지원하는 것을 목적으로\n하였다. 사용자가 승차권의 QR 코드를 로봇에 태깅하면, 222 탑승 위치 YEE 수신하\n고 실시간 음성 안내와 함께 사용자를 플랫폼의 탑승 위치까지 안전하게 이동 지원한다.\nIX\n© 작품의 특징 및 장점\n* 본 작품은 사용자를 시각장애인으로 상정하고 설계한 최초의 카트형 자율주행 기기로,\n기존 짐 이송 자율주행 카트와 설계 목적에서 명확한 차이가 존재함\n* 복잡하고 위험한 환경 속 게이트 번호와 방향을 안내함으로써 시각장애인의 이동권을\n향상함\n* 장애인 뿐만 아닌 노약자, 임산부 등 다양한 교통약자에게도 유용할 것으로 기대함\n* 사용자를 승차 구역까지 안전하게 안내함으로써, 위치 오인으로 인한 철도 추락 사고의\n위험을 예방\n* 이미 구축된 예매 시스템을 통해 맞춤형 안내가 가능하다는 점에서 사용 편의성을 가짐",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5204&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124134044_qqnrtmrq.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "9c8765517b1a3d6c",
@@ -438,8 +648,15 @@
       "title": "USINMKO",
       "team": null,
       "org": "대구경북과학기술원",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5203&page=2&code=award"
+      "summary": "장려상 - MDSHIZ 대표상\nll\n정전용량 ELM 탑깨 AE &\n는 ㅇ          느      =      —         oOo =\nFMCW 2|0|C4 기반 운전자 모니터링 시스템\n느 느느                   =      — |\n자유공모 / 4514\\<0(대구경북과학기술원)\nNEF\n=e\n[490]                 = 호\n      —\nyo! 4   a]\nSE .주\n23=23525523=200233      sae —| TR         ssaaz\n[=rle-lo=lo=ip=]         ERE        4 aan\n      evtnnone —|& EX) &\n\nEE      Ee 작품 개요                                                                              |\n최근 자율주행시 운전자의 주의 집중과 운전 제어권 전환의 중요성이 강조되면서 운전자\n모니터링 시스템의 중요성이 대두되고 있다. 기존의 카메라 기반 운전자 모니터링 시스템\n은 저조도 환경에서 한계를 보이며, 추가로 운전자의 생체정보를 얻기 위해서는 별도의 장\n치 부착이 필요했다. 이러한 문제를 해결하기 위해 개발된 2 시스템은 저조도 환경에서도\n운전자 친화적이고 비침습적인 방식으로 운전자의 주의 상태를 실시간으로 모니터링할 수\n있다. 정전용량 터치센서가 탑재된 스티어링 휠과 FMCW 레이더를 통해 운전자의 상태를\n분석하고, 적절한 피드백을 제공하여 사고 예방에 기여한다.\n\n(9) 작품의 특징 및 장점\n\n*레이더와 스티어링 훨을 활용하여 카메라 없이도 운전자의 주의 상태를 정확하게 모니터\n링할 수 있는 가능성을 제시한다.\n\n* Al 모델을 활용해 장갑을 착용 시에도 스티어링 휠 파지 여부를 감지하며, 운전자의 심박\n수, 호흡수, 졸음 상태를 높은 정확도로 판단한다.\n\n* 카메라가 아닌 레이더를 사용하여 MAE 환경에서도 운전자 FEE 정확히 감지하며,\n운전자의 실제 모습을 녹화하거나 저장하지 않아 개인 정보의 유출을 방지한다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5203&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133949_hdcbqmam.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "7c14d04f69bf5269",
@@ -452,8 +669,15 @@
       "title": "야생화",
       "team": null,
       "org": "숭실대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5202&page=2&code=award"
+      "summary": "최우수상 - Ｌ6전자 010상\n니    도노                       =\nAll in £7|E (Plant Kit)\nweb0S / 야생화(숭실대학교)\naA 나\n= 이  aS    - IN\n글    (5  110 TN NN                  L\n1 RE wm      1           =          ”\nie Ral hh -               26\n|            i      \\ 180 NC  (N           SRS      ye 27 fT\nRB      \\   DAY Aly N    SNP Ty    ㅣ\n\\ (EB     \\ L220 NER TaN     258\n\\   A       -—_  SN    Ca    NI       2       N\nWelt / mr 2 i.  =   ASE a\nLR pu     TA 1D 아니 1         f= TTA\nㆍ =노 Ql CANE       J\nBE \\ a ESE a =     }\n= Lr ee 3\n— \\ Bers TG       “A     NS 22 =\n{ea es\nARTE TU WEN 0\n=)     BF CNN Aas 8 0.\n~ \\    Ww ARN AEE\n을 eS = 2. 1\n[# 작품 개요\n작품 설명: Allin 플키트'는 다양한 ATIET 환경을 구성할 수 있는 모듈형 개발 키트입니\n다. 농업 데이터를 관리하고 BRE 수 있는 스마트 농업 대시보드 및 커뮤니티 기능을 제공 |\n| 하며, 생장과 환경을 예측하는 Al 솔루션을 포함하고 있습니다.                  그\n         =   트   a\n| @usaszum                               16\n                    DES 설계 : 사용자가 쉽게 ADIET 환경을 구성할 수 있도록 다양한 센서와 장치를 모듈       2\nLN 화하였습니다. 유지보수와 확장이 용이하며, 각 작물에 맞는 환경을 손쉽게 설정할 수 있습\n。 니다.                                                 eo\n스마트 농업 대시보드 : 실시간 데이터를 시각화하여 사용자에게 제공하며, 농업 커뮤니티                  E\n를 통해 지식과 데이터를 공유할 수 있습니다.\n시 기반 솔루션 : 농작물 생장 예측 AIR} 환경 예측 AIS 통해 ADIET 운영을 효율적으로 |\n관리할 수 있습니다. 또한, ChatGPT 기반 HES 통해 사용자 질문에 대한 응답도 가능합\n니다.\n웹 기반 접근성 : #/6605와 Enact 통해 사용자는 어디서나 웹 인터페이스를 통해 스마\nETS 제어하고 데이터를 관리할 수 있습니다.                                                          .\n|\n| 고\n=   I    I° [ C      A   | [EEE    =\n=.         — ag i 후.\nMEesa==—— F\n|                                                     개   ㅣ”       \"EEE ENN      ~~",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5202&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133906_vctokmrs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "8983e4e396fb50e7",
@@ -466,8 +690,15 @@
       "title": "앞구르기",
       "team": null,
       "org": "한양대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5201&page=2&code=award"
+      "summary": "우수상 - LGM} 010상\n농담(뿌로) - AgriTalk\nSEs) -   91315\nweb0S / 앞구르기(한양대학교)\neon,              Ens\n| 느든한 능입파트너 농담임니다.                                    Q            보입니다. 혹시 추가적인 BLO CIE wo) 3301\n[기                                            Em (8\n®      Tomato                 Apple                      ®\nMy Tomato House              oy Aol Tree\n=          센서          작동기           센서          작동기              3. & 등록하신새태의 정보를 읽고 있습니다. 잠시만 기다려\n주세요.\n44        Ly          개        0개\n© se             ® s0             Il © |—                               5)\nWater Pump              AES\n기기 추가                      -레          Vets purpfo tama\n추가할 기기를 선택해주세요.   대     기기스캔중.\"          으                           67%\nRoll Network ode F4D36A            PE\n©) ater pump i 67%                    :\n? cB          [ =]          [ = ]          [2]\nmn                     me\n— FRE      |\n4        ]\n6         프\n[작품 개요\nSH(AgriTalks)2 AQIEL 도입의 진입장벽을 낮추기 위해 설계된 혁신적인 REF 시스\n템입니다. MLLM, RAG, STT, TTS 기술을 활용한 대화형 Al 음성 비서로 사용자가 쉽게\nADELE 관리할 수 있으며, Thread 프로토콜을 기반으로 한 모듈형 네트워크로 확장성\n과 유연성을 극대화합니다. 다양한 센서와 스마트 관개 시스템을 통합 제어하여, 효율적이\n고 지능적인 농업 환경을 제공합니다.\nhttps://github.com/roll4ward/2024ESWContest_webOS_3009\n=       트       ㅁ\n(9) 작품의 특징 및 장점\n접근성 향상\n음성 인터페이스를 통해 직관적인 조작이 가능하여, 디지털 기기에 익숙하지 않은 농업인\n들도 손쉽게 사용할 수 있습니다. Als 전문적인 농업 지식을 제공하여 사용자가 농업 활동\n을 더 효율적으로 관리할 수 있도록 돕습니다.\n경제성\n모듈형 설계를 채택하여 필요한 부분만 구매할 수 있으며, 점진적인 확장을 통해 초기 투자\n비용을 절감할 수 있습니다. 또한, 저전력 설계로 운영 비용을 최소화하여 경제적 부담을 줄\n입니다.\n확장성\n680 프로토콜을 기반으로 유연한 네트워크 구성을 제공하여, 간편하게 Af 장비를 추가\n하고 설정할 수 있습니다. Mesh 네트워크를 통해 넓은 농지에서도 안정적인 커버가 가능\n하여 확장성이 뛰어납니다.\n차별성\nMLLME 기반으로 한 고도화된 상호작용을 제공하며, Thread 프로토콜의 장점을 활용하\n여 효율적인 네트워크 구성이 가능합니다.\n\\/6605에 대화형 Al 서비스 기능이 종료되었기 때문에, OpenAl Whisper APIS 활용하\n여 음성 기능을 직접 구현했습니다. 이를 통해 음성 인식 및 자연스러운 대화형 인터페이스\n를 제공하여, 농업인들이 손쉽게 접근할 수 있는 솔루션을 구현했습니다.\n또한, IPVEE 관리할 수 있는 네트워크 인터페이스가 없는 상황에서 wpantundS webOS\n빌드 과정에 추가하여 저전력 및 저비용 통신이 가능한 Thread 프로토콜을 효과적으로 활\n용하고 있습니다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5201&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133812_dhisxnur.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "8913f00f0ce698ef",
@@ -480,8 +711,15 @@
       "title": "심심한녹칸다",
       "team": null,
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5200&page=2&code=award"
+      "summary": "장려상 - Ｌ6전자 010상\n=\nADIEED 제어를 위한 webOS HMI\nweb0S / 심심한녹칸다(기타)\na                             a\n  23   그, ~ ㆍ 8\n21 AE ENO XC      기 \">.\n해나     NSO       2 ——\n` ~               22         J                       3                74\numl» a\n=_x—§ Li        Bb    ——\nun           mmm                 ANS gy                             <\n\\             ier     a                      —\n=g       =\nㅡ에레 을                                                  259\n[작품 개요\n-\\6605로 만든 Web Appt ServiceS 이용해서 ADIELQ| 중앙시스템제어를 위한\nHMI(Human-Machine Interface)= 제작함.\n- 유무선인터넷공유기를 중심으로 5종의 디바이스가 LAN(Local Area Network)22 연\n결됨.\n-\\6605가 설치된 라즈베리파이를 중심으로 A)PLC(Programmable Logic Controller)\n와 8)환경정보를 측정하는 6568266보드와 ())펌프의 작동정보를 측정하는 ESP8266\n보드와 D)VAL2 ㄴ58카메라가 HAE Topst 03보드를 네트워크로 HAE\n- AADIEL] 제어시스템인 PLCS 이더넷(6+)60760으로 연결하고\\/6605와\nModbus TCP/IPZ 제어가 가능하도록 함.\n- 8)65868266보드로 온도, 습도, 002농도를 측정가능하고 WIFE 이용해서 webOS2t\nModbus TCP/IP2 데이터를 전송하도록 함.\n- C)SP8266 2 E01 유량센서, 수위센서를 HAHA WiFiZ webOS2t Modbus TCP/IP\n로 데이터를 전송하도록 함.\n- 01005ㄴ03보드에 AIS 이용해서 객체인식을하고 정상적인 작물과 비정상적인 작물을\n@             실시간으로 인식해서 webOSE 전송함.\n(세\nmol =                                                                                  I -\n© 작품의 특징 및 장점\n- 실제 ADLER 자동화설비에 사용하는 PLCS 활용하고 독립적으로 운영되는 PLCS\n\\/6605로 간접제어가 가능함을 보임.\n- 미 (에서 주로 사용하는 |1/|의 영역에서 webOSE 충분히 활용가능하다는 것을 보임.\n- ADFEHO|LE 산업현장에 설치되어있는 중앙제어시스템에 webOSE 연결해서 간접제\n어하는 방식이므로 기존 시스템에 빠르게 적용할 수 있는 장점이 있음.\n-\\6605가 구동되는 시스템에 센서나 액츄에이터가 직접 연결된게 아니라 네트워크로\n연결되어 있으므로 규모가 큰 ADEE 환경에서 공간의 제약이 없다는 장점이 있음.\n- 최근 청년층의 web appOil 대한 수요가 증가함에 따라 기존 HMI 시장에서 #/6605에\n대한 관심이 높아질거라 기대함.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5200&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133723_boxfocwd.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "156a710e41bb93c9",
@@ -494,8 +732,15 @@
       "title": "노인공경",
       "team": null,
       "org": "IVS",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5199&page=2&code=award"
+      "summary": "최우수상 - 현대자동차 사장상\nJ    :\nSystem for In-Need Senior driver\n자동차/모빌리티 / 노인공경(75)\n-        GPS     외부\nna                  =                   >\n63.            th                       cu wo: eS)\n이바 TREE 모니터링 유닛)            (통신 제어기) 를 \"=                    5\n센서                                                                                             Io\n=              16           원격센터\n엔코더\nMl            600           초음파\n44544    (중앙 제어기)    센서           oe) (ow\n운전대,                                              레이     페달\n페달\n소향 모터\n구동 모터\n=a        IX\nEe =z 개요\n1) 고령자의 운전 중, 심박 센서를 통해 심근경색 및 심정지를 감지하고, 빌트인 캠을 활용\n한 운전자 의식진단을 통해 운전자 이상 여부를 실시간으로 감시한다.\n2) 감지된 데이터와 운전자 실시간 `+6807100을 바탕으로, 운전을 지속할 수 없는 긴급\n상황의 심각 정도를 실시간으로 판단한다.\n3) 단계별 심각 정도에 따라 신체 이상 상태를 원격확인 및 원격 운전 등의 적절한 대처\n서비스를 운전자에게 제공한다.\n=      트      ㅁ\n(9) 작품의 특징 및 장점\n1. 내부 CAMS 통한 운전자 상태 감지\n2. 심박 센서를 통한 운전자 상태 확인\n3. 초음파 센서를 통한 페달 오 조작 방지 및 긴급 제동\n4. 운전자 기절 상태 점검\n=        ~ =\n=   i           529\n5. LTES 통한 운전자 상태 스트리밍 및 원격 확인 가능\n6. 원격 센터를 통한 운전자 상태 확인 및 운전자 안전 확보\nVa      (       =\n-         .        [SS        x\n=                  | 개\n|",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5199&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133647_ddkarvpo.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "561b0a7face16352",
@@ -508,8 +753,15 @@
       "title": "화이트박스",
       "team": null,
       "org": "건국대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5198&page=2&code=award"
+      "summary": "작품개요\n사각지대는 운전자의 시야에서 보이지 않는 구역으로, 어린이 보호구역 등에서 심각한 사\n고를 유발할 수 있다. 이를 해결하기 위해 2 프로젝트는 기존의 블랙박스와 CCTVE 활용           °\n해 사고를 사전에 예방하는 '화이트박스: 솔루션을 제안한다. 운전자는 다른 차량의 블랙박\nA 화면을 실시간으로 공유 받아 시야를 넓히고, 001\\/와 RFIDE 통해 보행자의 위치와 =\n발 행동을 추적하여 경고를 받을 수 있다. 이 시스템은 고속도로와 어린이 보호구역에서의\n해                 사고를 방지하는 데 초점을 맞추고 있다.\nPF (9 작품의 특징 및 장점\n[해      EE ————\n기       전방차량이 가까이 있을 때, 특히 대형 트럭처럼 차체가 큰 차량은 후행 차량의 시야를 방해\n하기가 쉽다. 트럭 뒷면에 디스플레이를 설치하고 전방 영상을 송출하는 시스템이 구현된                     [\n적 있었으나, 설치 비용과 미관 문제로 상용화되지 못했다. 본 작품의 경우, 인터넷 연결만\n되어 있으면 0A 주변 차량의 블랙박스 화면을 받아올 수 있기에, 사각지대를 완화하는\n데에 도움이 될 것이다. 또한, 도로 환경에 맞게 추가 정보(보행자와의 충돌 가능성 등)를 제\n공해주는 것도 가능하다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5198&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133619_rsvyiqov.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "c7b04b2164ed64f3",
@@ -522,8 +774,15 @@
       "title": "TRAVI",
       "team": null,
       "org": "트리즈엔지니어링",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5197&page=2&code=award"
+      "summary": "장려상 - 현대자동차 사장상\n최전방 차량으로 신호 대기시에\nLO        [ = 02299        느-\n=\n신호 변경 알림 시스템 개발\nㄴㄴ           ㄴㅇ 20           = |           르\n자동차/모빌리티 /182\\/|(트리즈엔지니어링)\n를 호아 주             =\nTis       11 으아 Ss AE\n                    /                 Ee re eT\n/                2       = Se    : 2    5                    3   C4\n4               /                        ] 0> - =)                3\n이       | )                                           대\n/                      |        =         <  dn                                 :\n/                                       = |                                  |\n|             7 J                         =\n\"5            로\n) 7               =                                                            N\n님         져월      도                                                     /)\n=>        Ix\n[\\ 작품 개요\n[작품 목표]\n* 신호 대기 시 지체 차량이 발생하지 않도록 원활한 교통 환경 조성\n|       * 차량 카메라 기반으로 of 차량 존재 RF 판단과 동시에 신호등 신호 및 차선을 탐지하여\n출발 알림 제공\n[작품 요약\n* 본 차량이 신호 대기시에 맨 QF 차량인지 판단한다.\n* 위치해 있는 차로(직진, 좌회전, 우회전)가 무엇인지 지속적으로 판단한다.\n*맨 Of 차량으로 판단되었을 시, 인식한 차로와 관련된 신호가 변경되었을 시에 신호 변경\n알림을 제공한다.\n* 앞 차량이 존재한다고 판단되었을 시, 앞 차량 출발 알림 시스템이 적용된다.\n[해                 프      트      ㅁ\n(9) 작품의 특징 및 장점\nEE ———               k=\n+ (00-06106개발을 통해 3 ADASH 접목 가능성 증명 : 다른 서버를 사용하지 않고\nRaspberry pi2t 활용\n* 더 지능적인 신호등변경알림기능(1ㄴ5) : 차량이 위치한 차로에 해당하는 신호만 알림\n* 카메라 기반으로 신호등 및 Road Mark 인식 가능 증명\nㆍ8052 환경 구성을 통해 추후 다양한 센서 접목 가능\n* 카메라에만 의존하여 진행하기 어려운 환경인 야간 또는 비 오는 날씨에는 V2X 장비\n또는 INS 장비를 활용하여 추후 고도화 가능하며, 8052환경으로 구축하였기에 적용이\n수월함.\n* 고도화된 1ㄴ05 시스템을 통해 운전자의 운전 스트레스 최소화 가능\n* 출발 지체 차량이 발생하지 않도록 도와, 차량 정체 최소화 목표 달성 가능",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5197&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133539_uuhxfxui.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "afaaf3f35531d04f",
@@ -536,8 +795,15 @@
       "title": "아이오스크",
       "team": null,
       "org": "소현중학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5196&page=2&code=award"
+      "summary": "대상 - 산업통상자원부 장관상\n아이오스크\nEl 스타트업 / 아이오스크(소현중학교)\nI,                                                     | 아이오스크사용을환영합니다.\n보기        \"뜨거\n%     될         쁜                                         pu                =     ”\n(을 ET pe     3 ROBOT\nTe |    삐  을                                                    a        들    개\nal = I=          FACTORY\nA       N     =                                                           since 2013\niL ®         -\nㄴ내\n=     -\n”       | 발아\nLA   :                                  깨\n는            AN                결제하기                                       `\n49                J  | NN                         해          ory weep)            |\n=       프\nEe 작품 개요\n이 동적키오스크는 사람이 많은 행사장이나 무드트럭 근처에서 사용될 수 있다. 이 키오스\n크는 행사장 내에서 손님을 찾아 돌아다니며 주문을 받는다. 손님들은 키오스크에 탑재된\nAHS 통해 식당을 선택하고 음식을 주문하며, QR 코드를 이용해 결제할 수 있다. 또한, 노\n인이나 시각장애인 등 키오스크 사용이 어려운 분들을 위해 Ao 음성으로 주문할 수 있\n는 기능도 제공한다. 주문한 손님들은 키오스크 내부에 있는 자판기를 이용해 음료수나 물\n등을 즉시 구매할 수 있다.\n푸이 트지 ㅁ\n(9) 작품의 특징 및 장점\n- 동적 키오스크가 돌아다니며 사람들에게 주문을 받는다.\n- 키오스크 화면에 광고를 띄워 상표명이나 음식점을 광고한다.\n- 키오스크를 활용하기 어려운 노인 분들이나 시각 장애인 분들을 위한 음성인식 기능이\n탑재되어 있다.\n- 자판기를 이용해 물이나 음료수를 가지러 갈 필요 없이 바로 주문이 가능하다.\n- 배달 로봇이 직접 배달을 해주어서 편리한 음식 수령이 가능하다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5196&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133444_ocgbrkrq.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "7495c44358afc08a",
@@ -550,8 +816,15 @@
       "title": "HY",
       "team": null,
       "org": "수내중학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5195&page=2&code=award"
+      "summary": "최우수상 - 세종대학교 총장상 / 슈퍼트랙 대표상\n스마트 소화기\n—         = =\n메이커 히어로즈 / 1\\(수내중학교)\n| =\n-                                      pr   4\n<J% 1> 실제 작줌 외형\n| 에    >        Pr     :    |\n2000                                gg\nA       (                개                        30 일.        .      a\n@_(N       <        J) -                   Ns  >        ) ~\nN    J       :\n= )                          SN        |\nSS |                                                             제\n<그림 2> 작줌 외형 30 모델링\nZe         IX\nEEN                     ~\nFAS 보던 중 화재가 발생했지만, 소화기의 유통기한이 만료되어서 화재를 진압하지 =\n해 사망자가 발생한 사고를 접하게 되었다.\n이와 같은 사례를 조사한 결과, 초기 진압 실패로 인해 인명 피해가 커지는 일이 반복되고\n있다는 사실을 알게 되었다.\n초기 진압에 실패한 주된 이유는 연기와 혼란 속에서 소화기의위치를 신속히 찾지 못하거\n나, 소화기 관리 상태가 불량해 사용이\n불가능했기 때문이었다. 이러한 문제를 해결하기 위해 소화기의 유통기한을 실시간으로 확\n인하고 만료 시 알림을 제공하는 시스템\n을 설계하고자 하였다. 또한, 연기 속에서도 소화기를 빠르게 찾아 초기 진압이 가능하도록\n지원하는 기능을 개발하였다.\n프       트       [=]\n© 작품의 특징 및 장점\n소화기에 WEE 불꽃 및 가스 감지 센서가 실시간으로 화재를 감지하여 자동으로 경보를\n울림으로써 신속한 대응을 가능하게 한다.\n화재 발생 시 소화기의 위치를 알리는데 레이저 센서와 부저가 작동하여, 혼란 속에서도 사\n용자가 소화기를 빠르게 찾아 사용할 수 있도록 돕는다.\n또한 블루투스를 통한 무선 통신으로 소화기의 유통기긴을 쉽게 확인 및 관리할 수 있어, 복\n잡한 절차를 줄이며 언제나 사용 가능한 상태를 유지할 수 있도록 지원한다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5195&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133404_nybivetf.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "415a7127c48da903",
@@ -564,8 +837,15 @@
       "title": "아이하이",
       "team": null,
       "org": "상당초등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5194&page=2&code=award"
+      "summary": "우수상 - 세종대학교 총장상 / 슈퍼트랙 HEA\n마버         IE   대 시 ol 느-\n르                         —\n맞벌이 HOHE 대신하는\n인공지능 정서로봇 아이맘\noAlo ©                >                  [=|\n메이커 히어로즈 / 아이하이(상당초등학교)\n기\nv                   A\n—            65         B             iy\n= |) hi +  Fi  에 ~  -\n/\nJ. Le\n1 작품 개요\n2023년 통계청의 발표에 따르면 우리나라 맞벌이 가구는 46.3%로 전체 가구의 절반에 가\n까운 비중을 차지하고 있습니다. 영유아아동정신건강연구에 따르면, 부모님이 직장에 나가\n있을 동안의 시간 길이에 비례하여 혼자 있을 수 밖에 없는 아동들은 정신적으로 소외감을\n느끼거나 정서적으로 불안정한 상태가 되기 쉽습니다. 따라서 아이들과 의사소통할 시간이\n부족한 맞벌이 부부들을 위해 아이 가까이에서 대화도 하고 감정도 살펴줌으로써 정서적\n지원을 해주는 대화형 Al 로봇인 '아이맘'을 기획하게 되었습니다.\n=      트\n(9) 작품의 특징 및 장점\n맞벌이 가구의 비율이 지속적으로 증가하는 상황에서, 아이맘 로봇은 부모의 부재로 인해\n발생할 수 있는 아이의 정서적 문제와 직장에 있는 부모님의 소통의 어려움을 해결해 주\n는 솔루션을 제공할 수 있습니다.\n특히 아이의 일상 관리 및 정서 상태를 한눈에 파악하고 케어가 필요한 초등 저학년을 자녀\n로 둔 워킹맘에게 더욱 활용적입니다.\n따라서 맞벌이 가정 내에 아이와 부모님이 필수적으로 활용할 수 있으며 기존 Hath Al 로\n봇에 비해 훨씬 저렴한 비용으로 판매 가능하며 사용하기도 쉽습니다.\n마지막으로 MGPTeF 같은 대화형 인공지능(&.)의 글로벌 시장 규모가 2030년까지 연평균\n22.6%의 성장률을 예측하므로 감정 인식 대화형 시가 탑재된 아이맘은 대화형 시 시장 및\n돌봄 서비스 시장에서 2 잠재력을 가지고 있습니다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5194&page=2&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133307_uwklwzit.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "705b0de8f065800c",
@@ -578,8 +858,15 @@
       "title": "스마트",
       "team": null,
       "org": "광남중학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5193&page=3&code=award"
+      "summary": "장려상 - 임베디드50/-5\\/56607산업협회 회장상 / 슈퍼트랙 [EA\n[==\nSHE 2 HX   J [2 |\n—O OO             oO\n메이커 히어로즈 / 스마트(광남중학교)\n~             \\                              A\n(Ra %\n'                                        4        LL        :\n\\                  o           ]                  EEN\nㅣ     a --     | i          /행 16660 an\nit 7K                       f               | Ni y\nYl /                   Ia | { A   74           }\n9             | =\nVas       Je 1 WOE el \\y\n4    >  a                     A     \\    ~    7\n년    i             622 |        We\nTv             ho            N     HE  /\n= 는 |       =   LO              pee |\n[\\ 작품 개요\n길을 걷다가 소리가 들리지 않는 청각 장애인을 보았다. 뒤에서 차가 경적 소리를 냈지만 듣\n지 못해서 사고가 날 뻔했다. 그래서 이런 상황에서 사고가 나지 않도록 도움이 되는 도구를          y\n생각해 보았다.                                                            =\na       뒤에서 오는 차나 자전거 같은 사물의 존재 RFE 확인할 수 있으면 좁은 골목길이나 도로       rR    re\n    |      에서 사고가 날 위험이 많이 낮아질 거 같아 이 작품을 구상 하였다.                              290)\n『                                                                               [0a =\nLY © 작품의 특징 및 장점                               =\n\\             이 가방은 다른 청각 장애인을 위한 도구와 다르다는 특징이 있다. 보통은 귀에 꽂는 것이           NE\nJ             있지만 이 가방은 뒤에다 메는 형식이라는 특징을 갖고 있다. 그리고 가방이기 때문에 휴대             N—\n| 하는데도편하다.                                                          ㅣ 해\nlo\n| ——\n— —\n|\nㅣ        (©)                 = |FHE\na  =주\nBS              = °°  RH\n스릴 개",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5193&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133206_klvmmhob.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "181f97016f13f04d",
@@ -592,8 +879,15 @@
       "title": "NONAMED",
       "team": null,
       "org": "대덕소프트웨어마이스터고등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5192&page=3&code=award"
+      "summary": "최우수상 - 세종대학교 총장상\nEl 스타트업 / \\이4사60(대덕소프트웨어마이스터고등학교)\n-                      | …00 05 그을          Zs    ©’\n03:00            =            -       i                   ®\n-       13     = 5      / 25\n「       10007“      Wee ojece      기\n~                      ~   AS   ALEITN =\nn7       $        (        i)\norgs  CN >      개   [|    는 도가 fe\nphd                    RRR)\nAPP                    “ex       +k      | Ch\n\"~                  - Ref AR pl.        _           LJ\nere             A 44                    하드웨어 본체\ns = =             Corre)                      숭        7\n: = =         ¥ Ae 1.             “\n: 0:             = | 22               Pb\nco             HERG HA       q\n*                               -                           =\n=           .\nApp\nWeb                                    IRMA          감압센서\n=      프\nEe 작품 개요\n운동 종목 선호도 변화\n- 코로나 이전에는 야외 활동, 헬스장 이용이 주를 이루었다면, 이후에는 홈트레이닝,\n간편한 맨몸운동의 인기가 높아짐.\n목표\n- 임베디드 기기와 A 연동하여 운동 결과를 측정하고, 사용자들 간 경쟁과 트레이닝\n기능을 제공해 운동 수행, 기록 및 관리를 더 편리하게 도와줌.\n- 이를 통해 운동에 대한 흥미를 높여 꾸준한 운동과 건강 증진을 SHE HEE,\n프     트    ㅁ\n(9) 작품의 특징 및 장점\n간결하고 일관성 있는 디자인\n- 간결하고 일관된 디자인으로 사용자가 정보를 쉽게 찾고 탐색할 수 있게 도움\n개인과 단체의 사용\n- 기존 운동기구에 간편히 적용 가능하며, 웹을 통해 많은 데이터를 한 눈에 볼 수 있어\n단체 사용에 적합하다.\n- 간단한 하드웨어와 OIA 제공하는 트레이닝 기능을 통해 개인 사용자에게도 편리함.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5192&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124133048_umkcbisf.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "207b0b66cbfb5f94",
@@ -606,8 +900,15 @@
       "title": "춘리",
       "team": null,
       "org": "부산소프트웨어마이스터고등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5191&page=3&code=award"
+      "summary": "우수상 - 세종대학교 총장상\n는,\n= (MI\nEl 스타트업 / 춘리(부산소프트웨어마이스터고등학교)\n＊ 검은 점은 사용자의 AME 표시합니다.\n*아이트래킹'을 활용한 키오스크                                도\nSEC =\n로 =\nA            =                      08627              a - 0\n캐     Chun gj    22         1\n|  6   ] |   =\nB=        Tx\nEe 작품 개요\n최근 키오스크가 매장에서 빠르게 도입되어 효율적인 결제 시스템으로 자리 잡고 있지만,\n고령층과 디지털 기기에 익숙하지 않은 사용자에게는 여전히 어려움이 많습니다. 과거에는\n|       계산원과의 상호 작용을 통해 제품 설명과 결제를 도와주었지만, 키오스크의 도입으로 이\n러한 소통이 줄어들며, 고객의 불편이 증가하고 있습니다. 특히 고령층은 메뉴 선택이나 결\n제 과정에서 혼란을 겪고, 제품 설명 부족으로 어려움을 느끼는 경우가 많습니다. 이 문제를        (3\n해결하기 위해, 이번 프로젝트는 사용자 친화적인 키오스크 시스템을 구축하는 것을 목표\n로 하고 있습니다. 특히 아이트랙킹 기술을 도입해 사용자의 시선을 분석하고, 이를 바탕으\n로 제품 설명을 제공함으로써 모든 연령층이 키오스크를 쉽게 이용할 수 있는 시스템을 개\n35               발하였습니다.\n=,                      푸이 EXI O\n¥ © 작품의 특징 및 장점\nQ      ———————————————————————————\n시선 제어                                                                                   \\ — -\n사용자는 시선을 통해 상품의 상세 HEE 확인할 수 있습니다. 이는 기존의 터치만 가능한              9\n키오스크 방식에서 문제점인 상세 제품 설명을 추가하기에는 화면의 공간 부족, 사용자 경\n험 저하 등의 불편한 점이 다수 존재했기에 아이트랙킹 기술을 통해 이러한 문제점을 해소\n할 수 있게 합니다.\n편리한 정보 접근\n키오스크를 통해 상품 정보와 알레르기 성분 등을 쉽게 확인할 수 있습니다. 사용자들은 새\n로 나온 제품에 대한 궁금증을 해소하고, 필요한 정보를 즉시 확인할 수 있어 자신이 원하는\n제품을 선택하는 과정에서 도움을 줄 수 있습니다. 이에 따라 고객 만족도가 향상됩니다.\n편리한 사용성\n물리적인 제약(팔이 불편하거나 양손에 물건을 들고 있어 터치가 어려운 사용자들)이 있는\n사용자들도 키오스크를 쉽게 이용할 수 있게 하여 모든 사용자가 쉽고 간편하게 접근할 수\n있는 환경을 조성합니다.",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5191&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124132919_makruafm.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "2687d2264b1acd85",
@@ -620,8 +921,15 @@
       "title": "CODBRAINS",
       "team": null,
       "org": "Cornerstone Academy of Seoul",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5190&page=3&code=award"
+      "summary": "장려상 - 임베디드50/~5\\756607산업협회 회장상\n기\n치마 예방 및 두뇌 자극을 위한\nOo XT              a —         [i\nale\nLLM} Stable Diffusion 기반의 Al 동화책\n느                =\nEl 스타트업 / CODBRAINS(Cornerstone Academy of Seoul)\ny=,\neS                    POE AVES\n|                                                                 2      a\n|       bi     :  Ba   g    |\nAS                                    AR .   TY  +\n|                                                         수            =\n[  는                         ey    She\n_       i                         cree\n시 동화책 전면부 및 초기화면                                    동화 및 일러스트 생성 화면\nEB        프\nEXE 개요\n치매 노인을 위한 회상치료 기반의 비약물적 치료 솔루션으로, LLM (대규모 언어 모델)과\nStable Diffusion 기술을 활용하여 노인들이 잊혀가는 추억을 되살리고, 이를 통해 인지력\n과 정서적 안정을 돕는 것을 SEE 합니다. 치매 노인과의 대화를 통해 그들이 과거의 소중\n한 기억을 회상하도록 유도하고, 이를 바탕으로 따뜻한 분위기의 이미지를 생성합니다. 생\n성된 이미지를 바탕으로 LLM 모델이 동화를 만들어 노인에게 들려줌으로써 뇌를 자극하고\n치매 예방에 도움을 줍니다.\n푸이 트\n(9) 작품의 특징 및 장점\n1. 인지 기능 자극 및 개선\n* 본 프로젝트는 치매 노인의 과거 기억을 중심으로 회상치료를 제공함으로써, 자연스럽게\n인지 기능을 자극\n*Ｌㄴㄴ\\/(대규모 언어 모델)을 통해 생성된 맞춤형 동화는 개인의 추억과 경험을 바탕으로\n하여, 기억을 되살리고 뇌의 신경 회로를 활성화\n2. 정서적 안정 및 심리적 지원\n+ 추억을 회상하고 이를 따뜻한 동화로 재구성함으로써, 치매 노인에게 심리적 안정감을\n제공\n*금정적인 기억을 기반으로 한 스토리텔링은 노인의 정서적 안정을 도모하고, 우울감과\n무기력감을 줄이는 데 기여\n3. 사회적 상호작용 증진 및 가족 관계 강화\n* Al 동화책은 치매 노인이 가족과 함께 이야기를 나누고, 추억을 공유하는 계기를 마련\n*가족 간의 유대감이 강화되고, 사회적 상호작용 촉진\n4. 비약물적 치매 예방 및 관리 솔루션 제시\n* 약물에 의존하지 않고 치매 예방 및 관리를 위한 혁신적인 접근법을 제공\n* 약물 치료의 부작용 없이 인지 기능을 유지하고 개선하는 데 기여할 수 있으며, 다양한\n요양 시설과 가정에서 쉽게 적용될 수 있는 솔루션으로 자리매김 가능",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=5190&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2501/20250124132823_wnfcoilz.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "26e05a8397ac483a",
@@ -676,8 +984,15 @@
       "title": "VOIDMIAN",
       "team": null,
       "org": "경남대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4775&page=3&code=award"
+      "summary": "대상 - 산업통상자원부 장관상\n(Sound of Food Information)\nwebOS / \\이미/1시{(경남대학교)\n기존                              내부 구조\nre\n.   200\nap\n[|  N\nNo   <>         위성 기어 사용하여 |        i\n~ =            아크릴 판 aid         [           ㅣ\n®0              v HZ                          £E Lk\n77 ®                                             접사렌즈로 물건\n1]                                   바닥 스캔\n본\ngl                                               ls\n§\n- E>\nHem         “im\n2, 작품 개요\n00 183\n한국 소비자원에서 발표한 식품 점자 표기 실태 조사에 따르면 음료, 컵라면, 우유와\n같은 식품군에서 약 70%의 식품이 점자 표기가 없는 것으로 조사되었다. 이로 인해서\n대한민국의 시각장애인 25만 명은 식품명이나 유통기한을 정확히 알지 못한 채\n식품을 섭취하게 된다. 이런 문제점을 해결하기 위해 음식을 스캔하고 사용자에게\n음성으로 정보를 전달하는 '50『!'라는 MES 개발하게 되었다.\n역        시각장애인들은 ‘SOFIZ 통해서 식품 섭취 시에 겪는 불안감이나 질병에 걸리는 상황 *\n €@ . 등을이방할수있다                                                                               “_\n1%                                                                                            :\nae                                                                               :\n. . 0 작품의특징 및 장점\n[개\note. 1.시각장애인이나 라식, 노화 등의 다양한 문제들로 시력이 저하된 사용자들이 식품      [0\n=               섭취 시에 발생할 수 있는 불편함을 해소하고 식중독과 같은 질병을 예방할 수 있다.\n<>      2. 조작하기 쉬운 간편한 미를 제공하고 있으며, 니를 조작할 수 없는 사용자의\n6           경우에도 음성 인식을 통해 모든 기능을 쉽게 사용할 수 있다.                                  」\n3. 사용자의 알레르기 정보를 사전에 등록하여 스캔한 식품에 해당되는 성분이 있다면\n사용자에게 알려준다.\nv                                                                                                  .\n) ~\\                                                                                           i]\nL 0    oo NZ Ng       - )\nN NS        <>                                        .                                                                       N       —",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4775&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100543_ascpuwrt.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "39fe7f10fb494d86",
@@ -690,8 +1005,15 @@
       "title": "20LAB",
       "team": null,
       "org": "인천대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4774&page=3&code=award"
+      "summary": "최우수상 - 산업통상자원부 장관상\n소리 데이터를 이용한\n지 골프고 보르    |\n끼 | xl  =2—0 T= =\n자유공모 / 201 ㅅ^8(인천대학교)\n그 서 ㅁ     노\nH/W 구성 및 기능\n=                           (별주\n- ~ 5517 요 me\n|         NC                 =A   «3  1 회전부메는 ne\n- =      | |       ==                모더기 있음\nwa\n|                              ㅣ                                       미미크기 부칙되머 있어 집음의 - <\\3210트157>\n\\        dere         |                         기능를 fae.\n두   |                      B01 티격되는 BRE 베크리미\n-        그      이                              트로, 공 티격후 소리 스펙트럼\nTT                                   미 우수히며 선정됨.\n|\n= 뇌로     티\n씨    6       “i      = 2        분류의 결괴(점싱공 or 깨진공)를\n=         Sma ||             Tavs M      빈영이 서보모터기 죄 또는 우로\ngy                            [Sy          1초통인 회전힘.\n2, 작품 개요\n=\n&-9\n본 작품은 스크린 골프장에서 발생하는 깨진 골프공을 자동 분류할 수 있는 임베디드\n장치의 구현을 목적으로 하였음.\n깨진 골프공과 정상 골프공의 충격음의 차이를 0/&3H Spectrogram? [Ete] 특징점을\n추출 후 CNN gid 신경망을 거쳐 깨짐 및 정상의 상태를 판별 이후 여러 모터\n장치를 통해 정상/깨진공을 분류\n[것\n[J\n. 엘 0.                                                                       ’\n고           IG       Ix     =     모                                                    3\n. .* © 작품의 특징 및 장점            를\n- 본 작품은 골프공의 충격음을 이용해 공을 분류함으로써 기존의 깨진 골프공    j\n®oe            판별 및 분류 방법과 다른 특징을 갖고 있음.\nBY      - 이미지 스캐닝 방식, 가압 방식 등 기존의 방식은 카메라, 메카넘 휠 등 추가적인     N\nH/W7t 필수적이지만 본 작품의 경우에는 마이크와 S/W 기술만을 활용해 공을\n>              분류할 수 있어 경제적으로 우수한 효과.\n6      - 실제 장치를 스크린 골프장, 옥외 골프 연습장 등에 설치한다면 깨진 골프공으로         LS\n인해 발생할 수 있는 다양한 위험 요소를 사전에 방지할 수 있음.\nex) 스크린 BOE 방지, 파편으로 인한 위험 방지, 볼 공급장치 고장 방지, 분류\n                          수작업 자동화 등\n) 8                                                                                     |\n:                             oo      Zo\nAN TN       <>                                                                                                         —",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4774&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100449_xiufczmf.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "ffdaee0eaf7c5757",
@@ -704,8 +1026,15 @@
       "title": "스트라이더",
       "team": null,
       "org": "금오공과대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4773&page=3&code=award"
+      "summary": "러너 트레이닝 로봇\n자유공모 / 스트라이더(금오공과대학교)\nRe» a            ih\nPixhawiy       SPE '스풀5     :          i\n등              7       EE      HT     =\n[166                               Ji _ JHrontiGamerags        Fl\nLED.         ES sein —\nTouch      a\nDisplay; 2100     3\nAMCU\n|                       Speaker)   v  a Embedded|System!                    —\n0    Fa Fi 3% Wifi Routers =\nRearsGamerase’               :         =                       :\n\"A Fs i       ServofMotor:\ni   / 을\n©       Ix\nao HE 개요\n훈련자의 전방에서 트랙을 따라 자율주행하면서 후방에 카메라로 훈련자를 촬영하여\n달리기 자세가 실시간으로 교정되도록 유도하고 훈련자의 자세 또는 몸동작을 기반으로\n로봇을 제어 가능하다.\n|\n< xpzo| EX] O\n& 작품의 특징 및 장점\n# 달리기 자세 피드백을 통한 달리기 운동 효과 향상\n본 기기는 훈련자가 달리는 자세를 실시간으로 감지하여 팔과 다리의 움직임에 대한\n피드백을 제공해 달리기 운동을 더욱 효과적으로 진행할 수 있도록 한다. 또한 사전에\nㅎㅎ,        터치스크린을 통해 훈련자의 정보를 입력 받을 시 거리 인식에 정확성을 향상시킬 수\n있다\n이, ^ 술         있다.\n# 훈련자의 전방에서 자율주행하는 로봇을 통해 안정적인 훈련 환경 제공\n본 기기는 트랙의 중심을 유시하며 자율주행하는 로봇이 훈련자의 앞에서 달리며\n실시간으로 후방 카메라를 통해 훈련자와의 거리를 추정한다. 따라서 훈련자가 일정한\n페이스를 유지할 수 있도록 거리에 따라 음성으로 피드백을 하여 안정적인 훈련\n환경을 제공한다.\n{     (4",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4773&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100405_ndstfvzg.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "145a7d0913a6c849",
@@ -718,8 +1047,15 @@
       "title": "RAM",
       "team": null,
       "org": "한국기술교육대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4772&page=3&code=award"
+      "summary": "객체 자동 인식형\n[- La\n요         바고\n코일건 방공 시스\n자유공모 / 844/(한국기술교육대학교)\n[7                                                             i\n글      Ly ee 298잔25492 개  A\n\\         _ 8   5                  것       1\n=                     \\        = = =      afl)\n©      Ix\n\nao HE 개요\n2-2, 이-하 전쟁에서 군사 용도로의 저렴한 무인기가 가격대 성능비로써 뛰어난\n효과를 가진다는 것이 입증되어 이를 요격'하는 방공 시스템의 중요도는 강조되고\n있습니다. 2016년부터 지속적으로 '코일건\" 시스템 개발을 진행 중인 연합 동아리팀\nRAMS 코일건' 시스템을 활용해 현재 방공 시스템 보다 저소음 저전력 저비용으로\n운용 가능한 \"객체 자동 인식형 코일건 방공 시스템'을 개발하고자 합니다.                  |\n< xpo| 트지 므\n& 작품의 특징 및 장점\n기존의 요격 시스템의 예시로 높은 비용과 큰 소음이 발생하는 실탄화기, 혹은 높은\n\nLE           전력소모를 가지는 레이저, 안티 드론건이 있습니다. 점차 소형화 되어가는 공중 무인기를\n\nTP         요격하기 위해 효과적인 대공 방어 £240] 필요합니다.\n본 프로젝트에서는 RAMO| 지속적으로 개발하고 있는 코일건의 다단 가속 RES\n적용해 높은 연사력(최대 분당 1200발)과 낮은 전력소모(1회 충전당 최대 4000발\n발사)를 보유하고 있으며, 머신러닝 데이터셋을 활용해 정확한 공중 객체 탐지와\n추적을 진행하고 코일건 시스템을 활용해 저비용, 저소음으로 목표 객체를 신속하게\n무력화 시킬 수 있습니다.\n이렇게 RAMO| 개발하고 있는 기술들을 터렛 임베디드 시스템과 결합하여 방공\nAN       작전의 무인화를 효과적으로 가속 시킬 수 있을 것 입니다.\n/   기",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4772&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100317_pgmivgrs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "60f8b375b3ef8dd1",
@@ -732,8 +1068,15 @@
       "title": "임베디드폭격기",
       "team": null,
       "org": "창원대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4771&page=3&code=award"
+      "summary": "우수상 - \\/05인텔리전스 대표상\n써드아이\n자유공모 / 임베디드폭격기(창원대학교)\n00002\n1                 retrained CNN           1    1    1         1\n=a         [stom] [som] [som]     [soma]\n<                     1              1    1    1         1\nEB 나 |\nroid        |]             1    1         1\nWi                                    [=] [=]      [=]\nLA\n2 작품 개요\n@-@\n현재 시각장애인들은 음향신호기와 점자블록 같은 공공보조기기의 수량 부족과 관리\n미흡으로 안전권을 보장받지 못하고 있다. 이에, Al 기술을 접목한 개인용 보조기기를\n통해 신뢰성이 높고 구체적인 정보를 제공하여 시각장애인들의 안전권과 편의성을\n제공하고자 개발하게 되었다.\n시 기술을 통해 물체의 유무만 판단하는 것이 아닌 시각장애인에게 앞에 보여지는\n상황에 대한 정보를 하나의 문장으로 출력하여 점자로 제공하는 흰 지팡이를 개발하였다.\n컴퓨터비전과 시로 처리한 시각정보를 모터제어를 통해 점자로 출력하여 제 3의 눈을\nPY              제공하는 “써드아이'는 특수한 시설이나 장치에 의존하지 않고도 시각장애인에게 다양하교 _ 、”\n|       <4        정확한 정보를 제공하여 넓은 선택의 폭을 통한 전과는 다른 경험을 제공할 것이다.              ’\n\n.y    [기                                                                                            ts:\nEP xo] EX| O                                                      gr\n< 작품의 특징 및 장점\n\n[ 개\n\nreg 일반적인 흰 지팡이는 촉각을 주로하여 주변 SHES 파악하기 위해 사용한다.\n고하      써드아이'는 이 흰 지팡이에 비전시 기술을 추가하여 물체의 구체적인 생김새, 색,     \\\n\n77        상황 등 시각적인 정보를 문자를 통해 전달한다. 따라서 기존의 흰 지팡이의 기능과\n비전시 기능을 동시에 사용하여 시각장애인들이 조금 더 입체적으로 상황을 인지할         LS\n수 있도록 정보를 제공한다. 점자로 표현하는 방식을 선택했기에 주변 소음 청취에\n필요한 청각을 방해하지 않고, 상황에 대한 정보를 두 가지 감각으로 동시에 받을 수\n있어 시각장애인들에게 더욱 안전한 환경을 제공한다.\n\nv              써드아이\"의 상용화가 이루어지면 시각장애인들에게 구체적인 정보를 통해 주체적인         <\nAN mo) 가능해져 더 넓은 선택의 폭을 통해 휠씬 더 높은 삶의 질을 제공할 수 있다.\nAN TN                                                                                                                        ---",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4771&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100235_hnmsfdyg.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "8157b706ebc5d821",
@@ -746,8 +1089,15 @@
       "title": "HYMEC01",
       "team": null,
       "org": "한양대학교 ERICA",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4770&page=3&code=award"
+      "summary": "작품개요\n02 그러\n1. 높은 뮤지컬 선호도와 국내 뮤지컬 시장의 발전\n한국에서 뮤지컬은 많은 관객들의 사랑을 받는 장르로, 20년간 연평균 20% 이상\n성장하여 공연예술을 대표하는 장르로 자리매김하였다. 이를 바탕으로 한국 뮤지컬\n시장은 미국, 영국, 일본에 이어 세계 네 번째 규모로 성장하였다.\n2. 압도적인 소공연장 비율\n우리나라의 소공연장의 비율은 전국의 공연장 중 약 569%를 차지하지만, 공간의\n협소성 때문에 뮤지컬을 선보이기가 어렵다. 따라서 뮤지컬 산업의 활성화를 위해\n소공연장의 공간성 창출은 매우 중요하다.\n3. 로봇기술을 이용한 문제 해결\n현재 뮤지컬 시장은 기술의 HES 통해 새로운 방향으로 산업의 성장을 도모하고\n있다. “모듈형 무대로봇\"은 오브젝트 컨트롤 테크놀로지를 접목시킨 작품으로,\n일       소공연장의 물리적인 공간 부족 문제와 극장 시설의 한계점을 극복할 수 있다.               g\nlq ®      < %※\\프이 E                                                                =\n.*  @ 작품의 특징 및 장점                        >\n.               1. “BEY 무대로봇\"의 우수성\n170 * UWB 사용으로 관객의 몰입도 증가\n\"le           UWB 사용하여 뮤지컬 무대에 라인을 그리거나 QRACE 부착하지않아도로봇 _흘\nPY             을 이용할 수 있어, 관객의 공연 몰입감을 깨뜨리지 않고 높은 수준의 무대를 구성할\n수 있다\n6        2) 모듈형으로 원하는 크기와 형태로 활용 가능                                                      」\n모듈형 로봇이기 때문에 원하는 크기와 형태로 결합하여 다방면으로 활용할 수 있다.\n2. “모듈형 무대로봇\"의 경제성\n`           본 작품에 사용된 부품의 비용을 산출하면 대략 100만원 내외의 금액이다. 따라서\nJ ON 소공연장이 가지는 절대적인 공연 제작비의 부족 문제에 대한 대안책이 될 수 있기       N\nㅣ 때문에 활발하게 사용될 것으로 추정된다. 따라서 소공연장을 활용한 뮤지컬 시장의\nN               활성화를 이끌 수 있다.\nON\nNe, ¥ ww _ oo ——",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4770&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100150_nqrfnwzh.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "b3cdd921ac3bbc36",
@@ -760,8 +1110,15 @@
       "title": "신발정리해조",
       "team": null,
       "org": "서울시립대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4769&page=3&code=award"
+      "summary": "장려상 - UHCIESW-System 산업협회 회장생\n동 수납 신발장\n자동     신\n자유공모 / 신발정리해조(서울시립대학교)\n\"*                “(            ㅣ                    a\nBare |\naa 별                    -,\n| BY          F\ny           =n         2 개리           -  ㆍ\n레이다         a\nbers amass ET 8 Say LETTE\n완성 작품 사진                                     사용자\n애플리케이션\n& 작품 개요\n《       =\nCa\n자취생들은 자취방에 들어올 때 신발을 현관 바닥에 그냥 벗어 놓을 때가 많다. 현관의\n공간이 넓을 경우 큰 문제가 되지 않을 수 있지만, 대부분의 자취방은 공간이 협소하여\n벗어놓은 신발이 계속 쌓일 경우 현관에 발 BS 틈조차 사라질 정도이다. 물론 바닥에\n놓인 신발을 손으로 잡아 신발장에 올려놓으면 되지만, 이러한 작업을 기계가 스스로\n해 준다면 훨씬 편리해질 것이다. 이번 프로젝트에서는 이러한 편리함에 초점을 맞춰,\n사용자가 집에 들어올 때 신발을 단순히 지정된 위치에 벗어놓기만 한다면 자동으로\n수납해 주고, 나갈 때는 원하는 신발을 미리 선택하여 정해진 위치에 높인 신발을\nPY           꺼내가는 새로운 형태의 신발장을 제작할 것이다,                                                 z\n4                                                                                                 ’\n게    |]          %                                                                                        bg\n”          <         프이 트지| O                                                           7\n& HEC 특징 및 장점                                                  :\n15, ㅎ 자동 수납 신발장은 사람이 직접 신발장을 열고 수납할 필요 없이 형상 같은 us\n8 = o         에서 신발을 받고, 항상 같은 출납부에서 서로 다른 신발을 꺼낼 수 있도록 사용자에게        0\n제공한다. 이를 통해 정리의 불편함과 귀찮음을 해소시켜 주고, 또한 신발을 관리하는\n>          어플을 통해 어떤 신발을 신을지 한번에 목록화시켜 보여줄 수 있다는 장점이 있다.\n6       자동 수남 신발장의 의의는 단순히 신발을 벗고, 이를 정리하는 작업의 간소하를 넘어           LS\n본인의 의류 종류의 목록화와 정리 기능에 있다. 몸이 불편하여 정리가 어려운 사람\n뿐만 아니라, 개개인의 신발을 어플을 통해 총괄적으로 관리하면서 어플리케이션으로\n9          그날의 코디를 추천하고, 이를 준비해 주는 Al 패션 관리의 새로운 패러다임을 열\n]   AN       가능성을 제시하고 있다.                                                                         핵\nNNT\n. STE     ob\nAN TN",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4769&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100105_aqzpzkgs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "e5cb83083035df8a",
@@ -774,8 +1131,15 @@
       "title": "유망주",
       "team": null,
       "org": "상명대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4768&page=3&code=award"
+      "summary": "장려상 - 임베디드9//8/5[607 산업협회회장생\n채혈보조기\n자유공모 / 유망주(상명대학교)\n를 _ 1\nCa 1        4    i       —'       4\n1H IY |           4\n2 작품 개요\n군대의 훈련소나 보건소 등에서 다수의 인원을 대상으로 소수의 의료진이 채혈하는\n경우가 있다. 이때 의료진들의 피로감과 정신적 스트레스가 누적이 되는데, 이로 인해\n정확도가 떨어질 수도 있다. 우리는 위와 같은 경우에 의료진들의 피로를 덜어주고,\n채혈 시간을 단축하여 부상을 방지하기 위해 이 프로젝트를 구상하였다.\n°\n=e\n 점 @ 작품의 특징 및 장점            로\n=            많은 인원을 대상으로 채혈하는 의료진들의 피로감을 낮춰주고, 정확도를 높여 부상을 _ ”。\n방지할 수 있으며, 업무 속도를 높일 수 있다.\n03 .\nix                    ”\n0                       N\nv\nlb N\\                                                                                   By\n)        ol\n6         hs\nCONG a                                a Se @®  .",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4768&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503100020_enzfmsuf.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "f1a243de5150edc4",
@@ -788,8 +1152,15 @@
       "title": "V2X",
       "team": null,
       "org": "한국공학대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4767&page=3&code=award"
+      "summary": "4\\/8로 구현한\n\\/2> 시스템 개발\n자유공모 / \\2>×((한국공학대학교)\n~~ hi\ni —                                   |\n| -             1006         he\n\nRe                     rr <A\n\n[E22 rane              Pp        .                 SE -에 a 제  ”\noo 작품 개요\n본 결과물의 SHE UWB(Utra WideBand)2 V2X(Vehicle to everything) 시스템을\n구축하는 것이다.\n정확한 상대 위치 측위가 가능한 장점이 있는 이 기술은, 기존의 자율주행차량에서의\n데이터 수집의 불완전성과 여러 한계를 보완할 수 있다.\nUWBE 이용하여 구현된 /2×는, 상대 차량과 신호등, 보행자 등 여러 외부 요소들과 |\n직접 통신하여, 데이터를 수집하며, 여러 기능을 수행하게 된다.\n=                                                                              -\n@? 작품의 특징 및 장점\n\n＊。          기존의 카메라와 센서들은 정확한 상대 위치를 측위 할 수 없거나, 기상상황 등 외부\n위, ^ 술      요인에 영향을 받는 등 한계가 존재했다. TWR, PDoAS 사용하는 본 방식은 더        |\npas           정확하며, 여러 상황에서도 안정적으로 상대 위치 측위가 가능하다.                              {\n@     완전 자율주행에는 정확하고 신뢰할 수 있는 데이터 수집이 필수적이다. 기존의\n방법에서 불가능했던 부분을 보완하며, 차량의 시점에서가 아닌, 직접 통신으로, 현재\n『          상태뿐만 아니라, 외부 요소들의 미래를 알 수 있다. 이 데이터는 자율주행 차량에서               :\n유용하게 사용할 수 있으며, 이 방식이 실제 차량에 적용되어, 정확하고 안전한 완전\n자율주행이 될 것으로 예상한다.\nL\n~    NL >     i 에                    :               sg",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4767&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503095933_dubduwvi.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "4979b1e13c92bcc1",
@@ -844,8 +1215,15 @@
       "title": "웹오예스",
       "team": null,
       "org": "국민대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4763&page=3&code=award"
+      "summary": "최우수상 - Ｌ16전자 010상\nHousepital\nwebOS / 웹오예스(국민대학교)\nBRB MUA TE 의사용 서비스\nmany >         EECTTEER       ase 진료          최근리뷰\nH  AA 22292 널 I        ERE\nBo [+:] 16”                틸\n병원용 서비스 \\2인천성모빈                     상황실용 서비스\n| (wR            herr\nod       3       7d             [개     own.    on    wn\nop                     -            EE |\nmp ECRER— 1\nee\nIZ]   = = =  삐\n©     Ix\nao 작품 개요\nHousepital'® 1인 가구 및 병원 방문이 어려운 이들을 위해 만들어진 서비스입니다.\n또한 바쁜 일상생활로 인해 건강관리에 소홈히하는 모든 사람이 저희 서비스의 이용\n대상입니다.\n주요 기능으로는 액물 복용 알림과 부작용 관리가 있으며, ITE 통한 건강 징후\n모니터링과 의료 정보의 병원 전송도 포함됩니다. 긴급 상황에는 '긴급 전화 AAR\n즉시 도움을 요청하고 건강 정보를 공유할 수 있습니다. 10056006은 다양한 연령과\n상황에 맞는 맞춤형 건강 관리를 지원하는 통합적 서비스를 SHE 하고 있습니다.\n»\n°                                                                             #\n4 =     프이 EX] 0                                                4\nㅠ ㅎ CEHEYSYUIH                        :\nHousepitalS 화상 진료 기능을 기반으로 한 비대면 의료 서비스를 제공하는데 _ ㆍ\n.          그치지 않고, AE 활용하여 환자의 약물 부직용을 식별하는 기능을 추가로 제공\n? > * BIC 환자가 겪는 증상이 복용 중인 약물의 부작용과 연관이 있는지 확인하고,\n\"18\" 관련된 약물 정보를 제공함으로써 의료 서비스를 더욱 풍부하게 만들었습니다.              0\n© 012 더불어, 환자의 OT 기기에서 측정된 생체 징후와 약물 복용 정보를 의사에게\n신속하게 전달함으로써 맞춤형 진료를 지원합니다. 이를 통해 의사는 더욱 정확하고          」\n개인화된 진료를 제공할 수 있게 되어 환자의 건강을 보다 효과적으로 관리할 수\n있습니다.\n응급 상황이 발생할 경우에는 119 상황실과의 영상 통화를 통해 환자의 응급 정보를\nv        신속하게 공유합니다. 이를 통해 응급 상황에 대한 신속하고 효과적인 대응이 ㆍ\nㅣ AN 가능하며, 환자의 안전을 최우선으로 삼는 의료 서비스를 제공합니다.                           ,\nNNT\n[1 을,                      0             Set       [5                                        -\nON    <>                                                                 — 004",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4763&page=3&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503095448_dbsbcqcr.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "67495618c21a9fe8",
@@ -858,8 +1236,15 @@
       "title": "청바지",
       "team": null,
       "org": "한양대학교 ERICA",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4762&page=4&code=award"
+      "summary": "우수상 - 전자 010상\nsliver connection: 소셜 디스커버리\nXX\n어플리케이션과 스마트 달력\nwebOS / 청바지(한양대학교 ERICA)\nNOG] Bases  로      1                          ㅣ              -—\n 포은 2    제\n         |\n=     =| [ea 0000               4\n베이 가가 가느 후 | 바에 | 968해          5\nFores me] |5        fe           2\n= JOH |5 >\nEe             |\n              |\nee | |\n소셜 디스커버리 어플리케이션                                   스마트 달력\noo 작품 개요\n고령화 시대에 노인의 사회적 고립과 고독은 현 사회의 중요한 문제이며, 코로나19\n팬데믹 이후로 평균적인 외부 활동량이 S0iF0 따라 더욱 부각되고 있다. 사회적\n고독의 가장 큰 원인을 친교 활동 및 소통의 부재라 생각하여 이를 해결하기 위한\n노년층의 멘탈 케어 아이디어로 '51/6『[ connection: 소셜 디스커버리 어플리케이션과\n스마트 달력'을 기획하게 되었다.\n=         ‘silver connection'S 통해 노인의 사회적 활동을 증진하고, 스마트 달력으로 매일의      =\nC |      꾸준한 일상을 기록하여 추억을 남김으로써 주체적이고 행복한 삶을 누릴 수 있도록 _ #\nET J.                                                                          는\n<@                                                                       ed\n& 작품의 특징 및 장점\n0 시       ‘silver connection: 소셜 디스커버리 어플리케이션과 스마트 달력'은 실버층의 멘탈\n-~       케어에 중점을 두어 개발되었다. 사용자는 스스로 채팅을 나누며, 일자리와 취미\n>          정보를 찾아 사회 참여에 적극적으로 참여할 수 있다.\n소셜 디스커버리 어플리케이션의 기능 중 하나인 OpenAl APIS 활용하여 개발한       」\nMRS 시간 제약 없이 상호작용이 가능한 Al 친구를 제공한다. 사용자는 320\n이름을 마음대로 변경할 수 있으며, HRS 사용자의 필요에 맞춤형 지원을 제공하며\nv               상호작용할 수 있다. 이를 통해 사용자는 더 나은 소통 경험을 즐길 수 있다.\n)                  또한, 스마트 달력을 활용하여 일정을 체크하고 매일의 일상을 사진으로 기록함으로써          By\n{     자발적으로 UMS 관리할 수 있다. 이를 통해 사용자의 삶의 질을 높이는 데 기여한다.\nWo. oe      -\nNS                                 대                                        \\          /\nTN 3      >                                                                                         0",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4762&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503095407_mbcvbgwe.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "0a441a4076878a11",
@@ -872,8 +1257,15 @@
       "title": "단비",
       "team": null,
       "org": "서울과학기술대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4761&page=4&code=award"
+      "summary": "장려상 - Ｌ6전자 010상\nMarigold\nwebOS / 단비(서울과학기술대학교)\nul       ㅣ\n안녕하세요, BUS Wr                       i ㅣ\nD gram ese vore venue:      wavs\n갤 0 Beam   | Hi     I  |\n(를 9 sme eee en          |\nPEE ee BG\ni                   ®   ™  »               1\nㅣ\n2 x= Ne\n=\n&-0\n정신병원은 선입견, 사회적 인식 SOR 진입장벽이 높아 사람들이 가기 어려워한다.\n하지만 정신 질환은 치료와 전문가의 도움이 꼭 필요한 질환이다. 이에 정신 질환을\n병원에 가지 않고 스스로 관리하고 전문가의 도움을 받을 수 있는 제품이 필요하다고\n느껴 MarigoldS 개발하였다.\n»\n[J\n< xpzo| EX] O                                                      ’\n & @\" 작품의 특징 및 장점             !\n에           특징과 장점은 다음과 같습니다.                                                                 3)\n1. 원격 의료 상담 기능을 통해 우울증 및 다양한 건강 문제를 상담할 수 있습니다.\n82000        2. 조명 테라피, 사운드 테라피, 수면분석, 활동추적 등의 기능을 제공해 일상 속 밀착\nBE            케어 서비스를 제공합니다.                                                                         0\n3. 다양한 101 기기와 연동하여 사용자의 건강 정보를 수집하고 개인 맞춤형 환경을\n<>           구축합니다.\n6       4. 시 기술을 통해 우울증 진단을 보조하고, 개인화된 분석을 제공합니다.                       LS\n5. 소형 태플릿형 디스플레이를 채택하여 사용자가 원하는 장소 어디든 편하게 사용\n할 수 있습니다.\nVN                                                                                           랙\n29009\n무 스떼 Ww      ob\nTWN",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4761&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503095328_smmznibo.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "6ade9e1d4fb6e51a",
@@ -886,8 +1278,15 @@
       "title": "와이CAR노",
       "team": null,
       "org": "경북대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4760&page=4&code=award"
+      "summary": "최우수상 - 현대자동차 사장상\n-           =                   -                  -\nAlgorithm: ALlowing GOing\nRight TeacHing Model\n자동차ㆍ모빌리티 / 와이02노(경북대학교)\n©       Ix\nao 작품 개요\n2022년 78, 우회전 도로교통법이 개정되었습니다. 이 과정에서 우회전 상황에서\n운전자 간의 지식차이로 인한 흔동이 빈번하게 일어났고, 이로 인해 교통사고 역시\n증가했습니다.\nALGORITHM(ALIowing GOing Rlght Teaching Model)2 차량의 센서를 활용하여\n우회전 상황임이 감지되면 카메라를 통해 차량 전방의 객체 및 신호 상태를 파악하여\nHEE 도로교통법 기반의 적절한 우회전 운전 HAS 실행할 수 있도록 합니다.\n이를 통해 운전자에게 우회전 상황에서의 올바른 우회전 방법을 제시하고 동시메\n우회전 사고발생률을 감소시킴니다. 또, 운전자가 개정된 도로교통법에 ESS 느끼지 _ ＊\nOQ ㆍ 않고 빠르게 적응하여 편하게 운전하고, 더 나아가 안전한 FEAR 조성하는데 _ /#\n기 @       이바지합니다.                                                                         내\n< ㅠ프이 EX] O                                                      드\n,            ㆍ 작품의 특징 및 장점\nA     Ld\n8 < 송, 본 작품은 4/00-6050센서를 통해 핸들의 회전 각도를 측정하여 우회전인지 아닌\n수 지를 판단합니다. 또한, 웹캠을 활용하여 전방의 다양한 ANE dios 높은 ©\n©, 정확도와 해상도로 인식하고 분류합니다. Yo 모델을 기반으로 한 알고리즘은 여러\n종류의 신호등, 횡단보도, 보행자, 차량 등을 높은 정확도로 인식하며, 다양한         」\n신호상태에 따른 운전자의 적절한 운전 방법을 음성 안내를 통해 전달합니다. 이러한\n기술을 통해 해당 작품은 우회전 시 발생할 수 있는 다양한 사고를 사전에 예방하고,\n제               운전자에게 정확한 우회전 방법을 안내할 수 있습니다. 이는 우회전 상황에서의 교통\n>              안전성을 향상시키고 불필요한 정차를 예방하는 등 운전환경을 개선하는 데 기여할\nNEE\n~       개  = le\nNK                                   별                                  —",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4760&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503094929_dnxnxnco.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "f3384c37d7de08a5",
@@ -900,8 +1299,15 @@
       "title": "어디지",
       "team": null,
       "org": "한국항공대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4759&page=4&code=award"
+      "summary": "Hf 조차 x   량  Oolx|xX             A\n4\\\\/8기반 주차 차량 위치추적 서비스\n자동차*모빌리티 / 어디지(한국항공대학교)\nj\n =\n[제        pe |                       —          (834\n-./#                              특  \\E      —\n// 2    “1   해\n-      계                    NO\n차량 컴퓨터\n©\nao HE 개요\n주차를 했을 때, 주차 위치를 잊어버려 불편을 겪는 사람이 많다. UWBE 이용하면\nGPSZ 위치 인식이 어려운 실내 주차장에서도 차량의 위치 찾기가 가능해진다.\n따라서 605와 UWB, 지자기 MIME 이용해서 실외 뿐 아니라 실내 주차장에 주차\n되어 있는 차량의 측위가 가능하도록 한다. 차량의 위치(층 수, 방향, 거리)를 니로\n사용자가 확인할 수 있도록 한다.                                                              |\n(=\n& 작품의 특징 및 장점\n1. 실내&층수 측위 기능 : 4\\\\/6와 IMUE 사용하여 605의 한계가 있는 실내주차장\n-                   에서도 차량의 위치를 추적할 수 있다.\n5\" o        2. 2-LEVELO| 쉬운 인터페이스: X|= LEVEL, 방위 LEVELZ UIE 제공, 사용자가\n현재 바라보고 있는 방향을 기준으로 차량의 방향을 제공해 직관적이다.\n3. 높은 확장성과 적용가능성: 최근 출시 핸드폰에는 0\\/8센서가 탑재되고 있고,\nUWB 사용자 인증 스마트키가 출시되는 등 경제적으로 해당 서비스의 실제 적용이\n가능하다.\n{     (4",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4759&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503094838_gshwytwe.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "73b82e73d6c78316",
@@ -914,8 +1320,15 @@
       "title": "명장",
       "team": null,
       "org": "홍익대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4758&page=4&code=award"
+      "summary": "장려상 - 현대자동차 사장상\nT-VAR(Traffic signal Violation\nAutomatic Reporting system)\n\n: 자동차 빌트인 캠을 활용한 신호 위반 자동 제보 시스템\n자동차ㆍ모빌리티 / 명장(홍익대학교)\nZ\n1111117』\nSo 작품 개요\nT-VARE 빌트인 캠 모듈의 영상 정보와 GPSS 이용한 신호 위반 자동 제보 시스템\n이다. 주행 중 빌트인 캠을 통해 도로의 주행 환경 정보를 인식하여 실시간으로 전방\n차량의 신호 위반 여부를 판단한다. 신호 위반이 발생하면 ^스마트 국민제보'에 필요한\n정보를 자동으로 수집하여 제보 양식과 영상을 가공한다. 사용자는 수집된 신호 위반\n내역을 ^00408000으로 확인하고 간편하게 제보할 수 있다.\n8                                                                       이\nPr           =                                                                            =\n,.* © 작품의 특징 및 장점             >\n- 현재 신호 위반 단속 장비는 설치 장소가 제한적이며 번호판이 후면에 부착된 _\noe            이륜차의 경우 단속에 어려움이 있다. 최근 도입된 후면 단속 장비는 다수의 센서가\n개스 우연       필요하여 비용이 매우 크다. T-VARE 차량용 빌트인 캠 하나로 이러한 문제를\n=                해결할 수 있다.\nWO,  - 스마트 국민제보는 이용량 증가로 48시간 이내의 사건만 제보 가능하며 직접\n6        제보서를 작성해야 하는 번거로움이 있다. T-VARE 자동으로 제보 양식을 생성        LS\n하여 사용자에게 편리함을 제공한다.\n- T-VARS 빌트인 캠과 유사한 사양으로 제작되어 1{///의 추가 없이 S/W\n슨                업그레이드만으로 도입이 가능하다. 이는 빠른 상용화가 가능하여 시장에서 높은\n)        경쟁력을 갖는다.                                                               {|\nX RR                                                        =                                                                     \\",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4758&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503094709_ktntyvvo.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "e6c2a4c8cf0ed7f6",
@@ -928,8 +1341,15 @@
       "title": "이용준",
       "team": null,
       "org": "공주마이스터고등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4783&page=4&code=award"
+      "summary": "3     dE\n자동 온도조절 및 스타일링 드라이어\n- Auto Dryer\n틴 스타트업 / 이용준(공주마이스터고등학교)\n\nSo 작품 개요\n\n최근 탈모환자의 나이가 계속해서 낮아지고 있음을 기사를 통해 접할 수 있었습니다.\n\n이에 다양한 원인 중 하나로, 저희는 드라이어 온도에 주목하였습니다. 드라이어의\n\n온도는 최대 130C2 두피에 손상을 줄 수 있는 온도이며, 이를 해결할 수 있는\n\n드라이어의 필요성을 인식하게 되었습니다. 그래서 거리에 따라 자동으로 온도가\n\n조절되는 '자동 온도 조절' 기능을 생각하게 되었습니다.\n\n남성의 외모관리 필요성이 꾸준히 증가함에 따라 뷰티 제품의 관심 또한 높아지고\n\n있습니다. 조사결과, 그 중 헤어스타일링 제품의 비중이 높은 편으로 나타났으며, |\n\noq 스타일링에도움을 줄수 있는 헤어드라이어의 Hous 인식하게 되었습니다.그래서 _\nLe UU 연동하여 원하는 스타일링을 손쉽게 구현 가능한 헤어드라이어를 YASH .\n22       되었습니다.                                                             A\n\n@®\nㆍ , 。 @ 작품의 특징 및 장점\n“Ie -  1.스타일링 기능                                                          로]\n>        현재 판매중인 드라이어 중, 스타일링 기능을 탑재한 제품은 없습니다. 이처럼 시장에\n\n존재하지 않는 새로운 아이디어라는 점에서 차별점을 지니고 있습니다.                             」\n\n2. 저렴한 가격\n\n경쟁 제품인 PHILIPS 5000시리즈의 경우 75,000원에 판매중입니다. 그러나 저희\n\n제품 총 생산 가격은 약 25,900원이며 대량 구매 시 더 저렴할 것으로 추정됩니다. 이후\n비         인건비와 포장비 등을 고려하여 6만원에 판매한다면, 더 많은 기능을 HIE 경정 ~\nㅣ AN ㆍ 제품보다 저렴하게 공급할 수 있습니다.\n\nL$. v wv     =\nMN 님                                                #5        `",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4783&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240513112554_rcmckvbp.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "946087bc25656bec",
@@ -942,8 +1362,15 @@
       "title": "간장공장공장장",
       "team": null,
       "org": "서울대도초등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4757&page=4&code=award"
+      "summary": "최우수상 - 세종대학교 총장상\n=\n스마트 아파트 관리 시스템\n주니어 메이커 / 간장공장공장장(서울대도초등학교)\n\\                Rt          sR\n|    [=\n\\y 1              4               a\n                 4            >       -                      ~\nㅡ세                    = 또 겠              ;\n=             wit!   =) 는        L 그                    고\n= -”되      &         ㅣ      3          hi\n=     ee |    c      bia   1   —\n=      BR =.       -     3       p=\njo)      I=\nao HE 개요\n스마트 아파트 관리 시스템은 로봇을 활용하여 공동주택에서 사람 대신 청소나 쓰레기\n배출 등을 해주는 시스템입니다.\n이러한 시스템을 통해 기존의 사람이 하던 공동주택의 미화작업을 로봇이 대신해주어\n균일한 청결상태를 유지할 수 있고, 여러 가지 확장 기능을 통해 다양한 용도로 활용이\n가능합니다.\n[J\nLa                                                                       ’\n2           IG       IX     =     [-]                                                    =\n*  @? 작품의 특징 및 장점            p\n저희가 제작한 로봇은 기존의 물건을 옮기는 역할만 하던 서빙 로봇에서 더 나아가 _\nSEG        청소 기능과 쓰레기 배출 기능을 가지고 있습니다. 평소에는 청소 기능을 통해 공동\note. 주택의 복도를 청소할 수 있고, 각 가구의 월패드를 통해 로봇을 호출하여 쓰레기를      vw\n직접 버리러 가지 않고도 로봇이 대신 쓰레기를 버려줄 수 있습니다.\n<>           또한 다양한 센서들을 추가하면 안전, 보안 기능의 역할도 할 수 있어 다양하게 확장이\n6        가능할 것으로 보입니다.                                                                                 」\n~~                                                                                   N\nqo     oo        - )\n는 6.     hd        =>",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4757&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503094123_zqggdphw.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "53dc9670ddf82f22",
@@ -956,8 +1383,15 @@
       "title": "날씨의천재",
       "team": null,
       "org": "서울구남초등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4756&page=4&code=award"
+      "summary": "우수상 - 세종대학교 총장상\n=\n스마트 온실화분\n주니어 메이커 / 날씨의천재(서울구남초등학교)\n——       >\n—               밸 —\nTR             Soa\n1 =        :       Nr 내 05\ni                 nr\n는 1             ee                   A        w 8\n7   | 3)               py ,\nEy                           개\n-          =                            Ee” <\n- ,                                    총   rd\n&\nao HE 개요\n스마트 온실화분은 우리가 일상에서 많이 키우는 식물을 쉽고 건강하게 기를 수\n있도록 도와주는 장치입니다. 본체는 상단의 온열 장치와 위/아래로 움직이는 비닐\n재질의 온실로 구성되어 있습니다. HEED 매시간 날씨를 체크한 다음 식물의\n생육온도 아래로 온도가 내려가게 되면 내장된 프로그램이 화분을 온실로 감싸서\n내부온도를 유지하줍니다.\n[J\n4 so                                                             ”,\nㅠ ㅎ YAR 특징 및 장점                     :\n과습이나 물부족으로 인해 식물이 시들어버릴 위험성이 적고 계절에 상관없이 식물을 -\n.              건강하게 키우는 것이 가능하여 초보자도 쉽게 식물을 기를 수 있도록 해 줍니다.\nhe EB 보통 베란다나 참가에서 SES 기르다가 겨울철에는 따뜻한 AE 710s\n810\" 하는데스마트 온실화분은 그런 번거로움을 없애 줍니다.                                   0\ni                                                                         대\n-                                                                             16\n) ~\\                                                                       i]\nNON                                                                     PE",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4756&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503094043_unfdbahp.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "68b0951b327c8f85",
@@ -970,8 +1404,15 @@
       "title": "멜론메로나",
       "team": null,
       "org": "영덕초등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4755&page=4&code=award"
+      "summary": "장려상 - \\/[05인텔리전스 대표상\n바로드림 저울\n주니어 메이커 / 멜론메로나(영덕초등학교)\nvB 1     데로 고 세             =   해제   연결될   해제\nLo   세하  fas, Aw   J\nLe.                                   -                                               당근                              감자\n3   preg   [~         4 /             '               단가: . 1009담 28002\nTAS       Wage 에                        | 무게:       40.659\n거도. [Vga                              는 가격:       1138.2원\n7                 =\n~                         결제하기\n2 작품 개요\n00 183\n마트에서 채소를 살 때, 자동으로 품목을 확인해 주고 가격을 알려준 뒤 결제를 하면\n종이봉투에 포장해 주는 자동 저울 시스템.\n채소 인식 기능과 저울 기능, 포장 기능이 있는 저울 본체와 사용자 스마트폰 oz\n구성된다.\n[J\n=\n. 8 @>작품의 특징 및 장점            롯\n7           - 바로드림저울이 보급되면 저울 조작을 어려워하는 사람들도 쉽게 사용 가능하다.        a\n- 저울 사용을 도와주는 직원의 업무가 줄어든다.\noe          - ADEE HO 2 직접 가격 확인과 계산이 이루어지므로 편리하고 직관적이다.\nTY         - 자동 종이봉투 포장 기능으로 친환경적이고 휴대성이 좋다.                                   0\n          - 스마트폰 MS 활용하면 저울 뿐만 아니라 다른 물품의 구입에도 확장하여 적용할\n`”^           수있다\n®                                                                                                                                      16\nBN                                                                                                    Q\na       Zo\n5 oe VV 9      oP",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4755&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503093918_iuuznntg.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "3fcd58e27d16de87",
@@ -984,8 +1425,15 @@
       "title": "팔로미",
       "team": null,
       "org": "WMS",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4754&page=4&code=award"
+      "summary": "최우수상 - 세종대학교 총장상\nEl 스타트업 / L20|(WMS)\n|   _—            기 q\nes     4\n~               > 2\n\"w=                          6\nHr   ~     011  :    .\nIE        —\n|  |     |!     = 2 4      |            12\neos if 스- --1(릭90 =\nHl    | |                     계\nㅣ [                         1 B1       .\nj=\")     / X               |            | S——\n:      | § 1,      -~\nA            |\n           | [고\njo)\nao HE 개요\n매번 지하주*       차를 해두\noe prs FRE HEI AZO) 조금만 지나면, 주차해둔 AE 잊어\nFiO! 하는 $801 자주 PUTTS, BE AUS I, HOE 하는 wes\n있지만 1 또한 잊기 쉽고 30 ASHE                              〉\nHEI SHE Ua] 기계가 있긴 했지만 그 MAHO| 구축된 곳 에서만\n사 had ov 발견되었습니다. 하지만 이러한 문제는 아파트 등 내차찾기\n°       ABO] 구축되지 않은 주차장에서도 자주 발생하는 2         서든사용할수?\nTod lamivamue subs |주 발생하는 문제였기에, 어디서든 사용할 수\ni                         습니다.                                ”,\n>                                                      =\nol.    © 작품의 특징 및 장점                        ，\n$520\n0 Ye  LR0E 운전   차를 완료하였을     x\n54%      z= ST} 2p aie 때 바로 0d In Spiess 전송\n®, xs Soh Ax “os am obi 수 있습니다. 따라서 dra)\n를 확인하면 주차된 위치를     할 수 있습니다. 따라서 URE\n시스템과 달리, 7           하는 방식이기            ok\n않은 주차장       용할 수 있습니다. 또한 내차찾기 시스템은 사용자가\nnga      A                                = NS\n,              ” 10스38 IgE: CAE AIEEE 키오스크를 이용하는데 2 어려움을\n              ded 하지만 3801 카카오톡은 ap] 잘 이용하시기 때문에, Floss\noS SHR 되는 팔로미는 TRS HEP IS HUBLI\n~    #             『? 대   a   Se                         -\n5                        =      PY                             /",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4754&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503093834_wutellie.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "5e1c2b5124fed23e",
@@ -998,8 +1446,15 @@
       "title": "고양이마법사",
       "team": null,
       "org": "상당중학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4753&page=4&code=award"
+      "summary": "우수상 - 세종대학교 총장상\nChatGPTE 이용한\n청소년 우울증 관리 로봇과 모바일\n청소년 우울증 관리 로    2d\nEl 스타트업 / 고양이마법사(상당중학교)\n고양이로봇 제어                    W239 화면                  우울증점수 등록화면                관리점수 확인화면\n©       Ix\nao 작품 개요\n＊청소년 우울증문제 해결\n뉴스기사 \"미래가 더 암담함 자살1위.. 청소년 우울증 급증\"이라는 28 보게 되었\n습니다. 2021년 한국의 자살 사망자가 13,352명으로 전년에 비해 1.2% 늘었다고\n통계청이 발표했습니다. 청소년 정신진료 환자 수가 2016년 22만명에서 2020년 27\n만명으로 늘고 있다고 합니다. 이러한 사회적 문제를 해결하고자 아이디어를 기반으로\n작품을 제작하고자 했습니다.\n ChatGPTHSS 통한 우울증관리 로봇, 모바일 맵\n청소년 정신건강관리를 위해 우울증 관리를 잘할수록 웃는표정의 고양이를 모바일\nUn} 로봇으로 표현함으로써, 지속적으로 고양이가 웃을 수 있게 관리를 하자는 것을\nSHE 자기관리에 동기부여가 되도록 하는 모바일앰과 로봇을 제작했습니다.\n[J\n&                                                                                                 ’\n;                I= (27               [=                                                                      -\nㅠ ㅎ © 작품의 특징 및 장점                    35\n작품 우수성                               ㅣ\n.     - MES 통한 심리상담은 청소년들에게 익명과 접근성을 제공\n0% - ORME ENS 접근성과 익명성 부재로 인해 심리상담을 받지 못하는 청소년들에게\n“I8°  acsompozmm                          [J\n© HAVO RIESE XP) 이해를 강화시킬 수 있고 대화와 설문을 통해서 긴급\n상황과 대응                                                                                 」\n* 작품 차별성\n- 로봇의 표정을 통한 우울증 관리 동기부여 및 관리상황 인지\n- 고양이를 내 마음으로 대입함으로써 자신의 마음을 가꾸는데 효과적\nv               ~Chatbot0l 22} HIE HBHORM 익명성부재로 인해 심리상담을 R 받는\nAN ㆍ 청소년에게큰 도움\n다 (                   @; 7 re                                 -",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4753&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503093750_xnkoewzc.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "21e463010af4bbcd",
@@ -1012,8 +1467,15 @@
       "title": "BROTHER",
       "team": null,
       "org": "인천청라고등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4752&page=4&code=award"
+      "summary": "장려상 - MDSHA 대표성\n각장애인의 ok\n시각장애인의 안전한\n을 위한 점자알림신발\n횡단보도 보행을 위한                   신\nEl 스타트업 / 880ㅠ6(인천청라고등학교)\n개    -     [exw]       SR           53 |           ol\n4              ＊   +              I              객  ㅣ             로로          OJ\nTE ew\nga    :                          §|     a lla      [\nBE          a        =. 2                !\n~            월 개  14\n'                3 ge! 기\n2 작품 개요\n00 183\n저희는 우연한 기회에 시각장애인이 횡단보도를 건널 때 어떤 어려움을 겪는지에 관한\n영상을 접했습니다. 영상을 접한 후 더욱 호기심이 생겨 조사를 하였는데, 실제로는\n더욱 심각하다는 것을 LZALICL 조사결과 전국의 횡단보도 중 3곳중 한곳만이\n음향신호기가 설치되어 있었고, 고장과 오작동이 빈번하게 일어났습니다. 이렇게\n시각장애인 신발을 개발하게 되었습니다. 저희가 개발한 시각장애인 신발을 RFID\n역          태그를 통해 횡단보도라는 것을 알고 신발 바닥에 있는 구두문자를 생성하는 장치를 ”\n\n. 해 . 통해 초록불이라는 것을 알려줍니다. 또, 시각장애인들이 횡단보도를 건널 때 남은 _ /#\n~ @  _ 시간과거리를 지속적으로 알려줍니다.\n| 개         (=\n\n:\";* Pam 특징 및 장점\n\" 도 ®-\n\n=       저희가 개발한 시각장애인 신발을 실생활에서 사용하게 되면 신호등 기둥에 따로     “\n는 2       설치하지 않아도 됩니다. 또 시각장애인들의 삶의 질을 높여주는 동시에 독립적인\n`]    생활에 기여할 수 있게 되고, 시각장애인들이 횡단보도의 현재 상황을 앞으로써       LS\n정보에 대한 접근성을 높임으로 인해 시각장애인들이 더욱 안전하게 횡단보도를 건널\n수 있게 됩니다. 마지막으로 모든 횡단보도에 음향신호기를 설치하는 것 보다 저렴하기\n\n벼             때문에 경제적입니다.\n\n) ~\\\n\n\\     —\n~",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4752&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2405/20240503093626_oxndwwbl.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "8b1190461a1d3ed7",
@@ -1026,8 +1488,15 @@
       "title": "방파제",
       "team": null,
       "org": "국민대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4423&page=4&code=award"
+      "summary": "Ti]                                           모기                       %\n방파제          1\noOo I\n일반부문 대상 - 산업통상자원부 장관상\nEy\n<>\n자프   H\nAEMe QE\n각 가정에 보급되어 있는 월패드는 제한된 기능으로 인해 사용하지\n않는 가정이 많다. 월패드에 탑재된 카메라를 활용해 영상 기술을\n추가한다면, 월패드를 더 유용하게 사용할 수 있을 것이라고 생각하였다.\n또한, 영상 처리 기술을 활용해 가정 내의 활동에 편리한 기능들을\n개발한다면 다양한 서비스를 사용자에게 제공하고 가정 내 월패드 사용량을\n높일 수 있을 것이다.\nI I ]     자푸 의  트지 al Xx\n땅          ㄱㅠ 2] ㅜㅜ ㅁㅁ\n110076++는 정적인 기기로 인지되던 YES 스토어를\n통해 개발자가 자유롭게 webOs HS 창작해 배포할 수\n있도록 구현하였다. 사용자가 자신의 생활양식에 따라 HS\n설치하여 사용한다는 점은 실생활에서 사용도를 높일 수 있다는\n장점을 가진다. 또한, 게시판 기능은 이웃 간 소통이 단절된\n현대 사회의 문제점을 조금이나마 해소시킬 수 있을 것이다.\n에                               rn\n ED) eign  |\n가전 제어                                 2\n거실   -   us     창문    RE  i$ - 에\n.2…Ｌ_     P= =\noo to J CT CT             sores\na a=  =    ㅣ 읽\noh =     =\n=                                =\na =                    [eveenmemee J\n.         .                                                [>\n|\n=                세                                                                '\nㅇ\n송,  Np\n©               103                        ®\nA                                                                                                 …\n:                                                                                              {",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4423&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2305/20230522153701_sdmpqfmp.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "d783ad532dbe3f20",
@@ -1040,8 +1509,15 @@
       "title": "식스센스",
       "team": null,
       "org": "서강대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4422&page=4&code=award"
+      "summary": "작품개요 (RR\n작품개요 UQ\n식스 센스는 개인 특허 “시각장애인용 보행 보조 시스템\n(등록번호 10-2313973)\"을 기반으로, GVS 기술을 응용해\n시각장애인이 비장애인처럼 장애물을 의식하지 않고 회피하는\n자연스러운 보행을 가능하게 하는 신개념 보조공학기기이다.\nG 0 작품의 특징 및 장점\nNg          SE =O 공업\n*균형감각을 새로운 “육감'으로 활용 — 방향정위의 완전 자동화\n＊오감의 한계를 벗어난 전방 인지 -> 장애물 자동 분석 알고리즘\n*효율적인 알고리즘 설계 -> 장애물 패턴화(시야각 기준 위험도)\n* 복잡한 사용법?! -> 완전 자동화된 임베디드 소프트웨어\n* 복잡한 477 NO! -> 하드웨어 및 알고리즘 설계 최적화\n*확장 가능성 -> 위험시설 종사자용 안전기구, 노인용 안전보조기구,\n길 안내 데이터 기반 사업 등 다양한 분야의 활용성이 높음\n전류방향에따른 사용자진행방향                   기기작동프로세스\n유자 WE =                WW          @ a 때\n: mop     2    -~\nWH 7 7                  4\ngn,      Aen,     EERE     EECECETRES)\ncased 믹한길.          caseq FYFYL                      Jann               [그\nMl:  ©,      Ce\n| Sr |             fle                 =           '      saz                EEL           제\n| 1                                       그 | gm                 eo      =\nioe        °                                    i                              <>\n4)                 1.                E\n레닌      Se 시\n[ican       =  |   Er\n+1      hy         5         c         호       assay       Cm Lamm] g\n    TURN       Za          d         6\n방향    Right      Right      Rigi      Left      1896         Ha   /\nEF £3  Ee £3 = £3 533 £3 (TH               et\n평형              SLIDE                    SLIDE                    TURN                     SLIDE\nATs)        15              15               5               15\n유형      HE      방향     시간[5)         그림\n~ 위험도 3     STOP’       뒤        4      Te\n0\nof ®\nwl                                       때\n[\\.                                                                                      (",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4422&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144858_knlzzrlp.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "cc3ebb06f013e440",
@@ -1054,8 +1530,15 @@
       "title": "BIOS",
       "team": null,
       "org": "광운대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4421&page=4&code=award"
+      "summary": "작품개요 ㅣ\ni                    작품개요 _@\n본 프로젝트는 자체제작한 바이오칩과 Cloud computing,\n0105” 객체인식 알고리즘을 이용해 여러 대의 플랫폼의\nELISATIEIS 자동화하는 시스템을 구축했다.\n또한, 08와 웹페이지를 통해 전국의 0010-19 확진 양상을\n직관적으로 실시간 확인이 가능하다.\n0%       잔푸이 EXI| Ol     저\nHP   AZo 특징 및 장점\n0) 하나의 Server PCS) 여러 대의 플랫폼을 통해 원격으로\nCOVID-19 확진 여부를 판단할 수 있다.\n@ 자가진단키트에 비해 of 100배 낮은 농도에서 00010-19을\n검출할 수 있어, 감염 초기의 검출율이 높아진다.\n(3) 약 6시간 소요되는 808검사에 비해 of 1시간으로\n빠르게 진단 가능하다.\n@ DBS} 웹페이지를 통해 00010-19 확진 여부를 확인할 수\n있고, 전국의 확진 양상을 직관적으로 실시간 확인 가능하다.\n6@'전문인력이 필요한 868과 기존 6ㄴ|5/검사와 달리 일반인도\n쉽게 진단이 가능하다.\n@'본 플랫폼을 통해 다양한 질병진단에 사용할 수 있다.\n—       =         FE ay 노아 _ |\n       a r— 8\np=  39303                     lc = wale  = b= . \"hy\n> gE.           | FoF\ns/ I           ssog =  BE es\nmm gy Eo Ez        -\n+. —    \"시        쇼\nI A [——————\nserver +. ANN tcr=sirean] | SAVE\n2 22ㄷ20     @\n0 _- |\nLR | 4               dd\nie ¥ [2\n<          \\                        p       —.       —\nu                           Cg           .\nA                                     빠삐 ~            RK",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4421&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144821_mzyknhvn.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "fe7d57efb0dd950c",
@@ -1068,8 +1551,15 @@
       "title": "영점을찾아서",
       "team": null,
       "org": "한국기술교육대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4420&page=4&code=award"
+      "summary": "작품개요         00]\n기존 사격 훈련 시스템의 단점(공간적 제약.다양한 총기 사용이\n어렵다는 한계,입체적이지 못한 총기 반동)을 해결하기 위해,\n입체적인 총기 반동(3축)을 줄 수 있는 촉각제공장치를 개발하고\n다양한 종류의총 컨트롤러와 결합하여 VR 사격 훈련을\n할 수 있는 시스템을 구축함.\n1\"         자푸이 트지 Ol 자저\nHr      작품의 특징 및 장점\n원하는 방향으로 특정 세기의 힘을 생성하기 위한 힘 계산 행렬\n구축 및 이를 기반으로 한 힘 표현 범위 시뮬레이션이 수행함.\n스템 소개\n  ㅣ\n”                  om 가상환경 ]       =\n[가\n(2            0!\nOS      8\nQ                                    때\n/_ 호.                                                                       ae",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4420&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144741_mgivhkph.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "34d138bf928a183b",
@@ -1082,8 +1572,15 @@
       "title": "바게트",
       "team": null,
       "org": "수원대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4419&page=4&code=award"
+      "summary": "iin                                                [a]                          %\n바게트 a\nWA ! Stop\n자유공모 우수상 - 성균관대학교 SFY\n작품개    NI:\n삭품개요             ®]\ngr. 추락/넘어짐/미끄러움으로 인해 발생하는 사고가\n가장 큰 비율을 차지한다. 또한 보행이 불편한 고령자가 유모차\n또는보행기를 보조기구로 사용할 때에도 유모차와 유사한 사고\n발생 확률이높다. 유모차, 전동 휠체어, 보행기 등의 기존 출시\n제품들은 넘어짐과 관련된 사고예방 기능은 구현되지 않았으므로\n사고를 예방하기 힘들다. 이를 해결하기 위해기울기에 따라 보행 중\n안전을 보조하고, 넘어짐 관련 사고를 예측하여 보호자 및 주변\n사람들에게 위험을 알리는 사고예방을 위한 보행보조 시스템을\n설계하고 구현하였다. 이 시스템을 통해 유아 및 고령자가 이용하는\n보행보조기를 더욱 안전하게 사용하여 2차 사고를 예방할 수 있는\n효과를 기대할 수 있으며, 바퀴가 달린 다른 보조 기구로 활용 범위를\n확장할 수 있다.\ny 5 작품의 특징 및 장점\nNg!            SE SS x ono\n1. 상보 필터\n9% 자이로 센서는 민감하고 불안정하여 정확한 센서값 도출이\n어렵다. 따라서 각각의 센서들에 가중치를 부여하여 정확도와\n안정성이 높은 센서값을 도출하는 상보필터를 실험을 통해\n적용하였다.\n2. 사고 발생 예측 및 예방\n자이로 센서를 통해 제품의 넘어짐 실험을 하여\n1)제품이 흔들렸을 경우, 2)제품이 완전히 넘어졌을 경우의 기울기를\n구함. 1)과 2)에 속하는 값이면서 완전히 제품이 넘어졌을 때 측정되는\n65° 이상의 값을 제거한 값들의 평균이 £40°~+45°S 알아내어\n기울기 예측값을 구함. 이 예측값을 제품에 반영하여, 넘어짐 예측\nal 띠 그\n(on) 헤헤 | om | maze ~Q\nsma                            es maa\ncone mon _|                     Ee               \"해\nFE  | |          i             pe  [v7]                 i\nusc |                i             5 ed   | coral |  i\nRtas            | om | EEE ay | (EEN\nBam oe sd\nLa    nm v=\"\n=             i             Cm wm\nHEM             Ep                i\n=           Fe               J\nBa 23                          1 메느개\nEER           @\n,     자고 발성 기울기 예죽  。 .     r=     EERE\nirrvee———urill| I\n(2) .                                               [omens\nof === Dg\noa         fren   procoe   200          be                    4\nA                                                                                                              말",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4419&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144641_qnnwzfcx.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "a9f15cdac79f5cf9",
@@ -1096,8 +1593,15 @@
       "title": "황금비",
       "team": null,
       "org": "한성대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4418&page=4&code=award"
+      "summary": "작품개요 _4@\nCoMirror= 거울에 Raspberry 민를 부착한 [oT 가전 장치로서\n패밀리 허브로 사용되거나 여러 패밀리를 네트워크로 연결하는\n장치 OCH CoMirrors 사용자에게 개인별 UIE 제공하며얼굴\n인식을통해 로그인 한다. 또한 이들은 서버를 경유하여 연결되고\n텍스트 메시지, 이미지, 음성 파일 SS 전송하며, WebRTC 기술\n을 이용한 화상 통화를 제공한다.본 작품은 CoMirrorS0| 연결되는\n네트워크를구성하여사용자들이다른ㅇ0110 사용자들과 대화\n하고 정보를 공유하는 서버 클라이언트 플랫폼 기술을\n설계 구현하였다.\ny) [ D    자푸이 EX| al 자저\nNg]           작품의 특징 및 장점\n« Electron 프레임워크를 이용하여 WindowL} 리눅스, MacOS\n등 운영체제에 한계 없이 실행된다.\n+ CPUE 많이 사용하는 기능은 56『/6[에서, 가벼운 기능들은\nClientoll 배치하였다.\n* 메시지 통신은 전송속도가 빠른 1071로 구현하였다.\n* 기존 스마트 미러에 없는 화상 통화를 구현하여 기술적 차별성을\n가진다.\n* 터치 패널을 통한 터치와 S422 CoMirror 기능을 제어할 수\n있다.\n터치 패널 * wo                            [7]\n미러 필름\n아크릴 판\n「   .                        A         emer       4\n| 쁘                r.                    개\nIRNES                    30                PB\nny                                   CoMiror Cent                             amiror Clams\n2    )           =    N\n       a\n~                0\noS         1\n0              대\nA                                                                                                   “이\n(",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4418&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144607_meubqaih.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "504c11e604fe35e2",
@@ -1110,8 +1614,15 @@
       "title": "호랑나비",
       "team": null,
       "org": "서울과학기술대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4417&page=4&code=award"
+      "summary": "작품개요 57\n삭품개요            100]\n산업안전보건법 뿐만 아니라 2022년 1월 27일 중대재해처벌법이\n시행되었고 실제 산업 현장에서 노동자의 안전성에 대한 필요성\n이 높아지면서 우리는 건설 현장에서 도움이 될 수 있는 드론 플랫폼\n을 제작하고자 했다. 통계에 따르면 건설업은 사망사고의 비율이 가장\n높은 업종이고, 특히 추락사고에 의한 사망이 가장 큰 원인이었다.\n그래서 우리는 추락사고가 빈번히 일어나는 고공 작업을 외벽 작업 시스\n템을 가지고 있는 드론으로 대체하여 고공 작업자들의 안전을 도모하고\n위험성이 높은 작업을 보조함으로써 작업자들의 피로도를 줄이고\n일의 능률과 근로 여건을 높일 수 있는 플랫폼을 주제로 선정하였다.\n만 5 작품의 특징 및 장점\nNg]           SE— =o x oo\n*특징\n-드론 : 메인 제어기는 CFE Cascade 방식의 PIDE 설계했다.\n-3축 카테시안 로봇 ; 고층 건물의 #60내이6의 중심은 최소자승법과\nRANSAC 알고리즘을 적용하여 찾는다. RCC(Remote Center\nCompliance) FEES 통해 삽입 오차를 성공적으로 극복했다.\n- 추가 프로펠러 : 추가 구동부를 드론 앞쪽의 양쪽에 넓게 배치함으로써\n원활한 유체의 흐름을 만들고 부착 효율을 6배 높였다.\n*장점\n- 안정성 : 고공 작업자의 업무를 드론 조종으로 대체함으로써 노동자의\n안정성을 높인다.\n- 확장성 : 그리퍼를 교체함으로써 다양한 사이즈의 \\6ㅁ7\\ㅇ27?을 설치할\n수 있고 그리퍼의 종류를 바꿔 외벽 실리콘 마감 작업, 페인트 작업등\n다양한 분야에 활용할 수 있다.\n[기          Ee nT THT\nIv da LL      i                5\nwe 76 다. 주걱 = 다 11111\nTH    1 그\n노바 $~4농33 €3 Ee                  LJ       hi\nShae dal             =         fg,\n=                  스노 J OA 높\nom al\n[Pigs Tw\nRG ia\n:     gr     -_\n|, 4% 호 ee\n스              bo\n()\n #\nwu\nA                                                                                                   Oe\n°                                                                                               (",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4417&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144526_vhwpyzoa.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "6c25e24e473a7c10",
@@ -1124,8 +1635,15 @@
       "title": "CK4",
       "team": null,
       "org": "한양대학교 ERICA",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4416&page=4&code=award"
+      "summary": "작품개요 07\n작품개요            (®]\n기존 제설 시스템의 도로정체로 인한 제설차의 제설작업 지연,\n제설 범위 제한으로 인한 추돌사고 발생, 한정된 예산으로 인한\n제설 장비 및 인력 부족 등의 문제점을 해결하고자 2 작품을\n제작하였다. 본 작품은 고속도로 갓길 자율주행 중 노면 결빙지점\n을 포착한 후, 결빙지점에 정확히 제설액을 ASHE Black Ice\n제거 솔루션을 제공한다. 이를 통해 기존 제설 시스템의 한계점을\n보완하며, 동시에 도로 상황에 구애받지 않고 신속하게 8[30< Ice\n제거를 할 수 있다.\ng 17]    작품의 특징 및 장점\nNg]           SE-l 5S x ono\n- 본 작품은 갓길을 주행하며 탐지하므로 도로 상황에 구애받지 않고\n신속하게 8[30<|66를 제거할 수 있다. 또한, 기존 제설 시스템이\n탐지하지 못했던 제설 사각지대에 즉각적으로 대응할 수 있다.\n- 기존 제설차의 무분별한 제설제 살포 방식과 달리, 탐지된 8130< Ice\n위치에 제설액을 사출하므로 제설제의 낭비로 인한 환경오염을 방지\n한다.\n- 위치 정보 및 배터리, 제설액의 잔량 정보를 실시간으로 모니터링하여\n시스템의 점검 주기를 파악하고 최적의 제설 동선을 분석할 수 있다.\n또한, 무인 시스템 운영을 통해 제설 비용을 절감하여 제설작업 시\n발생하는 안전사고 문제를 해결할 수 있다.\n1) Water Outlet Nozzle ——                       GSE\n[SEXES 향해 제설액 a)     부 =a 제어를 위한 차선 감지,\n|\n2) Sensing Module —        nN          Sen 2068\nSma ce OAR ㅣ hy aa\n@zl2le tpl a       pe   |       - 8) Voltage sensor & LoadCell\nSTERN         N ㅣ      7 ELETEEE 잔량 파악\n실시간 위치 파악|            WN 호 ld\n4) Raspberry Pid —  Ｌ       <\n| 모듈과 통신하             “5.\nFERRET   을 Jr.\n스              $0\new\n0                                           때\nA                                                                                                  (1",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4416&page=4&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144437_hxtxtkif.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "e128165f9dfd2b5a",
@@ -1138,8 +1656,15 @@
       "title": "스미쓰프링",
       "team": null,
       "org": "서울과학기술대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4415&page=5&code=award"
+      "summary": "작품개요 (@\n삭품개요            00]\n최근 뉴노멀 시대에 따라 홈트레이닝에 대한 수요가 높아지고 있다.\n하지만 기존 웨이트 운동기구는 헬스장이라는 특정 공간에 맞춰져\n있어 홈 트레이닝 운동기구로는 적합하지 않다. 이를 해결하고자\n집에서 혼자 웨이트 운동을 할 수 있도록 최적화된 운동 기구 개발을\n목표로 하였다. 본 작품은 토크제어를 이용한 인공중력을 구현하고,\n모션인식을 통한 자세피드백을 제공하여 올바른 자세를 유도한다.\n또한 컨트롤러를 활용하여 편리하고 신속하게 무게조절을 할 수 있다.\n0 1] 자푸의 트지 및 자전\nNS           | 품의   =o X ono\n본 작품은 “홈트레이닝*에 최적화된 “웨이트 운동 기구이다.\n기존 웨이트 운동기구와 달리 '집에서 기구를 원활하게 사용할 수\n있도록 크기와 무게를 최소화하였다. 또한 무게 변경 과정이 번거로운\n기존 운동 기구 방식을 토크제어를 이용하여 쉽게 변경이 가능하도록\n하였으며, 초보자가 배우기 어려운 웨이트 운동 자세를 피드백 시스템을\n통해 혼자서도 올바른 웨이트 운동자세를 배우고 잘못된 자세를 고칠 수\n있도록 하였다. 더 나아가 설계 구조 HAS 통해, 동일한 제어 원리와\n피드백 시스템으로 다양한 웨이트 운동기구를 개발할 수 있다.\n~\n   =\n()                    UNO                        UNO 2\noN ==\nUser                                         606     lic\n2004\n[이\nCam                                                                                                                  A            ~                             Neslot Rail\nLoad cell Mount\nBE\n<                                   EE ㅎㅎ 개\n©)               $03                                   :             -\nA                                                                                                1%\n.                                                                                               (",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4415&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144351_pkwbymds.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "d13e64534fee3069",
@@ -1152,8 +1677,15 @@
       "title": "SIXR",
       "team": null,
       "org": "금오공과대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4414&page=5&code=award"
+      "summary": "작품개요            ®]\n*개발 작품 개요\n전동 Z|EC 이용자가 늘어남에 따라 전동 ZI E 사고 또한\n늘어나고 있는 추세이다. 전동 Z|HE 운전자는 다른 이동장치\n를 이용하는 운전자보다 사고 위험에 매우 취약하기 때문에\n사용자들의 안전 운전 관련 개선이 필요하다.\n*개발 목표\n전동 Z|EC 운전 미숙으로 인한 사고율을 줄이고, 사고가 발생\n하더라도 빠른 조치가 가능하게 만들어 이용자들이 더욱 안전하게\n탑승할 수 있는 전동 RCE 개발하고자 한다.\ny) 1] 자푸의 ExI 및 자전\nNg!           a 품의   =o Xx ono\n초보자와 조작 미숙자의 안전한 주행 환경을 제공할 수 있으며, 통행량\n이 많은 곳에서 보행자와의 충돌을 감소시킬 수 있다. 또한 전동 ZEEE\n탑승자들의 안전성 개선과 사고 발생 시 빠른 구조 요청을 통해 사고\n이후 사용자의 부상 방치 시간에 따른 후유증 및 치료기간이 단축될 수\n있다.\ni\n\\\n43               {세                      o\nCC               0!\n속.  Ap\n                         il\n[\\.                                                                                                «3\n0",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4414&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144321_qsvmsdpe.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "c657f7489b98bc1a",
@@ -1166,8 +1698,15 @@
       "title": "맨발에서일인자까지1",
       "team": null,
       "org": "건국대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4413&page=5&code=award"
+      "summary": "작품개요 0\n작품개요           W\n*발곰이\"는 점자블록을 따라 길을 안내해주는 시각 장애인 안내\n로봇이다. 점자블록이 끊어진 환경에서도 멀리 있는 점자블록을\n인식하여 길을 계속해서 찾아주며 점자블록이 없는 환경에서도\n인도와 차도를 구분하여 안전한 HEE 안내해준다. 또한, 사용\n자가 원할 시 주변 문자에 대한 HEE SHOR 제공해줌으로써\n시각 장애인의 이동권을 보장함은 물론 보행 중 느낄 수 있는\n정보격차도 해소할 수 있다.\n2 5 작품의 특징 및 장점\nNg!          SE SO x ono\n시각장애인 안내로봇 발곰이는 기존에 존재하는 시각장애인 관련 복지\n서비스와는 달리 시간적, 공간적 제약 없이 사용이 가능하다.\n공공성에 초점을 맞추어 제작된 안내로봇 발곰이는 외부에서는\nTmap APIE 통한 경로를 안내하고, 지하철과 같이 805로 현재 위치\n확인이 어려운 실내 환경에서도 안내로봇으로서의 역할을 수행할 수\n있어 활용성이 높다. 또한, 기타 유사한 기존 개발품들과 비교해 보았을\n때 비교적 저렴한 센서와 카메라를 사용하여 유지 보수 관리비용이\n합리적이다. 더하여 “시각장애인`의 편의를 최우선으로 생각하여 모든\nra EE 이용하여 음성안내(115)로 간편하게 전달한다.\n——       \"~      0       van\n클라이언트\nRun      |               ~        26\n장매물\n탐지 결과 Caen     초음파 센서   라\n|               ㅣ 클라이언트             즈\nie         —            베\n니버                             바\n                          모터               파\n         제어 방향 ㅣ 클라이언트 [Tagger | 이\nB             버튼 상태 (^ ㅠ\n|      S               YOLO THIN! 0\noon      atlas\nOCR HAE                                    =\n0:                       OMe.\nCoe”       1  OCRAMM\n=                                         a       hs Ed\n@             1;                      og Baad 새틀\nJ)                                                                   :               88928\nA                                                                                          ot\n(",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4413&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228144213_cryvrndx.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "06bbc6eecb7b9af1",
@@ -1250,8 +1789,15 @@
       "title": "이세계개발자",
       "team": null,
       "org": "충북대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4407&page=5&code=award"
+      "summary": "작품개요            0]\n현재 청각장애인의 대부분은 생산기능직과 단순노무직 관련\n업무를 맡고 있습니다. 이들은 취업 또는 이직의 기회가 주어진\n다면 “사무 및 사무보조직' 등을 선호하는 것으로 나타났습니다.\n하지만 청각장애인은 사람 간의 의사소통이 필요한 일을 하는데\n어려움이 있습니다. 우리 팀은 청각장애인의 원활한 AEE 위한\n시스템을 구축했습니다.\n0 자푸이 트지 ol 자저\nSr       작품의 특징 및 장점\n의사소통이 원활하지 않은 청각장애인들을 보조함으로써 업무 능력 향상\n과 조직 내 유대감 형성 등을 기대할 수 있을 것입니다. 화상통화가 가능\n하므로 최근 증가하고 있는 자택근무에서도 활용이 가능합니다.\n저장된 대화내용을 추후에 확인 할 수 있어 업무 보조가 가능하고,\n청각장애인의 업무 중 불합리한 상황에 대한 예방이 가능합니다.\n시\n(1\n총.  NS\n                         il                                                  ph\n(\\.                                                                             .®\n(",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4407&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143520_wemwddou.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "6311cec28645e3c2",
@@ -1264,8 +1810,15 @@
       "title": "AQUARIUM",
       "team": null,
       "org": "강남대학교, 한성대학교, 동국대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4406&page=5&code=award"
+      "summary": "작품개요            0]\n스마트한 어항의 개발\n어항의 온도, 조명, 탁도, 먹이 등의 변수들을 어항이 자동으로\n확인하고 제어하며 다양한 편의를 제공함으로 좀더 쉽고 간편하게\n관상어를 기를 수 있게 해준다.\nNG                IXO| E        al\nPP 작품의 특징 및 장점\n기존의 스마트 어항보다 높아진 HUN - 쉽게 접할 수 있는 스마트\n어항중 세밀한 수치 조정과 자동화기능이 가능한 상품은 아직 없다.\n카메라와 OpenCVE 이용한 탁도 측정 알고리즘 기존의 탁도 측정의\n경우 탁도측정센서의 높은 가격대로 인하여 가정용 어항에는 잘 사용\n되지 못하였는데 이것을 카메라로 해결함으로써 낮은 가격으로\n탁도의 측정이 가능하다.\nㅇ-              03\n(>  ~\n    il         7\n대                                                                                               (",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4406&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143437_qifoauqu.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "7d5b88865bed5867",
@@ -1278,8 +1831,15 @@
       "title": "FIND",
       "team": null,
       "org": "서울과학기술대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4405&page=5&code=award"
+      "summary": "작품개요 、00\n작품개요            0]\n민00는 이동형 디스플레이에 웹캠을 부착하여 실시간 영상처리\n를 활용한 101 서비스를 제공한다. 사용자는 운동 시에 실시간 영상\n분석을 통해 운동 자세의 정확도를 알 수 있다. 또한 017 서비스를\n활용 중 잠에 들었을 시 자동으로 YS 종료하고 조명을 끄는 등\n상황에 맞는 서비스를 제공받을 수 있다. 이렇듯 본 작품은 Hrjds\n활용한 실시간 영상 분석과 OT 서비스를 결합하여 서비스를 제공한다.\nC ) Ss!      자포 의  트지 al 자저\nNg]           o-oo XxX ono\n-PIPOL 다수가 하나의 디바이스를 공유한다고 하더라도, 얼굴인식을\n통하여 사용자별로 특화된 서비스를 설정, 제공한다.\n- 미80는 홈 피트니스와 스마트홈 서비스를 넘어 다양한 분야로의\n확장성을 가지고 있을 뿐 아니라, 기존 스마트 홈 디바이스와의\n연계성 또한 우수하다.\n- 사용자 인식, 홈 트레이닝 서비스, 공간인식 서비스 등 영상기술을\n사용한 다양한 기능을 제공한다.\nVi     120 :    x CAINE, ELL\n\\           Se  oy es\n{       |     ARES               ==\n» a3              SRS\n>   ATE LT\n제 1   :     4 aT\n=\nRN\no%=               0\n수,  NS\n{ *     >          i\n:                                                                                               (",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4405&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143406_tmkavkte.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "1ec89e9eb7ed9fae",
@@ -1292,8 +1852,15 @@
       "title": "KOBOTBOARD",
       "team": null,
       "org": "국민대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4404&page=5&code=award"
+      "summary": "작품개요            00]\n630<66[?아(카키퍼)는 차박 중 실시간 객체 탐지 및 접근 감지\n기술을 기반으로 차량 주변에 접근하는 야생동물이나, 외부인을\n추적하고, 차량 내부 유해가스 농도 모니터링을 통해 차박 중에\n사용자가 직접 인지하지 못하는 위험 상황을 경고하여 사용자가\n신속하게 대응할 수 있도록 도와줍니다. 이를 통해 사용자가 안전\n하고 즐거운 차박을 경험할 수 있도록 도와주는 애플리케이션입니다\n0%           잔푸이 E XI al        저\nSP       AZo 특징 및 장점\n«IR 조명 카메라를 통한 주/야간에 구애받지 않고 차량 주변 상황을\n실시간 영상으로 확인할 수 있습니다.\n*외부 카메라가 차량 주변에 접근하는 객체를 트래킹하기 때문에\n안전하게 차량에 접근하는 객체를 파악할 수 있습니다.\n«OE 사용 전에 사용자의 얼굴을 등록하여 외부인과 사용자를 구분\n하고, 외부인이 접근하는 경우에는 모바일 Yo 알림을 HEL\n*차량 내부 유해가스 MME 이용한 유해가스 모니터링을 할 수 있고\n어플에서는 실시간 내부 농도를 확인할 수 있습니다.\nCarKeeper 소개                    0° mm\nOY                                  호구\nFOR\n[|                                  ~        객제 트라킹\n 내  $5   v |\n7    of Zerg        5   sles\n       ue ys!\nSb pt            ㅡ            접근감지 후\n~                         ~   = 때       명상 캡져   A\nN\\A\n0%=\n수,  ~~\n                         i\nA                                                                                                   1\n내                                                                                            ¢ (",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4404&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143323_gqzlovyv.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "32d0d5c35843e873",
@@ -1306,8 +1873,15 @@
       "title": "건국불스",
       "team": null,
       "org": "건국대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4403&page=5&code=award"
+      "summary": "작품개요 0\n작품개요    0]\n본 시스템은 차량에서 발생한 이벤트를 블랙박스의 내부 저장소\n없이 서버에서 처리하여 자료의 RAS 방지하고, 사용자가 해당\nHEE 애플리케이션을 통해 쉽고 편리하게 관리할 수 있는 차세대\n블랙박스 시스템이다. 주행 중/주차 중 이벤트로 나누어 차량에서\n발생하는 다양한 상황으로부터 위험을 감지한 경우 서버와 클라우드에\n영상정보 및 차량 정보 데이터를 실시간으로 전송한다.\n이는 애플리케이션에서 실시간으로 사용자에게 제공되어 편리성과\n안전성을 높였다.\n2 5 작품의 특징 및 장점\nNg]           SE— = x oo\n기존의 블랙박스는 데이터를 오직 50카드에 의존하여 저장한다.\n하지만 내장된 50카드 등의 플래시메모리는 영상정보를 입력하고\n삭제하는 방식으로 사용하기에 장기간 사용 시 고장이 BT\n또한 사고 또는 전소 상황 발생 시 블랙박스나 50카드의 물리적인 파손\n으로 데이터가 손실될 가능성이 있다. 이러한 경우들을 복합적으로\n고려한다면, 사용자가 필요한 정보를 원하는 때에 사용하려고 보니 SD\n카드의 오작동 또는 결함으로 인하여 이를 활용하지 못할 가능성이 있다.\n“빌트인 BARE AAS 상시 촬영 중 위험 상황이 감지되면\n서버에서 즉시 녹화하여 별도의 저장공간을 거치지 않고 클라우드에\n업로드하기 때문에 데이터 유실 가능성을 사전에 차단할 수 있다.\n또한 기존의 블랙박스는 직접 블랙박스 내부에 장착된 50카드를 가지고\n전용 리더기를 사용해야지만 영상 및 이벤트 데이터를 확인할 수 있다는\n단점이 있다. 하지만 본 시스템은 시간과 장소에 구애받지 않고\n애플리케이션에서 즉시 차량의 영상 및 이벤트 데이터를 확인하고\n공유할 수 있어 매우 편리하다\n—    =       -                                     GPs / 회재 / 거리 / 충격\n또8829                          MN              촉력/조도 /경적/시동\n배        센서값 판단        =.          센서 값찰당      포피\nAs GT 제\n[1]\n위험 상황 판단                         빌트인 캠 영역                           센서 영역\nRh       |  Storage / Realtime Database  |         Android    105\n영상 및 데이터 전송                   정보 제공\n주        | 5020\n。 | BB =f\n(7                                                 a\n수\n(0)               fo           서버 영역                   클라우드 영역                 어플리케이션 영역\n[\nA                                                                                                   On\ndi",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4403&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143251_omqtznas.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "9e6875ea0bf99f05",
@@ -1320,8 +1894,15 @@
       "title": "JJIDLE",
       "team": null,
       "org": "건국대학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4402&page=5&code=award"
+      "summary": "작품개요 0\n삭품개요            100]\n운전 중 생기는 여러 사각지대는 현재까지도 많은 사고의 원인이\n된다. OI Built-In Camera 0| 83H 해결하는 50/기반 프로\n젝트, Built-In Driving Assistant Built-In Camera 운전자의\n시야 범위의 차이를 이용해 운전자 시야확장 및 사고예방을 위한\n솔루션을 제안한다. 본 작품에서 고려한 3가지 사각지대 상황은\n필러, 경사로, 교차로에서의 횡단보도이며 각 상황에서 등장하는\n위험을 판단하고, 이를 60 및 Speaker 운전자에게 경고한다.\ny) 17]     잔푸 의  트지 미 자저\nNg]           의습-| =o xon\nBuilt-In Cameras 필요도와 설치율이 해마다 증가하고 있다.\nBuilt-In Driving Assistanti= Lidar 등 고가의 하드웨어 추가 없이\n10386만으로 운전자의 시야를 확장해 상황을 인식하고 판단할 수\n있어 Built-In Camera? 활용성(및 경제성)을 더욱 높여줘 시장성이\n크다.또 최근 클라우드를 활용한 차량과 서버의 연동 사업이 각광받는\n만큼, 미래의 기술과도 연관이 깊다. 본 작품에서는 3가지 경우에 대해\n작동하나, 신호등 바로 앞에서 정지했을 때 고개를 숙이고 위를 바라\n봐야 하는 것처럼 사각지대가 발생할 수 있는 다양한 경우에서 활용할\n수 있다. 궁극적으로, 본 작품을 통해 운전 중 발생할 수 있는 다양한\n사고를 예방할 수 있다.\n24%\ni}            ¢                                2 wd\n개      5      b=               -_—           —\n\"000      =            =   Web\n사각지대 개선                 Raspberry Pi            eiminio                 Server\n  =\n        oo\n0=                Vv\n스발\nA          0            5\n:                                                                                               (",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4402&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143205_vlsmawfv.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "5b3839412d177dfd",
@@ -1334,8 +1915,15 @@
       "title": "배불뚝이",
       "team": null,
       "org": "선린인터넷고등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4401&page=5&code=award"
+      "summary": "작품개요 JQ\n쓰레기양이 어느 정도 차게 되면 자동으로 압축해주고 현재\n쓰레기양을 웹으로 공유하며 가득 찬 쓰레기양을 조금 더 편하게\n수거할 수 있습니다.\nNT,             프이 EX| O\nPP 작품의 특징 및 장점\n쓰레기통의 쓰레기양을 측정하여 자동으로 압축해줍니다.\n한눈에 지역의 쓰레기통을 확인할 수 있고, 가득 찬 쓰레기통들을\n확인할 수 있습니다\nae      if 비티 go ARERR                    ie |\n/        go.    명동      |                    =\n££ TT\na         츠 남산타워         li 그                |       티\n중림동  1899     필동      as |              66\n이    1                              ` 수      =\ng      19        2       i         [EC ——     =\n10 『      FUSE 남산서물타워            |       | 「      S\nne         >\n-\nㅇ-           03\n4 시\n인           이                   대                                       5\n[\\.                                                  a",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4401&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228143002_llahxkby.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "309b41f8dec023c1",
@@ -1348,8 +1936,15 @@
       "title": "붉은마늘",
       "team": null,
       "org": "대치초등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4400&page=5&code=award"
+      "summary": "작품개요 0\n그 =7   2            W\n점자야 놀자는 점자를 배우려는 시각장애인과 점자를 알고싶은\n일반 사람들을 위해 만든 점자 학습 시스템입니다.\n점자야 놀자는 점자를 읽고 쓸 수 있는 점자학습장치와 Yo\n구성 되어 있습니다. 점자학습장치는 단독으로 점자를 배울 수 있으\n며, 스마트폰 M3 HAS 하면 다양한 기능들을 확장하여 사용이\n가능합니다. 점자야 놀자를 활용하면 점자를 배우려는 시각장애인과\n일반 사람들이 좀 더 쉽고 재미있게 점자를 배울 수 있어 도움을 줄 수\n있습니다.\ny) 7)     bY JF = 의  트지 al 차저\nNg]           ㅠㅜ -| Vo XxX ono\n저희 작품은 시각장애인들이 사용하기 쉽도록 대부분의 기능을\n음성 안내를 통해 사용할 수 있도록 제작하였습니다. 또한, 스마트폰\nAH 역시 점자학습장치의 버튼으로 조작이 가능하도록 하여 편의성을\n높였습니다. 오늘의 미션과 같은 모드에서는 매일 점자 학습 실력을\n테스트할 수 있으며, 함께 게임하기 모드에서는 ADEE 사용자와\n점자학습장치 사용자가 서로 문제를 내면서 게임을 하기 때문에 점자를\n모르는 일반 ARE, HAE 배우려는 시각장애인들도 함께 점자 학습이\n가능합니다.\nㆍ        > #@                    ~---\nqh: 5               홈  |\nLY                       |   wa\n6 기       자\n@      . .     | 를        wows 을.\noe      | ]                Erna\n=                7\n\">\nQ     [        때                 or\n(\\.                                                                                                oh\n(",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4400&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228142906_kabgxsoh.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "298973a2512cde2a",
@@ -1362,8 +1957,15 @@
       "title": "된장찌개",
       "team": null,
       "org": "서울교육대학교부설초등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4399&page=5&code=award"
+      "summary": "작품개요            00]\n요즘에는 도시 신호등 근처에 파라솔이 설치되어있는 곳이 많이\n있습니다. 태양의 위치에 따라 파라솔의 그늘이 도로 밖으로 나가서\n위험해질 수 있는데 파라솔의 기울기를 바꾸면 더 많은 사람이 해를\n피해서 그늘에 있을 수 있지 않을까 생각했습니다. 조도 센서의 양에\n따라 자동으로 움직이게 해서 최적의 그늘을 만들게 하는 것이 목표\n입니다. 그렇게 함으로써 바닷가 해변에서도 오랫동안 있어도 그늘을\n따라다닐 필요가 없으며, 건널목 신호등에서도 그늘에서 신호를 기다릴\n수 있게 됩니다. 또한 온도와 SEE 실시간으로 LCD 표시하여 정보를\n알려줍니다.\n2      자푸이 EX] al XIHA\nSP      작 품의   =O Xx oo\n조도 센서를 파라솔 위에 설치해서 센서의 양에 따라 아래에 장착된 A\n보모터를 움직여서 최대한 최적의 그늘을 만들게 해서 더 많은 사람이\n편리하고 안전하게 사용하게 하는 것입니다. 파라솔이 움직이는 태양을\n따라서 스스로 움직이기 때문에 이동하거나 재배치하는 불편함이 없고\n교차로 신호등에 설치할 경우 위험을 줄일 수 있습니다.\n온도와 SEE LCDO| 표시하여 편하게 바로바로 알 수 있습니다.\n   ne ny               ry 고배\nSHR          fem                                  X\n= B=          pm\n= Mel    re 6       객        (\n~      는   i  ~  =    pr         뿌\n%              5           고  ~ >. : -- 개\n|                (\n=          \"\n고레\nmam WA Ne         |\n(-)                hs 2d\n(> No\n                      i                                                  ㅣ\n:                                                                             ¢ (",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4399&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228142827_hwafkeho.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "845c60a610463cd3",
@@ -1376,8 +1978,15 @@
       "title": "LUCKY",
       "team": null,
       "org": "신풍초등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4398&page=5&code=award"
+      "summary": "작품개요 0\n그 =7   2           ®]\n학교 급식실에서 배식을 안전하고 빠르게 도와주는 임베디드\n로봇 시스템.\n급식 예약 앰으로 미리 오늘 먹을 급식 메뉴와 양을 선택하면\n08서버에 저장된다.\n51080 컨트롤 Hoi 학생증의 바코드를 스캔하면 HES 불러\n와서 본인이 선택한 급식을 해당 트레이에서 꺼내준다.\n0 Sy!    작품의 특징 및 장점\nNS          SE— 5° 코업\n<급식 예약 o>\n- 기존의 급식 YS2 이미 정해진 메뉴를 확인하는 기능 뿐이었지만\nSICBOTS| 예약 2 메뉴에서 원하는 반찬만 선택할 수 있어서\n버려지는 음식을 줄일 수 있다.\n- 특히 알레르기 음식의 정보를 미리 확인하고 해당 음식을 제외한\n급식을 예약할 수 있어서 안전하다.\n<SICBOT>\n- 바코드 인식 기능으로 학생증의 바코드를 찍기만 하면 정보가 바로\n나오기 때문에 초등학생들도 사용하기 편리하다.\n-자동으로 나오고 들어가는 트레이를 갖추고 있어서 학생들이 자신들의\n급식을 편리하게 배식 받을 수 있다.\n- 모든 방향으로 이동이 가능하고 초음파 MIME 장애물이나 사람을\n감지해서 RSI] 것을 방지할 수 있다.\n83고츠8차로 급식실 도우미 8ㄷ00ㅜ EH)                      ® 광교초등학교\nEE © Enns\nso             aad 울으        6555522295223330\ni                 \\                     19022      미\nti        EE.\n스젠마지 HES EA OF 바코.=를 Aor               주                            ㅣ 때            미\n120 빼피메00 [|\nees                   대       =                 or      =\n@2R2EHD eam ow      기   >             =     쁘\not        FARE | | |               o\nI        CIT                   ¢ | - | ~ | … |\n(~               i        쁘     3버트리미        개스  Nay  Sa        wan\nFS               Te we          ~, >.       =\nA                                                                                          od\n0 (",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4398&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228142743_kexqqhvp.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "c69f4d1fe34e3f75",
@@ -1390,8 +1999,15 @@
       "title": "CLOVER",
       "team": null,
       "org": "광교고등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4397&page=5&code=award"
+      "summary": "작품개요 _니@\n공유 우산꽂이 대여소를 비 오는 Hof 아파트 출입구, 지하철 역\n입구, 쇼핑몰 입구 등 사람들이 자주 이용하는 곳에 설치한다.\nADEE YS 통해 주변 대여소를 검색하여 남아 있는 우산의\n개수 확인 및 예약을 할 수 있다. 예약된 우산은 현장에서 다른\n사람이 대여할 수 없고 인증 번호를 통해 본인만 대여 가능하다.\n우산꽂이와 연동된 키오스크로 예약대여, 현장대여, 반납을 할 수\n있고 우산꽂이에 설치된 WS 작동해서 우산의 물기를 빠르게\n제거한다.\n0% i ㅣ .자푸이 트지 ol 자적\nNg!          = 품의   =o X ono\n- 공유 우산꽂이(임베디드 시스템)를 중심으로 사용자 예약 Hat\n키오스크 Ho] 긴밀히 연동되고 필요한 EES 712 Firabase\n실시간 DBE 통해 주고받는다.\n- 인증 기능이 핵심이 되어 우산 꽂이의 슬롯 개폐를 자동화한다.\n- 예약 기능을 통해 해당 대여소에 갔을 때 사용자가 예약한 우산이\n준비되어 있도록 하여 제품 신뢰성을 높였다.\n- 하드웨어의 사용자 편의성을 고려해 우산의 물기 제거 기능이\n구현되었다.\n- 반납시 보증금을 환불해주면 공익 목적으로 사용 가능하다.\nn BEN 분       eer  FY\na Bait  애무 서가 mL oN                     날\nat Sr, NEL [|     —\n1A      ) \\/            Rainy Day\nWe   7 /           우산 대여 예약 LILEY\n| &          WZ 세    My ooo CIEE\n\"N Of   , 6 NSE 수 3\n[는           Re,\n¥    VE             Nr En   =   Ih\n=                 . 년        FA a aad\ngn    ATION       —  3       \"Ly Row    5G\nRENTAL STATS fees Bg       Wa 과\nㅜㅠ 8           parrot N\ni            =            wm weal\n=             1    | a=                             \"      o      <\nO°      &\nA                                      이                                                  1\n시                                                                                    0 (",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4397&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228142535_asntkkcs.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "4e7d855721f35a76",
@@ -1404,8 +2020,15 @@
       "title": "SUNSEC",
       "team": null,
       "org": "선린인터넷고등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4396&page=5&code=award"
+      "summary": "작품개요 0\n삭품개요           [00]\n여러 작물 환경 센서가 탑재된 장비를 농경지에 설치하여 장비가\n수집한 농경지의 작물 재배 환경 정보를 받아와 웹 사이트에서\n처리하여 of 상태에 따른 피드백과 현 작물 재배 상황을 모니터링\n할 수 있도록 하는 시스템\n만 [| 7]     작품의  트지 ol 자저\nNg!          =E— So XxX ono\n작품의 장점과 특징은 아래와 같이 정리할 수 있음.\n-낮은 설치 비용\n- 간단한 설치\n- 매우 작은 크기\n-현 작물 재배 환경 상태에 따른 피드백 제공\n- 외부 전원 연결 필요 ×\n-제품 업데이트의 용이성\n- 당일 결산 시스템\n- 센서 기록 확인 기능\n이 외에도 제품의 하드웨어 성능 구분, 웹 페이지를 통한 제공 서비스\n구분 등으로 수익 모델을 구축의 용이성과 추후 HES 이용하여 일반\n사용자들에게 서비스를 MST 때 관리의 편리함 등을 장점으로 볼 수\n있음.\n4 Formsert                     88접\nTg 쓸필묘도 없고,   ae  Fp\n크기 부담도없고,                         207, 세   개\n동시에 여러 기능을 갖춘                        ㅡ~       RA\n그런 Actege 어디 없음까요?                   a           ]\n그런 당신을 위한 Antex                                                 0\n시스템, Farmsert.       we sus\n760utnt\n2             i\n스툴 이\nww                                       내\n/                                                                                          of\n{",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4396&page=5&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228142348_fmgnmghq.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "95dad3d24601ccf6",
@@ -1418,8 +2041,15 @@
       "title": "PEAKSAVE",
       "team": null,
       "org": "숭덕여자고등학교",
-      "summary": null,
-      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4395&page=6&code=award"
+      "summary": "작품개요 0\n작품개요         0]\n순간 최대 MHL (PEAK)E 줄이기 위해 라즈베이파이와\n연동된 1센서로 분전반에서 전력량 데이터를 수집, Poids\n통해 전력량 수요를 예측 및 분석하고 모든 에어콘, 조명등의\n최대 전력수요 제어하여 수요를 절감하여, 연간 전력비용을 절감\n시키는 모니터링 및 제어시스템 기술이다.\ny) Ny x= 의 특징 및 장점\nNg]         그 Vo XxX onl\n- 사무실/상가 에너지 사전진단 및 분석 시간과 비용을 절감하기 위해\n자동화된 실시간(건/초) 실시간 에너지 데이터 고속 분석 (건/초)\nNEES\n- 사무실 혹은 가정의 분전반에 라즈베리파이와 07센서를 이용하여 전력\n기본요금 부과 지표인 순간 최대 전력수요를 절감하여, 연간 전력비용을\n절감시키는 모니터링 및 제어 시스템 기술이 특징이며 초 단위 전력\n모니터링, Pai 2 통한 15분 주기 사용량 예측, 냉난방기 제어를 동시에\n제공하는 |01 플랫폼 기술개발, 전력 최대수요 발생 디바이스 군을 동시에\n제어할 수 있는 서비스 시스템 기술개발이 기술개발 내용임.\n장점으로는 매월 부과되는 전력요금의 기본료 절감, 동계/하계 피크 기간\n동안의 서비스로 달성 가능, 지구온난화를 막기 위한 노력이 될 수 있다.\nLy   — 9  —     J — = MTT                 ==\nwm i                                                           =r\nFirs                             c= 0                 _ㅡ-\nHed       hy                                          ——\n분전함         센서       라즈베리파이      GUI 모니터링      :    Re      bd\n(1            ANA\n수\nA          ir            1\n.                                                                               (",
+      "sourceUrl": "https://www.eswcontest.or.kr/data/award.php?ptype=view&idx=4395&page=6&code=award",
+      "attachments": [
+        {
+          "url": "https://www.eswcontest.or.kr/admin/data/webedit/2302/20230228142249_xkmekwmr.jpg",
+          "kind": "image",
+          "label": "작품 설명 이미지"
+        }
+      ]
     },
     {
       "id": "7119880395442484",

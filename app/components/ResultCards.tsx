@@ -28,7 +28,7 @@ export function MatchCard({ item, rank }: { item: CompetitionResultItem; rank: n
           {(idea.team || idea.org) && (
             <p className="mt-1.5 text-xs text-zinc-400">{[idea.team, idea.org].filter(Boolean).join(" · ")}</p>
           )}
-          <div className="mt-2 flex items-center gap-3">
+          <div className="mt-2 flex flex-wrap items-center gap-3">
             <span className="hidden text-[11px] font-medium text-zinc-400 sm:inline">{scoreLabel(score)}</span>
             {idea.sourceUrl && (
               <a
@@ -40,6 +40,18 @@ export function MatchCard({ item, rank }: { item: CompetitionResultItem; rank: n
                 출처 보기 →
               </a>
             )}
+            {idea.attachments?.map((att, i) => (
+              <a
+                key={i}
+                href={att.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-0.5 text-xs font-medium text-zinc-500 hover:text-zinc-700 hover:underline"
+                title={att.label ?? undefined}
+              >
+                {att.kind === "image" ? "🖼️" : "📎"} 원본 {att.kind === "image" ? "이미지" : "첨부"} 보기 →
+              </a>
+            ))}
           </div>
         </div>
       </div>

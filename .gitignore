@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# tesseract.js가 OCR 언어팩을 처음 쓸 때 프로젝트 루트에 캐시해두는 파일들
+# (수 MB짜리 바이너리라 커밋 대상 아님, 실행 시 자동으로 다시 받아짐)
+*.traineddata
