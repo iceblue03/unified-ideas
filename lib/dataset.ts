@@ -5,9 +5,11 @@ import publicDataStartup from "../data/auto/public-data-startup.json";
 import youthStartup from "../data/auto/youth-startup.json";
 import codeFair from "../data/auto/code-fair.json";
 import capstoneDesign from "../data/auto/capstone-design.json";
+import kipaInventionPatent from "../data/auto/kipa-invention-patent.json";
+import mafraPublicDataStartup from "../data/auto/mafra-public-data-startup.json";
 import studentInvention from "../data/auto/student-invention.json";
+import kStartup from "../data/auto/k-startup.json";
 
-import kStartup from "../data/manual/k-startup.json";
 import chungjuyungStartup from "../data/manual/chungjuyung-startup.json";
 
 import manifestJson from "../data/manifest.json";
@@ -36,10 +38,12 @@ const AUTO_FILES = [
   youthStartup,
   codeFair,
   capstoneDesign,
+  kipaInventionPatent,
+  mafraPublicDataStartup,
   studentInvention,
+  kStartup,
 ] as AutoFile[];
 const MANUAL_FILES: Record<string, ManualFile> = {
-  "k-startup": kStartup as ManualFile,
   "chungjuyung-startup": chungjuyungStartup as ManualFile,
 };
 
