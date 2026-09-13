@@ -1,27 +1,22 @@
 /**
  * OpenRouter 무료 모델 호출 공용 클라이언트.
  *
- * 모델 선택 기준: OpenRouter 모델 목록의 data_policy 메타데이터를 직접 확인해
- * "프롬프트를 모델 학습에 쓰지 않음(training:false)"이 명시된 모델만 후보로 둔다 —
- * nex-agi 계열은 training:false, trainingOpenRouter:false이면서 retainsPrompts:true
- * (30일 보관)라, "데이터는 수집(로그)해도 학습에는 쓰지 않는" 정책과 정확히 일치한다.
- * (google/gemma-4-26b-a4b-it:free 등 다른 후보들은 이 스냅샷에 data_policy 자체가
- * 노출되지 않아 학습 여부를 확인할 수 없었으므로 제외했다 — 확인 안 된 모델을 끼워
- * 넣느니 검증된 벤더 하나로 좁히는 쪽을 택함.)
+ * 모델 선택 기준: nex-agi 계열(소규모 신생 랩)에서 타임아웃이 잦아, 데이터 학습 정책
+ * 여부는 더 이상 따지지 않고 속도·안정성만 기준으로 고른다. NVIDIA/Cohere처럼 인프라가
+ * 큰 벤더가 낸 "3B 활성 파라미터 MoE + 고처리량 특화" 모델 두 개를 서로 다른 벤더로
+ * 골라, 한쪽 인프라가 흔들려도 다른 쪽으로 넘어가게 했다.
  *
- * 이 벤더의 모델은 기본적으로 추론(사고) 모델이라 <think> 트레이스가 붙어 느려질 수
- * 있는데, nex-n2.5-mini/pro 둘 다 "reasoning effort: none"을 지원하므로 요청에
- * `reasoning: { effort: "none" }`을 실어 매번 사고 트레이스 없이 즉답하게 만든다.
+ * 두 모델 다 reasoning 파라미터를 지원해 `reasoning: { effort: "none" }`으로 <think>
+ * 트레이스 없이 즉답하게 만든다.
  *
  * 무료 티어는 트래픽이 몰리면 업스트림에서 언제든 429(rate-limited)를 반환할 수 있으므로
- * (실제로 이전에 쓰던 google/gemma-4-26b-a4b-it:free에서 겪음), 같은 데이터 정책을 가진
- * mini→pro 순으로 시도하다 429/5xx 등 "빠르게 실패하는" 응답을 만나면 다음 후보로
- * 넘어간다. 타임아웃(응답 자체가 너무 느림)은 재시도해도 시간만 배로 드니 재시도하지
- * 않고 바로 실패로 반환한다.
+ * 1차 모델에서 429/5xx 등 "빠르게 실패하는" 응답을 만나면 다음 후보로 넘어간다.
+ * 타임아웃(응답 자체가 너무 느림)은 재시도해도 시간만 배로 드니 재시도하지 않고 바로
+ * 실패로 반환한다.
  */
 const MODEL_CANDIDATES = [
-  "nex-agi/nex-n2.5-mini:free", // ~609ms 기준, training:false
-  "nex-agi/nex-n2.5-pro:free", // ~2.0s 기준(느리지만 동일한 데이터 정책의 벤더 폴백)
+  "nvidia/nemotron-3.5-lightning:free", // 30B-A3B, 고처리량 특화("Lightning") — NVIDIA 인프라
+  "cohere/north-mini-code:free", // 30B-A3B, 저지연 특화 — 다른 벤더(Cohere)로 폴백
 ];
 
 export type OpenRouterResult = { ok: true; text: string } | { ok: false; error: string };
