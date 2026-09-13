@@ -1,10 +1,13 @@
-import { NextRequest, NextResponse } from "next/server";
+import { after, NextRequest, NextResponse } from "next/server";
 import { getAllIdeas, getManifest } from "../../../lib/dataset";
 import { buildIndex, search, getDocs } from "../../../lib/similarity";
 import { generateExternalQueries } from "../../../lib/ai-query-gen";
 import { isShoppingConfigured, searchShopping } from "../../../lib/ebay-shopping";
 import { isPatentSearchConfigured, searchPatents } from "../../../lib/kipris";
 import { rankAndDiagnose } from "../../../lib/ai-rank";
+import { callOpenRouter } from "../../../lib/openrouter";
+import { getSessionFromRequest } from "../../../lib/session";
+import { logSearch } from "../../../lib/sheets-log";
 import type {
   AiMeta,
   CompetitionResultItem,
@@ -61,6 +64,42 @@ function sortByBestScore<T extends UnifiedResultItem>(items: T[]): T[] {
   return [...items].sort((a, b) => (b.aiScore ?? b.score) - (a.aiScore ?? a.score));
 }
 
+/**
+ * 일부 수집기는 원본이 이미지/PDF뿐이라 summary가 비어있거나 아주 짧을 수 있다
+ * (esw-contest, code-fair, capstone-design 등 — lib/collector-meta.ts 참고).
+ * AI 검색에 그런 후보가 상위로 걸리면, 사용자에게 보여주는 결과는 그대로 두되
+ * (aiMeta.warnings에 짧은 참고 문구 한 줄만 추가) 응답을 막지 않는 별도 요청으로
+ * "왜 데이터가 부족한지, attachments를 보면 무엇을 더 보강해야 하는지"를 모델에게
+ * 물어 서버 로그에만 남긴다 — 사람이 나중에 수집기를 개선할 단서로 쓰기 위함이다.
+ */
+function isIncompleteIdea(idea: Idea): boolean {
+  return (idea.summary?.trim().length ?? 0) < 20;
+}
+
+async function fireHiddenDataDiagnostic(query: string, incomplete: Idea[]): Promise<void> {
+  const listText = incomplete
+    .map((idea, i) => {
+      const hasAttachments = (idea.attachments?.length ?? 0) > 0;
+      return (
+        `${i + 1}. [${idea.competitionName}] ${idea.title}${idea.sourceUrl ? ` (원본: ${idea.sourceUrl})` : ""}` +
+        (hasAttachments ? " — 첨부/이미지 있음, summary 텍스트 없음" : " — summary 없음, 첨부도 없음")
+      );
+    })
+    .join("\n");
+
+  const prompt =
+    `다음은 검색 결과 상위 후보인데 설명(summary) 데이터가 비어있거나 매우 짧다:\n\n${listText}\n\n` +
+    `각 항목에 대해 (1) 왜 데이터가 부족할 것으로 추정되는지 (2) 원본을 보강하려면 무엇을 ` +
+    `추가로 수집해야 하는지 한두 문장씩만 진단해줘. 이 응답은 사용자에게 보여주지 않고 운영 로그로만 쓴다.`;
+
+  const res = await callOpenRouter(prompt, 10_000);
+  if (res.ok) {
+    console.log(`[data-diagnostic] query="${query.slice(0, 80)}" items=${incomplete.length}\n${res.text}`);
+  } else {
+    console.warn("[data-diagnostic] failed:", res.error);
+  }
+}
+
 export async function POST(req: NextRequest) {
   let body: { query?: string; useAi?: unknown };
   try {
@@ -77,6 +116,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "query가 너무 깁니다 (2000자 이하)" }, { status: 400 });
   }
   const useAi = body.useAi === true;
+  const startTs = Date.now();
+
+  // 쿠키(Set-Cookie 포함 응답 헤더)는 스트림의 첫 청크가 나가는 순간 확정되고 그
+  // 이후로는 바꿀 수 없으므로, anon_id 생성/읽기와 로그인 세션 읽기는 반드시
+  // ReadableStream을 만들기 전에 여기서 동기적으로 끝내야 한다.
+  const existingAnonId = req.cookies.get("anon_id")?.value;
+  const anonId = existingAnonId ?? crypto.randomUUID();
+  const session = await getSessionFromRequest(req);
 
   const encoder = new TextEncoder();
   function encodeEvent(event: SearchStreamEvent): Uint8Array {
@@ -112,6 +159,17 @@ export async function POST(req: NextRequest) {
         let patentItems: PatentResultItem[] = [];
 
         if (useAi) {
+          // 사용자 응답과는 무관하게, 실패하거나 느려도 아래 흐름을 막지 않는 백그라운드 진단.
+          // after()로 감싸 응답 전송 이후에도 (Vercel의 waitUntil을 통해) 끝까지 실행되게 한다.
+          const incompleteTop = competitionItems
+            .slice(0, 5)
+            .map((c) => c.idea)
+            .filter(isIncompleteIdea);
+          if (incompleteTop.length > 0) {
+            after(() => fireHiddenDataDiagnostic(query, incompleteTop));
+            aiMeta.warnings.push("일부 후보는 원문이 이미지/스캔본이라 설명이 제한적일 수 있어요.");
+          }
+
           const gen = await generateExternalQueries(query);
           aiMeta.kiprisKeywords = gen.kiprisKeywords;
           aiMeta.shoppingQuery = gen.shoppingQuery;
@@ -184,6 +242,28 @@ export async function POST(req: NextRequest) {
           aiMeta,
         };
 
+        after(() =>
+          logSearch({
+            timestamp: new Date(startTs).toISOString(),
+            query: query.slice(0, 500),
+            useAi,
+            identity: session ? session.email : `anon:${anonId}`,
+            loggedIn: !!session,
+            competitionCount: competitionItems.length,
+            productCount: productItems.length,
+            patentCount: patentItems.length,
+            kiprisKeywords: aiMeta.kiprisKeywords,
+            kiprisQuery: aiMeta.kiprisQuery,
+            kiprisItemCount: aiMeta.kiprisItemCount,
+            kiprisFallbackUsed: aiMeta.kiprisFallbackUsed,
+            shoppingQuery: aiMeta.shoppingQuery,
+            verdict: aiMeta.report?.verdict ?? "none",
+            aiSummary: (aiMeta.report?.summary ?? "").slice(0, 300),
+            latencyMs: Date.now() - startTs,
+            warnings: aiMeta.warnings.join("; "),
+          }),
+        );
+
         controller.enqueue(encodeEvent({ stage: "complete", result }));
       } catch (e) {
         controller.enqueue(encodeEvent({ stage: "error", message: e instanceof Error ? e.message : String(e) }));
@@ -193,11 +273,21 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  return new NextResponse(stream, {
+  const response = new NextResponse(stream, {
     headers: {
       "Content-Type": "application/x-ndjson; charset=utf-8",
       "Cache-Control": "no-store",
       "X-Accel-Buffering": "no",
     },
   });
+  if (!existingAnonId) {
+    response.cookies.set("anon_id", anonId, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365,
+    });
+  }
+  return response;
 }

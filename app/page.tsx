@@ -9,6 +9,7 @@ import { AiReportPanel } from "./components/AiReportPanel";
 import { CategoryTabs } from "./components/CategoryTabs";
 import { MatchCard, PatentCard, ProductCard } from "./components/ResultCards";
 import { SearchProgress, type SearchStage } from "./components/SearchProgress";
+import { GoogleSignInButton, type GoogleUser } from "./components/GoogleSignInButton";
 import { SearchIcon, Spinner, TierIcon } from "./components/ui";
 
 const TIER_LABEL: Record<string, string> = {
@@ -37,13 +38,23 @@ export default function Home() {
   const [manifest, setManifest] = useState<Manifest | null>(null);
   const [useAi, setUseAi] = useState(true);
   const [activeCategory, setActiveCategory] = useState<ResultCategory>("competition");
+  const [user, setUser] = useState<GoogleUser | null>(null);
 
   useEffect(() => {
     fetch("/api/manifest")
       .then((r) => r.json())
       .then(setManifest)
       .catch(() => {});
+    fetch("/api/auth/me")
+      .then((r) => r.json())
+      .then(setUser)
+      .catch(() => {});
   }, []);
+
+  function handleSignOut() {
+    setUser(null);
+    fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
+  }
 
   const competitions = result?.manifest.competitions ?? manifest?.competitions ?? [];
   const totalItems = competitions.reduce((sum, c) => sum + c.count, 0);
@@ -139,7 +150,18 @@ export default function Home() {
         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-zinc-900 text-white">
           <SearchIcon className="h-4 w-4" />
         </span>
-        <h1 className="text-xl font-bold tracking-tight text-zinc-900">아이디어 중복 체크</h1>
+        <h1 className="flex-1 text-xl font-bold tracking-tight text-zinc-900">아이디어 중복 체크</h1>
+        {user ? (
+          <button
+            onClick={handleSignOut}
+            className="text-xs font-medium text-zinc-400 hover:text-zinc-600 hover:underline"
+            title="로그아웃"
+          >
+            {user.name ?? user.email}
+          </button>
+        ) : (
+          <GoogleSignInButton onSignedIn={setUser} />
+        )}
       </header>
 
       <section className="group/search space-y-2">
