@@ -9,10 +9,12 @@
  * 두 모델 다 reasoning 파라미터를 지원해 `reasoning: { effort: "none" }`으로 <think>
  * 트레이스 없이 즉답하게 만든다.
  *
- * 무료 티어는 트래픽이 몰리면 업스트림에서 언제든 429(rate-limited)를 반환할 수 있으므로
- * 1차 모델에서 429/5xx 등 "빠르게 실패하는" 응답을 만나면 다음 후보로 넘어간다.
- * 타임아웃(응답 자체가 너무 느림)은 재시도해도 시간만 배로 드니 재시도하지 않고 바로
- * 실패로 반환한다.
+ * 무료 티어는 트래픽이 몰리면 업스트림에서 언제든 429(rate-limited)를 반환하거나 그냥
+ * 느려질 수 있으므로, 429/5xx뿐 아니라 타임아웃/네트워크 예외를 만나도 다음 후보로
+ * 넘어간다. 개별 타임아웃(timeoutMs)은 호출부가 전체 예산(예: 8초)을 감안해 정하고,
+ * 여기서는 그 예산 안에서 "이 모델이 실패하면 다음 모델"만 신경 쓴다 — 최악의 경우
+ * 후보 수만큼 시간이 배로 들 수 있지만, 그래도 첫 모델 타임아웃에 전체가 죽는 것보다는
+ * 낫다(route.ts의 maxDuration=60초 안에서 감당 가능).
  */
 const MODEL_CANDIDATES = [
   "nvidia/nemotron-3.5-lightning:free", // 30B-A3B, 고처리량 특화("Lightning") — NVIDIA 인프라
@@ -62,10 +64,11 @@ async function callModel(apiKey: string, model: string, prompt: string, timeoutM
     const text = data.choices?.[0]?.message?.content ?? "";
     return { ok: true, text };
   } catch (e) {
-    // AbortSignal 타임아웃/네트워크 예외 — 같은 만큼 또 기다리게 되므로 재시도하지 않는다.
+    // AbortSignal 타임아웃/네트워크 예외 — 다음 후보 모델로 넘어갈 가치가 있다(이 모델만
+    // 느리거나 장애일 수 있으므로).
     return {
       ok: false,
-      retryable: false,
+      retryable: true,
       error: `AI 호출 중 오류(${model}): ${e instanceof Error ? e.message : String(e)}`,
     };
   }

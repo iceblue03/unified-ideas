@@ -151,6 +151,7 @@ export async function POST(req: NextRequest) {
           kiprisItemCount: null,
           kiprisFallbackUsed: false,
           shoppingQuery: null,
+          shoppingItemCount: null,
           report: null,
           warnings: [],
         };
@@ -189,8 +190,17 @@ export async function POST(req: NextRequest) {
               score: 1 - i / 10,
               product,
             }));
+            // 성공했을 때만 채운다 — 그래야 "확인 안 됨"(null)과 "확인했지만 0건"이 구분된다.
+            aiMeta.shoppingItemCount = shopRes.value.items.length;
           } else if (aiMeta.shoppingAvailable) {
-            aiMeta.warnings.push("쇼핑 검색을 불러오지 못했습니다.");
+            const detail =
+              shopRes.status === "fulfilled"
+                ? shopRes.value.error
+                : shopRes.reason instanceof Error
+                  ? shopRes.reason.message
+                  : String(shopRes.reason);
+            console.warn(`[shopping] search failed: ${detail ?? "unknown error"}`);
+            aiMeta.warnings.push(`쇼핑 검색을 불러오지 못했습니다.${detail ? ` (${detail})` : ""}`);
           }
 
           if (patRes.status === "fulfilled" && patRes.value.ok) {

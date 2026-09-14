@@ -20,9 +20,27 @@ export interface GeneratedQueries {
   warning?: string;
 }
 
+/**
+ * AI 호출 자체가 실패했을 때 쓰는 폴백. 예전엔 원문 전체를 통짜 문장 그대로 하나의
+ * "키워드"로 던졌는데, 그러면 lib/kipris.ts의 AND 검색이 자연어 어순·조사가 그대로
+ * 낀 문장과 실제 특허 문서 표현을 거의 못 맞춰 항상 0건으로 귀결됐다(정확히 이 버그가
+ * lib/kipris.ts 주석에 적힌 "예전 방식"의 근본 원인). 최소한 공백 기준으로 단어를
+ * 쪼개 여러 키워드를 만들어주면, kipris.ts가 이미 갖고 있는 "키워드를 하나씩 줄여가며
+ * 재시도" 로직이 정상적으로 동작할 여지가 생긴다.
+ */
 function fallbackQueries(ideaText: string, warning: string): GeneratedQueries {
-  const fallback = ideaText.trim().slice(0, 60);
-  return { kiprisKeywords: fallback ? [fallback] : [], shoppingQuery: fallback, warning };
+  const trimmed = ideaText.trim();
+  const shoppingQuery = trimmed.slice(0, 60);
+  const kiprisKeywords = trimmed
+    .split(/\s+/)
+    .map((w) => w.trim())
+    .filter((w) => w.length > 1)
+    .slice(0, 4);
+  return {
+    kiprisKeywords: kiprisKeywords.length > 0 ? kiprisKeywords : shoppingQuery ? [shoppingQuery] : [],
+    shoppingQuery,
+    warning,
+  };
 }
 
 export async function generateExternalQueries(ideaText: string): Promise<GeneratedQueries> {

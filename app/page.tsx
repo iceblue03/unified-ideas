@@ -278,8 +278,14 @@ export default function Home() {
           {shownCount === 0 ? (
             <p className="text-sm text-zinc-500">
               {activeCategory === "competition" && "유사한 수상작을 찾지 못했습니다."}
-              {activeCategory === "product" && "관련된 제품을 찾지 못했습니다."}
-              {activeCategory === "patent" && "관련된 특허를 찾지 못했습니다."}
+              {activeCategory === "product" &&
+                (result.aiMeta.shoppingAvailable && result.aiMeta.shoppingItemCount === null
+                  ? "제품 검색에 실패했습니다. 잠시 후 다시 시도해주세요."
+                  : "관련된 제품을 찾지 못했습니다.")}
+              {activeCategory === "patent" &&
+                (result.aiMeta.patentAvailable && result.aiMeta.kiprisItemCount === null
+                  ? "특허 검색에 실패했습니다. 잠시 후 다시 시도해주세요."
+                  : "관련된 특허를 찾지 못했습니다.")}
             </p>
           ) : (
             <ul className="space-y-2.5">

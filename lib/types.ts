@@ -177,6 +177,11 @@ export interface AiMeta {
   /** 키워드 전체 AND가 0건이라 키워드를 줄여 재시도했는지 */
   kiprisFallbackUsed: boolean;
   shoppingQuery: string | null;
+  /**
+   * eBay 응답이 정상적으로 도착했을 때만 채워지는 건수(0 포함).
+   * null이면 "확인 안 됨"(키 미설정/호출 실패)이라 진짜 0건과 구분된다.
+   */
+  shoppingItemCount: number | null;
   report: AiReport | null;
   /** 실패한 단계별 한글 경고 (전체 검색 실패로 이어지지 않음) */
   warnings: string[];

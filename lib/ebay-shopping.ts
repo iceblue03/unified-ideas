@@ -54,14 +54,22 @@ async function getAccessToken(clientId: string, clientSecret: string): Promise<s
       body: `grant_type=client_credentials&scope=${encodeURIComponent("https://api.ebay.com/oauth/api_scope")}`,
       signal: AbortSignal.timeout(8_000),
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      console.warn(`[ebay] 토큰 발급 실패: ${res.status} ${text}`.slice(0, 300));
+      return null;
+    }
 
     const data = (await res.json()) as { access_token?: string; expires_in?: number };
-    if (!data.access_token) return null;
+    if (!data.access_token) {
+      console.warn("[ebay] 토큰 응답에 access_token이 없습니다.");
+      return null;
+    }
 
     cachedToken = { value: data.access_token, expiresAt: Date.now() + (data.expires_in ?? 7200) * 1000 };
     return cachedToken.value;
-  } catch {
+  } catch (e) {
+    console.warn(`[ebay] 토큰 발급 중 오류: ${e instanceof Error ? e.message : String(e)}`);
     return null;
   }
 }
@@ -106,7 +114,9 @@ export async function searchShopping(query: string, limit = 10): Promise<Shoppin
   try {
     const token = await getAccessToken(clientId, clientSecret);
     if (!token) {
-      return { ok: false, items: [], error: "eBay 인증 토큰을 발급받지 못했습니다." };
+      const error = "eBay 인증 토큰을 발급받지 못했습니다.";
+      console.warn(`[ebay] ${error}`);
+      return { ok: false, items: [], error };
     }
 
     const url = `${searchUrl()}?q=${encodeURIComponent(trimmed)}&limit=${limit}`;
@@ -120,13 +130,18 @@ export async function searchShopping(query: string, limit = 10): Promise<Shoppin
 
     if (!res.ok) {
       const text = await res.text().catch(() => "");
-      return { ok: false, items: [], error: `eBay 검색 실패: ${res.status} ${text}`.slice(0, 300) };
+      const error = `eBay 검색 실패: ${res.status} ${text}`.slice(0, 300);
+      console.warn(`[ebay] ${error}`);
+      return { ok: false, items: [], error };
     }
 
     const data = (await res.json()) as { itemSummaries?: EbayItemSummary[] };
     const items = (data.itemSummaries ?? []).map(mapItem);
+    console.log(`[ebay] query="${trimmed}" → ${items.length}건`);
     return { ok: true, items };
   } catch (e) {
-    return { ok: false, items: [], error: e instanceof Error ? e.message : String(e) };
+    const error = e instanceof Error ? e.message : String(e);
+    console.warn(`[ebay] 검색 중 오류: ${error}`);
+    return { ok: false, items: [], error };
   }
 }
