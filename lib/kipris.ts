@@ -73,10 +73,22 @@ function buildAndQuery(keywords: string[]): string {
  * 구분할 수 없어서, 응답으로 온 각 항목의 제목/초록에 검색 키워드 중 하나라도
  * 실제로 포함돼 있는지 직접 확인한다 — 하나도 포함되지 않은 항목은 이 "가짜 성공"
  * 응답으로 간주해 버리고, 다음 폴백 단계(키워드 하나 줄이기)로 넘어간다.
+ *
+ * 라이브 호출로 실제 확인한 또 다른 결함(이건 KIPRIS가 아니라 이 필터 자체의 버그):
+ * ai-query-gen.ts는 kiprisKeywords 각각을 "공백 없는 단어"로 강제한다(예: "드로잉로봇").
+ * 그런데 실제 특허 제목/초록은 정상적인 띄어쓰기로 "드로잉 로봇"처럼 쓰여 있어서, 이
+ * 함수가 공백을 그대로 둔 채 부분 문자열 비교를 하면 KIPRIS가 정확히 맞는 특허를
+ * 돌려줘도("드로잉 로봇"이라는 제목의 특허) 매번 무관한 결과로 오판해 버려진다 —
+ * 검색 자체는 정상 동작하는데 이 필터가 진짜 결과까지 다 걸러내 버리는 것과 같다.
+ * 양쪽 문자열에서 공백을 제거하고 비교해 이 오탐을 없앤다.
  */
+function normalizeForMatch(s: string): string {
+  return s.replace(/\s+/g, "");
+}
+
 function isRelevant(item: PatentItem, keywords: string[]): boolean {
-  const haystack = `${item.title} ${item.summary ?? ""}`;
-  return keywords.some((k) => haystack.includes(k));
+  const haystack = normalizeForMatch(`${item.title} ${item.summary ?? ""}`);
+  return keywords.some((k) => haystack.includes(normalizeForMatch(k)));
 }
 
 const parser = new XMLParser({
@@ -159,14 +171,25 @@ export function isPatentSearchConfigured(): boolean {
   return !!process.env.KIPRIS_SERVICE_KEY;
 }
 
-/** word= 하나로 실제 KIPRIS 호출을 한 번 수행한다 (재시도 루프에서 여러 번 호출됨). */
+/**
+ * word= 하나로 실제 KIPRIS 호출을 한 번 수행한다 (재시도 루프에서 여러 번 호출됨).
+ *
+ * word는 buildAndQuery()가 이미 각 키워드를 encodeURIComponent한 뒤 "*"로 이어붙인
+ * 값이다(예: "%EB%93%9C...%EB%B4%87") — 여기서 다시 encodeURIComponent(word)를 하면
+ * 그 결과의 "%" 자체가 "%25"로 한 번 더 인코딩되는 이중 인코딩 버그가 된다. 그러면
+ * KIPRIS는 word를 다른 문자열로 오인해, 검색어와 전혀 무관한 특허를 successYN=Y로
+ * 돌려준다(라이브 호출로 실제 확인: "드로잉로봇" 검색이 PCM 인코딩 변환장치 같은
+ * 완전 무관한 특허를 반환했다) — 위 isRelevant가 걸러내는 "가짜 성공"과 증상은
+ * 같지만 원인은 API가 아니라 이 이중 인코딩이었다. word는 이미 인코딩된 값이므로
+ * 그대로 이어붙인다.
+ */
 async function callKipris(
   word: string,
   serviceKey: string,
   numOfRows: number,
 ): Promise<{ ok: true; items: PatentItem[] } | { ok: false; error: string }> {
   const url =
-    `${KIPRIS_ENDPOINT}?word=${encodeURIComponent(word)}` +
+    `${KIPRIS_ENDPOINT}?word=${word}` +
     `&ServiceKey=${encodeURIComponent(serviceKey)}&pageNo=1&numOfRows=${numOfRows}`;
   try {
     const res = await fetch(url, { signal: AbortSignal.timeout(8_000) });

@@ -133,6 +133,14 @@ export async function POST(req: NextRequest) {
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       try {
+        // 검색어 생성(OpenRouter 호출, 네트워크 I/O)은 로컬 TF-IDF 검색 결과와 무관하게
+        // query 문자열 하나만 있으면 시작할 수 있다. 예전에는 TF-IDF 검색이 끝난 뒤에야
+        // 이 호출을 시작해서 두 지연시간이 그대로 합산됐다. Promise를 여기서 미리 만들어
+        // (아직 await하지 않음) 네트워크 요청을 먼저 흘려보낸 뒤, 그 동안 동기적인 로컬
+        // 검색을 실행하면 두 작업이 겹쳐 돈다 — 실제 결과가 필요한 시점(query_gen_done
+        // 이벤트 직전)에만 await한다.
+        const queryGenPromise = useAi ? generateExternalQueries(query) : null;
+
         // 1) 로컬 TF-IDF 검색 — useAi 여부와 무관하게 항상 실행되는 무료/즉시 경로
         const competitionRaw = search(INDEX, query, ALL_DOCS, 15);
         let competitionItems: CompetitionResultItem[] = competitionRaw.map((m) => ({
@@ -171,7 +179,7 @@ export async function POST(req: NextRequest) {
             aiMeta.warnings.push("일부 후보는 원문이 이미지/스캔본이라 설명이 제한적일 수 있어요.");
           }
 
-          const gen = await generateExternalQueries(query);
+          const gen = await queryGenPromise!;
           aiMeta.kiprisKeywords = gen.kiprisKeywords;
           aiMeta.shoppingQuery = gen.shoppingQuery;
           if (gen.warning) aiMeta.warnings.push(gen.warning);

@@ -101,6 +101,42 @@ function mapItem(item: EbayItemSummary): ShoppingProduct {
   };
 }
 
+/**
+ * eBay Browse API의 q 검색은 "best match"(연관도) 정렬이라 모든 키워드가 다 들어간
+ * 상품만 주는 게 아니라, 일부 키워드만 겹쳐도 점수를 매겨 끼워 넣는다 — 예를 들어
+ * "drawing robot"으로 검색했는데 "robot"은 전혀 없고 "drawing"만 걸친 "Drawing Book"
+ * 같은 상품이 섞여 나온다(실제 관측된 사례). eBay 쪽에 더 엄격한 매칭을 강제하는
+ * 공식 불리언 연산자가 없으므로, 받아온 제목에 검색어의 의미 있는 단어가 전부(또는
+ * 최소 과반수) 들어있는지 우리 쪽에서 직접 걸러낸다 — lib/kipris.ts의 isRelevant와
+ * 같은 접근이다. 그래서 필터링으로 개수가 줄어드는 걸 감안해 API에는 limit보다 넉넉히
+ * 요청한 뒤, 관련 있는 것만 골라 limit개로 자른다.
+ */
+function significantTokens(query: string): string[] {
+  return query
+    .toLowerCase()
+    .split(/[^\p{L}\p{N}]+/u)
+    .filter((t) => t.length >= 3);
+}
+
+function matchCount(title: string, tokens: string[]): number {
+  const lower = title.toLowerCase();
+  return tokens.filter((t) => lower.includes(t)).length;
+}
+
+/**
+ * 먼저 모든 의미 있는 단어가 제목에 들어간 상품만 남기고, 그러면 하나도 안 남을 때만
+ * "과반수 이상 일치"로 한 단계 완화한다 — 완전히 무관한 상품(일치 0~1개)이 섞여
+ * 나오는 것만 막으면 되고, 짧은 검색어(단어 1~2개)에서 지나치게 0건이 되는 것도
+ * 피해야 하기 때문이다.
+ */
+function filterRelevant(items: ShoppingProduct[], tokens: string[]): ShoppingProduct[] {
+  if (tokens.length === 0) return items;
+  const strict = items.filter((item) => matchCount(item.title, tokens) === tokens.length);
+  if (strict.length > 0) return strict;
+  const threshold = Math.ceil(tokens.length / 2);
+  return items.filter((item) => matchCount(item.title, tokens) >= threshold);
+}
+
 export async function searchShopping(query: string, limit = 10): Promise<ShoppingSearchResult> {
   const clientId = process.env.EBAY_CLIENT_ID;
   const clientSecret = process.env.EBAY_CLIENT_SECRET;
@@ -119,7 +155,8 @@ export async function searchShopping(query: string, limit = 10): Promise<Shoppin
       return { ok: false, items: [], error };
     }
 
-    const url = `${searchUrl()}?q=${encodeURIComponent(trimmed)}&limit=${limit}`;
+    const fetchLimit = Math.min(limit * 3, 50);
+    const url = `${searchUrl()}?q=${encodeURIComponent(trimmed)}&limit=${fetchLimit}`;
     const res = await fetch(url, {
       headers: {
         authorization: `Bearer ${token}`,
@@ -136,8 +173,13 @@ export async function searchShopping(query: string, limit = 10): Promise<Shoppin
     }
 
     const data = (await res.json()) as { itemSummaries?: EbayItemSummary[] };
-    const items = (data.itemSummaries ?? []).map(mapItem);
-    console.log(`[ebay] query="${trimmed}" → ${items.length}건`);
+    const rawItems = (data.itemSummaries ?? []).map(mapItem);
+    const tokens = significantTokens(trimmed);
+    const items = filterRelevant(rawItems, tokens).slice(0, limit);
+    const noiseCount = rawItems.length - items.length;
+    console.log(
+      `[ebay] query="${trimmed}" → ${rawItems.length}건 (관련 ${items.length}건${noiseCount > 0 ? `, 무관한 결과 ${noiseCount}건 제외` : ""})`,
+    );
     return { ok: true, items };
   } catch (e) {
     const error = e instanceof Error ? e.message : String(e);
