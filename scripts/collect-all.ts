@@ -124,8 +124,8 @@ async function main() {
     );
 
     const qualityError = evaluateCollectionQuality(slug, tier, fresh.length, existing.length, thrownError);
-    if (qualityError && !thrownError) {
-      console.error(`[${slug}] 품질 게이트: ${qualityError}`);
+    if (qualityError) {
+      if (!thrownError) console.error(`[${slug}] 품질 게이트: ${qualityError}`);
       hadQualityFailure = true;
     }
 

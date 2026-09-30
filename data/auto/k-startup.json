@@ -4,8 +4,14 @@
   "tier": "auto",
   "method": "k-startup.go.kr 자체는 구조화된 역대 수상팀 아카이브가 없어, 같은 운영기관(창업진흥원)이 만든 '역대수상기업' 페이지(challengek.org/{연도별 slug})를 대신 수집한다. 각 페이지는 Wix 사이트지만 <script id=\"wix-warmup-data\">에 수상 데이터 전체가 순수 JSON으로 내장되어 있어 헤드리스 브라우저 없이 정적 HTML만 받아 파싱 가능. 2016~2022, 2024~2025년 자료가 있으며 2023년은 원본 사이트에도 별도 아카이브가 없다(2022 페이지로 리다이렉트됨).",
   "homepage": "https://www.challengek.org",
-  "updatedAt": "2026-09-11T12:48:20.176Z",
+  "updatedAt": "2026-09-30T07:00:47.454Z",
+  "lastSuccessAt": "2026-09-30T07:00:47.454Z",
   "count": 150,
+  "lastRun": {
+    "freshCount": 150,
+    "summaryRatio": 0,
+    "maxYear": 2025
+  },
   "items": [
     {
       "id": "2156e2a86cdf09f9",
