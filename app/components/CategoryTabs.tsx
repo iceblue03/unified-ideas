@@ -1,5 +1,9 @@
+"use client";
+
+import { motion } from "motion/react";
 import { CATEGORY_LABEL } from "../../lib/types";
 import type { ResultCategory } from "../../lib/types";
+import { cn } from "@/lib/utils";
 
 interface TabDef {
   key: ResultCategory;
@@ -44,7 +48,7 @@ export function CategoryTabs({
   ];
 
   return (
-    <div className="-mx-1 flex flex-wrap gap-1 overflow-x-auto px-1 pb-1">
+    <div className="relative flex flex-wrap gap-1 rounded-full border border-border/80 bg-muted/60 p-1">
       {tabs.map((tab) => {
         const isDisabled = tab.disabledReason !== null;
         const isActive = active === tab.key;
@@ -54,15 +58,23 @@ export function CategoryTabs({
             type="button"
             disabled={isDisabled}
             onClick={() => onChange(tab.key)}
-            className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition ${
-              isDisabled
-                ? "cursor-not-allowed bg-zinc-50 text-zinc-300"
-                : isActive
-                  ? "bg-zinc-900 text-white shadow-sm"
-                  : "bg-zinc-100 text-zinc-500 hover:bg-zinc-200"
-            }`}
+            className={cn(
+              "relative z-10 shrink-0 rounded-full px-3.5 py-2 text-xs font-semibold transition",
+              isDisabled && "cursor-not-allowed text-muted-foreground/40",
+              !isDisabled && !isActive && "text-muted-foreground hover:text-foreground",
+              isActive && "text-primary-foreground",
+            )}
           >
-            {tab.label} {isDisabled ? `(${tab.disabledReason})` : tab.count}
+            {isActive && !isDisabled && (
+              <motion.span
+                layoutId="category-tab"
+                className="absolute inset-0 rounded-full bg-primary shadow-sm"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+              />
+            )}
+            <span className="relative z-10">
+              {tab.label} {isDisabled ? `(${tab.disabledReason})` : tab.count}
+            </span>
           </button>
         );
       })}
