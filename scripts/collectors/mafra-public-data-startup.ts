@@ -36,10 +36,20 @@ function stripHtml(html: string | null): string | null {
   return text || null;
 }
 
+/** 회차만 적힌 구형 레코드(제9·10회) — API에 연도 문자열이 없어 회차로 추정한다. */
+const MAFRA_ROUND_TO_YEAR: Record<number, number> = {
+  9: 2022,
+  10: 2023,
+};
+
 function parseYear(sj: string | null): number | null {
   if (!sj) return null;
-  const m = sj.match(/(20\d{2})/);
-  return m ? parseInt(m[1], 10) : null;
+  const fromText = sj.match(/(20\d{2})/);
+  if (fromText) return parseInt(fromText[1], 10);
+  const round = sj.match(/제\s*(\d+)\s*회/)?.[1];
+  if (!round) return null;
+  const n = parseInt(round, 10);
+  return MAFRA_ROUND_TO_YEAR[n] ?? null;
 }
 
 async function fetchAll(): Promise<WinnerRecord[]> {

@@ -1,8 +1,12 @@
 import * as cheerio from "cheerio";
+import fs from "node:fs/promises";
+import path from "node:path";
 import type { Attachment, Collector, Idea } from "../../lib/types";
 import { makeId } from "../../lib/id";
 import { ESW_CONTEST_META } from "../../lib/collector-meta";
 import { ocrImage, terminateOcr } from "../../lib/ocr";
+
+const AUTO_FILE = path.join(__dirname, "..", "..", "data", "auto", "esw-contest.json");
 
 /**
  * OCR 결과에서 실제로 쓸만한 부분만 골라낸다. 이미지 상단의 큰 장식 타이틀
@@ -45,12 +49,53 @@ interface DetailInfo {
  * 부분은 사람이나 (app/api/search의 "숨겨진 데이터 진단" 경로에서) AI가
  * 필요시 원본을 직접 읽을 수 있게 한다.
  */
+/** 2022년 이전 상세 페이지는 HTML 본문에 작품 설명이 남아 있는 경우가 있다. */
+function extractHtmlSummary($: cheerio.CheerioAPI): string | null {
+  const blocks: string[] = [];
+  const selectors = [".bbs_view", ".view_con", ".bbs_con_view", "#contents", ".contents"];
+  for (const sel of selectors) {
+    const el = $(sel).first();
+    if (!el.length) continue;
+    el.find("script, style").remove();
+    const text = el
+      .text()
+      .replace(/\s+\n/g, "\n")
+      .split("\n")
+      .map((l) => l.trim())
+      .filter((l) => l.length > 2 && !/^(작품개요|작품의 특징|목록|이전글|다음글)$/i.test(l))
+      .join("\n")
+      .trim();
+    if (text.length > 40) blocks.push(text);
+  }
+  if (blocks.length === 0) return null;
+  const best = blocks.sort((a, b) => b.length - a.length)[0];
+  const idx = best.indexOf("작품개요");
+  const sliced = idx >= 0 ? best.slice(idx) : best;
+  return sliced.length > 20 ? sliced : null;
+}
+
+async function loadExistingBySourceUrl(): Promise<Map<string, Idea>> {
+  try {
+    const raw = await fs.readFile(AUTO_FILE, "utf-8");
+    const parsed = JSON.parse(raw) as { items?: Idea[] };
+    const map = new Map<string, Idea>();
+    for (const item of parsed.items ?? []) {
+      if (item.sourceUrl) map.set(item.sourceUrl, item);
+    }
+    return map;
+  } catch {
+    return new Map();
+  }
+}
+
 async function fetchDetail(url: string): Promise<DetailInfo> {
   try {
     const res = await fetch(url, { headers: { "User-Agent": UA } });
     if (!res.ok) return { summary: null, attachments: [] };
     const html = await res.text();
     const $ = cheerio.load(html);
+
+    let summary = extractHtmlSummary($);
 
     const attachments: Attachment[] = [];
     $('a[href^="javascript:bbsviewImg"]').each((_, a) => {
@@ -70,8 +115,7 @@ async function fetchDetail(url: string): Promise<DetailInfo> {
       }
     });
 
-    let summary: string | null = null;
-    if (attachments[0]) {
+    if (!summary && attachments[0]) {
       const imgRes = await fetch(attachments[0].url, { headers: { "User-Agent": UA } });
       if (imgRes.ok) {
         const buf = Buffer.from(await imgRes.arrayBuffer());
@@ -153,12 +197,17 @@ export async function collect(): Promise<Idea[]> {
   }
 
   const items = [...seen.values()];
+  const existingByUrl = await loadExistingBySourceUrl();
 
-  // 목록 페이지만으로는 title/award/category까지만 나오고 실제 작품 설명은
-  // 알 수 없다 (위 fetchDetail 주석 참고). 상세 페이지를 한 건씩 더 열어
-  // 이미지를 OCR로 읽고, 원본 이미지 링크도 attachments에 남긴다.
   for (const item of items) {
     if (!item.sourceUrl) continue;
+    const prev = existingByUrl.get(item.sourceUrl);
+    if (prev && (prev.summary ?? "").trim().length >= 20) {
+      item.summary = prev.summary;
+      if (prev.attachments?.length) item.attachments = prev.attachments;
+      continue;
+    }
+
     const detail = await fetchDetail(item.sourceUrl);
     if (detail.attachments.length > 0) item.attachments = detail.attachments;
     if (detail.summary) item.summary = detail.summary;

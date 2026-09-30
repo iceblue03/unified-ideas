@@ -18,7 +18,8 @@ export const ESW_CONTEST_META: CompetitionMeta = {
     "eswcontest.or.kr의 역대수상작 게시판(/data/award.php?page=N&code=award)을 페이지가 빌 때까지 순차적으로 HTML 파싱. " +
     "각 항목의 상세페이지(ptype=view)까지 한 번 더 열어보는데, 실제 작품 설명(\"작품개요\"/\"특징\")은 " +
     "텍스트가 아니라 JPG 한 장으로만 게시되어 있어 텍스트 summary는 뽑을 수 없고, 대신 원본 이미지 " +
-    "URL을 attachments로 보존한다(브라우저로 직접 확인, 2026년 기준 전 항목 동일 형식).",
+    "URL을 attachments로 보존한다(브라우저로 직접 확인, 2022~2025년은 JPG+OCR). " +
+    "2021년 이전 상세 URL은 빈 HTML만 돌려주는 경우가 있어 summary가 비어 있을 수 있다.",
 };
 
 export const PUBLIC_DATA_STARTUP_META: CompetitionMeta = {
