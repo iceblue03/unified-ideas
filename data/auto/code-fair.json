@@ -4,9 +4,9 @@
   "tier": "semi-auto",
   "method": "kcf.or.kr 공지사항 게시판(/84)을 페이지 끝까지 순회해 '수상작/수상팀/결과 발표' 키워드가 든 공지를 찾아 본문 전체(.board_txt_area)를 저장. 공식 사이트가 매 시즌 과거 아카이브를 지우기 때문에, 이 수집기가 실행될 때마다 발견한 공지를 우리 저장소에 축적해 자체 히스토리를 만든다. 추가로 예전에 존재했다가 라이브 사이트에서 지워진 '역대 수상작(히스토리)' 게시판(kcf.or.kr/history)을 Wayback Machine(web.archive.org) CDX API로 찾아 2021~2024년 부문별 수상 게시글을 한 번 더 백필한다 (게시글 본문이 이미지 캡처라 팀명까지는 못 긁고 연도/회차/부문 단위 항목만 확보 가능). 이 게시판은 결과를 표/이미지(JPG)나 첨부파일로만 올리는 경우가 흔한데(2026년 시즌 '1차 서면심사 결과' 공지에서 확인), 그런 이미지에는 보통 '팀명'만 있고 '작품명' 컬럼이 없다 — 그래서 이미지·첨부파일은 attachments로만 보존하고, 그 안의 텍스트를 title/team으로 추측해 넣지 않는다(팀명을 작품명으로 오인하는 사고 방지). (향후 개선 과제: 최종 수상작 발표 공지에 '작품명' 컬럼이 있는 표/PDF가 붙으면 팀 단위로 더 잘게 파싱)",
   "homepage": "https://www.kcf.or.kr/84",
-  "updatedAt": "2026-09-30T06:57:03.425Z",
-  "lastSuccessAt": "2026-09-30T06:57:03.425Z",
-  "count": 3,
+  "updatedAt": "2026-09-30T15:16:02.515Z",
+  "lastSuccessAt": "2026-09-30T15:16:02.515Z",
+  "count": 31,
   "lastRun": {
     "freshCount": 3,
     "summaryRatio": 1,
@@ -100,6 +100,594 @@
         }
       ],
       "sourceUrl": "https://www.kcf.or.kr/84/?bmode=view&idx=172284487&t=board"
+    },
+    {
+      "id": "c037a4e2619962ac",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2024,
+      "round": "6회",
+      "award": null,
+      "category": "SW공모전 중등부",
+      "title": "약정보 등록 및 데이터베이스 관리 전자 보관함 설계",
+      "team": null,
+      "org": null,
+      "summary": "집에서 상비약품과 조제약품의 복용을 자동으로 관리하고 약품을 안전하게 보관하기\n위한 자동배출시스템을 갖춘 전자약품보관장치와 전자약품관리시스템을 개발함.",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/296711d1aee55.jpg",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20260311165835/https://www.kcf.or.kr/history/?bmode=view&idx=164478895"
+    },
+    {
+      "id": "df204da86c244ccf",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2024,
+      "round": "6회",
+      "award": null,
+      "category": "SW공모전 중등부",
+      "title": "시각장애인용 의복 생활",
+      "team": "코디온",
+      "org": null,
+      "summary": "2 RawData 옷 이미지 분류\n대 colab = 찾기 안내 @,\nAuto Capture | 델 옷 정보 설명 J\n시각장애인은 의류를 구분하고 선택 시 뿐만 아니라, 의류의 얼룩을 시각적으로\n인지하기 어렵기에 이미지 분류 Held 모델 및 생성형 AI 활용한 시각장애인 의복",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/bdaf3e6b820ae.jpg",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20260311165835/https://www.kcf.or.kr/history/?bmode=view&idx=164478895"
+    },
+    {
+      "id": "9ccc45f8f815aa4b",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2024,
+      "round": "6회",
+      "award": null,
+      "category": "SW공모전 중등부",
+      "title": "예방 모니터링 시스템",
+      "team": "i” = 고 조드브 ㅅ =",
+      "org": null,
+      "summary": "[실시간 센서 값 모니터링 및 삼태 이상 알림] ,----+ MARQUEE HY + 기준치 초과시 알림(+진동) > def old Iola gel\n| 0569 ge 탐 Po 스마트론실시관 . ; en [re RE]\nH : H 보로자에게 알림 H awananse\n마두이노 우노 BSG 어를 0) soit zecc [하스\n[아기 울음소리 인식] 파하네분께\n울음 을음소리녹음 | CT HEE é gee\nGIES ue HO \\ | 에 타레 분류” maw i SE\nRei 될 08저좌 Flask Mt | 0086 006 0080\noto] 상태를 실시간으로 모니터링 할 수 있도록 아두이노와 압력, 심박, 온도 센서\n등을 활용하여 구현함. 실시간 센서 USE US 통해 즉각 알림으로써 보호자가",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/66070f3c9c2e6.jpg",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20260311165835/https://www.kcf.or.kr/history/?bmode=view&idx=164478895"
+    },
+    {
+      "id": "b21884a05b5bdd41",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2024,
+      "round": "6회",
+      "award": null,
+      "category": "해커톤 중등부",
+      "title": "말 작 EL 키오스크",
+      "team": "세얼간이",
+      "org": null,
+      "summary": "BN 2024 한국코드페머 해커톤 중등부 수상작 2 + 3\n여러사람들이 누구나 쉽고 간편하게 키오스크를 사용할 수 있게 하기 위함.",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/0fc10b458584e.jpg",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20260311172855/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=164479096&t=board"
+    },
+    {
+      "id": "74a1774c58ee1f3a",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 초등부",
+      "title": "LED 간판 자동 교체 장치",
+      "team": "팀원이 없어요 ㅣ",
+      "org": null,
+      "summary": "길거리에 불이 나간 LED 간판을 보며 더 쉽고 싸게 교체하는 작품을 개발,\n기존 간판과 달리ㄴ60가 나갈 시 교체 작업을 누구나 쉽게 할 수 있으며,\n간판의 외형적인 발전 또한 기대할 수 있음.\n추가적으로 LEDS] 불이나갔는지 자동으로 판별하는 AEE 주가하여\n현재 꾸준히 발전해 나가는 LED 간판 시장에 기여할 것으로 기대.",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/898c3fb2bc622.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241202144838/https://www.kcf.or.kr/history/?bmode=view&idx=24960959"
+    },
+    {
+      "id": "b3cfd9b492101d15",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 초등부",
+      "title": "스마트 보건실 출입 예약 관리 시스템 옆",
+      "team": "나도 할수있다시",
+      "org": null,
+      "summary": "인공지능 AIS 연동하여 상처를 스스로 치료할 수 있는 방법을 안내해 주며,\n상담을 통해 보건 선생님의 업무를 분담함. 예약 시스템을 이용하고\n실시간 보건실의 혼선도름 파악할 수 있으며\n스케치, YQIHIE], FIREBASES 이용하여 개발이 이뤄짐. \\ V4",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/6132f6878cfdd.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241202144838/https://www.kcf.or.kr/history/?bmode=view&idx=24960959"
+    },
+    {
+      "id": "6208bf6040d0e21e",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 초등부",
+      "title": "스마트 우수관 네트워크 시스템 J",
+      "team": "무수관의 문단속",
+      "org": null,
+      "summary": "후 우리 작품 (우수관의 문단속)\n15965 | | 1번유량+우수받이유량>유량한계치\nErr WP 0 다욱 바른 침수 판단 가능1\n우수관마다 노드를 나뉘 각 노드 별 실시간 유량 센서를설치하여 데이터베이스에\nUB 저장, 해당 값을 분석하여 침수 여부를 판단하고 사전에 예방할 수 있는 시스템.\n기존에 존재하는 침수 판정 프로그램(5\\/\\1]과 비교 시 =\n더욱 빠른 침수 판단을 기대할 수 있을 것으로 기대. \\ 4",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/6d209a47eb473.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241202144838/https://www.kcf.or.kr/history/?bmode=view&idx=24960959"
+    },
+    {
+      "id": "3d8d4b64c857c1a2",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 초등부",
+      "title": "시 자동분리수거기",
+      "team": null,
+      "org": null,
+      "summary": "7 fi 2023833CHoiSWERH 초등부 수상작\n아두이노를 사용한 자통분리수거기 _\n폐기물 종류에 따른 서보모터의 위치\n1번 플라스틱, 2번 비닐, 3번 캔, 4번 유리, 그 외 일반쓰레기는\n5번으로 가도록 서보모터의 방향을 조절합니다.\nNB ES 분리수거대 위에 놓으면 이동 WED 의해 이동 사물 인식 ei TIE\n탑재한 허스키 렌즈를 사용하여 신호를 아두이노에 전달하며,\n종류에 맞게 2548 제어하여 NESS IEE FRE.\n또한, UE 연동하여 분리수거 Hol 유도하는 시스템 추가하여 내\n바쁜 현대인들에게 도움이 될 수 있음. 냥",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/27a7051984e90.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241202144838/https://www.kcf.or.kr/history/?bmode=view&idx=24960959"
+    },
+    {
+      "id": "914a045911ad5bb7",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 초등부",
+      "title": "의헌 FIT 고모 AOE",
+      "team": "작품 설계,",
+      "org": null,
+      "summary": "=p 부도로에서 주도로 진입시 바닥의 센서를\naca S52 nol 18 Hen 무선통신으로\n/ 차메서신초드으로 ER So Nez\n1 1 [| 1 1 인도에 사람이 지나가면 불법주차나 어린이\n£50 보이 ic 3 Ath gt\n신호등이 없는 비보호 삼거리를 센서를 사용해 제어하는 위험 감지 안전 신호등,\n도트매트릭스를 사용하여 기존 신호등보다 저렴한 설치비용을 기대할 수 있으며,\n압력센서를 이용해 진입하는 차량을 파악, 사람, 동물 등을 센서가 감지해서\n160로 출력하여 알려줌. 위 신호등을 사용하여 비보호 삼거리에서의 om\n사고를 방지할 것으로 기대. \\ 4",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/23a2e6fe4eb12.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241202144838/https://www.kcf.or.kr/history/?bmode=view&idx=24960959"
+    },
+    {
+      "id": "ee0beea3281ced9b",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 초등부",
+      "title": "아두이노를 사용한 휴대용 소지품 관리기 3",
+      "team": "원몰2023",
+      "org": null,
+      "summary": "ㆍ 브레드 보드 사용 ＊ 만능기판 사용\n소지품 분실방지를 위해 소지품마다 마| 태그를 부착하여 사용하며,\n블루투스 태그를 사용해 소지품이 주변에 있는지 확인할 수 있음.\n원홀2023의 팀원들은 앞으로 일상생활에 도움이 되는 도구를 만들고\n발전시키고 싶다는 포부를 밝힘. { 냥",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/4a99e23fe7d28.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241202144838/https://www.kcf.or.kr/history/?bmode=view&idx=24960959"
+    },
+    {
+      "id": "302411ce583257a9",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 초등부",
+      "title": "ESTE 신호등",
+      "team": "녹색병아리",
+      "org": null,
+      "summary": "APL 일 동안에 일반 신호등과 같미 작동\n8020 일 통안에 나시 정보 제공 쓰\n일 동안에 일반 신호등과같이작동 AN\n더 잘 보이는 신호등을 구상하여 홀로그램 신호등을 개발함.\n파이썬과 홀로그램 키트를 이용하여 간이 신호등을 제작, 빨간 불일 때\n다양한 날씨/기상정보/미세먼지 수치를 번갈아가며 제공함.\n향후 자외선 수치나 재난경보 등 더 많은 정보와 115 기능을 추가하여\n상용화에 적극적으로 임할 것을 밝힘.",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/428c1c5e67ae1.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241202144838/https://www.kcf.or.kr/history/?bmode=view&idx=24960959"
+    },
+    {
+      "id": "80e1504616f90b38",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 초등부",
+      "title": "안내견을 대신할 팔로잉 로봇 3",
+      "team": "현명아고 겸손",
+      "org": null,
+      "summary": "= ㆍ 짐운반의역할도동시에할수있다. ㅣ\n= ㆍ 탐사로봇(위험한 AOD 힘든 곳\nTRON 사람이 들어갈수 없는 R-1<\n동 후 © 이작품을시각장애인 분들이 사용한다면\n나 나 없이도 마음 편히 걷고 BUT 수 있을 것<\n시각장애인에게 도움을 주는 안내견을 대신할 팔로잉 로봇을 개발.\n턱 감지와, 장애물 감지, 신호등을 감지하기 위한 센서를 부착, 시각적 정보를 다른\n감각 정보로 바꿔 전달하기 위해 장애물 종류마다 다르게 전달해 줄 진동 모터를 부착함.\n이를 통해 안내견을 교육하는 기간과 비용을 크게 절감할 수 있을 것으로 기대. 4",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/62274fd27426a.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241202144838/https://www.kcf.or.kr/history/?bmode=view&idx=24960959"
+    },
+    {
+      "id": "55885121c8c4833e",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 중등부",
+      "title": "우리가 만드는",
+      "team": null,
+      "org": null,
+      "summary": "SWS S55 L451 소개합니대",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/37fde3db98237.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241103233827/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24961529&t=board"
+    },
+    {
+      "id": "bbf647571caca41e",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 중등부",
+      "title": "감글 색상과 당도 분석 선과기 3",
+      "team": "아두이 [18 ㅣ",
+      "org": null,
+      "summary": "당도 높은 감글을 선별하기 위해 라즈베리파이와 아두이노를 이용한 선과 장치 개발.\n감글을 컨베이어 벨트에 올려놓으면 라즈베리파이와 연결된 카메라가\n사진을찍은 후 당도를 선별하여 그와 맞게 분류를 해주는 기계. J",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/d5a3d354153f6.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241103233827/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24961529&t=board"
+    },
+    {
+      "id": "6d9182b3378485b8",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 중등부",
+      "title": "시각장매인들을 위한 버스 이용 시스템 3",
+      "team": "새로고침",
+      "org": null,
+      "summary": "| APP 8 버스타관기 Ulu se sons ws smn sess\n시각장애인들의 이동권을 보장하기 위해 51ㅠ와 115 기능을 활용한 시스템 개발.\n가까운 FREE Lok 더욱 PI HA 승하차를가능차게 해주며,\n승차예약과더불어하차 예약까지 구현해 시각장애인의 버스 이용에",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/f49e224a59be5.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241103233827/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24961529&t=board"
+    },
+    {
+      "id": "31c39be351cfd8da",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 중등부",
+      "title": "시각장애인 도우미 선글라스 3",
+      "team": "으 그",
+      "org": null,
+      "summary": "un wen SEE 통해 e SUNY IIE © YOLOVE 서버 ON/OFF\n하트 상품과 약물 구분 > Socker 튜브 x A—-\n물건 구매와 of 구별에 어려움을 겪는 시각장애인을 위한 작품 개발.\n선글라스에 부착된 IP 카메라로 이미지를 파악 후 블루투스 이어폰을 통해 음성으로 전달함.\n장애물 회피 감지 기능을 추가하여 장애물 발견 시 =\n경고 음성 안내가 나가도록 개발됨. VY",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/b082dd75f53e7.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241103233827/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24961529&t=board"
+    },
+    {
+      "id": "7d0527a03dd04a7d",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 중등부",
+      "title": "시와 함께마는 생활 에",
+      "team": null,
+      "org": null,
+      "summary": "enc enn, Son Sus ann sae 노와 수.\n[사용자업 메인화면] [8TH 메인화면]\n현대 사회의 인터넷 매체 및 핸드폰 사용 증가로 대화가 줄어든 사회문제와\n인터넷 미디어 출로 인한 ole] 전두엽 발달 BAIS 해결하기 위한 문제하결 모델 제작.\nChatGPTS 활용한 대화/문제형 학습 A 개발을 통해 목표 설정과 목표에\n도달하기까지 HE 기능을 사용할 수 없도록 Hope ney, | y",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/ea7b3c03e9edb.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241103233827/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24961529&t=board"
+    },
+    {
+      "id": "a89e11116fa036eb",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 중등부",
+      "title": "지식냉장고(지구를 식미는 냉장고)",
+      "team": "지식냉장고",
+      "org": null,
+      "summary": "냉장고에 보관된 식재료의 소비기한을 입력하여 소비기한을 파악하면\n음식물쓰레기를 줄일 4 있는 앰을 개발.\n기존 제품과 다르게 소비기한 만료 순으로 자동 정렬, Pm\n2 LOJA 직접 레시피 연동 71558 주가하여 유사 제품과의 차별화. 냥",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/4f8793a5d293b.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241103233827/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24961529&t=board"
+    },
+    {
+      "id": "242333cd300ba42d",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "SW공모전 중등부",
+      "title": "음성블랙박스 3",
+      "team": "[예비비",
+      "org": null,
+      "summary": "사회 약자를 보호하기 위한 녹음기 시스템 개발. 녹음이 되면 클라이언트에게\n저장되어 텍스트로 변환된 후 욕설이 있는지 판단. 감지된 욕설은 욕설 명으로\n파일 이름을 저장하며, 2차 분류 후 학부모에게 제공. V4",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/972a6b9b24c97.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241103233827/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24961529&t=board"
+    },
+    {
+      "id": "114ab38d9564946e",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "해커톤 중등부",
+      "title": "키오스크마스터즈",
+      "team": "of 투노",
+      "org": null,
+      "summary": "코로나 팬데믹으로 인해 비대면 주문이 선호되며, 비대면 주문을 효율적으로 할 수 있는\n키오스크가 대중화. 하지만 디지털 소외계층들은 키오스크 사용이 어려움 —<\n키오스크의 장점은 살리고 단점들을 보완해 모두가 쉽게 사용하는 키오스크를 개발 &",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/a2098d0d42e83.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241005164815/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24962308&t=board"
+    },
+    {
+      "id": "9670cf97cfbc26f9",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "해커톤 중등부",
+      "title": "울타리 너머로",
+      "team": "호 열",
+      "org": null,
+      "summary": "6065 기반600655\\6650308 구현\nO dheero2 22 HTML 데이터를 구조화\n디지털 취약 ABE CIE 사람의 도움 없이\n재난에 대해 스스로 공부하고 대처하게 도와주는 2.\n현재재난현황에대해 알려주고 행동요령을 구체적으로 알려주는 oA. VY",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/7a669cf6e7cb2.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241005164815/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24962308&t=board"
+    },
+    {
+      "id": "06e8001e3331c291",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "해커톤 중등부",
+      "title": "이노베이션 코드",
+      "team": null,
+      "org": null,
+      "summary": "가 xHHOI=S E44} 알리 OH\n저희가 개발한 '시각장애인을 위한 버스 정차 알림 ' 은\n사용자의 실시간 위치를 집계하고, 해당 위치가 버스 정류\n장에 근접할 경우 사용자에게 진동과 115를 이용하여 버스 FEE 그\n정차 여부를 알려줍니다. EER \"에\nBE 사용자의 현재 위치를 GPSE 통해 실시간으로 파악하 | ~. \"7 =:발개\n고. 사용자가 버스 정류장에 일정 시간 이상 머물 경우, 이 | hs of\n를 인식하고 백그라운드에서 활성화되어 해당 정류장에 오 [0 ne\n는 버스의 정보를 사용자에게 알려줍니다. 4) (ho fo\n| 또한 실시간 교통 정보와 연동하여, 해당 정류장에 접근하 [LC 12a :\nSa 번호와 목적지를 오디오 메시지로 사용자에게 알 4 y Zi 의 Si\n| | 이러한 기능은 시각장애인이 자신의 위치와 다가오는 교통 |\" | TAA\n수단에 대한 정보를 쉽게 알 수 있게 도와줘, 독립적으로 이 놀 -\n| 동할 때의 어려움을 줄여줄 것으로 예상됩니다.\n시각장애인을 위한 버스 정차 시스템, 지체 장애가 있는 장애인들을 위한\n의쪽과 의수 등등 장애인분들을 EX 많은 TEMES 진행하던 Kol,\n해커톤과 방향성이 같아 재개발한 '시각장애인을 위한 버스 정차 시스템! VY",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/051030631e9d6.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241005164815/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24962308&t=board"
+    },
+    {
+      "id": "6b0655880e5b4e1e",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "해커톤 고등부",
+      "title": "손안대고 메러찾기",
+      "team": null,
+      "org": null,
+      "summary": "Safe Sight(Z0H2! 사고 예방 서비스) <Q\n작품설명(이미지 학습 결과) ter:\n최근 묻지마 칼부림 사건 등, 이유 없이 폭력을 가하는 일이 발생하고 있음.\n신체가 불편하신 분들은 폭력 사건이 발생했을 때, 도움을 요청하기 어렵거나\nCCTV 를 통해 위협 문제를 알리고, 이를 통해 피해를 최소한으로 줄이려고 함. )",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/59033151b1953.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241005155600/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24962911&t=board"
+    },
+    {
+      "id": "c224d58ea5c4521d",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "해커톤 고등부",
+      "title": "학생프로필 lets",
+      "team": null,
+      "org": null,
+      "summary": "학생들 간 네트워킹 부족으로 인한 교과 of 활동(대회,동아리 등)\n진행 어려움 극복을 위한 플랫폼 제작. T /",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/b9bf15ed6c701.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241005155600/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24962911&t=board"
+    },
+    {
+      "id": "adadf7afb47a6212",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "해커톤 고등부",
+      "title": "학생 뿐 아니라 교원들과 함께 여러 정보들을 학습할 수 있게 하여 06",
+      "team": null,
+      "org": null,
+      "summary": "환경의 심각성을 깨닫게 하기 위해 기획함. V4",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/0a03e2f399834.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241005155600/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24962911&t=board"
+    },
+    {
+      "id": "198a9be0df00e0ff",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2023,
+      "round": "5회",
+      "award": null,
+      "category": "해커톤 고등부",
+      "title": "Al 음성인식 키모스크 3",
+      "team": null,
+      "org": null,
+      "summary": "한국의 디지털 약자 중 시각 장애인과 노약자의 키오스크 접근성이 가장 낮았기 때문에,\n이런 문제를 해결하기 위해 기존의 키오스크를 개선하고자",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/d089d43c9eee9.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241005155600/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24962911&t=board"
+    },
+    {
+      "id": "df38540f3a3e3922",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2022,
+      "round": "4회",
+      "award": "대상",
+      "category": "해커톤 고등부",
+      "title": "극측링 차량 침수피해를 예방하는",
+      "team": "길찾기 서비스",
+      "org": null,
+      "summary": "침수 HIOIEH+TMAP 길찾기+기상 데이터를 활용한 길찾기 서비스 HS 개발하였다.\n8 《자량 침수피해를 예방하는 LRTI MHIA)",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/cd4c2f4f89173.png",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20241103231751/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24960253&t=board"
+    },
+    {
+      "id": "554a218b4732cb7e",
+      "competition": "code-fair",
+      "competitionName": "코드페어 (SW공모전·해커톤)",
+      "year": 2021,
+      "round": "3회",
+      "award": "대상",
+      "category": "SW공모전",
+      "title": "원격수업 참여도 확인 프로그램",
+      "team": "작동원리",
+      "org": null,
+      "summary": "ㆍ 수업 집중도에 따른 학생들 간 학습격차 심화가 문제가 됨\nㆍ 선생님들이 학생들의 원격수업 집중도클 효율적으로 관리할 수 있는 프로그램 개발\n* 오픈 라이브러리 Z&(OpenCV, Dlib Face Landmark Detector, Matplotlib)\ncern, EMERG OpencVE 이용하여 얼굴 영상촬영\nB 쏘. = Ea Dlib Face Landmark Detector 이용하여\n20000 a= 얼굴의 미간좌표 272 기준점으로 설정\n사만함 Dlib Face Landmark Detector 를 이용하여 움직임에 따른\n외쪽 누: 르쪽 누 = 27... 이 수록\nFe Tao, ER ae 산만함 (집중도가 떨어짐)\nSo © uy dds 집중도 = | (1 - distance x 가중치) x 100 |\n집 5. Cea 0 < distance < 1, 가중치 = 3\nz =Exsd 0 = 미간좌표가 화면에서 사라일 경우\n졸음 Dlib Face Landmark Detector 를 이용하여 눈의 좌표 측정\nPr. 눈의 £1} 높이 비율=0인 상태가 30% 이상 지속되면,\n= 졸음으로 판단, 졸음자 노트북에서 발생\n눈의 폭과 높이 비률=0 이 30초 이상이면서\n눈을 감을 때 고개 숙임으로 눈의 좌표가 화면에서 사라질 경우\n필기활동 필기활동 시간: 학생들이 일제히 고개를 숙이고, 다시 일제히 고개를 틀어 SHEE 응시하는 시간\nTUES) 필기활통 시간을 통계처리를 통해 산출하고, 이 시간 통안의 집중도는 평균값을 부여\na 선생님과 학생들이 확인할 수 있도록 함\n* 개별관리 대상이 되는 집중도 저하 학생들을 선정하는 데 도움\n* EH 될 경우, 졸음자 노트북에서 경보음이 발생하여 졸음자의 수업 참여 유도",
+      "attachments": [
+        {
+          "url": "https://cdn.imweb.me/upload/S20240524c538fae60f7c0/adeaf5bbaaaae.jpg",
+          "kind": "image",
+          "label": "수상작 소개 카드"
+        }
+      ],
+      "sourceUrl": "https://web.archive.org/web/20250717060612/https://www.kcf.or.kr/history/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=24957082&t=board&category=SQs86gauG6"
     }
   ]
 }

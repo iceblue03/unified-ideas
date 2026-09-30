@@ -10,7 +10,7 @@ import { ocrImage, terminateOcr } from "../../lib/ocr";
 
 // e2festa.kr는 SSL 인증서가 다른 도메인(storycosmos.com) 것으로 잘못 설정되어
 // 있어(확인함) https로 접속하면 인증서 오류가 난다 — http로만 접속 가능하다.
-const SITE = "http://e2festa.kr";
+const SITE = "https://e2festa.kr";
 const AUTO_FILE = path.join(__dirname, "..", "..", "data", "auto", "capstone-design.json");
 const UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36";
@@ -68,10 +68,16 @@ async function pdfFromNoticeUrl(noticeUrl: string): Promise<string | null> {
 /** 홈·구 사이트·공지 목록에서 디렉토리북 PDF URL을 모은다. */
 async function findDirectoryBookUrls(): Promise<{ url: string; year: number | null }[]> {
   const found = new Map<string, number | null>();
-  const entryPages = [`${SITE}/`, "http://e2festa.kr/main/main.php"];
+  const entryPages = [`${SITE}/`, "https://e2festa.kr/main/main.php", "http://www.e2festa.kr/main/main.php"];
 
   for (const entry of entryPages) {
-    const html = await fetchHtml(entry);
+    let html: string;
+    try {
+      html = await fetchHtml(entry);
+    } catch (e) {
+      console.warn(`[capstone-design] ${entry} 건너뜀:`, e instanceof Error ? e.message : e);
+      continue;
+    }
     const $ = cheerio.load(html);
     const noticeHrefs: string[] = [];
     $("a").each((_, a) => {
@@ -277,6 +283,15 @@ export const meta = CAPSTONE_DESIGN_META;
 export async function collect(): Promise<Idea[]> {
   const pdfs = await findDirectoryBookUrls();
   if (pdfs.length === 0) {
+    const cached = await loadCachedItemsForPdf(
+      "http://www.e2festa.kr/doc/directorybook_2025.pdf",
+    );
+    if (cached) {
+      console.warn(
+        `[capstone-design] 올해 사이트에 디렉토리북이 없고 과거 PDF도 내려받아지지 않음 — 기존 ${cached.length}건 유지`,
+      );
+      return cached;
+    }
     console.warn("[capstone-design] 디렉토리북 PDF 링크를 찾지 못함 — 이번 실행은 건너뜀");
     return [];
   }

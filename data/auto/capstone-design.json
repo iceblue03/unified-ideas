@@ -4,8 +4,8 @@
   "tier": "auto",
   "method": "행사 사이트(e2festa.kr) 공지사항에서 그 해 '출품작 온라인 디렉토리북' PDF 공지를 찾아 첨부 PDF를 내려받는다. 이 PDF는 한글 본문이 CID 폰트라 pdf-parse 같은 텍스트 추출 라이브러리로는 한글이 통째로 누락된다(확인함) — 대신 Playwright(Chromium)로 pdf.js를 브라우저 안에서 직접 돌려 페이지를 <canvas>에 렌더링한 뒤(node-canvas 조합은 버전 호환성 문제로 렌더링이 깨져서 포기함, lib/pdf-render.ts 참고), 좌(본문)/우(학교·팀 정보) 컬럼을 나눠 각각 OCR(tesseract.js, lib/ocr.ts)한다 — 한 이미지를 통째로 OCR하면 두 컬럼 텍스트가 줄 단위로 뒤섞여서 컬럼별로 잘라야 한다. 팀명/팀원은 '팀명'/'팀원' 라벨을 앵커로, 제목은 원문에 함께 실린 영문 부제(OCR 정확도가 더 높음)를 우선 사용한다. 이 도록은 '수상작'이 아니라 그 해 전체 참가팀(출품작) 목록이라 award는 비워둔다. 사진/그래픽이 겹치는 영역은 OCR 노이즈가 섞일 수 있음. (origin 브랜치는 이 대회를 robots.txt 크롤링 제한을 이유로 '대한민국발명특허대전'으로 대체했었는데, 여기서는 위 OCR 경로로 원래 대회를 직접 자동화하면서 KIPA_INVENTION_PATENT_META도 별도 대회로 함께 유지한다.)",
   "homepage": "https://e2festa.kr/",
-  "updatedAt": "2026-09-30T06:57:09.741Z",
-  "lastSuccessAt": "2026-09-13T05:48:13.979Z",
+  "updatedAt": "2026-09-30T14:53:33.475Z",
+  "lastSuccessAt": "2026-09-30T14:53:33.475Z",
   "count": 155,
   "lastRun": {
     "freshCount": 0,

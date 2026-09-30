@@ -29,8 +29,37 @@ const UA =
 async function fetchPage(page: number): Promise<string> {
   const url = `${BASE}?page=${page}&code=award`;
   const res = await fetch(url, { headers: { "User-Agent": UA } });
-  if (!res.ok) throw new Error(`esw-contest: HTTP ${res.status} on page ${page}`);
-  return res.text();
+  if (res.ok) {
+    const html = await res.text();
+    if (html.includes("bbs_con") || !html.includes("404 Not Found")) return html;
+  }
+  throw new Error(`esw-contest: HTTP ${res.status} on page ${page}`);
+}
+
+/** 라이브 호스트가 호스팅 404일 때, CDX에 남은 목록 캡처를 읽는다. */
+async function collectWaybackLists(): Promise<Idea[]> {
+  const cdx =
+    "https://web.archive.org/cdx/search/cdx?url=www.eswcontest.or.kr/data/award.php&matchType=prefix&output=json&fl=original,timestamp,length&filter=statuscode:200&collapse=urlkey&limit=50";
+  const res = await fetch(cdx, { headers: { "User-Agent": UA } });
+  if (!res.ok) throw new Error(`esw-contest: wayback CDX HTTP ${res.status}`);
+  const rows = (await res.json()) as string[][];
+  const lists = rows.slice(1).filter((r) => !r[0].includes("ptype=view") && parseInt(r[2] || "0", 10) > 3000);
+  const seen = new Map<string, Idea>();
+  for (const [original, timestamp] of lists) {
+    const replay = `https://web.archive.org/web/${timestamp}id_/${original}`;
+    let pageRes = await fetch(replay, { headers: { "User-Agent": UA } });
+    if (pageRes.status === 429) {
+      await new Promise((r) => setTimeout(r, 4000));
+      pageRes = await fetch(replay, { headers: { "User-Agent": UA } });
+    }
+    const html = pageRes.ok ? await pageRes.text() : "";
+    const parsed = html.includes("bbs_con") ? parsePage(html) : [];
+    console.log(
+      `  [esw-contest] wayback ${pageRes.status} bytes=${html.length} rows=${parsed.length} ${timestamp}`,
+    );
+    for (const item of parsed) seen.set(item.id, item);
+  }
+  return [...seen.values()];
 }
 
 interface DetailInfo {
@@ -134,7 +163,7 @@ function parsePage(html: string): Idea[] {
   const $ = cheerio.load(html);
   const items: Idea[] = [];
 
-  $("table.bbs_con tbody tr").each((_, row) => {
+  $("table.bbs_con tr").each((_, row) => {
     const cells = $(row).find("td");
     if (cells.length < 6) return;
 
@@ -179,6 +208,26 @@ export async function collect(): Promise<Idea[]> {
   const seen = new Map<string, Idea>();
   let page = 1;
   const MAX_PAGES = 60; // safety cap (site currently has ~25 pages)
+
+  try {
+    await fetchPage(1);
+  } catch (e) {
+    console.warn(
+      `[esw-contest] 라이브 목록을 열 수 없음 (${e instanceof Error ? e.message : e}). Wayback 캡처로 대체합니다.`,
+    );
+    const archived = await collectWaybackLists();
+    if (archived.length === 0) throw e;
+    const previous = await loadExistingBySourceUrl();
+    const byId = new Map<string, Idea>();
+    for (const item of previous.values()) byId.set(item.id, item);
+    for (const item of archived) {
+      const prev = byId.get(item.id);
+      if (!prev) continue;
+      if (!item.summary && prev.summary) item.summary = prev.summary;
+      if (!item.attachments?.length && prev.attachments?.length) item.attachments = prev.attachments;
+    }
+    return archived;
+  }
 
   while (page <= MAX_PAGES) {
     const html = await fetchPage(page);
