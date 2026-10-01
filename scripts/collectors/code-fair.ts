@@ -2,6 +2,7 @@ import * as cheerio from "cheerio";
 import type { Attachment, Collector, Idea } from "../../lib/types";
 import { makeId } from "../../lib/id";
 import { CODE_FAIR_META } from "../../lib/collector-meta";
+import { ocrImage, terminateOcr } from "../../lib/ocr";
 
 const BOARD_URL = "https://www.kcf.or.kr/84/";
 const UA =
@@ -12,7 +13,36 @@ const UA =
 // 사라짐), 남아있는 유일한 공개 이력은 공지사항 게시판(/84)뿐이다.
 // -> 매달 이 게시판을 훑어 "수상작/수상팀/결과 발표"류 공지를 우리 저장소에
 //    영구 보관하는 방식으로 "우리 스스로 만드는 아카이브"를 쌓아나간다.
-const RESULT_KEYWORDS = ["수상작", "수상팀", "수상 결과", "최종 결과", "시상"];
+const RESULT_KEYWORDS = ["수상작", "수상팀", "수상 결과", "최종 결과", "시상", "심사 결과"];
+
+function isResultPost(title: string): boolean {
+  if (RESULT_KEYWORDS.some((kw) => title.includes(kw))) return true;
+  if (/심사.*결과/.test(title)) return true;
+  return false;
+}
+
+function parseListDate(rowText: string): string | null {
+  const abs = rowText.match(/(20\d{2}-\d{2}-\d{2})/);
+  if (abs) return abs[1];
+  const rel = rowText.match(/(\d+)\s*일\s*전/);
+  if (rel) {
+    const d = new Date();
+    d.setUTCDate(d.getUTCDate() - parseInt(rel[1], 10));
+    return d.toISOString().slice(0, 10);
+  }
+  return null;
+}
+
+function inferYear(title: string, date: string | null, roundNum: string | null): number | null {
+  const fromTitle = title.match(/(20\d{2})/)?.[1];
+  if (fromTitle) return parseInt(fromTitle, 10);
+  if (date) return parseInt(date.slice(0, 4), 10);
+  if (roundNum) {
+    const n = parseInt(roundNum, 10);
+    if (Number.isFinite(n)) return n + 2018;
+  }
+  return null;
+}
 
 interface Post {
   idx: string;
@@ -21,9 +51,18 @@ interface Post {
 }
 
 async function fetchHtml(url: string): Promise<string> {
-  const res = await fetch(url, { headers: { "User-Agent": UA } });
-  if (!res.ok) throw new Error(`code-fair: HTTP ${res.status} on ${url}`);
-  return res.text();
+  let lastStatus = 0;
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const res = await fetch(url, { headers: { "User-Agent": UA } });
+    if (res.status === 429) {
+      lastStatus = 429;
+      await new Promise((r) => setTimeout(r, 8000 * (attempt + 1)));
+      continue;
+    }
+    if (!res.ok) throw new Error(`code-fair: HTTP ${res.status} on ${url}`);
+    return res.text();
+  }
+  throw new Error(`code-fair: HTTP ${lastStatus} on ${url}`);
 }
 
 function parseListPage(html: string): Post[] {
@@ -34,7 +73,9 @@ function parseListPage(html: string): Post[] {
     const idx = href.match(/idx=(\d+)/)?.[1];
     const title = $(a).text().trim();
     if (!idx || !title) return;
-    posts.push({ idx, title, date: null });
+    const row = $(a).closest("li, tr, .board_list, .list_row");
+    const date = parseListDate(row.text() || $(a).parent().text());
+    posts.push({ idx, title, date });
   });
   return posts;
 }
@@ -42,6 +83,7 @@ function parseListPage(html: string): Post[] {
 interface PostBody {
   summary: string | null;
   attachments: Attachment[];
+  writtenDate: string | null;
 }
 
 /**
@@ -69,6 +111,13 @@ async function fetchPostBody(idx: string): Promise<PostBody> {
   const meta = $('meta[name="description"]').attr("content")?.trim() || null;
   const summary = bodyText.length > 0 ? bodyText : meta;
 
+  const dateFromView =
+    $(".board_date, .date, .write_date")
+      .first()
+      .text()
+      .match(/(20\d{2}-\d{2}-\d{2})/)?.[1] ?? null;
+  const writtenDate = dateFromView;
+
   const attachments: Attachment[] = [];
   content.find("img").each((_, img) => {
     const src = $(img).attr("src");
@@ -89,24 +138,80 @@ async function fetchPostBody(idx: string): Promise<PostBody> {
     });
   });
 
-  return { summary: summary && summary.length > 0 ? summary : null, attachments };
+  return {
+    summary: summary && summary.length > 0 ? summary : null,
+    attachments,
+    writtenDate,
+  };
 }
 
 // 라이브 사이트에서 지워진 "역대 수상작(히스토리)" 게시판(kcf.or.kr/history)을 Wayback Machine으로
 // 한 번 더 백필한다. 게시글 본문이 스크린샷 이미지라 팀명까지는 못 긁지만, 연도/회차/부문 단위
 // 항목은 실제 아카이브에서 복원 가능하다 (README/collector-meta.ts에 자세한 근거 정리됨).
 const CDX_API =
-  "http://web.archive.org/cdx/search/cdx?url=www.kcf.or.kr/history*&output=json&filter=statuscode:200";
+  "https://web.archive.org/cdx/search/cdx?url=www.kcf.or.kr/history*&output=json&filter=statuscode:200";
 const WAYBACK_MIN_LENGTH = 10_000; // 사이트가 "사이트 준비중"으로 바뀐 뒤의 캡처는 ~2KB로 확 줄어듦
 const HISTORY_TITLE_PATTERN = /제\s*(\d+)\s*회\s*한국코드페어\s*(SW공모전|해커톤)\s*수상작(?:\s*\(([^)]+)\))?/;
 
 type CdxRow = [string, string, string, string, string, string, string];
 
 async function fetchWaybackCdx(): Promise<CdxRow[]> {
-  const res = await fetch(CDX_API, { headers: { "User-Agent": UA } });
-  if (!res.ok) throw new Error(`code-fair: wayback CDX HTTP ${res.status}`);
-  const rows = (await res.json()) as CdxRow[];
-  return rows.slice(1); // 첫 행은 컬럼 헤더
+  let last = "code-fair: wayback CDX 요청 실패";
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    const res = await fetch(CDX_API, { headers: { "User-Agent": UA } });
+    if (res.ok) {
+      const rows = (await res.json()) as CdxRow[];
+      return rows.slice(1);
+    }
+    last = `code-fair: wayback CDX HTTP ${res.status}`;
+    await new Promise((r) => setTimeout(r, 1500 * attempt));
+  }
+  throw new Error(last);
+}
+
+const CARD_SKIP =
+  /한국코드페어|소개합니다|축하|수상작을|디지털 세상|개선점|문제점|내부 사진|3차 작품|접수기간|과학기술정보통신부/;
+
+function cleanLine(line: string): boolean {
+  const hangul = line.match(/[가-힣]/g)?.length ?? 0;
+  return hangul >= 2 && !/[|\\]{2,}/.test(line);
+}
+
+function usableTitle(line: string): boolean {
+  if (line.length < 6 || line.length > 40) return false;
+  if (/소개|기능|페이지|하겠습니다|축하|수상작|넘어선|구현한|기대합니다|불러오기|전체 모습|처럼$|하게 하여/.test(line)) return false;
+  const weird = line.replace(/[가-힣A-Za-z0-9 \-·()/+]/g, "");
+  if (weird.length > 0) return false;
+  const hangul = line.match(/[가-힣]/g)?.length ?? 0;
+  const latin = line.match(/[A-Za-z]/g)?.length ?? 0;
+  return hangul >= 4 || (latin >= 4 && hangul >= 2);
+}
+
+/** 수상작 소개 카드(제목 / 팀 / 설명 포스터)에서 작품 단위 필드를 뽑는다. 표지 포스터면 null. */
+function parseAwardCard(raw: string): { title: string; team: string | null; summary: string | null; award: string | null } | null {
+  const lines = raw
+    .split("\n")
+    .map((l) => l.replace(/\s+/g, " ").trim())
+    .filter((l) => l.length >= 2);
+  if (!lines.some((l) => /수상|대상|금상|은상|동상/.test(l))) return null;
+
+  const award =
+    lines.find((l) => /^(대상|금상|은상|동상|장려상|최우수상|우수상)$/.test(l)) ??
+    (raw.includes("대상") ? "대상" : null);
+
+  const candidates = lines.filter((l) => !CARD_SKIP.test(l) && usableTitle(l));
+  const title = candidates[0];
+  if (!title) return null;
+
+  const teamLine = lines.find(
+    (l) => l !== title && l.length >= 2 && l.length <= 16 && cleanLine(l) && !CARD_SKIP.test(l) && !usableTitle(l),
+  );
+  const team = teamLine && !/[.요음임다]$/.test(teamLine) ? teamLine : null;
+  const summary =
+    lines
+      .filter((l) => l.length >= 18 && l !== title && !CARD_SKIP.test(l) && cleanLine(l))
+      .join("\n") || null;
+  return { title, team, summary, award };
 }
 
 interface HistoryCapture {
@@ -146,7 +251,9 @@ async function collectHistoryBackfill(): Promise<Idea[]> {
   console.log(`  [code-fair] wayback 히스토리 게시판: 복원 가능한 게시글 ${captures.length}건 발견`);
 
   const items: Idea[] = [];
+  let patternMiss = 0;
   for (const capture of captures) {
+    await new Promise((r) => setTimeout(r, 2500));
     const fetchUrl = `https://web.archive.org/web/${capture.timestamp}id_/${capture.original}`;
     const humanUrl = `https://web.archive.org/web/${capture.timestamp}/${capture.original}`;
     let html: string;
@@ -160,36 +267,101 @@ async function collectHistoryBackfill(): Promise<Idea[]> {
     const $ = cheerio.load(html);
     const rawTitle = $("title").text().trim();
     const titleMatch = rawTitle.match(HISTORY_TITLE_PATTERN);
+    const summary = $('meta[name="description"]').attr("content")?.trim() || null;
+
     if (!titleMatch) {
-      console.error(`  [code-fair] wayback idx=${capture.idx}: 제목 패턴이 안 맞아 건너뜀 ("${rawTitle}")`);
+      patternMiss += 1;
+      console.warn(`  [code-fair] wayback idx=${capture.idx}: 제목 패턴 불일치 — 원문 제목으로 저장 ("${rawTitle}")`);
+      items.push({
+        id: makeId(["code-fair", "history", capture.idx]),
+        competition: "code-fair",
+        competitionName: "코드페어 (SW공모전·해커톤)",
+        year: inferYear(rawTitle, null, null),
+        round: null,
+        award: null,
+        category: rawTitle.includes("해커톤") ? "해커톤" : "SW공모전",
+        title: rawTitle || `한국코드페어 히스토리 게시글 ${capture.idx}`,
+        team: null,
+        org: null,
+        summary,
+        sourceUrl: humanUrl,
+      });
+      await new Promise((r) => setTimeout(r, 300));
       continue;
     }
 
     const round = titleMatch[1];
-    const category = titleMatch[2];
+    const categoryBase = titleMatch[2];
     const division = titleMatch[3] ?? null;
-    const year = parseInt(round, 10) + 2018; // 제3회=2021, 제4회=2022, 제5회=2023, 제6회=2024로 확인됨
-    const title = division ? `제${round}회 한국코드페어 ${category} 수상작 (${division})` : `제${round}회 한국코드페어 ${category} 수상작`;
-    const summary = $('meta[name="description"]').attr("content")?.trim() || null;
+    const year = parseInt(round, 10) + 2018; // 제3회=2021, 제5회=2023, 제6회=2024
+    const category = division ? `${categoryBase} ${division}` : categoryBase;
 
-    items.push({
-      id: makeId(["code-fair", "history", capture.idx]),
-      competition: "code-fair",
-      competitionName: "코드페어 (SW공모전·해커톤)",
-      year,
-      round: `${round}회`,
-      award: null,
-      category,
-      title,
-      team: null,
-      org: null,
-      summary,
-      sourceUrl: humanUrl,
+    const imageUrls = new Set<string>();
+    $("img").each((_, img) => {
+      const src = $(img).attr("src") || "";
+      if (!src.includes("cdn.imweb.me/upload/")) return;
+      imageUrls.add(src.startsWith("http") ? src : new URL(src, "https://cdn.imweb.me").toString());
     });
 
-    await new Promise((r) => setTimeout(r, 300));
+    let cards = 0;
+    for (const imageUrl of imageUrls) {
+      try {
+        const imgRes = await fetch(imageUrl, { headers: { "User-Agent": UA } });
+        if (!imgRes.ok) continue;
+        const buf = Buffer.from(await imgRes.arrayBuffer());
+        if (buf.length < 40_000) continue;
+        const text = await ocrImage(buf);
+        const card = text ? parseAwardCard(text) : null;
+        if (!card) continue;
+        cards += 1;
+        items.push({
+          id: makeId(["code-fair", "card", year, card.title, division]),
+          competition: "code-fair",
+          competitionName: "코드페어 (SW공모전·해커톤)",
+          year,
+          round: `${round}회`,
+          award: card.award,
+          category,
+          title: card.title,
+          team: card.team,
+          org: null,
+          summary: card.summary,
+          attachments: [{ url: imageUrl, kind: "image", label: "수상작 소개 카드" }],
+          sourceUrl: humanUrl,
+        });
+      } catch (e) {
+        console.error(`  [code-fair] 카드 OCR 실패 idx=${capture.idx}:`, e instanceof Error ? e.message : e);
+      }
+    }
+
+    if (cards === 0) {
+      const title = division
+        ? `제${round}회 한국코드페어 ${categoryBase} 수상작 (${division})`
+        : `제${round}회 한국코드페어 ${categoryBase} 수상작`;
+      items.push({
+        id: makeId(["code-fair", "history", capture.idx]),
+        competition: "code-fair",
+        competitionName: "코드페어 (SW공모전·해커톤)",
+        year,
+        round: `${round}회`,
+        award: null,
+        category,
+        title,
+        team: null,
+        org: null,
+        summary,
+        sourceUrl: humanUrl,
+      });
+    } else {
+      console.log(`  [code-fair] wayback idx=${capture.idx}: 수상작 카드 ${cards}건`);
+    }
+
+    await new Promise((r) => setTimeout(r, 200));
   }
 
+  if (patternMiss > 0) {
+    console.log(`  [code-fair] wayback 제목 패턴 불일치 ${patternMiss}건 (원문 제목으로 저장)`);
+  }
   return items;
 }
 
@@ -217,22 +389,23 @@ export async function collect(): Promise<Idea[]> {
     await new Promise((r) => setTimeout(r, 300));
   }
 
-  const resultPosts = [...seen.values()].filter((p) =>
-    RESULT_KEYWORDS.some((kw) => p.title.includes(kw)),
-  );
+  const resultPosts = [...seen.values()].filter((p) => isResultPost(p.title));
+  console.log(`  [code-fair] 결과 관련 공지 ${resultPosts.length}건 (전체 게시글 ${seen.size}건)`);
 
   const items: Idea[] = [];
   for (const post of resultPosts) {
     const body = await fetchPostBody(post.idx);
     const roundMatch = post.title.match(/제\s*(\d+)\s*회/);
+    const roundNum = roundMatch?.[1] ?? null;
+    const writtenDate = post.date ?? body.writtenDate;
     const sourceUrl = `${BOARD_URL}?bmode=view&idx=${post.idx}&t=board`;
 
     items.push({
       id: makeId(["code-fair", post.idx]),
       competition: "code-fair",
       competitionName: "코드페어 (SW공모전·해커톤)",
-      year: null,
-      round: roundMatch ? `${roundMatch[1]}회` : null,
+      year: inferYear(post.title, writtenDate, roundNum),
+      round: roundNum ? `${roundNum}회` : null,
       award: null,
       category: post.title.includes("해커톤") ? "해커톤" : "SW공모전",
       title: post.title,
@@ -253,6 +426,7 @@ export async function collect(): Promise<Idea[]> {
     console.error("  [code-fair] wayback 백필 실패 (라이브 수집 결과는 유지):", e instanceof Error ? e.message : e);
   }
 
+  await terminateOcr();
   return [...items, ...historyItems];
 }
 

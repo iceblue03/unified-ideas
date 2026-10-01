@@ -26,7 +26,8 @@ export const MANUAL_COMPETITIONS: CompetitionMeta[] = [
     method:
       "아산나눔재단은 선발팀 전체 명단을 표/파일로 공개하지 않고 보도자료(asan-nanum.org/press)와 " +
       "네이버 블로그에 기수별로 소개 글을 올리는 방식이라 구조화된 자동 수집원이 없다. " +
-      "data/manual/chungjuyung-startup.json에 보도자료 기반으로 기수별 선발팀을 수동 정리해 축적한다. " +
+      "data/manual/chungjuyung-startup.json에 보도자료 첨부 표를 읽어 2023 데모데이 수상팀, " +
+      "2024(13회) 선발 30팀, 2025 데모데이 피칭 23팀을 수동 정리해 두었다. " +
       "농림축산식품부 공공데이터 활용 창업경진대회(MAFRA_PUBLIC_DATA_STARTUP_META)를 별개의 자동 수집 " +
       "대회로 추가해뒀지만, 정주영 자체는 대체하지 않고 계속 수동으로 유지한다.",
   },

@@ -10,9 +10,22 @@ import { ocrImage, terminateOcr } from "../../lib/ocr";
 
 // e2festa.kr는 SSL 인증서가 다른 도메인(storycosmos.com) 것으로 잘못 설정되어
 // 있어(확인함) https로 접속하면 인증서 오류가 난다 — http로만 접속 가능하다.
-const SITE = "http://e2festa.kr";
+const SITE = "https://e2festa.kr";
+const AUTO_FILE = path.join(__dirname, "..", "..", "data", "auto", "capstone-design.json");
 const UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36";
+
+async function loadCachedItemsForPdf(pdfUrl: string): Promise<Idea[] | null> {
+  try {
+    const raw = await fs.readFile(AUTO_FILE, "utf-8");
+    const parsed = JSON.parse(raw) as { items?: Idea[] };
+    const subset = (parsed.items ?? []).filter((i) => i.sourceUrl === pdfUrl);
+    if (subset.length > 0) return subset;
+  } catch {
+    /* no cache */
+  }
+  return null;
+}
 
 async function fetchHtml(url: string): Promise<string> {
   const res = await fetch(url, { headers: { "User-Agent": UA } });
@@ -20,22 +33,25 @@ async function fetchHtml(url: string): Promise<string> {
   return res.text();
 }
 
-/** e2festa.kr 공지사항에서 그 해 "출품작 온라인 디렉토리북" 공지를 찾아 PDF 링크를 뽑는다. */
-async function findDirectoryBookUrl(): Promise<string | null> {
-  const html = await fetchHtml(`${SITE}/`);
-  const $ = cheerio.load(html);
+function sanitizeSchool(school: string | null): string | null {
+  if (!school) return null;
+  const s = school.trim();
+  if (/급\s+대|대\(&\)|&\)/.test(s)) return null;
+  if (s.length > 30 && /[&]{1,}/.test(s)) return null;
+  if (!/대학교|대학|고등학교|학교|초등학교|전문대/.test(s)) return null;
+  return s;
+}
 
-  let noticeHref: string | null = null;
-  $("a").each((_, a) => {
-    const text = $(a).text();
-    if (text.includes("디렉토리북")) {
-      noticeHref = $(a).attr("href") || null;
-      return false;
-    }
-  });
-  if (!noticeHref) return null;
+function sanitizeTeamName(team: string | null): string | null {
+  if (!team) return null;
+  const t = team.trim();
+  if (looksLikeNoise(t)) return null;
+  if (t.length > 50) return null;
+  if (/[&]{2,}|급\s+대/.test(t)) return null;
+  return t;
+}
 
-  const noticeUrl = new URL(noticeHref, SITE).toString();
+async function pdfFromNoticeUrl(noticeUrl: string): Promise<string | null> {
   const noticeHtml = await fetchHtml(noticeUrl);
   const $$ = cheerio.load(noticeHtml);
   let pdfUrl: string | null = null;
@@ -47,6 +63,66 @@ async function findDirectoryBookUrl(): Promise<string | null> {
     }
   });
   return pdfUrl;
+}
+
+/** 홈·구 사이트·공지 목록에서 디렉토리북 PDF URL을 모은다. */
+async function findDirectoryBookUrls(): Promise<{ url: string; year: number | null }[]> {
+  const found = new Map<string, number | null>();
+  const entryPages = [`${SITE}/`, "https://e2festa.kr/main/main.php", "http://www.e2festa.kr/main/main.php"];
+
+  for (const entry of entryPages) {
+    let html: string;
+    try {
+      html = await fetchHtml(entry);
+    } catch (e) {
+      console.warn(`[capstone-design] ${entry} 건너뜀:`, e instanceof Error ? e.message : e);
+      continue;
+    }
+    const $ = cheerio.load(html);
+    const noticeHrefs: string[] = [];
+    $("a").each((_, a) => {
+      const text = $(a).text();
+      if (text.includes("디렉토리북")) {
+        const href = $(a).attr("href");
+        if (href) noticeHrefs.push(new URL(href, entry).toString());
+      }
+      const href = $(a).attr("href") || "";
+      if (href.toLowerCase().endsWith(".pdf") && text.includes("디렉토리")) {
+        const pdf = new URL(href, entry).toString();
+        const ym = pdf.match(/(20\d{2})/);
+        found.set(pdf, ym ? parseInt(ym[1], 10) : null);
+      }
+    });
+    for (const noticeUrl of noticeHrefs) {
+      const pdf = await pdfFromNoticeUrl(noticeUrl);
+      if (pdf) {
+        const ym = pdf.match(/(20\d{2})/);
+        found.set(pdf, ym ? parseInt(ym[1], 10) : null);
+      }
+    }
+  }
+
+  for (let page = 1; page <= 8; page++) {
+    const listHtml = await fetchHtml(`${SITE}/05/01.php?mode=list_ok&page=${page}`);
+    const $ = cheerio.load(listHtml);
+    const noticeHrefs: string[] = [];
+    $("a").each((_, a) => {
+      const text = $(a).text();
+      if (!text.includes("디렉토리북")) return;
+      const onclick = $(a).attr("onclick") || "";
+      const uid = onclick.match(/view\(\s*'(\d+)'/)?.[1];
+      if (uid) noticeHrefs.push(`${SITE}/05/01.php?mode=view&uid=${uid}`);
+    });
+    for (const noticeUrl of noticeHrefs) {
+      const pdf = await pdfFromNoticeUrl(noticeUrl);
+      if (pdf) {
+        const ym = pdf.match(/(20\d{2})/);
+        found.set(pdf, ym ? parseInt(ym[1], 10) : null);
+      }
+    }
+  }
+
+  return [...found.entries()].map(([url, year]) => ({ url, year }));
 }
 
 interface PageFields {
@@ -149,16 +225,7 @@ async function ocrPageColumns(renderer: PdfRenderer, pageNum: number): Promise<P
   return { ...left, ...right };
 }
 
-export const meta = CAPSTONE_DESIGN_META;
-
-export async function collect(): Promise<Idea[]> {
-  const pdfUrl = await findDirectoryBookUrl();
-  if (!pdfUrl) {
-    console.warn("[capstone-design] 디렉토리북 PDF 링크를 찾지 못함 — 이번 실행은 건너뜀");
-    return [];
-  }
-  console.log(`[capstone-design] PDF 발견: ${pdfUrl}`);
-
+async function ocrPdfToItems(pdfUrl: string, yearHint: number | null): Promise<Idea[]> {
   const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "capstone-design-"));
   const pdfPath = path.join(tmpDir, "directorybook.pdf");
   const items: Idea[] = [];
@@ -169,31 +236,29 @@ export async function collect(): Promise<Idea[]> {
     await fs.writeFile(pdfPath, Buffer.from(await res.arrayBuffer()));
 
     const yearMatch = pdfUrl.match(/(20\d{2})/);
-    const year = yearMatch ? parseInt(yearMatch[1], 10) : null;
+    const year = yearHint ?? (yearMatch ? parseInt(yearMatch[1], 10) : null);
 
     const renderer = new PdfRenderer(pdfPath);
     const numPages = await renderer.open();
-    console.log(`[capstone-design] PDF 페이지 수: ${numPages}`);
+    console.log(`[capstone-design] PDF ${pdfUrl} — ${numPages}페이지`);
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
       const fields = await ocrPageColumns(renderer, pageNum);
-      // "팀명"이나 "팀원" 라벨이 없으면 표지/구분 페이지로 보고 건너뛴다.
-      if (!fields.team && fields.members.length === 0) continue;
+      const team = sanitizeTeamName(fields.team);
+      if (!team && fields.members.length === 0) continue;
 
-      // fields.team으로 title을 대신하지 않는다 — 이 프로젝트에서 여러 번 겪은 "팀명을
-      // 작품명으로 오인" 사고를 여기서도 반복하지 않기 위한 의도적인 선택이다.
       const title = fields.title ?? `창의적종합설계경진대회 참가작 (p.${pageNum})`;
       items.push({
-        id: makeId(["capstone-design", year, pageNum, fields.team]),
+        id: makeId(["capstone-design", year, pageNum, team]),
         competition: "capstone-design",
         competitionName: "창의적종합설계경진대회",
         year,
         round: null,
-        award: null, // 이 PDF는 수상작이 아니라 전체 출품작 도록이라 등급 정보가 없다.
+        award: null,
         category: fields.hashtags,
         title,
-        team: fields.team,
-        org: fields.school,
+        team,
+        org: sanitizeSchool(fields.school),
         summary: [fields.body, fields.members.length ? `팀원: ${fields.members.join(", ")}` : null]
           .filter(Boolean)
           .join("\n\n") || null,
@@ -211,6 +276,40 @@ export async function collect(): Promise<Idea[]> {
   }
 
   return items;
+}
+
+export const meta = CAPSTONE_DESIGN_META;
+
+export async function collect(): Promise<Idea[]> {
+  const pdfs = await findDirectoryBookUrls();
+  if (pdfs.length === 0) {
+    const cached = await loadCachedItemsForPdf(
+      "http://www.e2festa.kr/doc/directorybook_2025.pdf",
+    );
+    if (cached) {
+      console.warn(
+        `[capstone-design] 올해 사이트에 디렉토리북이 없고 과거 PDF도 내려받아지지 않음 — 기존 ${cached.length}건 유지`,
+      );
+      return cached;
+    }
+    console.warn("[capstone-design] 디렉토리북 PDF 링크를 찾지 못함 — 이번 실행은 건너뜀");
+    return [];
+  }
+  console.log(`[capstone-design] 디렉토리북 PDF ${pdfs.length}개 발견`);
+
+  const byId = new Map<string, Idea>();
+  for (const { url, year } of pdfs) {
+    const cached = await loadCachedItemsForPdf(url);
+    if (cached) {
+      console.log(`[capstone-design] ${url} — 캐시 ${cached.length}건 재사용`);
+      for (const it of cached) byId.set(it.id, it);
+      continue;
+    }
+    const items = await ocrPdfToItems(url, year);
+    for (const it of items) byId.set(it.id, it);
+  }
+
+  return [...byId.values()];
 }
 
 const collector: Collector = { meta, collect };

@@ -103,7 +103,19 @@ export async function collect(): Promise<Idea[]> {
     for (const ds of DATASETS) {
       const { filePath, title } = await downloadLatestSeoulFile(ds.id, tmpDir);
       const items = await parseWorkbook(filePath, ds.note);
-      console.log(`  [public-data-startup] ${ds.id} (${title}): ${items.length} rows`);
+      const byYear = new Map<number, number>();
+      for (const it of items) {
+        if (it.year != null) byYear.set(it.year, (byYear.get(it.year) ?? 0) + 1);
+      }
+      const yearSummary = [...byYear.entries()]
+        .sort((a, b) => b[0] - a[0])
+        .slice(0, 6)
+        .map(([y, n]) => `${y}:${n}`)
+        .join(", ");
+      console.log(
+        `  [public-data-startup] ${ds.id} (${title}): ${items.length} rows` +
+          (yearSummary ? ` [연도별 상위 ${yearSummary}]` : ""),
+      );
       all.push(...items);
     }
   } finally {

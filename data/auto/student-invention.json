@@ -2,10 +2,16 @@
   "slug": "student-invention",
   "name": "대한민국학생발명전시회",
   "tier": "auto",
-  "method": "발명교육포털(ip-edu.net)의 연도별(2021~) 전시관을 수집. 대통령상은 index.do가 서버 렌더링하고, 우수상격/동상 및 장려상/전국교원발명경진대회 수상작은 내부 AJAX 엔드포인트(POST .../exhibition/inc/list.ajax, menuPos/tabPos/tabPos2/searchValue1(연도)/pageIndex 폼 필드)를 페이지가 빌 때까지 순회해 확보하고, 각 항목의 상세(학교/수상자/발명동기 등)는 edit.do?idx=N GET으로 보강한다.",
+  "method": "발명교육포털(ip-edu.net)의 연도별(2021~) 전시관을 수집. 대통령상은 index.do가 서버 렌더링하고, 우수상격/동상 및 장려상/전국교원발명경진대회 수상작은 내부 AJAX 엔드포인트(POST .../exhibition/inc/list.ajax, menuPos/tabPos/tabPos2/searchValue1(연도)/pageIndex 폼 필드)를 페이지가 빌 때까지 순회해 확보하고, 각 항목의 상세(학교/수상자/발명동기 등)는 edit.do?idx=N GET으로 보강한다. (이전에는 그 해 PDF 수상작품집을 OCR로 읽는 방식을 썼으나, 최신 연도 1개년치만 커버하고 OCR 오차도 있어 이 구조화된 방식으로 교체했다 — 2021년부터 전 연도, 1,180건.)",
   "homepage": "https://www.ip-edu.net/home/kor/award/festival2024/exhibition/index.do",
-  "updatedAt": "2026-09-11T12:48:14.371Z",
-  "count": 1180,
+  "updatedAt": "2026-09-30T07:00:17.357Z",
+  "lastSuccessAt": "2026-09-30T07:00:17.357Z",
+  "count": 1182,
+  "lastRun": {
+    "freshCount": 1034,
+    "summaryRatio": 0.998,
+    "maxYear": 2026
+  },
   "items": [
     {
       "id": "23bfdcba6ed2972f",
@@ -2568,6 +2574,34 @@
       "org": "미래산업과학고등학교",
       "summary": "공사 현장과 행사장에서 라바콘 설치의 비효율을 줄이기 위해, 필요한 길이만큼 늘리고 잘라 쓰는 테이프형 라바콘 아이디어를 고안했다.\n\n테이프형 구조로 필요한 길이만큼 펼쳐 라바콘이 자동으로 올라오고, 블록형 연결로 길이 조절과 부분 교체가 가능하며 평소에는 접어 보관할 수 있도록 설계하였다.\n\n공사 현장과 행사장에서 라바콘 설치의 비효율을 줄이기 위해, 필요한 길이만큼 늘리고 잘라 쓰는 테이프형 라바콘 아이디어를 고안했다.테이프형 구조로 필요한 길이만큼 펼쳐 라바콘이 자동으로 올라오고, 블록형 연결로 길이 조절과 부분 교체가 가능하며 평소에는 접어 보관할 수 있도록 설계하였다.",
       "sourceUrl": "https://www.ip-edu.net/home/kor/award/festival2024/exhibition/edit.do?menuPos=1&tabPos=1&idx=1660"
+    },
+    {
+      "id": "fe7a75435ae3e576",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "한국지식재산보호원장상",
+      "category": "동상 및 장려상",
+      "title": "자석의 원리가 숨어있는 공중부양 정리함",
+      "team": null,
+      "org": null,
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/award/festival2024/exhibition/edit.do?menuPos=1&tabPos=1&idx=1759"
+    },
+    {
+      "id": "a579153416a25fb3",
+      "competition": "student-invention",
+      "competitionName": "대한민국학생발명전시회",
+      "year": 2026,
+      "round": null,
+      "award": "한국지식재산보호원장상",
+      "category": "동상 및 장려상",
+      "title": "PureCheck Bottle",
+      "team": null,
+      "org": null,
+      "summary": null,
+      "sourceUrl": "https://www.ip-edu.net/home/kor/award/festival2024/exhibition/edit.do?menuPos=1&tabPos=1&idx=1750"
     },
     {
       "id": "f867266ebe5ae323",

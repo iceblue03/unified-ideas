@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import type { Idea } from "../lib/types";
 import { MANUAL_COMPETITIONS } from "../lib/competitions";
+import { evaluateCollectionQuality, statsForItems } from "../lib/collect-stats";
 import * as eswContest from "./collectors/esw-contest";
 import * as publicDataStartup from "./collectors/public-data-startup";
 import * as youthStartup from "./collectors/youth-startup";
@@ -28,14 +29,36 @@ const COLLECTORS = [
   kStartup,
 ];
 
-async function readExisting(slug: string): Promise<Idea[]> {
+interface AutoFileMeta {
+  slug: string;
+  name: string;
+  tier: string;
+  method: string;
+  homepage: string;
+  updatedAt?: string;
+  lastSuccessAt?: string | null;
+  sourcePdfUrl?: string | null;
+  count: number;
+  items: Idea[];
+  lastRun?: {
+    freshCount: number;
+    summaryRatio: number;
+    maxYear: number | null;
+  };
+}
+
+async function readExistingFile(slug: string): Promise<AutoFileMeta | null> {
   try {
     const raw = await fs.readFile(path.join(AUTO_DIR, `${slug}.json`), "utf-8");
-    const parsed = JSON.parse(raw) as { items?: Idea[] };
-    return parsed.items ?? [];
+    return JSON.parse(raw) as AutoFileMeta;
   } catch {
-    return [];
+    return null;
   }
+}
+
+async function readExistingItems(slug: string): Promise<Idea[]> {
+  const file = await readExistingFile(slug);
+  return file?.items ?? [];
 }
 
 async function readManual(slug: string): Promise<Idea[]> {
@@ -50,8 +73,6 @@ async function readManual(slug: string): Promise<Idea[]> {
 
 function mergeById(existing: Idea[], fresh: Idea[]): Idea[] {
   const map = new Map<string, Idea>();
-  // 새로 수집한 값을 우선 반영하되, 이번 실행에 없었던(사이트가 지워버린) 과거
-  // 항목도 그대로 보존한다 — 이게 이 프로젝트의 핵심인 "우리만의 누적 아카이브".
   for (const item of existing) map.set(item.id, item);
   for (const item of fresh) map.set(item.id, item);
   return [...map.values()].sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
@@ -68,30 +89,80 @@ async function main() {
     homepage: string;
     count: number;
     updatedAt: string | null;
+    lastSuccessAt?: string | null;
     error?: string;
+    lastRun?: { freshCount: number; summaryRatio: number; maxYear: number | null };
   }> = [];
+
+  let hadQualityFailure = false;
 
   for (const collector of COLLECTORS) {
     const { slug, name, tier, method, homepage } = collector.meta;
     console.log(`\n=== [${slug}] ${name} 수집 시작 ===`);
 
+    const priorFile = await readExistingFile(slug);
+    const existing = priorFile?.items ?? [];
+
     let fresh: Idea[] = [];
-    let errorMsg: string | undefined;
+    let thrownError: string | undefined;
     try {
       fresh = await collector.collect();
       console.log(`[${slug}] 이번 실행에서 ${fresh.length}건 수집`);
     } catch (e) {
-      errorMsg = e instanceof Error ? e.message : String(e);
-      console.error(`[${slug}] 수집 실패:`, errorMsg);
+      thrownError = e instanceof Error ? e.message : String(e);
+      console.error(`[${slug}] 수집 실패:`, thrownError);
     }
 
-    const existing = await readExisting(slug);
+    const freshStats = statsForItems(fresh);
     const merged = mergeById(existing, fresh);
-    const updatedAt = new Date().toISOString();
+    const mergedStats = statsForItems(merged);
+
+    console.log(
+      `[${slug}] run 요약: fresh=${fresh.length}, merged=${merged.length}, ` +
+        `summary≥20자 ${Math.round(freshStats.summaryRatio * 100)}% (fresh) / ${Math.round(mergedStats.summaryRatio * 100)}% (merged), ` +
+        `maxYear fresh=${freshStats.maxYear ?? "—"} merged=${mergedStats.maxYear ?? "—"}`,
+    );
+
+    const qualityError = evaluateCollectionQuality(slug, tier, fresh.length, existing.length, thrownError);
+    if (qualityError) {
+      if (!thrownError) console.error(`[${slug}] 품질 게이트: ${qualityError}`);
+      hadQualityFailure = true;
+    }
+
+    const now = new Date().toISOString();
+    const successThisRun = !thrownError && !qualityError && fresh.length > 0;
+    const lastSuccessAt = successThisRun ? now : (priorFile?.lastSuccessAt ?? priorFile?.updatedAt ?? null);
+
+    const errorMsg = thrownError ?? qualityError;
+
+    const sourcePdfUrl =
+      slug === "capstone-design" && fresh[0]?.sourceUrl
+        ? fresh[0].sourceUrl
+        : (priorFile?.sourcePdfUrl ?? null);
 
     await fs.writeFile(
       path.join(AUTO_DIR, `${slug}.json`),
-      JSON.stringify({ slug, name, tier, method, homepage, updatedAt, count: merged.length, items: merged }, null, 2),
+      JSON.stringify(
+        {
+          slug,
+          name,
+          tier,
+          method,
+          homepage,
+          updatedAt: now,
+          lastSuccessAt,
+          ...(sourcePdfUrl ? { sourcePdfUrl } : {}),
+          count: merged.length,
+          lastRun: {
+            freshCount: fresh.length,
+            summaryRatio: Math.round(mergedStats.summaryRatio * 1000) / 1000,
+            maxYear: mergedStats.maxYear,
+          },
+          items: merged,
+        },
+        null,
+        2,
+      ),
       "utf-8",
     );
     console.log(`[${slug}] 누적 저장: 총 ${merged.length}건 (data/auto/${slug}.json)`);
@@ -103,7 +174,13 @@ async function main() {
       method,
       homepage,
       count: merged.length,
-      updatedAt,
+      updatedAt: now,
+      lastSuccessAt,
+      lastRun: {
+        freshCount: fresh.length,
+        summaryRatio: Math.round(mergedStats.summaryRatio * 1000) / 1000,
+        maxYear: mergedStats.maxYear,
+      },
       ...(errorMsg ? { error: errorMsg } : {}),
     });
   }
@@ -118,6 +195,7 @@ async function main() {
       homepage: m.homepage,
       count: items.length,
       updatedAt: null,
+      lastSuccessAt: null,
     });
   }
 
@@ -129,7 +207,16 @@ async function main() {
 
   console.log("\n=== 전체 요약 ===");
   for (const m of manifest) {
-    console.log(`- ${m.name} (${m.tier}): ${m.count}건${m.error ? ` [ERROR: ${m.error}]` : ""}`);
+    console.log(
+      `- ${m.name} (${m.tier}): ${m.count}건` +
+        (m.lastRun ? ` [fresh ${m.lastRun.freshCount}]` : "") +
+        (m.error ? ` [ERROR: ${m.error}]` : ""),
+    );
+  }
+
+  if (hadQualityFailure) {
+    console.error("\n품질 게이트 실패로 종료 코드 1을 반환합니다.");
+    process.exit(1);
   }
 }
 

@@ -1,8 +1,12 @@
 import * as cheerio from "cheerio";
+import fs from "node:fs/promises";
+import path from "node:path";
 import type { Attachment, Collector, Idea } from "../../lib/types";
 import { makeId } from "../../lib/id";
 import { ESW_CONTEST_META } from "../../lib/collector-meta";
 import { ocrImage, terminateOcr } from "../../lib/ocr";
+
+const AUTO_FILE = path.join(__dirname, "..", "..", "data", "auto", "esw-contest.json");
 
 /**
  * OCR 결과에서 실제로 쓸만한 부분만 골라낸다. 이미지 상단의 큰 장식 타이틀
@@ -25,8 +29,37 @@ const UA =
 async function fetchPage(page: number): Promise<string> {
   const url = `${BASE}?page=${page}&code=award`;
   const res = await fetch(url, { headers: { "User-Agent": UA } });
-  if (!res.ok) throw new Error(`esw-contest: HTTP ${res.status} on page ${page}`);
-  return res.text();
+  if (res.ok) {
+    const html = await res.text();
+    if (html.includes("bbs_con") || !html.includes("404 Not Found")) return html;
+  }
+  throw new Error(`esw-contest: HTTP ${res.status} on page ${page}`);
+}
+
+/** 라이브 호스트가 호스팅 404일 때, CDX에 남은 목록 캡처를 읽는다. */
+async function collectWaybackLists(): Promise<Idea[]> {
+  const cdx =
+    "https://web.archive.org/cdx/search/cdx?url=www.eswcontest.or.kr/data/award.php&matchType=prefix&output=json&fl=original,timestamp,length&filter=statuscode:200&collapse=urlkey&limit=50";
+  const res = await fetch(cdx, { headers: { "User-Agent": UA } });
+  if (!res.ok) throw new Error(`esw-contest: wayback CDX HTTP ${res.status}`);
+  const rows = (await res.json()) as string[][];
+  const lists = rows.slice(1).filter((r) => !r[0].includes("ptype=view") && parseInt(r[2] || "0", 10) > 3000);
+  const seen = new Map<string, Idea>();
+  for (const [original, timestamp] of lists) {
+    const replay = `https://web.archive.org/web/${timestamp}id_/${original}`;
+    let pageRes = await fetch(replay, { headers: { "User-Agent": UA } });
+    if (pageRes.status === 429) {
+      await new Promise((r) => setTimeout(r, 4000));
+      pageRes = await fetch(replay, { headers: { "User-Agent": UA } });
+    }
+    const html = pageRes.ok ? await pageRes.text() : "";
+    const parsed = html.includes("bbs_con") ? parsePage(html) : [];
+    console.log(
+      `  [esw-contest] wayback ${pageRes.status} bytes=${html.length} rows=${parsed.length} ${timestamp}`,
+    );
+    for (const item of parsed) seen.set(item.id, item);
+  }
+  return [...seen.values()];
 }
 
 interface DetailInfo {
@@ -45,12 +78,53 @@ interface DetailInfo {
  * 부분은 사람이나 (app/api/search의 "숨겨진 데이터 진단" 경로에서) AI가
  * 필요시 원본을 직접 읽을 수 있게 한다.
  */
+/** 2022년 이전 상세 페이지는 HTML 본문에 작품 설명이 남아 있는 경우가 있다. */
+function extractHtmlSummary($: cheerio.CheerioAPI): string | null {
+  const blocks: string[] = [];
+  const selectors = [".bbs_view", ".view_con", ".bbs_con_view", "#contents", ".contents"];
+  for (const sel of selectors) {
+    const el = $(sel).first();
+    if (!el.length) continue;
+    el.find("script, style").remove();
+    const text = el
+      .text()
+      .replace(/\s+\n/g, "\n")
+      .split("\n")
+      .map((l) => l.trim())
+      .filter((l) => l.length > 2 && !/^(작품개요|작품의 특징|목록|이전글|다음글)$/i.test(l))
+      .join("\n")
+      .trim();
+    if (text.length > 40) blocks.push(text);
+  }
+  if (blocks.length === 0) return null;
+  const best = blocks.sort((a, b) => b.length - a.length)[0];
+  const idx = best.indexOf("작품개요");
+  const sliced = idx >= 0 ? best.slice(idx) : best;
+  return sliced.length > 20 ? sliced : null;
+}
+
+async function loadExistingBySourceUrl(): Promise<Map<string, Idea>> {
+  try {
+    const raw = await fs.readFile(AUTO_FILE, "utf-8");
+    const parsed = JSON.parse(raw) as { items?: Idea[] };
+    const map = new Map<string, Idea>();
+    for (const item of parsed.items ?? []) {
+      if (item.sourceUrl) map.set(item.sourceUrl, item);
+    }
+    return map;
+  } catch {
+    return new Map();
+  }
+}
+
 async function fetchDetail(url: string): Promise<DetailInfo> {
   try {
     const res = await fetch(url, { headers: { "User-Agent": UA } });
     if (!res.ok) return { summary: null, attachments: [] };
     const html = await res.text();
     const $ = cheerio.load(html);
+
+    let summary = extractHtmlSummary($);
 
     const attachments: Attachment[] = [];
     $('a[href^="javascript:bbsviewImg"]').each((_, a) => {
@@ -70,8 +144,7 @@ async function fetchDetail(url: string): Promise<DetailInfo> {
       }
     });
 
-    let summary: string | null = null;
-    if (attachments[0]) {
+    if (!summary && attachments[0]) {
       const imgRes = await fetch(attachments[0].url, { headers: { "User-Agent": UA } });
       if (imgRes.ok) {
         const buf = Buffer.from(await imgRes.arrayBuffer());
@@ -90,7 +163,7 @@ function parsePage(html: string): Idea[] {
   const $ = cheerio.load(html);
   const items: Idea[] = [];
 
-  $("table.bbs_con tbody tr").each((_, row) => {
+  $("table.bbs_con tr").each((_, row) => {
     const cells = $(row).find("td");
     if (cells.length < 6) return;
 
@@ -136,6 +209,26 @@ export async function collect(): Promise<Idea[]> {
   let page = 1;
   const MAX_PAGES = 60; // safety cap (site currently has ~25 pages)
 
+  try {
+    await fetchPage(1);
+  } catch (e) {
+    console.warn(
+      `[esw-contest] 라이브 목록을 열 수 없음 (${e instanceof Error ? e.message : e}). Wayback 캡처로 대체합니다.`,
+    );
+    const archived = await collectWaybackLists();
+    if (archived.length === 0) throw e;
+    const previous = await loadExistingBySourceUrl();
+    const byId = new Map<string, Idea>();
+    for (const item of previous.values()) byId.set(item.id, item);
+    for (const item of archived) {
+      const prev = byId.get(item.id);
+      if (!prev) continue;
+      if (!item.summary && prev.summary) item.summary = prev.summary;
+      if (!item.attachments?.length && prev.attachments?.length) item.attachments = prev.attachments;
+    }
+    return archived;
+  }
+
   while (page <= MAX_PAGES) {
     const html = await fetchPage(page);
     const items = parsePage(html);
@@ -153,12 +246,17 @@ export async function collect(): Promise<Idea[]> {
   }
 
   const items = [...seen.values()];
+  const existingByUrl = await loadExistingBySourceUrl();
 
-  // 목록 페이지만으로는 title/award/category까지만 나오고 실제 작품 설명은
-  // 알 수 없다 (위 fetchDetail 주석 참고). 상세 페이지를 한 건씩 더 열어
-  // 이미지를 OCR로 읽고, 원본 이미지 링크도 attachments에 남긴다.
   for (const item of items) {
     if (!item.sourceUrl) continue;
+    const prev = existingByUrl.get(item.sourceUrl);
+    if (prev && (prev.summary ?? "").trim().length >= 20) {
+      item.summary = prev.summary;
+      if (prev.attachments?.length) item.attachments = prev.attachments;
+      continue;
+    }
+
     const detail = await fetchDetail(item.sourceUrl);
     if (detail.attachments.length > 0) item.attachments = detail.attachments;
     if (detail.summary) item.summary = detail.summary;

@@ -12,13 +12,13 @@ const UA =
 // 우리가 원하는 것은 "대한민국 청소년 창업경진대회"뿐이라 이름으로 필터링한다.
 const TARGET_CONTEST_NAME = "대한민국 청소년 창업경진대회";
 
-async function fetchPage(page: number): Promise<string> {
+async function fetchPage(page: number, yearBySelect = ""): Promise<string> {
   const body = new URLSearchParams({
     cpthbNo: "",
     exclnCaseNo: "",
     searchGroup: "",
     searchText: "",
-    yearBySelect: "",
+    yearBySelect,
     sortBySelect: "",
     currentPage: String(page),
   });
@@ -171,31 +171,36 @@ async function fetchDetail(key: DetailKey): Promise<DetailInfo> {
 
 export const meta = YOUTH_STARTUP_META;
 
+function yearFilters(): string[] {
+  const current = new Date().getFullYear();
+  const years: string[] = [""];
+  for (let y = 2015; y <= current + 1; y++) years.push(String(y));
+  return years;
+}
+
 export async function collect(): Promise<Idea[]> {
   const seenItems = new Map<string, Idea>();
-  const seenRawKeys = new Set<string>();
   const seenDetailKeys = new Map<string, DetailKey>();
-  let page = 1;
-  const MAX_PAGES = 200; // safety cap
+  const MAX_PAGES = 200;
 
-  while (page <= MAX_PAGES) {
-    const html = await fetchPage(page);
-    const { items, rawKeys, detailKeys } = parsePage(html);
-    if (rawKeys.length === 0) break;
+  for (const yearFilter of yearFilters()) {
+    const seenRawKeys = new Set<string>();
+    let page = 1;
 
-    // 범위를 벗어난 page 번호에 대해 사이트가 마지막 페이지 내용을 반복해서
-    // 돌려줄 수 있어(esw-contest에서 확인된 동일 패턴), 종료 판단은 "대상 대회
-    // 필터를 통과한 개수"가 아니라 "페이지에 실제로 나온 카드 전체"를 기준으로
-    // 해야 한다 (한 페이지가 통째로 다른 대회 카드뿐이어도 다음 페이지엔 대상
-    // 대회 카드가 또 나올 수 있기 때문).
-    const rawBefore = seenRawKeys.size;
-    for (const k of rawKeys) seenRawKeys.add(k);
-    if (seenRawKeys.size === rawBefore) break;
+    while (page <= MAX_PAGES) {
+      const html = await fetchPage(page, yearFilter);
+      const { items, rawKeys, detailKeys } = parsePage(html);
+      if (rawKeys.length === 0) break;
 
-    for (const item of items) seenItems.set(item.id, item);
-    for (const [id, key] of detailKeys) seenDetailKeys.set(id, key);
-    page += 1;
-    await new Promise((r) => setTimeout(r, 300));
+      const rawBefore = seenRawKeys.size;
+      for (const k of rawKeys) seenRawKeys.add(k);
+      if (seenRawKeys.size === rawBefore) break;
+
+      for (const item of items) seenItems.set(item.id, item);
+      for (const [id, key] of detailKeys) seenDetailKeys.set(id, key);
+      page += 1;
+      await new Promise((r) => setTimeout(r, 300));
+    }
   }
 
   const items = [...seenItems.values()];

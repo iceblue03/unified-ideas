@@ -65,7 +65,9 @@ export interface ManifestEntry {
   homepage: string;
   count: number;
   updatedAt: string | null;
+  lastSuccessAt?: string | null;
   error?: string;
+  lastRun?: { freshCount: number; summaryRatio: number; maxYear: number | null };
 }
 
 export interface Manifest {

@@ -2,10 +2,16 @@
   "slug": "kipa-invention-patent",
   "name": "대한민국발명특허대전",
   "tier": "auto",
-  "method": "한국발명진흥회(KIPA)가 공개하는 연도별 수상현황 정적 페이지(kipa.org/kinpex/prize_history_{연도}.jsp, 2006~2025년 각각 존재)를 순회하며 표(table.prize_table)를 HTML 파싱. 원래 수집 대상이던 '창의적종합설계경진대회'는 수상작 게시판(ricee.or.kr)이 robots.txt로 크롤링을 명시적으로 막고 있어(Disallow: /, 해당 경로는 Allow 목록에도 없음) 자동 수집 대상에서 제외하고, 같은 개수를 유지하기 위해 robots.txt상 크롤링이 허용되고 20개년치 데이터를 공개하는 이 대회로 대체했다.",
+  "method": "한국발명진흥회(KIPA)가 공개하는 연도별 수상현황 정적 페이지(kipa.org/kinpex/prize_history_{연도}.jsp, 2006~2025년 각각 존재)를 순회하며 표(table.prize_table)를 HTML 파싱. 창의적종합설계경진대회와는 별개의 대회로, 두 대회를 모두 자동 수집 대상에 포함한다.",
   "homepage": "https://www.kipa.org/kinpex/",
-  "updatedAt": "2026-09-11T12:47:10.366Z",
+  "updatedAt": "2026-09-30T06:57:35.639Z",
+  "lastSuccessAt": "2026-09-30T06:57:35.639Z",
   "count": 2093,
+  "lastRun": {
+    "freshCount": 2093,
+    "summaryRatio": 0,
+    "maxYear": 2025
+  },
   "items": [
     {
       "id": "4fc06d7f4ac3eaaf",
