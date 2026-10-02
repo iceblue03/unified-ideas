@@ -82,20 +82,18 @@ function asShoppingQueries(value: unknown, single: string): string[] {
 export async function generateExternalQueries(ideaText: string): Promise<GeneratedQueries> {
   const prompt =
     `다음은 사용자가 구상 중인 아이디어입니다:\n"""\n${ideaText.slice(0, 1500)}\n"""\n\n` +
-    `이 아이디어를 검색용 정보로 변환하세요.\n` +
-    `1. kiprisKeywords: 특허 검색에 쓸 키워드 2~3개. 한 특허의 제목이나 초록에 함께 나올 ` +
-    `서로 다른 측면만 넣으세요. 첫 원소는 핵심 사물 그 자체(예: "안내지팡이", "흰지팡이"), ` +
-    `나머지는 기능이나 수단(예: "장애물감지", "보행안내")입니다. 각 원소는 공백 없는 복합명사입니다.\n` +
-    `- 동의어를 같은 배열에 넣지 마세요. "안내지팡이"와 "흰지팡이"는 동의어라 한 문서에 같이 안 나옵니다.\n` +
-    `- 사물을 다른 제품군으로 바꾸지 마세요. 점자 지팡이를 "점자디스플레이", "점자단말기", "노트북"으로 ` +
-    `바꾸는 것은 오답입니다.\n` +
-    `- "인공지능", "스마트", "시각장애인", "시스템", "장치", "방법"처럼 어디에나 붙는 말은 빼세요.\n` +
-    `2. kiprisAltKeywords: 핵심 사물의 동의어 0~2개(예: ["흰지팡이"]). 없으면 빈 배열.\n` +
-    `3. shoppingQueries: eBay(미국, 영어 카탈로그)에 넣을 상품명 2~3개. 반드시 영어이고, ` +
-    `소비자가 그 제품을 찾을 때 쓰는 2~4단어입니다. 더 구체적인 검색어를 앞에 두세요 ` +
-    `(예: ["smart cane for blind", "electronic white cane"]). 한국어 상품명은 오답입니다.\n\n` +
+    `이 아이디어를 검색용 정보로 변환하세요. 실제 검색 로그에서 확인한 규칙을 지키세요.\n` +
+    `1. kiprisKeywords: 특허 제목에 이미 쓰이는 핵심 사물 명사 1개만. ` +
+    `지팡이면 "안내지팡이"처럼 제목에 있는 말 그대로. 기능이나 기술을 붙여 새 단어를 만들지 마세요.\n` +
+    `- 오답: "촉각점자", "점자디스플레이", "장애물감지", "인공지능", "스마트". ` +
+    `이 말들은 사물과 AND로 묶으면 특허가 0건이 되거나 다른 제품이 나왔습니다.\n` +
+    `2. kiprisAltKeywords: 그 사물의 다른 특허 명칭 1~2개. 예: ["흰지팡이", "점자지팡이"]. ` +
+    `기능어는 넣지 마세요. 동의어만.\n` +
+    `3. shoppingQueries: eBay 영어 상품명 정확히 3개. 서로 다른 상품을 가리켜야 합니다. ` +
+    `각 2~4단어. 검색어에 AI를 넣지 마세요. 카탈로그 제목은 AI라고 적지 않아 0건이 됩니다.\n` +
+    `예: ["smart cane", "electronic white cane", "blind walking stick"]. 한국어는 오답입니다.\n\n` +
     `다른 설명 없이 아래 스키마의 순수 JSON 객체 "하나만" 출력하세요.\n\n` +
-    `{\n  "kiprisKeywords": ["...", "..."],\n  "kiprisAltKeywords": ["..."],\n  "shoppingQueries": ["...", "..."]\n}`;
+    `{\n  "kiprisKeywords": ["..."],\n  "kiprisAltKeywords": ["...", "..."],\n  "shoppingQueries": ["...", "...", "..."]\n}`;
 
   const res = await callOpenRouter(prompt, 8_000);
   if (!res.ok) {

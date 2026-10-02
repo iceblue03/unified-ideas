@@ -192,15 +192,26 @@ export async function searchShopping(query: string, limit = 10): Promise<Shoppin
   }
 }
 
+function productKey(title: string): string {
+  const skip = new Set(["for", "the", "and", "with", "sale", "new", "us", "ffs"]);
+  return title
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((word) => word.length > 2 && !skip.has(word))
+    .slice(0, 4)
+    .join(" ");
+}
+
 /**
- * 구체적인 상품명부터 순서대로 검색하고, 제목 필터를 통과한 상품이 나오는 첫 검색어에서 멈춘다.
- * 한 검색어가 0건이어도 다음 검색어를 시도한다. 전부 0건이면 빈 목록을 반환한다.
+ * 검색어를 앞에서부터 시도한다. 첫 검색어가 같은 상품만 여러 건 주면 다음 검색어를 이어서
+ * 서로 다른 상품이 3개 모일 때까지 합친다. 라이브 로그에서 "smart cane for visually impaired"가
+ * PHOENIX 지팡이 4건만 돌려줬고, 뒤에 준비된 "electronic white cane"은 실행되지 않았다.
  */
 export async function searchShoppingQueries(queries: string[], limit = 10): Promise<ShoppingSearchResult> {
   const unique: string[] = [];
   const seen = new Set<string>();
   for (const query of queries) {
-    const trimmed = query.trim();
+    const trimmed = query.replace(/\bAI\b/gi, " ").replace(/\s+/g, " ").trim();
     const key = trimmed.toLowerCase();
     if (!trimmed || seen.has(key)) continue;
     seen.add(key);
@@ -210,22 +221,31 @@ export async function searchShoppingQueries(queries: string[], limit = 10): Prom
   if (planned.length === 0) return { ok: true, items: [], queryUsed: null, queriesTried: [] };
 
   const tried: string[] = [];
+  const merged: ShoppingProduct[] = [];
+  const titleSeen = new Set<string>();
   let lastError: string | undefined;
   let sawOk = false;
   for (const query of planned) {
+    if (titleSeen.size >= 3 || merged.length >= limit) break;
     const result = await searchShopping(query, limit);
     tried.push(query);
     if (result.skipped) {
-      return { ...result, queryUsed: query, queriesTried: tried };
+      return { ...result, items: merged, queryUsed: tried[0] ?? query, queriesTried: tried };
     }
     if (!result.ok) {
       lastError = result.error;
       continue;
     }
     sawOk = true;
-    if (result.items.length > 0) {
-      return { ...result, queryUsed: query, queriesTried: tried };
+    for (const item of result.items) {
+      const key = productKey(item.title);
+      if (!key || titleSeen.has(key) || merged.length >= limit) continue;
+      titleSeen.add(key);
+      merged.push(item);
     }
+  }
+  if (merged.length > 0) {
+    return { ok: true, items: merged, queryUsed: tried[0] ?? null, queriesTried: tried };
   }
 
   if (!sawOk && lastError) {

@@ -103,46 +103,35 @@ function pickAnchor(ordered: string[]): string | null {
 }
 
 /**
- * 시도할 AND 묶음. 여러 키워드로 시작해도 점자디스플레이 같은 넓은 제품군 한 단어로는
- * 내려가지 않는다. AND가 제목/초록에서 안 맞으면 마지막에 핵심 사물(안내지팡이 등)만
- * 한 번 더 찾는다 — KIPRIS는 교집합이 작을 때 무관한 특허를 정상 응답으로 주는 경우가 있어,
- * 두 단어 AND가 비면 사물 키워드 검색이 실제 선행기술을 찾는 경로다.
- * 동의어는 같은 AND에 넣지 않고, 기능 키워드와 짝을 이룬 별도 검색으로 둔다.
+ * 라이브 로그(2026-10-02, "AI 점자 안내 지팡이"): 안내지팡이*장애물감지*촉각점자,
+ * 안내지팡이*장애물감지, 흰지팡이*장애물감지는 모두 10건이 왔지만 제목/초록 일치가 0건이었다.
+ * 안내지팡이 한 단어만 맹인안내지팡이 등 실제 선행기술을 남겼다.
+ * 그래서 AND를 먼저 치지 않고, 사물 명사와 그 동의어를 각각 한 단어로 검색한다.
  */
 export function planKiprisAttempts(keywords: string[], altKeywords: string[] = []): string[][] {
   const ordered = orderKiprisKeywords(keywords);
   if (ordered.length === 0) return [];
-  if (ordered.length === 1) {
-    return SUBSTITUTE_PRODUCTS.has(ordered[0]) ? [] : [ordered];
-  }
 
-  const anchor = pickAnchor(ordered);
-  const attempts: string[][] = [];
+  const anchor = ordered.length === 1
+    ? SUBSTITUTE_PRODUCTS.has(ordered[0])
+      ? null
+      : ordered[0]
+    : pickAnchor(ordered);
+
+  const unigrams: string[] = [];
   const seen = new Set<string>();
-  const multiCap = anchor ? MAX_KIPRIS_ATTEMPTS - 1 : MAX_KIPRIS_ATTEMPTS;
-  const push = (group: string[]) => {
-    if (group.length < 2 || attempts.length >= multiCap) return;
-    const key = group.join("*");
-    if (seen.has(key)) return;
-    seen.add(key);
-    attempts.push(group);
+  const push = (word: string) => {
+    const trimmed = word.trim();
+    if (!trimmed || seen.has(trimmed) || SUBSTITUTE_PRODUCTS.has(trimmed) || isDroppableModifier(trimmed)) return;
+    if (unigrams.length >= MAX_KIPRIS_ATTEMPTS) return;
+    seen.add(trimmed);
+    unigrams.push(trimmed);
   };
 
-  for (let depth = ordered.length; depth >= 2; depth--) {
-    push(ordered.slice(0, depth));
-  }
-
-  const partner = ordered.find((k) => k !== anchor && !isDroppableModifier(k) && !SUBSTITUTE_PRODUCTS.has(k));
-  if (partner) {
-    for (const alt of altKeywords) {
-      const trimmed = alt.trim();
-      if (!trimmed || trimmed === anchor || SUBSTITUTE_PRODUCTS.has(trimmed)) continue;
-      push([trimmed, partner]);
-    }
-  }
-
-  if (anchor) attempts.push([anchor]);
-  return attempts;
+  if (anchor) push(anchor);
+  for (const alt of altKeywords) push(alt);
+  for (const keyword of ordered) push(keyword);
+  return unigrams.map((word) => [word]);
 }
 
 /**
