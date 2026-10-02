@@ -20,10 +20,12 @@ export interface PatentSearchResult {
   error?: string;
   /** 실제로 KIPRIS에 전송된 최종 word= 값 (연산자 조립 후) */
   queryUsed?: string;
-  /** 전체 키워드 AND가 0건이라 키워드를 줄여 재시도했는지 */
+  /** 전체 키워드 AND가 0건이라 다른 조합으로 재시도했는지 */
   fallbackUsed?: boolean;
-  /** 최종적으로 사용한 키워드 개수 (원래 개수보다 적으면 폴백이 적용된 것) */
+  /** 최종적으로 사용한 키워드 개수. 0이면 한 단어까지 내려가지 않고 비운 것 */
   fallbackDepth?: number;
+  /** 실제로 시도한 검색식 (사람이 읽는 "a*b" 형태), 시도 순서 */
+  attempts?: string[];
 }
 
 /**
@@ -52,6 +54,98 @@ function filterStopwords(keywords: string[]): string[] {
 }
 
 /**
+ * 아이디어의 사물이 아닌데 모델이 자주 바꿔 넣는 제품군.
+ * 다른 핵심 키워드가 있으면 이 단어 하나만으로 검색하지 않는다.
+ */
+const SUBSTITUTE_PRODUCTS = new Set([
+  "점자디스플레이",
+  "점자단말기",
+  "디스플레이",
+  "모니터",
+  "노트북",
+  "키보드",
+]);
+
+const DROPPABLE_MODIFIERS = new Set([
+  "인공지능",
+  "ai",
+  "스마트",
+  "딥러닝",
+  "머신러닝",
+  "시각장애인",
+  "장애인",
+  "사용자",
+  "보행자",
+  "센서",
+  "카메라",
+  "iot",
+]);
+
+function isDroppableModifier(keyword: string): boolean {
+  return DROPPABLE_MODIFIERS.has(keyword.toLowerCase());
+}
+
+/** 핵심 사물/기능이 앞에 오고, 수식어는 뒤로 보낸다. 폴백은 뒤에서부터 자른다. */
+export function orderKiprisKeywords(keywords: string[]): string[] {
+  const cleaned = filterStopwords(keywords.map((k) => k.trim()).filter(Boolean));
+  const core = cleaned.filter((k) => !isDroppableModifier(k));
+  const modifiers = cleaned.filter((k) => isDroppableModifier(k));
+  return [...core, ...modifiers];
+}
+
+const MAX_KIPRIS_ATTEMPTS = 4;
+
+function pickAnchor(ordered: string[]): string | null {
+  const specific = ordered.filter((k) => !isDroppableModifier(k) && !SUBSTITUTE_PRODUCTS.has(k));
+  if (specific.length > 0) return specific[0];
+  // 점자디스플레이처럼 다른 제품군만 남으면 한 단어 검색을 만들지 않는다.
+  return null;
+}
+
+/**
+ * 시도할 AND 묶음. 여러 키워드로 시작해도 점자디스플레이 같은 넓은 제품군 한 단어로는
+ * 내려가지 않는다. AND가 제목/초록에서 안 맞으면 마지막에 핵심 사물(안내지팡이 등)만
+ * 한 번 더 찾는다 — KIPRIS는 교집합이 작을 때 무관한 특허를 정상 응답으로 주는 경우가 있어,
+ * 두 단어 AND가 비면 사물 키워드 검색이 실제 선행기술을 찾는 경로다.
+ * 동의어는 같은 AND에 넣지 않고, 기능 키워드와 짝을 이룬 별도 검색으로 둔다.
+ */
+export function planKiprisAttempts(keywords: string[], altKeywords: string[] = []): string[][] {
+  const ordered = orderKiprisKeywords(keywords);
+  if (ordered.length === 0) return [];
+  if (ordered.length === 1) {
+    return SUBSTITUTE_PRODUCTS.has(ordered[0]) ? [] : [ordered];
+  }
+
+  const anchor = pickAnchor(ordered);
+  const attempts: string[][] = [];
+  const seen = new Set<string>();
+  const multiCap = anchor ? MAX_KIPRIS_ATTEMPTS - 1 : MAX_KIPRIS_ATTEMPTS;
+  const push = (group: string[]) => {
+    if (group.length < 2 || attempts.length >= multiCap) return;
+    const key = group.join("*");
+    if (seen.has(key)) return;
+    seen.add(key);
+    attempts.push(group);
+  };
+
+  for (let depth = ordered.length; depth >= 2; depth--) {
+    push(ordered.slice(0, depth));
+  }
+
+  const partner = ordered.find((k) => k !== anchor && !isDroppableModifier(k) && !SUBSTITUTE_PRODUCTS.has(k));
+  if (partner) {
+    for (const alt of altKeywords) {
+      const trimmed = alt.trim();
+      if (!trimmed || trimmed === anchor || SUBSTITUTE_PRODUCTS.has(trimmed)) continue;
+      push([trimmed, partner]);
+    }
+  }
+
+  if (anchor) attempts.push([anchor]);
+  return attempts;
+}
+
+/**
  * keywords를 KIPRIS의 AND 연산자(*)로 조립한다. 토큰을 각각 encodeURIComponent한
  * 뒤 인코딩되지 않는 리터럴 "*"로 이어붙인다 — "*"/"!"/"("/")"는 encodeURIComponent가
  * 원래 이스케이프하지 않는 문자라 전체를 한 번에 인코딩해도 결과는 같지만, 토큰
@@ -70,9 +164,8 @@ function buildAndQuery(keywords: string[]): string {
  * 목록(totalCount는 그럴듯한 양수)을 돌려주는 경우가 실제로 관측됐다(예:
  * "딸기*우주선" → 딸기/우주선과 무관한 상표등록 광고·CCTV 시스템 특허 111건).
  * API 메타데이터(successYN/resultCode/totalCount)만으로는 이 상황을 정상 매칭과
- * 구분할 수 없어서, 응답으로 온 각 항목의 제목/초록에 검색 키워드 중 하나라도
- * 실제로 포함돼 있는지 직접 확인한다 — 하나도 포함되지 않은 항목은 이 "가짜 성공"
- * 응답으로 간주해 버리고, 다음 폴백 단계(키워드 하나 줄이기)로 넘어간다.
+ * 구분할 수 없어서, 응답으로 온 각 항목의 제목/초록에 이번 검색식의 키워드가
+ * 모두 들어 있는지만 남긴다. 하나라도 빠지면 가짜 성공으로 보고 다음 검색식으로 넘어간다.
  *
  * 라이브 호출로 실제 확인한 또 다른 결함(이건 KIPRIS가 아니라 이 필터 자체의 버그):
  * ai-query-gen.ts는 kiprisKeywords 각각을 "공백 없는 단어"로 강제한다(예: "드로잉로봇").
@@ -88,7 +181,9 @@ function normalizeForMatch(s: string): string {
 
 function isRelevant(item: PatentItem, keywords: string[]): boolean {
   const haystack = normalizeForMatch(`${item.title} ${item.summary ?? ""}`);
-  return keywords.some((k) => haystack.includes(normalizeForMatch(k)));
+  // AND로 보낸 키워드가 제목/초록에 모두 있어야 한다. 하나만 겹치는 항목을
+  // 통과시키면, 넓은 단어 하나가 점자 디스플레이처럼 다른 제품군을 통째로 살린다.
+  return keywords.every((k) => haystack.includes(normalizeForMatch(k)));
 }
 
 const parser = new XMLParser({
@@ -205,56 +300,72 @@ async function callKipris(
 }
 
 /**
- * keywords 전체를 AND로 검색하고, 관련 있는 결과가 없으면(0건이거나, 응답은 왔지만
- * 위 isRelevant를 통과하는 항목이 하나도 없는 "가짜 성공") 마지막 키워드부터 하나씩
- * 줄여가며 재시도한다(예: [k1,k2,k3,k4] → k1*k2*k3*k4 → k1*k2*k3 → k1*k2 → k1).
- * 자연어 구절을 그대로 보내던 예전 방식은 실제 특허 문서(다른 어순·조사·복합명사)와
- * 거의 안 겹쳐 결과가 0건/타임아웃으로 나오는 근본 원인이었다 — 핵심 키워드를 AND로
- * 좁혀서 검색하고, 그래도 관련 결과가 없으면 범위를 넓혀가는 방식으로 바꿨다. OR(+)
- * 연산자는 KIPRIS가 %2B 인코딩을 실제로 어떻게 처리하는지 검증되기 전까지는 쓰지
- * 않는다.
+ * planKiprisAttempts()가 만든 검색식을 순서대로 친다. 제목/초록에 그 검색식의
+ * 키워드가 모두 들어간 결과가 나오는 첫 시도에서 멈춘다. 여러 키워드로 시작했는데
+ * 맞는 조합이 없으면 한 단어(예: "점자디스플레이")까지 내려가 다른 제품군을
+ * 긁어오지 않고 0건으로 끝낸다. OR(+) 연산자는 KIPRIS가 %2B 인코딩을 실제로
+ * 어떻게 처리하는지 검증되기 전까지는 쓰지 않는다.
  */
-export async function searchPatents(keywords: string[], numOfRows = 10): Promise<PatentSearchResult> {
+export async function searchPatents(
+  keywords: string[],
+  numOfRows = 10,
+  altKeywords: string[] = [],
+): Promise<PatentSearchResult> {
   const serviceKey = process.env.KIPRIS_SERVICE_KEY;
   if (!serviceKey) {
     return { ok: true, items: [], skipped: true };
   }
 
-  const cleaned = filterStopwords(keywords.map((k) => k.trim()).filter(Boolean));
-  if (cleaned.length === 0) return { ok: true, items: [] };
+  const attempts = planKiprisAttempts(keywords, altKeywords);
+  if (attempts.length === 0) return { ok: true, items: [] };
 
-  for (let depth = cleaned.length; depth >= 1; depth--) {
-    const attemptKeywords = cleaned.slice(0, depth);
+  const readableAttempts = attempts.map((group) => group.join("*"));
+
+  for (let i = 0; i < attempts.length; i++) {
+    const attemptKeywords = attempts[i];
     // readableQuery는 화면/로그 표시용(사람이 읽는 "키워드1*키워드2"), word는 실제
     // URL에 실리는 encodeURIComponent된 값 — 인코딩된 값을 그대로 표시하면
     // "%EB%B0%98..." 같은 읽을 수 없는 문자열이 UI에 노출된다.
-    const readableQuery = attemptKeywords.join("*");
+    const readableQuery = readableAttempts[i];
     const word = buildAndQuery(attemptKeywords);
     const result = await callKipris(word, serviceKey, numOfRows);
 
     if (!result.ok) {
-      console.log(`[kipris] query="${readableQuery}" (depth ${depth}/${cleaned.length}) → error: ${result.error}`);
-      return { ok: false, items: [], error: result.error, queryUsed: readableQuery };
+      console.log(`[kipris] query="${readableQuery}" (${i + 1}/${attempts.length}) → error: ${result.error}`);
+      return {
+        ok: false,
+        items: [],
+        error: result.error,
+        queryUsed: readableQuery,
+        attempts: readableAttempts.slice(0, i + 1),
+      };
     }
 
     const relevant = result.items.filter((item) => isRelevant(item, attemptKeywords));
     const noiseCount = result.items.length - relevant.length;
     console.log(
-      `[kipris] query="${readableQuery}" (depth ${depth}/${cleaned.length}) → ${result.items.length}건 ` +
+      `[kipris] query="${readableQuery}" (${i + 1}/${attempts.length}) → ${result.items.length}건 ` +
         `(관련 ${relevant.length}건${noiseCount > 0 ? `, 무관한 결과 ${noiseCount}건 제외` : ""})`,
     );
 
-    if (relevant.length > 0 || depth === 1) {
+    if (relevant.length > 0) {
       return {
         ok: true,
         items: relevant,
         queryUsed: readableQuery,
-        fallbackUsed: depth < cleaned.length,
-        fallbackDepth: depth,
+        fallbackUsed: i > 0,
+        fallbackDepth: attemptKeywords.length,
+        attempts: readableAttempts.slice(0, i + 1),
       };
     }
   }
 
-  // cleaned.length가 0이 아닌 이상 위 루프가 depth===1에서 항상 return하므로 도달하지 않음.
-  return { ok: true, items: [] };
+  return {
+    ok: true,
+    items: [],
+    queryUsed: readableAttempts[0],
+    fallbackUsed: attempts.length > 1,
+    fallbackDepth: 0,
+    attempts: readableAttempts,
+  };
 }
