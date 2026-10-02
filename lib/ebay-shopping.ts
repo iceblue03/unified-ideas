@@ -203,9 +203,9 @@ function productKey(title: string): string {
 }
 
 /**
- * 검색어를 앞에서부터 시도한다. 첫 검색어가 같은 상품만 여러 건 주면 다음 검색어를 이어서
- * 서로 다른 상품이 3개 모일 때까지 합친다. 라이브 로그에서 "smart cane for visually impaired"가
- * PHOENIX 지팡이 4건만 돌려줬고, 뒤에 준비된 "electronic white cane"은 실행되지 않았다.
+ * 준비한 영어 검색어를 모두 친다. 한 검색어가 10건을 채우면 다음 검색어가 실행되지 않아,
+ * "cane for blind"만 남고 "electronic white cane"이 로그에 안 찍힌 적이 있다.
+ * 검색어마다 서로 다른 상품을 최대 4개만 넣고 다음 검색어로 넘어간다.
  */
 export async function searchShoppingQueries(queries: string[], limit = 10): Promise<ShoppingSearchResult> {
   const unique: string[] = [];
@@ -226,7 +226,7 @@ export async function searchShoppingQueries(queries: string[], limit = 10): Prom
   let lastError: string | undefined;
   let sawOk = false;
   for (const query of planned) {
-    if (titleSeen.size >= 3 || merged.length >= limit) break;
+    if (merged.length >= limit) break;
     const result = await searchShopping(query, limit);
     tried.push(query);
     if (result.skipped) {
@@ -237,11 +237,14 @@ export async function searchShoppingQueries(queries: string[], limit = 10): Prom
       continue;
     }
     sawOk = true;
+    let added = 0;
     for (const item of result.items) {
+      if (added >= 4 || merged.length >= limit) break;
       const key = productKey(item.title);
-      if (!key || titleSeen.has(key) || merged.length >= limit) continue;
+      if (!key || titleSeen.has(key)) continue;
       titleSeen.add(key);
       merged.push(item);
+      added += 1;
     }
   }
   if (merged.length > 0) {
