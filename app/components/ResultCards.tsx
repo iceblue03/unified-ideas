@@ -23,7 +23,7 @@ function GlowCard({ children }: { children: React.ReactNode }) {
 
 export function MatchCard({ item, rank }: { item: CompetitionResultItem; rank: number }) {
   const { idea } = item;
-  const score = item.aiScore ?? item.score;
+  const score = item.score;
   return (
     <GlowCard>
       <div className="flex items-start gap-4">

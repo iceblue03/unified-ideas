@@ -139,41 +139,44 @@ export interface ScoredMatch<T> {
  * subset(전체 또는 특정 대회로 필터링한 문서 목록)에서 query와 가장 비슷한
  * 문서 top N을 반환한다. score는 대략 0~1 범위로 정규화된 상대 점수다.
  */
+/** 대회 검색과 같은 식으로, 쿼리 대비 제목/본문 하나의 유사도를 0~1로 계산한다. */
+export function scoreText<T>(index: SearchIndex<T>, query: string, title: string, body: string): number {
+  const queryTokens = [...new Set(tokenize(query))];
+  const titleTokens = tokenize(title);
+  const bodyTokens = tokenize(body);
+  const maxPossible =
+    queryTokens.reduce((sum, q) => sum + idfOf(index, q), 0) * TITLE_FIELD_BOOST || 1;
+
+  let tfidfScore = 0;
+  for (const q of queryTokens) {
+    const weight = idfOf(index, q);
+    const titleCount = countOf(q, titleTokens);
+    const bodyCount = countOf(q, bodyTokens);
+
+    if (titleCount > 0 || bodyCount > 0) {
+      tfidfScore += weight * (titleCount * TITLE_FIELD_BOOST + bodyCount * BODY_FIELD_BOOST);
+    } else if (hasPartialOverlap(q, titleTokens)) {
+      tfidfScore += weight * TITLE_FIELD_BOOST * SUBSTRING_PARTIAL_RATIO;
+    } else if (hasPartialOverlap(q, bodyTokens)) {
+      tfidfScore += weight * BODY_FIELD_BOOST * SUBSTRING_PARTIAL_RATIO;
+    }
+  }
+
+  const normalizedTfidf = Math.min(1, tfidfScore / maxPossible);
+  const bigramFallback = diceCoefficient(query, `${title} ${body}`);
+  return normalizedTfidf * (1 - BIGRAM_SAFETY_NET_WEIGHT) + bigramFallback * BIGRAM_SAFETY_NET_WEIGHT;
+}
+
 export function search<T>(
   index: SearchIndex<T>,
   query: string,
   subset: IndexedDoc<T>[],
   topN: number,
 ): ScoredMatch<T>[] {
-  const queryTokens = [...new Set(tokenize(query))];
-
-  // 이 쿼리가 모든 토큰을 제목에서 정확히 맞췄을 때 나올 수 있는 최대 점수.
-  // 문서별 점수를 여기에 대비시켜 0~1 근처로 정규화한다.
-  const maxPossible =
-    queryTokens.reduce((sum, q) => sum + idfOf(index, q), 0) * TITLE_FIELD_BOOST || 1;
-
-  const scored = subset.map((doc) => {
-    let tfidfScore = 0;
-    for (const q of queryTokens) {
-      const weight = idfOf(index, q);
-      const titleCount = countOf(q, doc.titleTokens);
-      const bodyCount = countOf(q, doc.bodyTokens);
-
-      if (titleCount > 0 || bodyCount > 0) {
-        tfidfScore += weight * (titleCount * TITLE_FIELD_BOOST + bodyCount * BODY_FIELD_BOOST);
-      } else if (hasPartialOverlap(q, doc.titleTokens)) {
-        tfidfScore += weight * TITLE_FIELD_BOOST * SUBSTRING_PARTIAL_RATIO;
-      } else if (hasPartialOverlap(q, doc.bodyTokens)) {
-        tfidfScore += weight * BODY_FIELD_BOOST * SUBSTRING_PARTIAL_RATIO;
-      }
-    }
-
-    const normalizedTfidf = Math.min(1, tfidfScore / maxPossible);
-    const bigramFallback = diceCoefficient(query, `${doc.titleText} ${doc.bodyText}`);
-    const score = normalizedTfidf * (1 - BIGRAM_SAFETY_NET_WEIGHT) + bigramFallback * BIGRAM_SAFETY_NET_WEIGHT;
-
-    return { item: doc.item, score };
-  });
+  const scored = subset.map((doc) => ({
+    item: doc.item,
+    score: scoreText(index, query, doc.titleText, doc.bodyText),
+  }));
 
   scored.sort((a, b) => b.score - a.score);
   return scored.slice(0, topN);

@@ -1,10 +1,9 @@
 import { after, NextRequest, NextResponse } from "next/server";
 import { getAllIdeas, getManifest } from "../../../lib/dataset";
-import { buildIndex, search, getDocs } from "../../../lib/similarity";
+import { buildIndex, search, getDocs, scoreText } from "../../../lib/similarity";
 import { generateExternalQueries } from "../../../lib/ai-query-gen";
 import { isShoppingConfigured, searchShoppingQueries } from "../../../lib/ebay-shopping";
 import { isPatentSearchConfigured, searchPatents } from "../../../lib/kipris";
-import { PARTIAL_OVERLAP_THRESHOLD } from "../../../lib/score-thresholds";
 import { rankAndDiagnose } from "../../../lib/ai-rank";
 import { callOpenRouter } from "../../../lib/openrouter";
 import { getSessionFromRequest } from "../../../lib/session";
@@ -61,17 +60,8 @@ export type SearchStreamEvent =
   | { stage: "complete"; result: SearchResponse }
   | { stage: "error"; message: string };
 
-function sortByBestScore<T extends UnifiedResultItem>(items: T[]): T[] {
-  return [...items].sort((a, b) => (b.aiScore ?? b.score) - (a.aiScore ?? a.score));
-}
-
-/**
- * 제품/특허 탭은 외부 검색이 넓게 가져온 목록이다. AI가 채점했으면 겹침이
- * "낮음"인 항목은 탭에 남기지 않는다. 채점이 없으면 검색 결과 그대로 둔다.
- */
-function dropLowRelevance<T extends UnifiedResultItem>(items: T[]): T[] {
-  if (!items.some((item) => item.aiScore !== undefined)) return items;
-  return items.filter((item) => (item.aiScore ?? 0) >= PARTIAL_OVERLAP_THRESHOLD);
+function sortByScore<T extends UnifiedResultItem>(items: T[]): T[] {
+  return [...items].sort((a, b) => b.score - a.score);
 }
 
 /**
@@ -152,7 +142,7 @@ export async function POST(req: NextRequest) {
         const queryGenPromise = useAi ? generateExternalQueries(query) : null;
 
         // 1) 로컬 TF-IDF 검색 — useAi 여부와 무관하게 항상 실행되는 무료/즉시 경로
-        const competitionRaw = search(INDEX, query, ALL_DOCS, 15);
+        const competitionRaw = search(INDEX, query, ALL_DOCS, 10);
         let competitionItems: CompetitionResultItem[] = competitionRaw.map((m) => ({
           type: "competition",
           score: m.score,
@@ -218,9 +208,9 @@ export async function POST(req: NextRequest) {
           ]);
 
           if (shopRes.status === "fulfilled" && shopRes.value.ok) {
-            productItems = shopRes.value.items.map((product, i) => ({
+            productItems = shopRes.value.items.map((product) => ({
               type: "product" as const,
-              score: 1 - i / 10,
+              score: scoreText(INDEX, query, product.title, product.category ?? ""),
               product,
             }));
             // 성공했을 때만 채운다 — 그래야 "확인 안 됨"(null)과 "확인했지만 0건"이 구분된다.
@@ -241,9 +231,9 @@ export async function POST(req: NextRequest) {
           }
 
           if (patRes.status === "fulfilled" && patRes.value.ok) {
-            patentItems = patRes.value.items.map((patent, i) => ({
+            patentItems = patRes.value.items.map((patent) => ({
               type: "patent" as const,
-              score: 1 - i / 10,
+              score: scoreText(INDEX, query, patent.title, patent.summary ?? ""),
               patent,
             }));
             // 성공했을 때만 채운다 — 그래야 "확인 안 됨"(null)과 "확인했지만 0건"이 구분된다.
@@ -262,15 +252,18 @@ export async function POST(req: NextRequest) {
             }),
           );
 
-          const pool: UnifiedResultItem[] = [...competitionItems, ...productItems, ...patentItems];
+          const pool: UnifiedResultItem[] = [
+            ...sortByScore(competitionItems).slice(0, 10),
+            ...sortByScore(productItems).slice(0, 10),
+            ...sortByScore(patentItems).slice(0, 10),
+          ];
           if (pool.length > 0) {
             const ranked = await rankAndDiagnose(query, pool);
             aiMeta.report = ranked.report;
             if (ranked.warning) aiMeta.warnings.push(ranked.warning);
-            // aiScore가 채워졌으면 그 기준으로, 실패해 못 채워졌으면 원래 score 기준으로 정렬(no-op)
-            competitionItems = sortByBestScore(competitionItems);
-            productItems = dropLowRelevance(sortByBestScore(productItems));
-            patentItems = dropLowRelevance(sortByBestScore(patentItems));
+            competitionItems = sortByScore(competitionItems).slice(0, 10);
+            productItems = sortByScore(productItems).slice(0, 10);
+            patentItems = sortByScore(patentItems).slice(0, 10);
             if (aiMeta.shoppingItemCount !== null) aiMeta.shoppingItemCount = productItems.length;
             if (aiMeta.kiprisItemCount !== null) aiMeta.kiprisItemCount = patentItems.length;
           }
