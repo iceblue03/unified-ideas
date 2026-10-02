@@ -90,8 +90,10 @@ export async function generateExternalQueries(ideaText: string): Promise<Generat
     `2. kiprisAltKeywords: 그 사물의 다른 특허 명칭 1~2개. 예: ["흰지팡이", "점자지팡이"]. ` +
     `기능어는 넣지 마세요. 동의어만.\n` +
     `3. shoppingQueries: eBay 영어 상품명 정확히 3개. 서로 다른 상품을 가리켜야 합니다. ` +
-    `각 2~4단어. 검색어에 AI를 넣지 마세요. 카탈로그 제목은 AI라고 적지 않아 0건이 됩니다.\n` +
-    `예: ["smart cane", "electronic white cane", "blind walking stick"]. 한국어는 오답입니다.\n\n` +
+    `각 2~5단어. 검색어에 AI를 넣지 마세요.\n` +
+    `첫 검색어에는 반드시 cane과 함께 blind 또는 visually impaired를 넣으세요. ` +
+    `"smart cane"만 쓰면 시각장애와 무관한 지팡이가 나와 결과에서 빠집니다.\n` +
+    `예: ["smart cane for visually impaired", "electronic white cane", "blind walking stick"]. 한국어는 오답입니다.\n\n` +
     `다른 설명 없이 아래 스키마의 순수 JSON 객체 "하나만" 출력하세요.\n\n` +
     `{\n  "kiprisKeywords": ["..."],\n  "kiprisAltKeywords": ["...", "..."],\n  "shoppingQueries": ["...", "...", "..."]\n}`;
 
