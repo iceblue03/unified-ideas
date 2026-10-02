@@ -408,12 +408,32 @@ export default function Home() {
               </ul>
             )}
 
-            {result.useAi && result.aiMeta.patentAvailable && result.aiMeta.kiprisQuery && (
-              <p className="text-[11px] font-medium text-muted-foreground">
-                KIPRIS 검색어: <code className="text-foreground/70">{result.aiMeta.kiprisQuery}</code>
-                {result.aiMeta.kiprisItemCount !== null && ` · ${result.aiMeta.kiprisItemCount}건`}
-                {result.aiMeta.kiprisFallbackUsed && " (키워드를 줄여 재검색함)"}
-              </p>
+            {result.useAi && (result.aiMeta.kiprisKeywords?.length || result.aiMeta.shoppingQuery) && (
+              <div className="space-y-0.5 text-[11px] font-medium text-muted-foreground">
+                {result.aiMeta.kiprisKeywords && result.aiMeta.kiprisKeywords.length > 0 && (
+                  <p>
+                    특허 키워드:{" "}
+                    <code className="text-foreground/70">{result.aiMeta.kiprisKeywords.join(", ")}</code>
+                    {result.aiMeta.kiprisAltKeywords && result.aiMeta.kiprisAltKeywords.length > 0 && (
+                      <span> · 동의어 {result.aiMeta.kiprisAltKeywords.join(", ")}</span>
+                    )}
+                  </p>
+                )}
+                {result.aiMeta.patentAvailable && result.aiMeta.kiprisQuery && (
+                  <p>
+                    KIPRIS 검색어: <code className="text-foreground/70">{result.aiMeta.kiprisQuery}</code>
+                    {result.aiMeta.kiprisItemCount !== null && ` · ${result.aiMeta.kiprisItemCount}건`}
+                    {result.aiMeta.kiprisFallbackUsed && " (다른 키워드 조합으로 재검색함)"}
+                  </p>
+                )}
+                {result.aiMeta.shoppingAvailable && result.aiMeta.shoppingQueries && result.aiMeta.shoppingQueries.length > 0 && (
+                  <p>
+                    상품 검색어:{" "}
+                    <code className="text-foreground/70">{result.aiMeta.shoppingQueries.join(" → ")}</code>
+                    {result.aiMeta.shoppingItemCount !== null && ` · ${result.aiMeta.shoppingItemCount}건`}
+                  </p>
+                )}
+              </div>
             )}
 
             <CategoryTabs

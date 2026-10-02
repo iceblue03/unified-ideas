@@ -25,7 +25,12 @@ export interface SearchLogRow {
   kiprisQuery: string | null;
   kiprisItemCount: number | null;
   kiprisFallbackUsed: boolean;
+  kiprisAttempts: string[] | null;
+  kiprisAltKeywords: string[] | null;
   shoppingQuery: string | null;
+  shoppingQueries: string[] | null;
+  patentTitles: string[] | null;
+  productTitles: string[] | null;
   verdict: string;
   aiSummary: string;
   latencyMs: number;
@@ -102,6 +107,11 @@ async function ensureMonthlySheetExists(token: string, spreadsheetId: string, ta
       "aiSummary",
       "latencyMs",
       "warnings",
+      "kiprisAttempts",
+      "shoppingQueries",
+      "kiprisAltKeywords",
+      "patentTitles",
+      "productTitles",
     ];
     await fetch(
       `${SHEETS_API}/${spreadsheetId}/values/${encodeURIComponent(tabName)}!A1?valueInputOption=RAW`,
@@ -135,6 +145,11 @@ function rowToValues(row: SearchLogRow): (string | number | boolean)[] {
     row.aiSummary,
     row.latencyMs,
     row.warnings,
+    (row.kiprisAttempts ?? []).join(" | "),
+    (row.shoppingQueries ?? []).join(" | "),
+    (row.kiprisAltKeywords ?? []).join(", "),
+    (row.patentTitles ?? []).join(" | "),
+    (row.productTitles ?? []).join(" | "),
   ];
 }
 
@@ -144,9 +159,17 @@ function sleep(ms: number): Promise<void> {
 
 const RETRY_DELAYS_MS = [300, 900];
 
+let warnedMissingSheet = false;
+
 async function appendSearchLog(row: SearchLogRow): Promise<void> {
   const spreadsheetId = process.env.GOOGLE_SHEET_ID;
-  if (!spreadsheetId) return;
+  if (!spreadsheetId) {
+    if (!warnedMissingSheet) {
+      warnedMissingSheet = true;
+      console.warn("[sheets-log] GOOGLE_SHEET_ID가 없어 시트 기록을 건너뜁니다. 검색 기록은 [search-record] 로그에 남습니다.");
+    }
+    return;
+  }
 
   const token = await getAccessToken();
   if (!token) {
@@ -163,7 +186,7 @@ async function appendSearchLog(row: SearchLogRow): Promise<void> {
     return;
   }
 
-  const url = `${SHEETS_API}/${spreadsheetId}/values/${encodeURIComponent(tabName)}!A:Q:append?valueInputOption=USER_ENTERED`;
+  const url = `${SHEETS_API}/${spreadsheetId}/values/${encodeURIComponent(tabName)}!A:V:append?valueInputOption=USER_ENTERED`;
   const body = JSON.stringify({ values: [rowToValues(row)] });
 
   // Sheets API는 분당 300회(프로젝트)/60회(사용자) 쓰기 제한이 있어, 순간적으로

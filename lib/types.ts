@@ -169,6 +169,10 @@ export interface AiMeta {
   kiprisQuery: string | null;
   /** AI가 추출한 원본 키워드 (불용어 필터링 전) */
   kiprisKeywords: string[] | null;
+  /** 핵심 사물 동의어. 별도 AND 검색에 쓰인다 */
+  kiprisAltKeywords: string[] | null;
+  /** 실제로 시도한 KIPRIS 검색식 */
+  kiprisAttempts: string[] | null;
   /**
    * KIPRIS 응답이 정상적으로 도착했을 때만 채워지는 건수(0 포함).
    * null이면 "확인 안 됨"(키 미설정/호출 실패)이라 진짜 0건과 구분된다.
@@ -177,6 +181,8 @@ export interface AiMeta {
   /** 키워드 전체 AND가 0건이라 키워드를 줄여 재시도했는지 */
   kiprisFallbackUsed: boolean;
   shoppingQuery: string | null;
+  /** 생성한 상품 검색어. 앞쪽부터 시도한다 */
+  shoppingQueries: string[] | null;
   /**
    * eBay 응답이 정상적으로 도착했을 때만 채워지는 건수(0 포함).
    * null이면 "확인 안 됨"(키 미설정/호출 실패)이라 진짜 0건과 구분된다.

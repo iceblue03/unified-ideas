@@ -16,7 +16,11 @@ import { extractJson } from "./ai-json";
  */
 export interface GeneratedQueries {
   kiprisKeywords: string[];
+  /** 핵심 사물의 동의어. 같은 AND에 넣지 않고 사물 자리만 바꿔 따로 검색한다. */
+  kiprisAltKeywords: string[];
   shoppingQuery: string;
+  /** 구체적인 영어 상품명부터. 앞의 검색이 0건이면 다음을 시도한다. */
+  shoppingQueries: string[];
   warning?: string;
 }
 
@@ -28,35 +32,70 @@ export interface GeneratedQueries {
  * 쪼개 여러 키워드를 만들어주면, kipris.ts가 이미 갖고 있는 "키워드를 하나씩 줄여가며
  * 재시도" 로직이 정상적으로 동작할 여지가 생긴다.
  */
+const FALLBACK_SKIP = new Set(["위한", "위해", "통한", "그리고", "있는", "하는", "ai"]);
+
 function fallbackQueries(ideaText: string, warning: string): GeneratedQueries {
   const trimmed = ideaText.trim();
   const shoppingQuery = trimmed.slice(0, 60);
   const kiprisKeywords = trimmed
     .split(/\s+/)
-    .map((w) => w.trim())
-    .filter((w) => w.length > 1)
-    .slice(0, 4);
+    .map((w) => w.trim().replace(/(?:을|를|의|과|와)$/u, ""))
+    .filter((w) => w.length > 1 && !FALLBACK_SKIP.has(w.toLowerCase()))
+    .sort((a, b) => b.length - a.length)
+    .slice(0, 3);
   return {
     kiprisKeywords: kiprisKeywords.length > 0 ? kiprisKeywords : shoppingQuery ? [shoppingQuery] : [],
+    kiprisAltKeywords: [],
     shoppingQuery,
+    shoppingQueries: shoppingQuery ? [shoppingQuery] : [],
     warning,
   };
+}
+
+function asKeywordList(value: unknown, limit: number): string[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .filter((k): k is string => typeof k === "string")
+    .map((k) => k.trim().replace(/\s+/g, ""))
+    .filter((k) => k.length > 0)
+    .slice(0, limit);
+}
+
+function asShoppingQueries(value: unknown, single: string): string[] {
+  const fromList = Array.isArray(value)
+    ? value
+        .filter((k): k is string => typeof k === "string")
+        .map((k) => k.trim())
+        .filter((k) => k.length > 0)
+        .slice(0, 3)
+    : [];
+  const queries = fromList.length > 0 ? fromList : single ? [single] : [];
+  const seen = new Set<string>();
+  return queries.filter((q) => {
+    const key = q.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 export async function generateExternalQueries(ideaText: string): Promise<GeneratedQueries> {
   const prompt =
     `다음은 사용자가 구상 중인 아이디어입니다:\n"""\n${ideaText.slice(0, 1500)}\n"""\n\n` +
-    `이 아이디어를 검색용 정보 두 가지로 변환하세요.\n` +
-    `1. kiprisKeywords: 특허 검색(KIPRIS)에 쓸 핵심 키워드 2~4개의 배열. 아이디어에 들어가는 ` +
-    `핵심 기술/기능을 특허 명세서에 쓰일 법한 명사 위주로, 각 키워드는 공백 없는 단어 또는 ` +
-    `복합명사 하나로 표현하세요 (예: "라이다 기반 보행 보조 장치" → ["라이다", "보행보조장치", ` +
-    `"장애물감지"]). "시스템"/"장치"/"방법"처럼 너무 범용적인 단어만 단독으로 넣지 마세요.\n` +
-    `2. shoppingQuery: 쇼핑 검색 API(eBay, 미국/영어 마켓플레이스 기준)에 쓸 검색어. ` +
-    `반드시 영어로, 실제 소비자가 이 제품을 찾을 때 쓸 법한 자연스러운 상품명/카테고리 ` +
-    `키워드 2~4단어로 표현하세요 (예: "smart cane for visually impaired", 오답 예: ` +
-    `"시각장애인 스마트 지팡이" — 한국어는 영어 카탈로그와 거의 매칭되지 않습니다).\n\n` +
+    `이 아이디어를 검색용 정보로 변환하세요.\n` +
+    `1. kiprisKeywords: 특허 검색에 쓸 키워드 2~3개. 한 특허의 제목이나 초록에 함께 나올 ` +
+    `서로 다른 측면만 넣으세요. 첫 원소는 핵심 사물 그 자체(예: "안내지팡이", "흰지팡이"), ` +
+    `나머지는 기능이나 수단(예: "장애물감지", "보행안내")입니다. 각 원소는 공백 없는 복합명사입니다.\n` +
+    `- 동의어를 같은 배열에 넣지 마세요. "안내지팡이"와 "흰지팡이"는 동의어라 한 문서에 같이 안 나옵니다.\n` +
+    `- 사물을 다른 제품군으로 바꾸지 마세요. 점자 지팡이를 "점자디스플레이", "점자단말기", "노트북"으로 ` +
+    `바꾸는 것은 오답입니다.\n` +
+    `- "인공지능", "스마트", "시각장애인", "시스템", "장치", "방법"처럼 어디에나 붙는 말은 빼세요.\n` +
+    `2. kiprisAltKeywords: 핵심 사물의 동의어 0~2개(예: ["흰지팡이"]). 없으면 빈 배열.\n` +
+    `3. shoppingQueries: eBay(미국, 영어 카탈로그)에 넣을 상품명 2~3개. 반드시 영어이고, ` +
+    `소비자가 그 제품을 찾을 때 쓰는 2~4단어입니다. 더 구체적인 검색어를 앞에 두세요 ` +
+    `(예: ["smart cane for blind", "electronic white cane"]). 한국어 상품명은 오답입니다.\n\n` +
     `다른 설명 없이 아래 스키마의 순수 JSON 객체 "하나만" 출력하세요.\n\n` +
-    `{\n  "kiprisKeywords": ["...", "..."],\n  "shoppingQuery": "..."\n}`;
+    `{\n  "kiprisKeywords": ["...", "..."],\n  "kiprisAltKeywords": ["..."],\n  "shoppingQueries": ["...", "..."]\n}`;
 
   const res = await callOpenRouter(prompt, 8_000);
   if (!res.ok) {
@@ -69,24 +108,30 @@ export async function generateExternalQueries(ideaText: string): Promise<Generat
   }
 
   try {
-    const raw = JSON.parse(jsonStr) as { kiprisKeywords?: unknown; shoppingQuery?: unknown };
-    const kiprisKeywords = Array.isArray(raw.kiprisKeywords)
-      ? raw.kiprisKeywords
-          .filter((k): k is string => typeof k === "string")
-          .map((k) => k.trim().replace(/\s+/g, ""))
-          .filter((k) => k.length > 0)
-          .slice(0, 4)
-      : [];
-    const shoppingQuery = typeof raw.shoppingQuery === "string" ? raw.shoppingQuery.trim().slice(0, 100) : "";
+    const raw = JSON.parse(jsonStr) as {
+      kiprisKeywords?: unknown;
+      kiprisAltKeywords?: unknown;
+      shoppingQuery?: unknown;
+      shoppingQueries?: unknown;
+    };
+    const kiprisKeywords = asKeywordList(raw.kiprisKeywords, 3);
+    const kiprisAltKeywords = asKeywordList(raw.kiprisAltKeywords, 2).filter((k) => !kiprisKeywords.includes(k));
+    const singleShopping = typeof raw.shoppingQuery === "string" ? raw.shoppingQuery.trim().slice(0, 100) : "";
+    const shoppingQueries = asShoppingQueries(raw.shoppingQueries, singleShopping).map((q) => q.slice(0, 100));
+    const shoppingQuery = shoppingQueries[0] ?? "";
 
     if (kiprisKeywords.length === 0 && !shoppingQuery) {
       return fallbackQueries(ideaText, "검색어 생성 응답이 비어 있습니다.");
     }
 
     const fallback = ideaText.trim().slice(0, 60);
+    const keywords = kiprisKeywords.length > 0 ? kiprisKeywords : fallback ? [fallback] : [];
+    const queries = shoppingQueries.length > 0 ? shoppingQueries : fallback ? [fallback] : [];
     return {
-      kiprisKeywords: kiprisKeywords.length > 0 ? kiprisKeywords : fallback ? [fallback] : [],
-      shoppingQuery: shoppingQuery || fallback,
+      kiprisKeywords: keywords,
+      kiprisAltKeywords,
+      shoppingQuery: queries[0] ?? "",
+      shoppingQueries: queries,
     };
   } catch {
     return fallbackQueries(ideaText, "검색어 생성 응답을 해석하지 못했습니다.");

@@ -14,6 +14,10 @@ export interface ShoppingSearchResult {
   items: ShoppingProduct[];
   skipped?: boolean;
   error?: string;
+  /** 결과가 나온 검색어. 전부 0건이면 첫 검색어 */
+  queryUsed?: string | null;
+  /** 실제로 시도한 검색어, 시도 순서 */
+  queriesTried?: string[];
 }
 
 function isSandbox(): boolean {
@@ -180,10 +184,52 @@ export async function searchShopping(query: string, limit = 10): Promise<Shoppin
     console.log(
       `[ebay] query="${trimmed}" → ${rawItems.length}건 (관련 ${items.length}건${noiseCount > 0 ? `, 무관한 결과 ${noiseCount}건 제외` : ""})`,
     );
-    return { ok: true, items };
+    return { ok: true, items, queryUsed: trimmed, queriesTried: [trimmed] };
   } catch (e) {
     const error = e instanceof Error ? e.message : String(e);
     console.warn(`[ebay] 검색 중 오류: ${error}`);
     return { ok: false, items: [], error };
   }
+}
+
+/**
+ * 구체적인 상품명부터 순서대로 검색하고, 제목 필터를 통과한 상품이 나오는 첫 검색어에서 멈춘다.
+ * 한 검색어가 0건이어도 다음 검색어를 시도한다. 전부 0건이면 빈 목록을 반환한다.
+ */
+export async function searchShoppingQueries(queries: string[], limit = 10): Promise<ShoppingSearchResult> {
+  const unique: string[] = [];
+  const seen = new Set<string>();
+  for (const query of queries) {
+    const trimmed = query.trim();
+    const key = trimmed.toLowerCase();
+    if (!trimmed || seen.has(key)) continue;
+    seen.add(key);
+    unique.push(trimmed);
+  }
+  const planned = unique.slice(0, 3);
+  if (planned.length === 0) return { ok: true, items: [], queryUsed: null, queriesTried: [] };
+
+  const tried: string[] = [];
+  let lastError: string | undefined;
+  let sawOk = false;
+  for (const query of planned) {
+    const result = await searchShopping(query, limit);
+    tried.push(query);
+    if (result.skipped) {
+      return { ...result, queryUsed: query, queriesTried: tried };
+    }
+    if (!result.ok) {
+      lastError = result.error;
+      continue;
+    }
+    sawOk = true;
+    if (result.items.length > 0) {
+      return { ...result, queryUsed: query, queriesTried: tried };
+    }
+  }
+
+  if (!sawOk && lastError) {
+    return { ok: false, items: [], error: lastError, queryUsed: tried[0] ?? null, queriesTried: tried };
+  }
+  return { ok: true, items: [], queryUsed: tried[0] ?? null, queriesTried: tried };
 }

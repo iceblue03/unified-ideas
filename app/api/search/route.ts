@@ -2,8 +2,9 @@ import { after, NextRequest, NextResponse } from "next/server";
 import { getAllIdeas, getManifest } from "../../../lib/dataset";
 import { buildIndex, search, getDocs } from "../../../lib/similarity";
 import { generateExternalQueries } from "../../../lib/ai-query-gen";
-import { isShoppingConfigured, searchShopping } from "../../../lib/ebay-shopping";
+import { isShoppingConfigured, searchShoppingQueries } from "../../../lib/ebay-shopping";
 import { isPatentSearchConfigured, searchPatents } from "../../../lib/kipris";
+import { PARTIAL_OVERLAP_THRESHOLD } from "../../../lib/score-thresholds";
 import { rankAndDiagnose } from "../../../lib/ai-rank";
 import { callOpenRouter } from "../../../lib/openrouter";
 import { getSessionFromRequest } from "../../../lib/session";
@@ -62,6 +63,15 @@ export type SearchStreamEvent =
 
 function sortByBestScore<T extends UnifiedResultItem>(items: T[]): T[] {
   return [...items].sort((a, b) => (b.aiScore ?? b.score) - (a.aiScore ?? a.score));
+}
+
+/**
+ * 제품/특허 탭은 외부 검색이 넓게 가져온 목록이다. AI가 채점했으면 겹침이
+ * "낮음"인 항목은 탭에 남기지 않는다. 채점이 없으면 검색 결과 그대로 둔다.
+ */
+function dropLowRelevance<T extends UnifiedResultItem>(items: T[]): T[] {
+  if (!items.some((item) => item.aiScore !== undefined)) return items;
+  return items.filter((item) => (item.aiScore ?? 0) >= PARTIAL_OVERLAP_THRESHOLD);
 }
 
 /**
@@ -156,9 +166,12 @@ export async function POST(req: NextRequest) {
           patentAvailable: isPatentSearchConfigured(),
           kiprisQuery: null,
           kiprisKeywords: null,
+          kiprisAltKeywords: null,
+          kiprisAttempts: null,
           kiprisItemCount: null,
           kiprisFallbackUsed: false,
           shoppingQuery: null,
+          shoppingQueries: null,
           shoppingItemCount: null,
           report: null,
           warnings: [],
@@ -181,15 +194,27 @@ export async function POST(req: NextRequest) {
 
           const gen = await queryGenPromise!;
           aiMeta.kiprisKeywords = gen.kiprisKeywords;
+          aiMeta.kiprisAltKeywords = gen.kiprisAltKeywords;
           aiMeta.shoppingQuery = gen.shoppingQuery;
+          aiMeta.shoppingQueries = gen.shoppingQueries;
           if (gen.warning) aiMeta.warnings.push(gen.warning);
+          console.info(
+            "[search-record] keywords",
+            JSON.stringify({
+              query: query.slice(0, 200),
+              kiprisKeywords: gen.kiprisKeywords,
+              kiprisAltKeywords: gen.kiprisAltKeywords,
+              shoppingQueries: gen.shoppingQueries,
+              warning: gen.warning ?? null,
+            }),
+          );
           controller.enqueue(
             encodeEvent({ stage: "query_gen_done", kiprisKeywords: gen.kiprisKeywords, shoppingQuery: gen.shoppingQuery }),
           );
 
           const [shopRes, patRes] = await Promise.allSettled([
-            searchShopping(gen.shoppingQuery),
-            searchPatents(gen.kiprisKeywords),
+            searchShoppingQueries(gen.shoppingQueries),
+            searchPatents(gen.kiprisKeywords, 10, gen.kiprisAltKeywords),
           ]);
 
           if (shopRes.status === "fulfilled" && shopRes.value.ok) {
@@ -200,6 +225,10 @@ export async function POST(req: NextRequest) {
             }));
             // 성공했을 때만 채운다 — 그래야 "확인 안 됨"(null)과 "확인했지만 0건"이 구분된다.
             aiMeta.shoppingItemCount = shopRes.value.items.length;
+            aiMeta.shoppingQuery = shopRes.value.queryUsed ?? gen.shoppingQuery;
+            if (shopRes.value.queriesTried && shopRes.value.queriesTried.length > 0) {
+              aiMeta.shoppingQueries = shopRes.value.queriesTried;
+            }
           } else if (aiMeta.shoppingAvailable) {
             const detail =
               shopRes.status === "fulfilled"
@@ -221,6 +250,7 @@ export async function POST(req: NextRequest) {
             aiMeta.kiprisQuery = patRes.value.queryUsed ?? null;
             aiMeta.kiprisItemCount = patRes.value.items.length;
             aiMeta.kiprisFallbackUsed = patRes.value.fallbackUsed ?? false;
+            aiMeta.kiprisAttempts = patRes.value.attempts ?? null;
           } else if (aiMeta.patentAvailable) {
             aiMeta.warnings.push("특허 검색을 불러오지 못했습니다.");
           }
@@ -239,8 +269,10 @@ export async function POST(req: NextRequest) {
             if (ranked.warning) aiMeta.warnings.push(ranked.warning);
             // aiScore가 채워졌으면 그 기준으로, 실패해 못 채워졌으면 원래 score 기준으로 정렬(no-op)
             competitionItems = sortByBestScore(competitionItems);
-            productItems = sortByBestScore(productItems);
-            patentItems = sortByBestScore(patentItems);
+            productItems = dropLowRelevance(sortByBestScore(productItems));
+            patentItems = dropLowRelevance(sortByBestScore(patentItems));
+            if (aiMeta.shoppingItemCount !== null) aiMeta.shoppingItemCount = productItems.length;
+            if (aiMeta.kiprisItemCount !== null) aiMeta.kiprisItemCount = patentItems.length;
           }
           controller.enqueue(encodeEvent({ stage: "ai_rank_done" }));
         }
@@ -260,6 +292,25 @@ export async function POST(req: NextRequest) {
           aiMeta,
         };
 
+        console.info(
+          "[search-record] results",
+          JSON.stringify({
+            query: query.slice(0, 200),
+            kiprisKeywords: aiMeta.kiprisKeywords,
+            kiprisAltKeywords: aiMeta.kiprisAltKeywords,
+            kiprisAttempts: aiMeta.kiprisAttempts,
+            kiprisQuery: aiMeta.kiprisQuery,
+            kiprisFallbackUsed: aiMeta.kiprisFallbackUsed,
+            patentCount: patentItems.length,
+            patentTitles: patentItems.slice(0, 5).map((item) => item.patent.title),
+            shoppingQueries: aiMeta.shoppingQueries,
+            shoppingQuery: aiMeta.shoppingQuery,
+            productCount: productItems.length,
+            productTitles: productItems.slice(0, 5).map((item) => item.product.title),
+            warnings: aiMeta.warnings,
+          }),
+        );
+
         after(() =>
           logSearch({
             timestamp: new Date(startTs).toISOString(),
@@ -274,7 +325,12 @@ export async function POST(req: NextRequest) {
             kiprisQuery: aiMeta.kiprisQuery,
             kiprisItemCount: aiMeta.kiprisItemCount,
             kiprisFallbackUsed: aiMeta.kiprisFallbackUsed,
+            kiprisAttempts: aiMeta.kiprisAttempts,
+            kiprisAltKeywords: aiMeta.kiprisAltKeywords,
             shoppingQuery: aiMeta.shoppingQuery,
+            shoppingQueries: aiMeta.shoppingQueries,
+            patentTitles: patentItems.slice(0, 5).map((item) => item.patent.title),
+            productTitles: productItems.slice(0, 5).map((item) => item.product.title),
             verdict: aiMeta.report?.verdict ?? "none",
             aiSummary: (aiMeta.report?.summary ?? "").slice(0, 300),
             latencyMs: Date.now() - startTs,
