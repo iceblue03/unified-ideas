@@ -1,5 +1,6 @@
 import { callOpenRouter } from "./openrouter";
 import { extractJson } from "./ai-json";
+import { CANE_LEAK_RE, fallbackKiprisKeywords, groundKiprisTerms } from "./relevance";
 
 /**
  * AI 호출 #1: 사용자의 아이디어 설명 원문은 KIPRIS나 쇼핑 API에 그대로 넣기엔
@@ -32,12 +33,10 @@ export interface GeneratedQueries {
  * 쪼개 여러 키워드를 만들어주면, kipris.ts가 이미 갖고 있는 "키워드를 하나씩 줄여가며
  * 재시도" 로직이 정상적으로 동작할 여지가 생긴다.
  */
-const FALLBACK_SKIP = new Set(["위한", "위해", "통한", "그리고", "있는", "하는", "ai"]);
-
 /** 아이디어 본문이 지팡이·시각장애를 말할 때만 쇼핑/특허 검색어에 이 주제를 허용한다. */
 const CANE_IDEA_RE = /지팡이|쉽자|시각\s*장애|visually\s+impaired|white\s+cane|\bcane\b|\bblind\b/i;
-const CANE_QUERY_RE = /visually\s+impaired|white\s+cane|\bcane\b|\bblind\b/i;
-const CANE_KEYWORD_RE = /지팡이|쉽자|시각\s*장애|visually\s*impaired|white\s*cane|cane|blind/i;
+const CANE_QUERY_RE = CANE_LEAK_RE;
+const CANE_KEYWORD_RE = CANE_LEAK_RE;
 
 export function ideaMentionsCane(ideaText: string): boolean {
   return CANE_IDEA_RE.test(ideaText);
@@ -83,12 +82,7 @@ export function guardShoppingQueries(ideaText: string, queries: string[]): strin
 function fallbackQueries(ideaText: string, warning: string): GeneratedQueries {
   const trimmed = ideaText.trim();
   const shoppingQuery = trimmed.slice(0, 60);
-  const kiprisKeywords = trimmed
-    .split(/\s+/)
-    .map((w) => w.trim().replace(/(?:을|를|의|과|와)$/u, ""))
-    .filter((w) => w.length > 1 && !FALLBACK_SKIP.has(w.toLowerCase()))
-    .sort((a, b) => b.length - a.length)
-    .slice(0, 3);
+  const kiprisKeywords = fallbackKiprisKeywords(trimmed);
   return {
     kiprisKeywords: kiprisKeywords.length > 0 ? kiprisKeywords : shoppingQuery ? [shoppingQuery] : [],
     kiprisAltKeywords: [],
@@ -138,9 +132,10 @@ export function buildExternalQueryPrompt(ideaText: string): string {
     `그 일을 하려는 사람이 사는 가장 가까운 물리 제품이어야 합니다. ` +
     `순수 서비스면 그 서비스의 일(길찾기, 안전 등)에 해당하는 제품을 고르세요. 정해진 다른 분야로 도망가지 마세요. ` +
     `검색어에 AI를 넣지 마세요. 한국어 검색어는 오답입니다.\n` +
-    `cane, blind, visually impaired, white cane, 지팡이는 아이디어 자체가 흰지팡이 또는 안내지팡이일 때만 쓰세요. ` +
-    `그 경우에만 예: ["smart cane for visually impaired", "electronic white cane", "blind walking stick"]. ` +
-    `지팡이가 아닌 아이디어에 이 예시를 복사하면 오답입니다.\n\n` +
+    (ideaMentionsCane(ideaText)
+      ? `이 아이디어는 안내지팡이입니다. 예: ["smart cane for visually impaired", "electronic white cane", "blind walking stick"].\n`
+      : `cane, blind, blindness, visually impaired, white cane, walking stick, mobility guide, guide device, 지팡이는 아이디어 자체가 흰지팡이 또는 안내지팡이일 때만 쓰세요. 이 아이디어에는 넣지 마세요.\n`) +
+    `\n` +
     `다른 설명 없이 아래 스키마의 순수 JSON 객체 "하나만" 출력하세요.\n\n` +
     `{\n  "kiprisKeywords": ["..."],\n  "kiprisAltKeywords": ["...", "..."],\n  "shoppingQueries": ["...", "...", "..."]\n}`
   );
@@ -189,10 +184,10 @@ function finalizeQueries(ideaText: string, parsed: ParsedQueries): GeneratedQuer
     shoppingQueries = shoppingQueries.filter((query) => !shoppingQueryMentionsCane(query));
   }
   if (shoppingQueries.length === 0) shoppingQueries = deriveNonCaneShoppingQueries(ideaText);
-  if (kiprisKeywords.length === 0) kiprisKeywords = fallbackQueries(ideaText, "").kiprisKeywords;
+  const grounded = groundKiprisTerms(ideaText, kiprisKeywords, kiprisAltKeywords);
   return {
-    kiprisKeywords,
-    kiprisAltKeywords,
+    kiprisKeywords: grounded.kiprisKeywords,
+    kiprisAltKeywords: grounded.kiprisAltKeywords,
     shoppingQuery: shoppingQueries[0] ?? "",
     shoppingQueries,
   };

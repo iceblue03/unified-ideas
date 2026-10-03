@@ -1,3 +1,5 @@
+import { ideaMentionsCane } from "./ai-query-gen";
+import { textMentionsCaneLeak } from "./relevance";
 import type { ShoppingProduct } from "./types";
 
 /**
@@ -255,10 +257,12 @@ export function filterProductsByIdeaOverlap(
   queries: string[],
 ): ShoppingProduct[] {
   const ideaTokens = new Set(contentTokens(ideaText));
+  const allowCane = ideaMentionsCane(ideaText);
   const queryTokens = new Set(
-    queries.filter((query) => !/\b(cane|blind)\b|visually\s+impaired|white\s+cane/i.test(query)).flatMap(contentTokens),
+    queries.filter((query) => allowCane || !textMentionsCaneLeak(query)).flatMap(contentTokens),
   );
   return items.filter((item) => {
+    if (!allowCane && textMentionsCaneLeak(item.title)) return false;
     const titleTokens = contentTokens(item.title);
     return tokensOverlap(titleTokens, ideaTokens) || tokensOverlap(titleTokens, queryTokens);
   });

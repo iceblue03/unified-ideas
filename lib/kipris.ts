@@ -1,4 +1,5 @@
 import { XMLParser } from "fast-xml-parser";
+import { boundedIncludes, ideaNouns, sharesIdeaFocusInTitle } from "./relevance";
 import type { PatentItem } from "./types";
 
 /**
@@ -238,26 +239,25 @@ function buildAndQuery(keywords: string[]): string {
  * 검색 자체는 정상 동작하는데 이 필터가 진짜 결과까지 다 걸러내 버리는 것과 같다.
  * 양쪽 문자열에서 공백을 제거하고 비교해 이 오탐을 없앤다.
  */
-function normalizeForMatch(s: string): string {
-  return s.replace(/\s+/g, "");
-}
-
-function keywordMatches(haystack: string, keyword: string, ideaText: string): boolean {
-  const norm = normalizeForMatch(keyword);
+function keywordMatches(text: string, keyword: string, ideaText: string): boolean {
+  const norm = keyword.trim();
   if (!norm) return false;
-  if (haystack.includes(norm)) return true;
+  // "레고"가 "레고라페닙" "오레고닌"에 끼는 부분 문자열은 같은 사물이 아니다.
+  if (boundedIncludes(text, norm)) return true;
   // 긴 합성어가 제목에 그대로 없으면, 아이디어와 겹치는 조각이 모두 있을 때만 살린다.
   // 서비스·시스템처럼 어디서나 나오는 말만 겹치면 버린다.
   const parts = groundedKeywordSplits(keyword, ideaText).filter((part) => !isCommonKiprisWord(part));
   if (parts.length === 0) return false;
-  return parts.every((part) => haystack.includes(normalizeForMatch(part)));
+  return parts.every((part) => boundedIncludes(text, part));
 }
 
 export function patentIsRelevant(item: PatentItem, keywords: string[], ideaText = ""): boolean {
-  const haystack = normalizeForMatch(`${item.title} ${item.summary ?? ""}`);
+  const raw = `${item.title} ${item.summary ?? ""}`;
   // AND로 보낸 키워드가 제목/초록에 모두 있어야 한다. 하나만 겹치는 항목을
   // 통과시키면, 넓은 단어 하나가 점자 디스플레이처럼 다른 제품군을 통째로 살린다.
-  return keywords.every((keyword) => keywordMatches(haystack, keyword, ideaText));
+  if (!keywords.every((keyword) => keywordMatches(raw, keyword, ideaText))) return false;
+  if (!ideaText.trim() || ideaNouns(ideaText).length === 0) return true;
+  return sharesIdeaFocusInTitle(ideaText, item.title, item.summary ?? "");
 }
 
 export interface PatentAttemptOutcome {

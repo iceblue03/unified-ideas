@@ -1,5 +1,7 @@
 import { callOpenRouter } from "./openrouter";
 import { extractJson } from "./ai-json";
+import { ideaMentionsCane } from "./ai-query-gen";
+import { sharesIdeaFocusInTitle, textMentionsCaneLeak } from "./relevance";
 import { overlapTier } from "./score-thresholds";
 import { CATEGORY_LABEL, formatMoney } from "./types";
 import type { AiReport, AiTopMatchCard, UnifiedResultItem, Verdict } from "./types";
@@ -84,17 +86,17 @@ function fallbackReport(pool: UnifiedResultItem[], rawText?: string): AiReport {
   };
 }
 
-function contentTokens(text: string): string[] {
-  return text
-    .toLowerCase()
-    .split(/[^\p{L}\p{N}]+/u)
-    .filter((token) => token.length >= 3);
+/** 대회·특허는 사물 명사가 맞을 때만 근거가 된다. 제품은 지팡이 검색어가 샌 경우만 뺀다. */
+export function itemSupportsIdea(idea: string, item: UnifiedResultItem): boolean {
+  const title = itemTitle(item);
+  if (item.type === "product") return ideaMentionsCane(idea) || !textMentionsCaneLeak(title);
+  const summary = itemSummary(item) ?? "";
+  return sharesIdeaFocusInTitle(idea, title, summary);
 }
 
-/** 아이디어의 내용어가 제목에 들어 있으면, 그 항목을 없는 것처럼 말하면 안 된다. */
-function titleSharesContent(idea: string, title: string): boolean {
-  const norm = title.toLowerCase().replace(/\s+/g, "");
-  return contentTokens(idea).some((token) => norm.includes(token));
+function citesTitle(summary: string, title: string): boolean {
+  const snippet = title.trim().slice(0, 18);
+  return snippet.length >= 4 && summary.includes(snippet);
 }
 
 function deniesOverlap(summary: string): boolean {
@@ -118,7 +120,7 @@ export async function rankAndDiagnose(ideaText: string, pool: UnifiedResultItem[
     return { pool, report: null, warning: "비교할 후보가 없습니다." };
   }
 
-  const cited = pool.find((item) => titleSharesContent(ideaText, itemTitle(item)));
+  const cited = pool.find((item) => itemSupportsIdea(ideaText, item));
   const prompt =
     `당신은 아이디어와 이미 검색된 사례를 내용으로 비교합니다. 점수를 매기거나 퍼센트를 만들지 마세요.\n\n` +
     `사용자 아이디어:\n"""\n${ideaText.slice(0, 1500)}\n"""\n\n` +
@@ -127,8 +129,10 @@ export async function rankAndDiagnose(ideaText: string, pool: UnifiedResultItem[
     `[반드시 지킬 것]\n` +
     `- 목록에 적힌 제목과 설명만 근거로 쓰세요. 없는 기술을 지어내지 마세요.\n` +
     `- 대회, 제품, 특허를 모두 보세요. 한 묶음만 보고 결론내지 마세요.\n` +
-    `- 같은 사물이나 같은 기능이 제목이나 설명에 있으면 겹친다고 말하세요. ` +
+    `- 같은 사물이 제목이나 설명에 있으면 겹친다고 말하세요. ` +
     `예를 들어 아이디어가 점자 안내 지팡이이고 수상작이나 특허 제목에 점자 지팡이, 안내 지팡이, 흰지팡이가 있으면 그 항목을 근거로 쓰세요.\n` +
+    `- 입력하면 결과가 나온다, 거래한다, 예약한다처럼 방식만 비슷하면 겹침이 아닙니다. ` +
+    `버스 여행 추천은 손글씨 폰트가 아니고, 중고차 거래는 교재 교환이 아니고, 관광 앱의 자리 예약은 축제 대기줄 예약이 아닙니다.\n` +
     `- 목록 아래쪽의 다른 주제(임신 테스트, 가격 평가, 점자 번역 펜처럼 지팡이가 아닌 것)만 보고 ` +
     `전체가 새롭다고 쓰지 마세요.\n` +
     `- verdict는 exists(같은 목적의 사물이나 서비스가 목록에 있음), partial(일부 요소만 같음), ` +
@@ -182,6 +186,7 @@ export async function rankAndDiagnose(ideaText: string, pool: UnifiedResultItem[
         const idx = Number(index);
         if (!Number.isInteger(idx) || idx < 1 || idx > pool.length) continue;
         const item = pool[idx - 1];
+        if (!itemSupportsIdea(ideaText, item)) continue;
         topMatches.push({
           type: item.type,
           title: itemTitle(item),
@@ -191,6 +196,20 @@ export async function rankAndDiagnose(ideaText: string, pool: UnifiedResultItem[
           sourceUrl: itemSourceUrl(item),
         });
       }
+    }
+
+    const supporters = pool.filter((item) => itemSupportsIdea(ideaText, item));
+    const summaryCitesSupport = supporters.some((item) => citesTitle(summary, itemTitle(item)));
+    const summaryCitesMiss = pool.some(
+      (item) => !itemSupportsIdea(ideaText, item) && citesTitle(summary, itemTitle(item)),
+    );
+    if ((verdict === "exists" || verdict === "partial") && supporters.length === 0) {
+      verdict = "blue_ocean";
+      summary = "검색된 항목에서 이 아이디어와 같은 사물을 찾지 못했습니다.";
+    } else if (summaryCitesMiss && !summaryCitesSupport && supporters[0]) {
+      const evidence = supporters[0];
+      verdict = "partial";
+      summary = `${itemTitle(evidence)}의 제목이 아이디어와 같은 사물을 담고 있습니다. 이 항목은 ${CATEGORY_LABEL[evidence.type]} 검색 결과에 있습니다.`;
     }
 
     if (!summary && tags.length === 0 && topMatches.length === 0) {

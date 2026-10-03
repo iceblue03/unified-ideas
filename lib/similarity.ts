@@ -18,6 +18,8 @@
  * 토글을 켰을 때만 app/api/search가 이 결과에 KIPRIS/쇼핑 검색을 더해 LLM으로 재평가한다.
  */
 
+import { chooseAnchorNouns, ideaNouns, sharesIdeaFocusInTitle } from "./relevance";
+
 const STOPWORDS = new Set([
   "위한",
   "위해",
@@ -173,7 +175,18 @@ export function search<T>(
   subset: IndexedDoc<T>[],
   topN: number,
 ): ScoredMatch<T>[] {
-  const scored = subset.map((doc) => ({
+  let pool = subset;
+  if (ideaNouns(query).length > 0) {
+    const anchors = chooseAnchorNouns(
+      query,
+      subset.map((doc) => doc.titleText),
+    );
+    // 사물 명사가 있는데 그 말과 맞는 문서가 없으면, 점수만 높은 다른 주제를 채우지 않는다.
+    if (anchors.length === 0) return [];
+    pool = subset.filter((doc) => sharesIdeaFocusInTitle(query, doc.titleText, doc.bodyText, anchors));
+  }
+
+  const scored = pool.map((doc) => ({
     item: doc.item,
     score: scoreText(index, query, doc.titleText, doc.bodyText),
   }));
