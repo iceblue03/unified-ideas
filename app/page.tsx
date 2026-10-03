@@ -14,7 +14,7 @@ import { AiToggle } from "./components/AiToggle";
 import { AiReportPanel } from "./components/AiReportPanel";
 import { CategoryTabs } from "./components/CategoryTabs";
 import { MatchCard, PatentCard, ProductCard } from "./components/ResultCards";
-import { SearchProgress, type SearchStage } from "./components/SearchProgress";
+import { idleSearchRun, runningSearchRun, SearchProgress, type SearchRunState, type SearchStepId, type SearchStepPhase } from "./components/SearchProgress";
 import { GoogleSignInButton, type GoogleUser } from "./components/GoogleSignInButton";
 import { SearchIcon, Spinner, TierIcon } from "./components/ui";
 import { cn } from "@/lib/utils";
@@ -41,7 +41,7 @@ const FLIP_WORDS = ["대회 수상작", "유사 제품", "관련 특허"];
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const [stage, setStage] = useState<SearchStage>("idle");
+  const [run, setRun] = useState<SearchRunState>(idleSearchRun);
   const [result, setResult] = useState<SearchResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [manifest, setManifest] = useState<Manifest | null>(null);
@@ -74,14 +74,18 @@ export default function Home() {
   const totalItems = competitions.reduce((sum, c) => sum + c.count, 0);
 
   const shownCount = result ? result.results[activeCategory].length : 0;
-  const isSearching = stage !== "idle" && stage !== "done" && stage !== "stream_error";
+  const isSearching = run.status === "running";
   const canSearch = !isSearching && query.trim().length >= 2;
   // 검색이 시작되면(진행·결과·스트림 오류) 검색창을 상단 미니 바로 접는다.
-  const isCompact = stage !== "idle" || result !== null;
+  const isCompact = run.status !== "idle" || result !== null;
+
+  function patchStep(id: SearchStepId, phase: SearchStepPhase) {
+    setRun((prev) => ({ ...prev, steps: { ...prev.steps, [id]: phase } }));
+  }
 
   async function handleSearch() {
     if (!canSearch) return;
-    setStage("competition");
+    setRun(runningSearchRun(useAi));
     setError(null);
     setActiveCategory("competition");
     setResult(null);
@@ -94,12 +98,12 @@ export default function Home() {
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         setError(data.error ?? "검색 중 오류가 발생했습니다");
-        setStage("idle");
+        setRun(idleSearchRun());
         return;
       }
       if (!res.body) {
         setError("검색 중 오류가 발생했습니다");
-        setStage("idle");
+        setRun(idleSearchRun());
         return;
       }
 
@@ -125,25 +129,46 @@ export default function Home() {
             continue;
           }
           switch (event.stage) {
+            case "competition_started":
+              patchStep("competition", "active");
+              break;
+            case "query_gen_started":
+              patchStep("query_gen", "active");
+              break;
             case "competition_done":
-              setStage("query_gen");
+              patchStep("competition", "done");
               break;
             case "query_gen_done":
-              setStage("external");
+              patchStep("query_gen", "done");
+              break;
+            case "external_started":
+              setRun((prev) => ({
+                ...prev,
+                steps: { ...prev.steps, shopping: "active", patent: "active" },
+              }));
+              break;
+            case "shopping_done":
+              patchStep("shopping", "done");
+              break;
+            case "patent_done":
+              patchStep("patent", "done");
               break;
             case "external_search_done":
-              setStage("ranking");
+              setRun((prev) => ({
+                ...prev,
+                steps: { ...prev.steps, shopping: "done", patent: "done", ranking: "active" },
+              }));
               break;
             case "ai_rank_done":
               break;
             case "complete":
               setResult(event.result);
-              setStage("done");
+              setRun((prev) => ({ ...prev, status: "done" }));
               sawTerminalEvent = true;
               break;
             case "error":
               setError(event.message);
-              setStage("idle");
+              setRun(idleSearchRun());
               sawTerminalEvent = true;
               break;
           }
@@ -152,16 +177,16 @@ export default function Home() {
 
       if (!sawTerminalEvent) {
         setError("검색이 중단되었습니다. 다시 시도해주세요.");
-        setStage("stream_error");
+        setRun((prev) => ({ ...prev, status: "stream_error" }));
       }
     } catch (e) {
       setError(e instanceof Error ? e.message : "검색 중 오류가 발생했습니다");
-      setStage("stream_error");
+      setRun((prev) => ({ ...prev, status: "stream_error" }));
     }
   }
 
   function expandSearch() {
-    setStage("idle");
+    setRun(idleSearchRun());
     setResult(null);
     setError(null);
   }
@@ -355,7 +380,7 @@ export default function Home() {
             {error ? (
               <p className="flex items-center gap-2 text-xs font-medium text-rose-600" role="alert">
                 {error}
-                {stage === "stream_error" && (
+                {run.status === "stream_error" && (
                   <button type="button" onClick={handleSearch} className="underline hover:text-rose-700">
                     다시 시도
                   </button>
@@ -372,7 +397,7 @@ export default function Home() {
 
         {isSearching && !result && (
           useAi ? (
-            <SearchProgress stage={stage} />
+            <SearchProgress run={run} />
           ) : (
             <p className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
               <Spinner />
@@ -414,9 +439,12 @@ export default function Home() {
                   <p>
                     특허 키워드:{" "}
                     <code className="text-foreground/70">{result.aiMeta.kiprisKeywords.join(", ")}</code>
-                    {result.aiMeta.kiprisAltKeywords && result.aiMeta.kiprisAltKeywords.length > 0 && (
-                      <span> · 동의어 {result.aiMeta.kiprisAltKeywords.join(", ")}</span>
-                    )}
+                  </p>
+                )}
+                {result.aiMeta.kiprisAltKeywords && result.aiMeta.kiprisAltKeywords.length > 0 && (
+                  <p>
+                    동의어:{" "}
+                    <code className="text-foreground/70">{result.aiMeta.kiprisAltKeywords.join(", ")}</code>
                   </p>
                 )}
                 {result.aiMeta.patentAvailable && result.aiMeta.kiprisQuery && (
