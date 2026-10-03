@@ -41,13 +41,30 @@ export function isShoppingConfigured(): boolean {
 }
 
 let cachedToken: { value: string; expiresAt: number } | null = null;
+let tokenInflight: Promise<string | null> | null = null;
 
 async function getAccessToken(clientId: string, clientSecret: string): Promise<string | null> {
   if (cachedToken && cachedToken.expiresAt > Date.now() + 30_000) {
     return cachedToken.value;
   }
+  if (tokenInflight) return tokenInflight;
 
   const basic = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+  tokenInflight = requestAccessToken(basic).finally(() => {
+    tokenInflight = null;
+  });
+  return tokenInflight;
+}
+
+/** 검색어 생성과 겹쳐 토큰을 미리 받는다. 이미 받은 토큰이나 진행 중인 발급이 있으면 재요청하지 않는다. */
+export function prefetchEbayToken(): void {
+  const clientId = process.env.EBAY_CLIENT_ID;
+  const clientSecret = process.env.EBAY_CLIENT_SECRET;
+  if (!clientId || !clientSecret) return;
+  void getAccessToken(clientId, clientSecret);
+}
+
+async function requestAccessToken(basic: string): Promise<string | null> {
   try {
     const res = await fetch(tokenUrl(), {
       method: "POST",
@@ -192,6 +209,75 @@ export async function searchShopping(query: string, limit = 10): Promise<Shoppin
   }
 }
 
+const SHOPPING_TOKEN_SKIP = new Set([
+  "for",
+  "the",
+  "and",
+  "with",
+  "sale",
+  "new",
+  "from",
+  "that",
+  "this",
+  "your",
+  "위한",
+  "통해",
+  "있는",
+  "하는",
+  "그리고",
+]);
+
+function contentTokens(text: string): string[] {
+  return text
+    .toLowerCase()
+    .split(/[^\p{L}\p{N}]+/u)
+    .filter((token) => token.length >= 2 && !SHOPPING_TOKEN_SKIP.has(token));
+}
+
+function tokensOverlap(left: string[], right: Set<string>): boolean {
+  for (const token of left) {
+    if (right.has(token)) return true;
+    if (token.length < 3) continue;
+    for (const other of right) {
+      if (other.length >= 3 && (token.includes(other) || other.includes(token))) return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * 제목이 사용자 아이디어와도, 지팡이가 아닌 쇼핑 검색어와도 안 겹치면 버린다.
+ * 전부 걸러지면 다른 분야 목록을 남기지 않고 빈 배열을 돌려준다.
+ */
+export function filterProductsByIdeaOverlap(
+  items: ShoppingProduct[],
+  ideaText: string,
+  queries: string[],
+): ShoppingProduct[] {
+  const ideaTokens = new Set(contentTokens(ideaText));
+  const queryTokens = new Set(
+    queries.filter((query) => !/\b(cane|blind)\b|visually\s+impaired|white\s+cane/i.test(query)).flatMap(contentTokens),
+  );
+  return items.filter((item) => {
+    const titleTokens = contentTokens(item.title);
+    return tokensOverlap(titleTokens, ideaTokens) || tokensOverlap(titleTokens, queryTokens);
+  });
+}
+
+/** 중복을 빼고 AI를 지운 뒤 최대 3개. 호출 순서와 무관하게 같은 입력이면 같은 목록이다. */
+export function planShoppingQueries(queries: string[]): string[] {
+  const unique: string[] = [];
+  const seen = new Set<string>();
+  for (const query of queries) {
+    const trimmed = query.replace(/\bAI\b/gi, " ").replace(/\s+/g, " ").trim();
+    const key = trimmed.toLowerCase();
+    if (!trimmed || seen.has(key)) continue;
+    seen.add(key);
+    unique.push(trimmed);
+  }
+  return unique.slice(0, 3);
+}
+
 function productKey(title: string): string {
   const skip = new Set(["for", "the", "and", "with", "sale", "new", "us", "ffs"]);
   return title
@@ -203,35 +289,28 @@ function productKey(title: string): string {
 }
 
 /**
- * 준비한 영어 검색어를 모두 친다. 한 검색어가 10건을 채우면 다음 검색어가 실행되지 않아,
- * "cane for blind"만 남고 "electronic white cane"이 로그에 안 찍힌 적이 있다.
- * 검색어마다 서로 다른 상품을 최대 4개만 넣고 다음 검색어로 넘어간다.
+ * 준비한 영어 검색어를 동시에 친다. 검색어마다 서로 다른 상품을 최대 4개만 합친다.
+ * 한 검색어가 먼저 끝나도 나머지를 기다렸다가 합치므로, 벽시계 시간은 가장 느린 검색어에 가깝다.
  */
-export async function searchShoppingQueries(queries: string[], limit = 10): Promise<ShoppingSearchResult> {
-  const unique: string[] = [];
-  const seen = new Set<string>();
-  for (const query of queries) {
-    const trimmed = query.replace(/\bAI\b/gi, " ").replace(/\s+/g, " ").trim();
-    const key = trimmed.toLowerCase();
-    if (!trimmed || seen.has(key)) continue;
-    seen.add(key);
-    unique.push(trimmed);
-  }
-  const planned = unique.slice(0, 3);
+export async function searchShoppingQueries(
+  queries: string[],
+  limit = 10,
+  ideaText = "",
+): Promise<ShoppingSearchResult> {
+  const planned = planShoppingQueries(queries);
   if (planned.length === 0) return { ok: true, items: [], queryUsed: null, queriesTried: [] };
 
-  const tried: string[] = [];
+  const results = await Promise.all(planned.map((query) => searchShopping(query, limit)));
+  if (results.some((result) => result.skipped)) {
+    const skipped = results.find((result) => result.skipped);
+    return { ok: true, items: [], skipped: true, queryUsed: planned[0] ?? null, queriesTried: planned, error: skipped?.error };
+  }
+
   const merged: ShoppingProduct[] = [];
   const titleSeen = new Set<string>();
   let lastError: string | undefined;
   let sawOk = false;
-  for (const query of planned) {
-    if (merged.length >= limit) break;
-    const result = await searchShopping(query, limit);
-    tried.push(query);
-    if (result.skipped) {
-      return { ...result, items: merged, queryUsed: tried[0] ?? query, queriesTried: tried };
-    }
+  for (const result of results) {
     if (!result.ok) {
       lastError = result.error;
       continue;
@@ -247,12 +326,13 @@ export async function searchShoppingQueries(queries: string[], limit = 10): Prom
       added += 1;
     }
   }
-  if (merged.length > 0) {
-    return { ok: true, items: merged, queryUsed: tried[0] ?? null, queriesTried: tried };
-  }
 
-  if (!sawOk && lastError) {
-    return { ok: false, items: [], error: lastError, queryUsed: tried[0] ?? null, queriesTried: tried };
+  const items = ideaText.trim() ? filterProductsByIdeaOverlap(merged, ideaText, planned) : merged;
+  if (items.length > 0) {
+    return { ok: true, items, queryUsed: planned[0] ?? null, queriesTried: planned };
   }
-  return { ok: true, items: [], queryUsed: tried[0] ?? null, queriesTried: tried };
+  if (!sawOk && lastError) {
+    return { ok: false, items: [], error: lastError, queryUsed: planned[0] ?? null, queriesTried: planned };
+  }
+  return { ok: true, items: [], queryUsed: planned[0] ?? null, queriesTried: planned };
 }

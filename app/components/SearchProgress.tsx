@@ -3,19 +3,49 @@
 import { motion } from "motion/react";
 import { CheckIcon, Spinner } from "./ui";
 
-export type SearchStage = "idle" | "competition" | "query_gen" | "external" | "ranking" | "done" | "stream_error";
+export type SearchStepId = "competition" | "query_gen" | "shopping" | "patent" | "ranking";
+export type SearchStepPhase = "pending" | "active" | "done";
 
-const STEPS: { stage: SearchStage; label: string; hint: string }[] = [
-  { stage: "competition", label: "대회 검색", hint: "수상작 데이터셋에서 유사도 검색" },
-  { stage: "query_gen", label: "검색어 생성", hint: "특허·제품용 쿼리 정리" },
-  { stage: "external", label: "특허·제품 검색", hint: "KIPRIS · 쇼핑 API 조회" },
-  { stage: "ranking", label: "AI 분석", hint: "관련성 기준 종합 진단" },
+export type SearchRunState = {
+  status: "idle" | "running" | "done" | "stream_error";
+  steps: Record<SearchStepId, SearchStepPhase>;
+};
+
+const EMPTY_STEPS: Record<SearchStepId, SearchStepPhase> = {
+  competition: "pending",
+  query_gen: "pending",
+  shopping: "pending",
+  patent: "pending",
+  ranking: "pending",
+};
+
+export function idleSearchRun(): SearchRunState {
+  return { status: "idle", steps: { ...EMPTY_STEPS } };
+}
+
+export function runningSearchRun(useAi: boolean): SearchRunState {
+  return {
+    status: "running",
+    steps: {
+      competition: "active",
+      query_gen: useAi ? "active" : "pending",
+      shopping: "pending",
+      patent: "pending",
+      ranking: "pending",
+    },
+  };
+}
+
+const STEPS: { id: SearchStepId; label: string; hint: string }[] = [
+  { id: "competition", label: "대회 검색", hint: "수상작 데이터셋에서 유사도 검색" },
+  { id: "query_gen", label: "검색어 생성", hint: "특허·제품용 쿼리 정리" },
+  { id: "shopping", label: "제품 검색", hint: "쇼핑 API 조회" },
+  { id: "patent", label: "특허 검색", hint: "KIPRIS 조회" },
+  { id: "ranking", label: "AI 분석", hint: "관련성 기준 종합 진단" },
 ];
 
-const STEP_ORDER: SearchStage[] = STEPS.map((s) => s.stage);
-
-export function SearchProgress({ stage }: { stage: SearchStage }) {
-  const currentIndex = STEP_ORDER.indexOf(stage);
+export function SearchProgress({ run }: { run: SearchRunState }) {
+  const allDone = run.status === "done";
 
   return (
     <motion.div
@@ -26,10 +56,11 @@ export function SearchProgress({ stage }: { stage: SearchStage }) {
       <p className="mb-3 text-xs font-semibold tracking-wide text-muted-foreground uppercase">검색 진행</p>
       <ol className="space-y-3">
         {STEPS.map((step, i) => {
-          const isDone = currentIndex > i || stage === "done";
-          const isActive = currentIndex === i;
+          const phase = allDone ? "done" : run.steps[step.id];
+          const isDone = phase === "done";
+          const isActive = phase === "active";
           return (
-            <li key={step.stage} className="flex items-start gap-3">
+            <li key={step.id} className="flex items-start gap-3">
               <span
                 className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-[11px] font-bold ${
                   isDone

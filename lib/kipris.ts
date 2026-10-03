@@ -95,6 +95,28 @@ export function orderKiprisKeywords(keywords: string[]): string[] {
 
 const MAX_KIPRIS_ATTEMPTS = 4;
 
+/** 이것만 맞으면 거의 모든 특허가 통과한다. 더 구체적인 시도가 있으면 여기서 멈추지 않는다. */
+const BROAD_KIPRIS_TERMS = new Set([
+  "공공데이터",
+  "오픈데이터",
+  "정부데이터",
+  "서비스",
+  "시스템",
+  "방법",
+  "장치",
+  "ai",
+  "인공지능",
+  "스마트",
+]);
+
+export function isBroadKiprisKeyword(keyword: string): boolean {
+  return BROAD_KIPRIS_TERMS.has(keyword.toLowerCase());
+}
+
+function isCommonKiprisWord(keyword: string): boolean {
+  return isBroadKiprisKeyword(keyword) || KIPRIS_STOPWORDS.has(keyword);
+}
+
 function pickAnchor(ordered: string[]): string | null {
   const specific = ordered.filter((k) => !isDroppableModifier(k) && !SUBSTITUTE_PRODUCTS.has(k));
   if (specific.length > 0) return specific[0];
@@ -107,8 +129,42 @@ function pickAnchor(ordered: string[]): string | null {
  * 안내지팡이*장애물감지, 흰지팡이*장애물감지는 모두 10건이 왔지만 제목/초록 일치가 0건이었다.
  * 안내지팡이 한 단어만 맹인안내지팡이 등 실제 선행기술을 남겼다.
  * 그래서 AND를 먼저 치지 않고, 사물 명사와 그 동의어를 각각 한 단어로 검색한다.
+ *
+ * 모델이 아이디어에 없는 긴 합성어("레고분리도구")만 주면 그 문자열은 특허 제목에
+ * 없어서 0건이 된다. 합성어가 아이디어 문장에 없으면, 문장과 겹치는 조각(레고)을
+ * 합성어보다 먼저 시도한다.
  */
-export function planKiprisAttempts(keywords: string[], altKeywords: string[] = []): string[][] {
+export function groundedKeywordSplits(keyword: string, ideaText: string): string[] {
+  const trimmed = keyword.trim();
+  if (trimmed.length <= 4 || isCommonKiprisWord(trimmed) || !ideaText.trim()) return [];
+  const ideaNorm = ideaText.replace(/\s+/g, "");
+  if (ideaNorm.includes(trimmed)) return [];
+
+  const parts: string[] = [];
+  let index = 0;
+  while (index < trimmed.length) {
+    let matched = "";
+    for (let len = trimmed.length - index; len >= 2; len--) {
+      const slice = trimmed.slice(index, index + len);
+      if (slice === trimmed) continue;
+      if (ideaNorm.includes(slice)) {
+        matched = slice;
+        break;
+      }
+    }
+    if (!matched) {
+      index += 1;
+      continue;
+    }
+    if (!isCommonKiprisWord(matched) && !isDroppableModifier(matched) && !SUBSTITUTE_PRODUCTS.has(matched)) {
+      parts.push(matched);
+    }
+    index += matched.length;
+  }
+  return parts;
+}
+
+export function planKiprisAttempts(keywords: string[], altKeywords: string[] = [], ideaText = ""): string[][] {
   const ordered = orderKiprisKeywords(keywords);
   if (ordered.length === 0) return [];
 
@@ -118,20 +174,38 @@ export function planKiprisAttempts(keywords: string[], altKeywords: string[] = [
       : ordered[0]
     : pickAnchor(ordered);
 
-  const unigrams: string[] = [];
+  const specific: string[] = [];
+  const invented: string[] = [];
+  const broad: string[] = [];
   const seen = new Set<string>();
-  const push = (word: string) => {
+  const pushInto = (bucket: string[], word: string) => {
     const trimmed = word.trim();
     if (!trimmed || seen.has(trimmed) || SUBSTITUTE_PRODUCTS.has(trimmed) || isDroppableModifier(trimmed)) return;
-    if (unigrams.length >= MAX_KIPRIS_ATTEMPTS) return;
     seen.add(trimmed);
-    unigrams.push(trimmed);
+    bucket.push(trimmed);
   };
 
-  if (anchor) push(anchor);
-  for (const alt of altKeywords) push(alt);
-  for (const keyword of ordered) push(keyword);
-  return unigrams.map((word) => [word]);
+  const consider = (word: string) => {
+    const trimmed = word.trim();
+    if (!trimmed) return;
+    const splits = groundedKeywordSplits(trimmed, ideaText);
+    if (splits.length > 0) {
+      for (const part of splits) pushInto(specific, part);
+      pushInto(invented, trimmed);
+      return;
+    }
+    if (isBroadKiprisKeyword(trimmed)) {
+      pushInto(broad, trimmed);
+      return;
+    }
+    pushInto(specific, trimmed);
+  };
+
+  if (anchor) consider(anchor);
+  for (const alt of altKeywords) consider(alt);
+  for (const keyword of ordered) consider(keyword);
+
+  return [...specific, ...invented, ...broad].slice(0, MAX_KIPRIS_ATTEMPTS).map((word) => [word]);
 }
 
 /**
@@ -168,11 +242,60 @@ function normalizeForMatch(s: string): string {
   return s.replace(/\s+/g, "");
 }
 
-function isRelevant(item: PatentItem, keywords: string[]): boolean {
+function keywordMatches(haystack: string, keyword: string, ideaText: string): boolean {
+  const norm = normalizeForMatch(keyword);
+  if (!norm) return false;
+  if (haystack.includes(norm)) return true;
+  // 긴 합성어가 제목에 그대로 없으면, 아이디어와 겹치는 조각이 모두 있을 때만 살린다.
+  // 서비스·시스템처럼 어디서나 나오는 말만 겹치면 버린다.
+  const parts = groundedKeywordSplits(keyword, ideaText).filter((part) => !isCommonKiprisWord(part));
+  if (parts.length === 0) return false;
+  return parts.every((part) => haystack.includes(normalizeForMatch(part)));
+}
+
+export function patentIsRelevant(item: PatentItem, keywords: string[], ideaText = ""): boolean {
   const haystack = normalizeForMatch(`${item.title} ${item.summary ?? ""}`);
   // AND로 보낸 키워드가 제목/초록에 모두 있어야 한다. 하나만 겹치는 항목을
   // 통과시키면, 넓은 단어 하나가 점자 디스플레이처럼 다른 제품군을 통째로 살린다.
-  return keywords.every((k) => haystack.includes(normalizeForMatch(k)));
+  return keywords.every((keyword) => keywordMatches(haystack, keyword, ideaText));
+}
+
+export interface PatentAttemptOutcome {
+  index: number;
+  keywords: string[];
+  readableQuery: string;
+  ok: boolean;
+  error?: string;
+  relevant: PatentItem[];
+}
+
+/**
+ * 동시 호출 결과 중 무엇을 남길지 고른다.
+ * 구체적인 시도가 비어 있지 않으면 그것을 쓰고, 넓은 단어(공공데이터 등)는
+ * 구체적인 시도가 아예 없을 때만 채택한다. API 오류와 0건은 구분한다.
+ */
+function isBroadAttempt(outcome: PatentAttemptOutcome): boolean {
+  return outcome.keywords.length > 0 && outcome.keywords.every(isBroadKiprisKeyword);
+}
+
+export function selectPatentAttempt(outcomes: PatentAttemptOutcome[]): {
+  chosen: PatentAttemptOutcome | null;
+  error: string | null;
+} {
+  const specific = outcomes.filter((outcome) => !isBroadAttempt(outcome));
+  const specificHits = specific.filter((outcome) => outcome.ok && outcome.relevant.length > 0);
+  if (specificHits.length > 0) return { chosen: specificHits[0], error: null };
+  if (specific.some((outcome) => outcome.ok)) return { chosen: null, error: null };
+
+  const specificError = specific.find((outcome) => !outcome.ok);
+  if (specificError) return { chosen: null, error: specificError.error ?? "KIPRIS 오류" };
+
+  const broadHits = outcomes.filter((outcome) => isBroadAttempt(outcome) && outcome.ok && outcome.relevant.length > 0);
+  if (broadHits.length > 0) return { chosen: broadHits[0], error: null };
+
+  const firstError = outcomes.find((outcome) => !outcome.ok);
+  if (firstError) return { chosen: null, error: firstError.error ?? "KIPRIS 오류" };
+  return { chosen: null, error: null };
 }
 
 const parser = new XMLParser({
@@ -289,64 +412,66 @@ async function callKipris(
 }
 
 /**
- * planKiprisAttempts()가 만든 검색식을 순서대로 친다. 제목/초록에 그 검색식의
- * 키워드가 모두 들어간 결과가 나오는 첫 시도에서 멈춘다. 여러 키워드로 시작했는데
- * 맞는 조합이 없으면 한 단어(예: "점자디스플레이")까지 내려가 다른 제품군을
- * 긁어오지 않고 0건으로 끝낸다. OR(+) 연산자는 KIPRIS가 %2B 인코딩을 실제로
- * 어떻게 처리하는지 검증되기 전까지는 쓰지 않는다.
+ * planKiprisAttempts()가 만든 검색식을 동시에 친다. 벽시계 시간은 가장 느린
+ * 한 번의 호출에 가깝다. 구체적인 키워드의 관련 결과가 있으면 그것을 고르고,
+ * 공공데이터 같은 넓은 단어는 그게 유일한 시도일 때만 남긴다.
+ * 호출이 실패하면 ok:false, 호출은 됐는데 관련 결과가 없으면 ok:true·빈 목록이다.
+ * OR(+) 연산자는 KIPRIS가 %2B 인코딩을 실제로 어떻게 처리하는지 검증되기 전까지는 쓰지 않는다.
  */
 export async function searchPatents(
   keywords: string[],
   numOfRows = 10,
   altKeywords: string[] = [],
+  ideaText = "",
 ): Promise<PatentSearchResult> {
   const serviceKey = process.env.KIPRIS_SERVICE_KEY;
   if (!serviceKey) {
     return { ok: true, items: [], skipped: true };
   }
 
-  const attempts = planKiprisAttempts(keywords, altKeywords);
+  const attempts = planKiprisAttempts(keywords, altKeywords, ideaText);
   if (attempts.length === 0) return { ok: true, items: [] };
 
   const readableAttempts = attempts.map((group) => group.join("*"));
+  const outcomes = await Promise.all(
+    attempts.map(async (attemptKeywords, index): Promise<PatentAttemptOutcome> => {
+      const readableQuery = readableAttempts[index];
+      const word = buildAndQuery(attemptKeywords);
+      const result = await callKipris(word, serviceKey, numOfRows);
+      if (!result.ok) {
+        console.log(`[kipris] query="${readableQuery}" (${index + 1}/${attempts.length}) → error: ${result.error}`);
+        return { index, keywords: attemptKeywords, readableQuery, ok: false, error: result.error, relevant: [] };
+      }
+      const relevant = result.items.filter((item) => patentIsRelevant(item, attemptKeywords, ideaText));
+      const noiseCount = result.items.length - relevant.length;
+      console.log(
+        `[kipris] query="${readableQuery}" (${index + 1}/${attempts.length}) → ${result.items.length}건 ` +
+          `(관련 ${relevant.length}건${noiseCount > 0 ? `, 무관한 결과 ${noiseCount}건 제외` : ""})`,
+      );
+      return { index, keywords: attemptKeywords, readableQuery, ok: true, relevant };
+    }),
+  );
 
-  for (let i = 0; i < attempts.length; i++) {
-    const attemptKeywords = attempts[i];
-    // readableQuery는 화면/로그 표시용(사람이 읽는 "키워드1*키워드2"), word는 실제
-    // URL에 실리는 encodeURIComponent된 값 — 인코딩된 값을 그대로 표시하면
-    // "%EB%B0%98..." 같은 읽을 수 없는 문자열이 UI에 노출된다.
-    const readableQuery = readableAttempts[i];
-    const word = buildAndQuery(attemptKeywords);
-    const result = await callKipris(word, serviceKey, numOfRows);
-
-    if (!result.ok) {
-      console.log(`[kipris] query="${readableQuery}" (${i + 1}/${attempts.length}) → error: ${result.error}`);
-      return {
-        ok: false,
-        items: [],
-        error: result.error,
-        queryUsed: readableQuery,
-        attempts: readableAttempts.slice(0, i + 1),
-      };
-    }
-
-    const relevant = result.items.filter((item) => isRelevant(item, attemptKeywords));
-    const noiseCount = result.items.length - relevant.length;
-    console.log(
-      `[kipris] query="${readableQuery}" (${i + 1}/${attempts.length}) → ${result.items.length}건 ` +
-        `(관련 ${relevant.length}건${noiseCount > 0 ? `, 무관한 결과 ${noiseCount}건 제외` : ""})`,
-    );
-
-    if (relevant.length > 0) {
-      return {
-        ok: true,
-        items: relevant,
-        queryUsed: readableQuery,
-        fallbackUsed: i > 0,
-        fallbackDepth: attemptKeywords.length,
-        attempts: readableAttempts.slice(0, i + 1),
-      };
-    }
+  const selected = selectPatentAttempt(outcomes);
+  if (selected.error) {
+    const failed = outcomes.find((outcome) => !outcome.ok);
+    return {
+      ok: false,
+      items: [],
+      error: selected.error,
+      queryUsed: failed?.readableQuery ?? readableAttempts[0],
+      attempts: readableAttempts,
+    };
+  }
+  if (selected.chosen) {
+    return {
+      ok: true,
+      items: selected.chosen.relevant,
+      queryUsed: selected.chosen.readableQuery,
+      fallbackUsed: selected.chosen.index > 0,
+      fallbackDepth: selected.chosen.keywords.length,
+      attempts: readableAttempts,
+    };
   }
 
   return {

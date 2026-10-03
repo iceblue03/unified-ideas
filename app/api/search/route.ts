@@ -2,7 +2,7 @@ import { after, NextRequest, NextResponse } from "next/server";
 import { getAllIdeas, getManifest } from "../../../lib/dataset";
 import { buildIndex, search, getDocs, scoreText } from "../../../lib/similarity";
 import { generateExternalQueries } from "../../../lib/ai-query-gen";
-import { isShoppingConfigured, searchShoppingQueries } from "../../../lib/ebay-shopping";
+import { isShoppingConfigured, prefetchEbayToken, searchShoppingQueries } from "../../../lib/ebay-shopping";
 import { isPatentSearchConfigured, searchPatents } from "../../../lib/kipris";
 import { rankAndDiagnose } from "../../../lib/ai-rank";
 import { callOpenRouter } from "../../../lib/openrouter";
@@ -53,8 +53,13 @@ export interface SearchResponse {
  * 만들지 않는다. useAi가 false면 competition_done → complete만 거의 즉시 발생한다.
  */
 export type SearchStreamEvent =
+  | { stage: "competition_started" }
   | { stage: "competition_done"; competitionCount: number }
+  | { stage: "query_gen_started" }
   | { stage: "query_gen_done"; kiprisKeywords: string[]; shoppingQuery: string }
+  | { stage: "external_started" }
+  | { stage: "shopping_done"; productCount: number }
+  | { stage: "patent_done"; patentCount: number }
   | { stage: "external_search_done"; productCount: number; patentCount: number }
   | { stage: "ai_rank_done" }
   | { stage: "complete"; result: SearchResponse }
@@ -133,13 +138,14 @@ export async function POST(req: NextRequest) {
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       try {
-        // 검색어 생성(OpenRouter 호출, 네트워크 I/O)은 로컬 TF-IDF 검색 결과와 무관하게
-        // query 문자열 하나만 있으면 시작할 수 있다. 예전에는 TF-IDF 검색이 끝난 뒤에야
-        // 이 호출을 시작해서 두 지연시간이 그대로 합산됐다. Promise를 여기서 미리 만들어
-        // (아직 await하지 않음) 네트워크 요청을 먼저 흘려보낸 뒤, 그 동안 동기적인 로컬
-        // 검색을 실행하면 두 작업이 겹쳐 돈다 — 실제 결과가 필요한 시점(query_gen_done
-        // 이벤트 직전)에만 await한다.
+        // 검색어 생성(OpenRouter)과 대회 TF-IDF는 서로 기다리지 않는다.
+        // 쿼리 생성이 시작되는 즉시 이벤트를 내고, 그 사이에 로컬 검색을 끝낸다.
+        if (useAi) {
+          controller.enqueue(encodeEvent({ stage: "query_gen_started" }));
+          prefetchEbayToken();
+        }
         const queryGenPromise = useAi ? generateExternalQueries(query) : null;
+        controller.enqueue(encodeEvent({ stage: "competition_started" }));
 
         // 1) 로컬 TF-IDF 검색 — useAi 여부와 무관하게 항상 실행되는 무료/즉시 경로
         const competitionRaw = search(INDEX, query, ALL_DOCS, 10);
@@ -201,11 +207,29 @@ export async function POST(req: NextRequest) {
           controller.enqueue(
             encodeEvent({ stage: "query_gen_done", kiprisKeywords: gen.kiprisKeywords, shoppingQuery: gen.shoppingQuery }),
           );
+          controller.enqueue(encodeEvent({ stage: "external_started" }));
 
-          const [shopRes, patRes] = await Promise.allSettled([
-            searchShoppingQueries(gen.shoppingQueries),
-            searchPatents(gen.kiprisKeywords, 10, gen.kiprisAltKeywords),
-          ]);
+          const shopPromise = searchShoppingQueries(gen.shoppingQueries, 10, query).then(
+            (value) => {
+              controller.enqueue(encodeEvent({ stage: "shopping_done", productCount: value.ok ? value.items.length : 0 }));
+              return value;
+            },
+            (reason) => {
+              controller.enqueue(encodeEvent({ stage: "shopping_done", productCount: 0 }));
+              throw reason;
+            },
+          );
+          const patPromise = searchPatents(gen.kiprisKeywords, 10, gen.kiprisAltKeywords, query).then(
+            (value) => {
+              controller.enqueue(encodeEvent({ stage: "patent_done", patentCount: value.ok ? value.items.length : 0 }));
+              return value;
+            },
+            (reason) => {
+              controller.enqueue(encodeEvent({ stage: "patent_done", patentCount: 0 }));
+              throw reason;
+            },
+          );
+          const [shopRes, patRes] = await Promise.allSettled([shopPromise, patPromise]);
 
           if (shopRes.status === "fulfilled" && shopRes.value.ok) {
             productItems = shopRes.value.items.map((product) => ({
