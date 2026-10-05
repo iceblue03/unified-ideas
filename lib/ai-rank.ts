@@ -7,7 +7,8 @@ import { CATEGORY_LABEL, formatMoney } from "./types";
 import type { AiReport, AiTopMatchCard, UnifiedResultItem, Verdict } from "./types";
 
 /**
- * AI 호출 #2: 대회·상품·특허를 최대 10건씩 내용을 읽고 아이디어와 겹치는지 설명한다.
+ * AI 호출 #2: 대회·상품·특허를 내용을 읽고 아이디어와 겹치는지 설명한다.
+ * 판매 제품과 특허는 keep에 있는 것만 탭에 남긴다. 기준을 통과한 개수에는 상한이 없다.
  * 카드의 퍼센트는 이 함수가 바꾸지 않는다.
  */
 
@@ -15,6 +16,11 @@ export interface RankResult {
   pool: UnifiedResultItem[];
   report: AiReport | null;
   warning?: string;
+  /**
+   * 모델이 고른 판매 제품·특허. null이면 선택을 받지 못해 호출자가 기존 목록을 유지한다.
+   * 빈 배열이면 기준을 통과한 물품·특허가 없다.
+   */
+  keptExternal: UnifiedResultItem[] | null;
 }
 
 const VERDICTS: Verdict[] = ["exists", "partial", "blue_ocean"];
@@ -94,6 +100,26 @@ export function itemSupportsIdea(idea: string, item: UnifiedResultItem): boolean
   return sharesIdeaFocusInTitle(idea, title, summary);
 }
 
+/**
+ * 모델이 돌려준 후보 번호 중 판매 제품·특허만 고른다.
+ * 개수 상한은 없다. 대회 번호, 범위 밖 번호, 중복은 버린다.
+ * keep가 배열이 아니면 선택을 받지 못한 것으로 보고 null을 반환한다.
+ */
+export function keptExternalItems(pool: UnifiedResultItem[], keep: unknown): UnifiedResultItem[] | null {
+  if (!Array.isArray(keep)) return null;
+  const seen = new Set<number>();
+  const kept: UnifiedResultItem[] = [];
+  for (const entry of keep) {
+    const index = typeof entry === "number" ? entry : typeof entry === "object" && entry !== null ? Number((entry as { index?: unknown }).index) : Number(entry);
+    if (!Number.isInteger(index) || index < 1 || index > pool.length || seen.has(index)) continue;
+    const item = pool[index - 1];
+    if (!item || item.type === "competition") continue;
+    seen.add(index);
+    kept.push(item);
+  }
+  return kept;
+}
+
 function citesTitle(summary: string, title: string): boolean {
   const snippet = title.trim().slice(0, 18);
   return snippet.length >= 4 && summary.includes(snippet);
@@ -117,7 +143,7 @@ function groupedPoolText(pool: UnifiedResultItem[]): string {
 
 export async function rankAndDiagnose(ideaText: string, pool: UnifiedResultItem[]): Promise<RankResult> {
   if (pool.length === 0) {
-    return { pool, report: null, warning: "비교할 후보가 없습니다." };
+    return { pool, report: null, warning: "비교할 후보가 없습니다.", keptExternal: null };
   }
 
   const cited = pool.find((item) => itemSupportsIdea(ideaText, item));
@@ -138,23 +164,28 @@ export async function rankAndDiagnose(ideaText: string, pool: UnifiedResultItem[
     `- verdict는 exists(같은 목적의 사물이나 서비스가 목록에 있음), partial(일부 요소만 같음), ` +
     `blue_ocean(목록에서 같은 사물이나 기능을 찾을 수 없음) 중 하나입니다.\n` +
     `- summary는 2~3문장입니다. 겹치는 항목이 있으면 그 제목을 인용하고, 대회인지 제품인지 특허인지 말합니다.\n` +
-    `- topMatches는 내용이 실제로 가까운 항목만 최대 3개입니다. 없으면 빈 배열입니다. 개수를 채우려고 넣지 마세요.\n\n` +
+    `- topMatches는 내용이 실제로 가까운 항목만 최대 3개입니다. 없으면 빈 배열입니다. 개수를 채우려고 넣지 마세요.\n` +
+    `- keep는 판매 제품과 특허 중에서 아이디어와 같은 사물인 후보 번호입니다. 개수 제한은 없습니다. ` +
+    `기준에 맞는 것은 검색 결과에 있는 만큼 전부 넣으세요. 대회 수상작 번호는 넣지 마세요.\n` +
+    `- 사물이 다르거나 글자만 겹치면 keep에 넣지 마세요. ` +
+    `레고형 건축물이나 약물명 레고라페닙은 레고 분리 도구가 아니고, 음식물 쓰레기통은 건조 분쇄기가 아닙니다.\n\n` +
     `다른 설명 없이 JSON 객체 하나만 출력하세요. 문자열은 한국어로.\n\n` +
     `{\n` +
     `  "verdict": "exists" | "partial" | "blue_ocean",\n` +
     `  "summary": "2~3문장",\n` +
     `  "tags": ["짧은 키워드 3~5개"],\n` +
-    `  "topMatches": [ { "index": 후보_번호, "reason": "그 항목의 어느 내용이 아이디어와 같은지 한 문장" } ]\n` +
+    `  "topMatches": [ { "index": 후보_번호, "reason": "그 항목의 어느 내용이 아이디어와 같은지 한 문장" } ],\n` +
+    `  "keep": [후보_번호]\n` +
     `}`;
 
   const res = await callOpenRouter(prompt, 12_000);
   if (!res.ok) {
-    return { pool, report: fallbackReport(pool), warning: res.error };
+    return { pool, report: fallbackReport(pool), warning: res.error, keptExternal: null };
   }
 
   const jsonStr = extractJson(res.text);
   if (!jsonStr) {
-    return { pool, report: fallbackReport(pool, res.text.trim()), warning: "AI 응답을 해석하지 못했습니다." };
+    return { pool, report: fallbackReport(pool, res.text.trim()), warning: "AI 응답을 해석하지 못했습니다.", keptExternal: null };
   }
 
   try {
@@ -163,7 +194,12 @@ export async function rankAndDiagnose(ideaText: string, pool: UnifiedResultItem[
       summary?: unknown;
       tags?: unknown;
       topMatches?: unknown;
+      keep?: unknown;
     };
+
+    const keptExternal = keptExternalItems(pool, raw.keep)?.filter(
+      (item) => item.type !== "product" || ideaMentionsCane(ideaText) || !textMentionsCaneLeak(itemTitle(item)),
+    ) ?? null;
 
     let verdict = VERDICTS.includes(raw.verdict as Verdict) ? (raw.verdict as Verdict) : verdictFromScore(bestPoolScore(pool));
     let summary = typeof raw.summary === "string" ? raw.summary.trim().slice(0, 500) : "";
@@ -212,12 +248,12 @@ export async function rankAndDiagnose(ideaText: string, pool: UnifiedResultItem[
       summary = `${itemTitle(evidence)}의 제목이 아이디어와 같은 사물을 담고 있습니다. 이 항목은 ${CATEGORY_LABEL[evidence.type]} 검색 결과에 있습니다.`;
     }
 
-    if (!summary && tags.length === 0 && topMatches.length === 0) {
-      return { pool, report: fallbackReport(pool, res.text.trim()), warning: "AI 응답이 비어 있습니다." };
+    if (!summary && tags.length === 0 && topMatches.length === 0 && keptExternal === null) {
+      return { pool, report: fallbackReport(pool, res.text.trim()), warning: "AI 응답이 비어 있습니다.", keptExternal: null };
     }
 
-    return { pool, report: { verdict, summary, tags, topMatches } };
+    return { pool, report: { verdict, summary, tags, topMatches }, keptExternal };
   } catch {
-    return { pool, report: fallbackReport(pool, res.text.trim()), warning: "AI 응답을 해석하지 못했습니다." };
+    return { pool, report: fallbackReport(pool, res.text.trim()), warning: "AI 응답을 해석하지 못했습니다.", keptExternal: null };
   }
 }

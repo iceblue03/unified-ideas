@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { buildExternalQueryPrompt, guardShoppingQueries } from "./ai-query-gen";
-import { itemSupportsIdea } from "./ai-rank";
+import { itemSupportsIdea, keptExternalItems } from "./ai-rank";
 import { getAllIdeas } from "./dataset";
 import { filterProductsByIdeaOverlap, planShoppingQueries } from "./ebay-shopping";
 import { patentIsRelevant, planKiprisAttempts, selectPatentAttempt, type PatentAttemptOutcome } from "./kipris";
@@ -283,6 +283,32 @@ describe("displayed competition relevance", () => {
     const found = titles("축제 대기줄을 예약하는 서비스");
     assert.equal(found.some((title) => title.includes("오슈")), false);
     assert.equal(found.some((title) => title.includes("바로매치")), false);
+  });
+});
+
+describe("model keep list for products and patents", () => {
+  const pool: UnifiedResultItem[] = [
+    competitionItem("안전 귀가 네비게이션"),
+    { type: "product", score: 0.4, product: product("LEGO brick separator tool") },
+    { type: "product", score: 0.3, product: product("LEGO piece remover") },
+    { type: "patent", score: 0.5, patent: patent("레고 블록 분리 기구") },
+    { type: "patent", score: 0.2, patent: patent("레고라페닙을 함유하는 코팅된 제약 조성물") },
+  ];
+
+  it("keeps every accepted product and patent and drops competitions", () => {
+    const kept = keptExternalItems(pool, [1, 2, 3, 4, 2, 99]);
+    assert.deepEqual(
+      kept?.map((item) => (item.type === "product" ? item.product.title : item.type === "patent" ? item.patent.title : item.idea.title)),
+      ["LEGO brick separator tool", "LEGO piece remover", "레고 블록 분리 기구"],
+    );
+  });
+
+  it("returns an empty list when nothing meets the bar", () => {
+    assert.deepEqual(keptExternalItems(pool, []), []);
+  });
+
+  it("returns null when the model did not choose", () => {
+    assert.equal(keptExternalItems(pool, undefined), null);
   });
 });
 

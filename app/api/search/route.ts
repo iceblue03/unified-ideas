@@ -286,8 +286,14 @@ export async function POST(req: NextRequest) {
             aiMeta.report = ranked.report;
             if (ranked.warning) aiMeta.warnings.push(ranked.warning);
             competitionItems = sortByScore(competitionItems).slice(0, 10);
-            productItems = sortByScore(productItems).slice(0, 10);
-            patentItems = sortByScore(patentItems).slice(0, 10);
+            if (ranked.keptExternal) {
+              const kept = new Set(ranked.keptExternal);
+              productItems = sortByScore(productItems.filter((item) => kept.has(item)));
+              patentItems = sortByScore(patentItems.filter((item) => kept.has(item)));
+            } else {
+              productItems = sortByScore(productItems).slice(0, 10);
+              patentItems = sortByScore(patentItems).slice(0, 10);
+            }
             if (aiMeta.shoppingItemCount !== null) aiMeta.shoppingItemCount = productItems.length;
             if (aiMeta.kiprisItemCount !== null) aiMeta.kiprisItemCount = patentItems.length;
           }
