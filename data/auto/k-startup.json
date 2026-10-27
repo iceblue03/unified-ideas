@@ -4,9 +4,9 @@
   "tier": "auto",
   "method": "k-startup.go.kr 자체는 구조화된 역대 수상팀 아카이브가 없어, 같은 운영기관(창업진흥원)이 만든 '역대수상기업' 페이지(challengek.org/{연도별 slug})를 대신 수집한다. 각 페이지는 Wix 사이트지만 <script id=\"wix-warmup-data\">에 수상 데이터 전체가 순수 JSON으로 내장되어 있어 헤드리스 브라우저 없이 정적 HTML만 받아 파싱 가능. 2016~2022, 2024~2025년 자료가 있으며 2023년은 원본 사이트에도 별도 아카이브가 없다(2022 페이지로 리다이렉트됨).",
   "homepage": "https://www.challengek.org",
-  "updatedAt": "2026-10-22T08:31:59.048Z",
+  "updatedAt": "2026-10-22T10:26:36.967Z",
   "lastSuccessAt": "2026-09-30T07:00:47.454Z",
-  "count": 150,
+  "count": 170,
   "lastRun": {
     "freshCount": 150,
     "summaryRatio": 0,
@@ -24,8 +24,8 @@
       "title": "물을 넣고 전기를 가하면 수소가 나오는 수전해 제작 회사",
       "team": "하이드로엑스팬드",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2025"
+      "summary": "하이드로엑스팬드는 물을 전기로 분해해 수소와 산소를 얻는 수전해 공정의 고비용 문제를 극복하기 위해 음이온 교환막 기반의 고효율 수전해 스택을 개발하는 기업이다.",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "443ebf311393977a",
@@ -38,8 +38,8 @@
       "title": "전기사고와 화재로부터 안전한 세상을 만드는 전력기기 센싱의 혁신 이지코리아",
       "team": "(주)이지코리아",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2025"
+      "summary": "전자파 전류센서 활용 전력기기 Smart Monitoring AI System",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "64f47261faaf6697",
@@ -52,8 +52,8 @@
       "title": "의료기기 패러다임을 바꾸는 혁신적인 3차원 나노소재 플랫폼",
       "team": "브이엔",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2025"
+      "summary": "브이엔은 생체접착 나노인터페이스 기반 비혈관 스텐트 기술을 보유하고 있다.",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "900265a36b5581e4",
@@ -66,8 +66,8 @@
       "title": "AI 기반 커머스 미디어 플랫폼(AI-Powered Commerce Media Platform)",
       "team": "(주)펄스애드",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2025"
+      "summary": "리테일 셀러의 이커머스 광고 효율 개선 AI 기반 커넥티드 리테일 미디어 플랫폼",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "d139a288a2ce7a42",
@@ -80,8 +80,8 @@
       "title": "세계 최초 건식 디지털 프린팅을 이용하여 미래형 건축가전 소재를 고객 맞춤형으로 제공하는 기업입니다.",
       "team": "(주)옴니코트",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2025"
+      "summary": "옴니코트는 건식 디지털 프린팅 기술을 이용한 친환경 건축가전 및 기능성 금속 소재를 제조한다.",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "8576165ea0506fa2",
@@ -94,8 +94,8 @@
       "title": "에이포랩은 AR·컴퓨터비전 기반 정밀 의료기술을 개발하는 디지털 헬스케어 스타트업으로, 안면골 수술 시 1mm 수준의 정합 정확도를 제공하는 수술 내비게이션 시스템(XAVE)을 자체 기술로 구현했습니다.",
       "team": "(주)에이포랩",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2025"
+      "summary": "국내 최초 안면 수술용 고정 및 휴대형 내비게이션 시스템",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "49b422b261481ceb",
@@ -108,8 +108,8 @@
       "title": "반도체 제조를 자율주행처럼 지능화하는 기술을 만드는 에이머슬리입니다.",
       "team": "(주)에이머슬리",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2025"
+      "summary": "에이머슬리는 반도체 제조 변동성 관리를 위한 공정 제어 최적화 솔루션을 제공한다.",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "88f52f65138fed66",
@@ -122,8 +122,8 @@
       "title": "바이오션은 해양생물바이오 전문기업으로 기능성 먹이생물 모이나를 활용한 우량종자생산 및 해양소재를 개발하고 있습니다.",
       "team": "(주)바이오션",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2025"
+      "summary": "기능성 초기먹이생물(Omega-모이나) 활용 우량 종자 생산 기술",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "51715e3b5239f3ee",
@@ -136,8 +136,8 @@
       "title": "기존 필터 아닌 물로 공기 정화 및 유해가스 저감 솔루션을 제공",
       "team": "워터베이션",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2025"
+      "summary": "반도체 및 공조 환경 적용 자율형 WVG 이중가압수식 대기성 유해물질 세정장치",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "306f3e87ca8758e0",
@@ -150,8 +150,8 @@
       "title": "AI로 혁신하는 기구설계, 아이디어오션이 선도합니다.",
       "team": "(주)아이디어오션",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2025"
+      "summary": "AI기반 기구설계 자동화 소프트웨어 METHEUS",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "c837ada6be943b92",
@@ -164,8 +164,8 @@
       "title": "초음파의 미래 XMUT은 병원의 리스크 비용을 85% 낮추고,\n환자의 안전과 신뢰를 1.5배 향상시키는 납 0.0% 일회용 초음파 패치를 개발하는 스타트업니다",
       "team": "XMUT",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2024"
+      "summary": "XMUT는 중심정맥 삽관술용 초음파 기기에 쓰이던 납 기반 압전소자를 친환경적이고 안전한 소재로 대체한 일회용 초음파 패치를 개발하는 팀이다.",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "5094ba5012005df7",
@@ -178,8 +178,8 @@
       "title": "광학물리와 인공지능 융합을 통한 대면적 고해상도 광학 영상 솔루션을 제공합니다.",
       "team": "PROFUSIO",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2024"
+      "summary": "물리-인공지능 융합 설계 기술 적용 고심도 고해상도 산술 광학 영상 장비",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "baca76e6543656f3",
@@ -192,8 +192,8 @@
       "title": "스마트한 병원을 만드는 새로운 의료데이터 솔루션",
       "team": "더마트릭스",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2024"
+      "summary": "더마트릭스는 AI 기술이 적용된 피부 임상사진 관리 시스템을 제공한다.",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "cf8bff0f5ab7de09",
@@ -206,8 +206,8 @@
       "title": "안티드론기술을 필두로한 전자전(EW) 솔루션 개발 K-방위산업 스타트업",
       "team": "본레이크",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2024"
+      "summary": "전파 혼선 없는 불법 드론 정밀 대응 안티 드론 솔루션",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "66822fefd2b80012",
@@ -220,8 +220,8 @@
       "title": "정밀 디지털 광학 기술로 마이크로 연구의 민주화를 실현하는 플랑크랩",
       "team": "플랑크랩",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2024"
+      "summary": "플랑크랩은 DMD 기반 광학 기술로 마스크 없이 디지털 이미지를 직접 노광하는 장비를 선보인다.",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "63ea2796bc233d36",
@@ -234,8 +234,8 @@
       "title": "프린팅 공정을 통해 고성능 인공손가락을 저비용으로 제공하는 스타트업",
       "team": "하이터치",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2024"
+      "summary": "로봇의 정교한 조작을 위한 고감도 인공 손가락",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "01966743a56bd4d8",
@@ -248,8 +248,8 @@
       "title": "근골격 영상 판독, 23배 더 빠르면서도 17% 더 정확하게. 의료진의 지능형 파트너, AUSIGHT",
       "team": "AUSIGHT",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2024"
+      "summary": "AUSIGHT는 근골격 영상 판독을 위한 AI 솔루션을 제공한다.",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "07f196ff0902e0b7",
@@ -262,8 +262,8 @@
       "title": "자율주행·로봇의 핵심 데이터를 발굴·분석하는 엣지케이스 특화 3D 데이터 엔진",
       "team": "비저너리",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2024"
+      "summary": "공간지능 AI 데이터 엔진",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "7535ed18f84686b4",
@@ -276,8 +276,8 @@
       "title": "이산화탄소를 생분해성 플라스틱으로 전환하는 솔루션",
       "team": "The Origin",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2024"
+      "summary": "시아노박테리아 활용 Carbon Capture Plastic",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "0aca4f24aec8cb11",
@@ -290,8 +290,8 @@
       "title": "돈 버는 여행 예약, 캐치프로그",
       "team": "그루누이",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2024"
+      "summary": "AI 추천과 리워드 시스템 결합 여행 가격 비교 플랫폼 캐치프로그",
+      "sourceUrl": "https://wowtale.net/2025/12/13/251861/"
     },
     {
       "id": "c76e3cc1e6f23211",
@@ -304,8 +304,8 @@
       "title": "장기 특이적 세포외기질 기반의 고부가가치 의료용 바이오잉크 소재 개발",
       "team": "(주)바이오브릭스",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023"
+      "summary": "조직 및 장기 특이적 미세환경 조성이 가능한 dECM 기반 Ready-to-Use 바이오잉크",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "f11eac0f4f3e8d3a",
@@ -318,8 +318,8 @@
       "title": "실시간 초음파-캐비테이션 모니터링 기술이 적용된 뇌혈관장벽(BBB) 개방 집속초음파 장비",
       "team": "(주)뉴머스",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023"
+      "summary": "비침습적으로 원하는 뇌지역에 일시적으로 BBB를 개방할 수 있는 초음파-캐비테이션 의료기기를 통한 뇌약물전달 플랫폼 기술",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "16ec6a9509d38d63",
@@ -332,8 +332,8 @@
       "title": "자율주행로봇을 활용한 건설현장 건설자재 새벽배송 서비스",
       "team": "고레로보틱스",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023"
+      "summary": "건설근로자 23만명 부족 문제를 해결하기 위한 건설현장 자동화 솔루션",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "4fb32ec6537ed751",
@@ -346,8 +346,8 @@
       "title": "고속충전 및 고에너지밀도가 구현된 차세대 이차전지",
       "team": "에이에스이티(주)",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023"
+      "summary": "차세대 전지에 필요한 성능과 가격을 모두 만족시키는 집전체 원천 소재 기술 개발",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "49de5a6aa6c3199d",
@@ -360,8 +360,8 @@
       "title": "AZOO",
       "team": "(주)큐빅",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023"
+      "summary": "데이터 생성, 결합, 분석, 거래, 검증 등을 제공하는 합성데이터 종합 솔루션",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "67d0bb3f3b59eb99",
@@ -374,8 +374,8 @@
       "title": "국산 개발 전기추진 수직이착륙 항공기(eVTOL)를 활용한 모빌리티 솔루션",
       "team": "에어빌리티(주)",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023"
+      "summary": "미래항공모빌리티(UAM/AAM) 산업 주도를 위한 국산 개발 전기추진 수직이착륙 항공기(eVTOL)를 활용한 모빌리티 솔루션",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "5f4dacc40647c0db",
@@ -388,8 +388,8 @@
       "title": "현장 제조 공정 최적화 AI 솔루션",
       "team": "앰버로드",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023"
+      "summary": "제조 공정 전체 과정의 AI 모델 운영 관리시스템을 커스터마이징하여 솔루션 제공",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "fa9f6d241a3fac85",
@@ -402,8 +402,8 @@
       "title": "엣지 AI 반도체 회로 설계",
       "team": "(주)아티크론",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023"
+      "summary": "저전력-저면적-저가로 구현 가능한 엣지 AI 반도체에 특화된 IP 솔루션",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "2f0cbc04045cc884",
@@ -416,8 +416,8 @@
       "title": "CAPTOS",
       "team": "(주)서르",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023"
+      "summary": "판독의 어려움으로 사용이 제한적인 캡슐내시경을 인공지능을 기반으로 빠르고 편리하고 정확하게 판독하여 진단할 수 있게 보조해주는 시스템",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "c6342d08c795408a",
@@ -430,8 +430,8 @@
       "title": "영상 기반 고객 BI 학습 및 온디바이스 AI를 통한 고품질·저비용 영상 생성 솔루션 '10kM.ai'",
       "team": "(주)일만백만",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023"
+      "summary": "보유한 영상정보의 인식, 분류, 태깅, 편집 기술을 토대로 고객의 BI를 학습하여, 고객 적합성이 높은 영상생성 기술을 구현",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "cdfd83faf713981c",
@@ -444,8 +444,8 @@
       "title": "불소대체용 다공성 신소재 필터",
       "team": "(주)워터트리네즈",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-1"
+      "summary": "국제 환경규제 관련 불소대체 친환경 신소재 필터(불소고분자를 대체하는 신규 고분자 소재)",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "f63149bc605c3706",
@@ -458,8 +458,8 @@
       "title": "카본엑스톤 기반의 탈모 신약, 기능성 화장품 개발",
       "team": "카본엑스",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-1"
+      "summary": "흑연을 산화시켜서 산소를 포함하는 작용기를 가지며, 대량생산이 용이하고 물에 잘 분산되는 산화그래핀 활용 탈모 신약",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "92e584183131285d",
@@ -472,8 +472,8 @@
       "title": "비대면 리스렌트 중개 플랫폼",
       "team": "디자인프랙티스(주)",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-1"
+      "summary": "금융사와 연동하여 고객에게 금융사의 견적을 제공하고 비대면으로 심사승인, 약정까지 제공하는 리스렌트 플랫폼 서비스",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "9a8020aa89ceea2f",
@@ -486,8 +486,8 @@
       "title": "원자셀 기반 양자 센서",
       "team": "OAQ",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-1"
+      "summary": "양자 센서 성능을 극대화하는 핵심 부품을 제공하는 맞춤형 원자셀(Atomic cell)을 개발하여 국방, 항공우주 등 다양한 산업에 기여",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "2848b53affe0dce3",
@@ -500,8 +500,8 @@
       "title": "외국인 유학생을 위한 비자 관리 앱 및 정보 제공 지원 플랫폼",
       "team": "예스퓨처",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-1"
+      "summary": "국내 체류 외국인의 불법체류 문제를 해결하기 위한 셀프 비자 관리 솔루션 제공",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "dd98106c2acfd2ba",
@@ -514,8 +514,8 @@
       "title": "의료영상 자동분석 인공지능 소프트웨어 \"MetaFusion\"",
       "team": "Slice Mind",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-1"
+      "summary": "의료진 노동 부담 완화를 위한 의료영상 자동분석 인공지능 S/W",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "e2383dd1fedc9ffb",
@@ -528,8 +528,8 @@
       "title": "Bridge Diffusion 기반 동영상 생성 AI 엔진",
       "team": "(주)HOMI AI",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-1"
+      "summary": "현실 이미지 기반의 생성 프레임워크로 이미지 속 요소들의 제어문제 해결",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "c5e4a39d031b1e9c",
@@ -542,8 +542,8 @@
       "title": "사르르 포장재",
       "team": "졸브",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-1"
+      "summary": "물에 녹으며 잔류농약을 제거하는 친환경 포장재",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "893b417b12e66dfa",
@@ -556,8 +556,8 @@
       "title": "BMS 정보 기반 사용 후 배터리 전주기 장비",
       "team": "BS&T",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-1"
+      "summary": "폐배터리 순환자원 활용을 위한 전주기 단계별 필요 검사장비의 개발 및 공급",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "be306d2ff7eeecdd",
@@ -570,8 +570,8 @@
       "title": "악조건 산불대응 인공지능 소화탄",
       "team": "드므",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-1"
+      "summary": "강풍, 야간 등 악조건 상황 하 산불 대응을 위한 AI 유도 소화탄",
+      "sourceUrl": "https://wowtale.net/2024/12/12/234610/"
     },
     {
       "id": "3abb0581e36ff79a",
@@ -584,8 +584,8 @@
       "title": "현실감 있는 수술 트레이닝용 시뮬레이터",
       "team": "㈜알데바(ALDAVER)",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-2"
+      "summary": "실제 인체 물성을 모방한 생체 고분자 소재 합성 기술 기반 현실감 있는 수술 시뮬레이터 제작",
+      "sourceUrl": "https://startuprecipe.co.kr/archives/invest-newsletter/5694132"
     },
     {
       "id": "a6eb01d3e3a5251a",
@@ -598,8 +598,8 @@
       "title": "커넥터, 케이블을 대체하는 초고속 초소형 반도체 커넥티비티",
       "team": "㈜유니컨",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-2"
+      "summary": "기존 커넥터, 케이블을 대체하는 저비용, 초고속, 초소형 멀티 인터페이스 반도체 커넥터",
+      "sourceUrl": "https://startuprecipe.co.kr/archives/invest-newsletter/5694132"
     },
     {
       "id": "74b3477c3c8f4f38",
@@ -612,8 +612,8 @@
       "title": "연속 합금 전주도금 기술을 적용한 차세대 배터리용 집전체",
       "team": "㈜프렘투",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-2"
+      "summary": "차세대 전지에 필요한 성능과 가격을 모두 만족시키는 집전체 원천 소재 기술 개발",
+      "sourceUrl": "https://startuprecipe.co.kr/archives/invest-newsletter/5694132"
     },
     {
       "id": "f18c10fb066a5a75",
@@ -626,8 +626,8 @@
       "title": "Generative AI 를 활용한 3D Object 및 Motion 콘텐츠 생성 B2B SaaS",
       "team": "㈜네이션에이",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-2"
+      "summary": "생성형 AI 기술 기반 3D 콘텐츠 제작 시간과 비용을 절감하는 솔루션",
+      "sourceUrl": "https://startuprecipe.co.kr/archives/invest-newsletter/5694132"
     },
     {
       "id": "2acadf4f96d2f8c3",
@@ -640,8 +640,8 @@
       "title": "자율주행용 고품질 합성데이터를 만들어내는 생성 AI 원천기술 및이를 활용한 자율주행용 비전 AI 시스템",
       "team": "㈜젠젠에이아이",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-2"
+      "summary": "생성 AI 기술을 활용해 다양한 실제 사진 품질 합성 데이터를 생성·공급해 고객 데이터 수집 비용·시간·인력 절감",
+      "sourceUrl": "https://startuprecipe.co.kr/archives/invest-newsletter/5694132"
     },
     {
       "id": "31f5e2051bdd411a",
@@ -654,8 +654,8 @@
       "title": "전기차 폐배터리 진단과 해체를 위한 인공지능 로봇 완전 무인 자동화 솔루션",
       "team": "㈜토트",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-2"
+      "summary": "전기차 폐배터리 리사이클링을 위해 폐배터리를 1차 진단 후 재활용 여부를 결정하고 해체 후 2차 진단해 사용하도록 하는 무인 자동화 솔루션",
+      "sourceUrl": "https://startuprecipe.co.kr/archives/invest-newsletter/5694132"
     },
     {
       "id": "585d5410806baf52",
@@ -668,8 +668,8 @@
       "title": "스페셜티(고기능성 물질) 천연고분자 생분해 접착제",
       "team": "㈜링크플릭스",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-2"
+      "summary": "탄소 배출을 70% 절감할 수 있으며 100% 바이오매스로 구성된 안전한 물성을 가진 생분해 접착제",
+      "sourceUrl": "https://startuprecipe.co.kr/archives/invest-newsletter/5694132"
     },
     {
       "id": "d1b6d6f582c2af7c",
@@ -682,8 +682,8 @@
       "title": "인간-로봇 협동작업이 가능한 이동로봇 플랫폼",
       "team": "㈜지오로봇",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-2"
+      "summary": "레고 블록처럼 조합이 가능하고 인간과 로봇 또는 로봇간 협동 이송 작업이 가능한 물류 로봇",
+      "sourceUrl": "https://startuprecipe.co.kr/archives/invest-newsletter/5694132"
     },
     {
       "id": "4636fefabfe7f3c1",
@@ -696,8 +696,8 @@
       "title": "호텔/리조트 산업의 DX를 위한 스마트호텔플랫폼 DOWHAT",
       "team": "㈜두왓",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-2"
+      "summary": "예약부터 체크아웃까지 호텔·리조트를 기반으로 호스피탈리티 산업 DX를 위한 고객, 호텔리어, 운영자를 위한 토털 플랫폼",
+      "sourceUrl": "https://startuprecipe.co.kr/archives/invest-newsletter/5694132"
     },
     {
       "id": "9a26e46de08e96cc",
@@ -710,8 +710,8 @@
       "title": "격이 다른 홍채인식솔루션",
       "team": "㈜에이제이투",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2023-2"
+      "summary": "지문, 얼굴인식처럼 홍채를 이용한 개인화 서비스 솔루션",
+      "sourceUrl": "https://startuprecipe.co.kr/archives/invest-newsletter/5694132"
     },
     {
       "id": "200d1ebb16719ad8",
@@ -724,8 +724,8 @@
       "title": "폐타이어 업사이클링 기술이 적용된 타이어 보강소재 카본블랙",
       "team": "(주)엘디카본",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2022league"
+      "summary": "폐타이어를 원료로 무산소 열분해(카본화)해 발생한 폐기물을 정제·가공해 카본블랙 소재를 제조하는 공정기술",
+      "sourceUrl": "https://www.yna.co.kr/view/AKR20221124161700003"
     },
     {
       "id": "1879ebcee7ecc197",
@@ -864,8 +864,8 @@
       "title": "버섯 균사체와 커피찌꺼기를 활용한 친환경 부표",
       "team": "에코텍트(Eco Tect)",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2022"
+      "summary": "커피 찌꺼기와 버섯 균사체만으로 구성되는 기존 친환경 스티로폼 부표 대비 경제성과 내구성이 좋은 친환경 부표",
+      "sourceUrl": "https://www.yna.co.kr/view/AKR20221124161700003"
     },
     {
       "id": "da3bc4d8b8949380",
@@ -1004,8 +1004,8 @@
       "title": "해양 생분해성이 월등한 친환경 플라스틱 소재 기술",
       "team": "㈜더데이원랩",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2021"
+      "summary": "저희는 미세플라스틱과 온실가스 배출 문제를 해결하고자 바다에서 7일 이내에, 토양에서 2달 이내에 완전히 분해되어 사라지는 차세대 플라스틱을 개발하고 있습니다.",
+      "sourceUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148895973"
     },
     {
       "id": "a2d75002667a68b8",
@@ -1018,8 +1018,8 @@
       "title": "Z세대를 위한 온라인 문서 작성 도구 : 뤼튼",
       "team": "㈜뤼튼테크놀로지스",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2021"
+      "summary": "뤼튼은 구글 독스(docs)와 같은 온라인 기반의 문서작성 도구입니다. 글쓰기의 어려움을 겪는 Z세대를 위해 글쓰기를 돕는 기능들을 넣었어요. 사용자들의 글쓰기를 도울 수 있도록 자연어 처리 기반의 AI 엔진 또한 함께 개발하고 있습니다.",
+      "sourceUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148895973"
     },
     {
       "id": "6678055ee7624d6f",
@@ -1032,8 +1032,8 @@
       "title": "예비 상주를 위한 온디맨드 장례플랫폼",
       "team": "㈜고이장례연구소",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2021"
+      "summary": "예비 상주를 위한 장례 플랫폼을 개발한 고이장례연구소",
+      "sourceUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148895973"
     },
     {
       "id": "02d9c1a669fc1e53",
@@ -1102,8 +1102,8 @@
       "title": "응급실 재실 시간 단축을 위한 소프트웨어",
       "team": "Cosmos Medic",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2021"
+      "summary": "응급실 재실 시간 단축을 위한 인공지능 프로그램 ‘씩씩’을 개발하였습니다.",
+      "sourceUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148895973"
     },
     {
       "id": "eed45bf343ac11d7",
@@ -1130,8 +1130,8 @@
       "title": "군대 내 택배문제를 해결할 배송대행 서비스 '밀리버리'",
       "team": "㈜JuDa",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2021"
+      "summary": "군인들은 보안상 70년이 넘게 우체국 사서함으로 택배를 받고 있습니다. 하지만 대부분의 소셜 커머스는 우체국 택배를 이용하지 않기에 군인들은 매번 집으로 택배를 보내고 부모님께서 다시 우체국에 접수해주는 방식으로 택배를 받고 있죠. 이러한 불편을 해결하기 위해 군인을 위한 배송대행 서비스 ‘밀리버리’를 만들었습니다.",
+      "sourceUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148895973"
     },
     {
       "id": "71fc9321676f0e02",
@@ -1144,8 +1144,8 @@
       "title": "차량 내 방치된 사람의 질식 및 열사 피해를 막기 위한 첨단 인체감지 레이더 센서",
       "team": "주식회사 에이유 (AU Inc,)",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2021"
+      "summary": "여름철 차량 내 방치된 아동이 사망한 뉴스를 보고 인체감지 레이더 센서를 개발하게 되었습니다. 현대 모비스와 함께 고정밀, 초소형 레이더 센서 기반의 승객감지 시스템을 개발하고 있습니다.",
+      "sourceUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148895973"
     },
     {
       "id": "29bd0e496a9bdbf7",
@@ -1158,8 +1158,8 @@
       "title": "재사용 가능 소화기관용 지능형 전자 내시경 시스템",
       "team": "주식회사 메디인테크",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2021"
+      "summary": "현재 검진용 재사용 연성 내시경은 100% 외산이고 그중에 90%는 일본산 제품을 쓰고 있습니다. 이러한 상황을 극복하고자 전동식 조작 방식과 인공지능을 활용한 스마트 내시경을 개발하게 되었습니다.",
+      "sourceUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148895973"
     },
     {
       "id": "4609cc77cf38bc5e",
@@ -1172,8 +1172,8 @@
       "title": "무진동 잇몸 염증 개선 미세전류 전자 칫솔",
       "team": "㈜프록시헬스케어",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2021"
+      "summary": "인체와 유사한 수준의 미세전류로 미생물막 제거에 특화된 기술을 완성했고 이를 최초로 상용화한 미세전류 칫솔인 트로마츠를 출시하였습니다.",
+      "sourceUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148895973"
     },
     {
       "id": "eca477baed946656",
@@ -1200,8 +1200,8 @@
       "title": "연화 및 생물전환기술 기반 국내 식물자원의 고효능 화장품 원료화 및 제품화",
       "team": "주식회사라피끄",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2021"
+      "summary": "식물을 추출하지 않고 온전히 화장품 안에 첨가할 수 있는 기술을 보유하고 있습니다. 이 기술을 바탕으로 식물이 가진 효능을 100% 발휘한 화장품을 만들고 있습니다.",
+      "sourceUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148895973"
     },
     {
       "id": "5403994541d6cf9e",
@@ -1214,8 +1214,8 @@
       "title": "누구나 발행, 판매가 가능한 국내 유일의 클라우드형 모바일상품권 플랫폼, PONGIFT",
       "team": "㈜플랫포스",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2021"
+      "summary": "초기비용 없이 누구나 발행, 판매가 가능한 클라우드형 모바일 상품권 플랫폼입니다.",
+      "sourceUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148895973"
     },
     {
       "id": "2d7ad0df8493ee55",
@@ -1284,8 +1284,8 @@
       "title": "박쥐를 모방한 인공신경망을 이용한 3차원 초음파 이미징 시스템 (자율주행·무인시스템용)",
       "team": "㈜에니아이",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2020"
+      "summary": "에니아이가 개발한 ‘3차원 인공지능 초음파센서’는 박쥐의 송수신 신호 대역폭, 개형, 송수신 방법 및 수신된 데이터를 처리하는 청신경계와 뇌의 구조를 참고해 개발한 새로운 분류의 센서다.",
+      "sourceUrl": "https://www.etoday.co.kr/news/view/1973140"
     },
     {
       "id": "93ac464aea6e8d2b",
@@ -1298,8 +1298,8 @@
       "title": "폐플라스틱과 슬래그를 융합한 건축 및 토목용 green 복합 재료",
       "team": "주식회사 이옴텍",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2020"
+      "summary": "이옴텍은 청정 해역에 방치돼 처리 곤란 폐플라스틱을 내구 수명 10년 이상인 해양자재로 재활용해 최우수상인 사회부총리겸교육부장관상과 상금 7000만원을 수상했다.",
+      "sourceUrl": "https://www.etnews.com/20201125000017"
     },
     {
       "id": "f9f1f970fe00120e",
@@ -1312,8 +1312,8 @@
       "title": "친환경 고성능 페로니켈슬래그 시멘트혼합재",
       "team": "주식회사 포스리젠",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2020"
+      "summary": "포스리젠는 '친환경 페로니켈슬래그'를 활용한 시멘트 혼합재 아이템으로 창업 5개월 만에 매출 5억원을 달성, 최우수상인 중소벤처기업부장관상과 상금 7000만원을 획득했다.",
+      "sourceUrl": "https://www.etnews.com/20201125000017"
     },
     {
       "id": "5181cf11972dd22a",
@@ -1424,8 +1424,8 @@
       "title": "이종소재(금속-플라스틱) 방수접합 처리기술의 국산화",
       "team": "주식회사 플라스탈",
       "org": null,
-      "summary": null,
-      "sourceUrl": "https://www.challengek.org/2020"
+      "summary": "주식회사 플라스탈(대표 홍성호)의 창업아이템은 ‘플라스틱과 메탈의 방수접합 솔루션’이고",
+      "sourceUrl": "https://zdnet.co.kr/view/?no=20201121170716"
     },
     {
       "id": "d7b4d3d7f56fa925",
@@ -2112,6 +2112,286 @@
       "org": null,
       "summary": null,
       "sourceUrl": "https://www.challengek.org/%EB%B3%B5%EC%A0%9C-2018"
+    },
+    {
+      "id": "aaf43bb047ef3512",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2023,
+      "round": "예비창업리그",
+      "award": "대상",
+      "category": null,
+      "title": "사족로봇 라이보",
+      "team": "라이온로보틱스",
+      "org": null,
+      "summary": "인공지능 기술과 하드웨어 최적화를 통한 긴 운용시간, 빠른 속도, 험지에서의 안정적인 보행기능을 갖춘 사족보행로봇",
+      "sourceUrl": "https://www.mss.go.kr/common/board/Download.do?bcIdx=1045559&cbIdx=86&streFileNm=be6ce385-6ec8-4fbd-b197-0b59bdababcc.pdf"
+    },
+    {
+      "id": "9d829843c6f0434b",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2023,
+      "round": "예비창업리그",
+      "award": "최우수상",
+      "category": null,
+      "title": "저가의 고해상도 LiDAR",
+      "team": "TruPixel",
+      "org": null,
+      "summary": "차세대 LiDAR용 센서인 SPAD (Single-Photon Avalanche Diode) 설계기술 및 관련 원천기술을 기반으로 최신 CMOS 공정 기반 저가의 고해상도 SPAD 센서 개발",
+      "sourceUrl": "https://www.mss.go.kr/common/board/Download.do?bcIdx=1045559&cbIdx=86&streFileNm=be6ce385-6ec8-4fbd-b197-0b59bdababcc.pdf"
+    },
+    {
+      "id": "c77b2158db713407",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2023,
+      "round": "예비창업리그",
+      "award": "최우수상",
+      "category": null,
+      "title": "염수기반 친환경 그래핀 제조 기업",
+      "team": "머티리얼즈 디자인랩",
+      "org": null,
+      "summary": "친환경 공정을 통해 고품질의 그래핀을 연구 개발, 제조하는 예비창업 기업",
+      "sourceUrl": "https://www.mss.go.kr/common/board/Download.do?bcIdx=1045559&cbIdx=86&streFileNm=be6ce385-6ec8-4fbd-b197-0b59bdababcc.pdf"
+    },
+    {
+      "id": "3447a6c06f09abd0",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2023,
+      "round": "예비창업리그",
+      "award": "우수상",
+      "category": null,
+      "title": "근관 내 기구 삽입이 필요 없는 치과용 자동 근관치료 기기",
+      "team": "ENDENTICS",
+      "org": null,
+      "summary": "치아 근관치료(신경치료)를 쉽고 간편하게 할 수 있는 혁신적 치과용 의료기기",
+      "sourceUrl": "https://www.mss.go.kr/common/board/Download.do?bcIdx=1045559&cbIdx=86&streFileNm=be6ce385-6ec8-4fbd-b197-0b59bdababcc.pdf"
+    },
+    {
+      "id": "1e35a8330044bd13",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2023,
+      "round": "예비창업리그",
+      "award": "우수상",
+      "category": null,
+      "title": "AI의 작품 무단도용 방지 솔루션, ANKYLO",
+      "team": "삼육일공",
+      "org": null,
+      "summary": "AI로부터 인간의 고유한 창작품을 보호하기 위한 솔루션",
+      "sourceUrl": "https://www.mss.go.kr/common/board/Download.do?bcIdx=1045559&cbIdx=86&streFileNm=be6ce385-6ec8-4fbd-b197-0b59bdababcc.pdf"
+    },
+    {
+      "id": "161c393eecebc635",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2023,
+      "round": "예비창업리그",
+      "award": "우수상",
+      "category": null,
+      "title": "선체용 HDPE 소재와 친환경 HDPE 선박",
+      "team": "에코마린",
+      "org": null,
+      "summary": "재활용이 가능하고 온실가스를 줄일 수 있는 친환경 선박의 선체 제작에 사용되는 HDPE 자재 제조",
+      "sourceUrl": "https://www.mss.go.kr/common/board/Download.do?bcIdx=1045559&cbIdx=86&streFileNm=be6ce385-6ec8-4fbd-b197-0b59bdababcc.pdf"
+    },
+    {
+      "id": "033009ebaea1cba4",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2023,
+      "round": "예비창업리그",
+      "award": "우수상",
+      "category": null,
+      "title": "디지털 트윈 기술이 적용된 창고관리시스템 기능의 VMS (Virtual Management System)",
+      "team": "애니웨어",
+      "org": null,
+      "summary": "가상 공간관리 서비스를 제공하여 물류센터를 가상으로 통합 관리하는 시스템",
+      "sourceUrl": "https://www.mss.go.kr/common/board/Download.do?bcIdx=1045559&cbIdx=86&streFileNm=be6ce385-6ec8-4fbd-b197-0b59bdababcc.pdf"
+    },
+    {
+      "id": "4a2ad2b5db07003c",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2023,
+      "round": "예비창업리그",
+      "award": "장려상",
+      "category": null,
+      "title": "저소음 바닥구조를 구성하는 완충패널",
+      "team": "㈜알에스일공일",
+      "org": null,
+      "summary": "공동주택 바닥을 구성하는 패널의 재료와 두께, 각 층 사이 결합구조와 패턴 등을 최적 설계하여, 발걸음 소리를 사람이 듣지 못하는 저주파 영역으로 이동",
+      "sourceUrl": "https://www.mss.go.kr/common/board/Download.do?bcIdx=1045559&cbIdx=86&streFileNm=be6ce385-6ec8-4fbd-b197-0b59bdababcc.pdf"
+    },
+    {
+      "id": "fcac3b2bd4affed5",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2023,
+      "round": "예비창업리그",
+      "award": "장려상",
+      "category": null,
+      "title": "혈액검사식 인지기능장애 위험 분석 서비스",
+      "team": "㈜브레디스 헬스케어",
+      "org": null,
+      "summary": "디지털 면역분석(Digital ELISA) 기술을 이용한 혈액 검사식 인지기능장애 위험 분석 서비스",
+      "sourceUrl": "https://www.mss.go.kr/common/board/Download.do?bcIdx=1045559&cbIdx=86&streFileNm=be6ce385-6ec8-4fbd-b197-0b59bdababcc.pdf"
+    },
+    {
+      "id": "c4d428f401be879d",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2023,
+      "round": "예비창업리그",
+      "award": "장려상",
+      "category": null,
+      "title": "문장 이해 성능을 개선한 생성 AI 기반 디지털 이미지 관리 SaaS",
+      "team": "스모어톡",
+      "org": null,
+      "summary": "기존 이미지 작업 시간의 1/6 단축하고, 편집 가능 라이선스 구매 비용의 90% 절감 가능한 생성 AI 기반 디지털 이미지관리 SaaS",
+      "sourceUrl": "https://www.mss.go.kr/common/board/Download.do?bcIdx=1045559&cbIdx=86&streFileNm=be6ce385-6ec8-4fbd-b197-0b59bdababcc.pdf"
+    },
+    {
+      "id": "03f00c71d1a99123",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2026,
+      "round": "혁신창업리그",
+      "award": "최우수상",
+      "category": null,
+      "title": "반도체 웨이퍼 공정 사고를 예방하는 지능형 AI 영상 감지 시스템",
+      "team": "주식회사 더에이스컴퍼니",
+      "org": null,
+      "summary": "반도체 웨이퍼 공정 사고를 예방하는 지능형 AI 영상 감지 시스템",
+      "sourceUrl": "https://www.donga.com/news/It/article/all/20260924/134731921/1"
+    },
+    {
+      "id": "ad088e20332c55c6",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2026,
+      "round": "혁신창업리그",
+      "award": "우수상",
+      "category": null,
+      "title": "알파카(Alpaca)",
+      "team": "주식회사 디어니언",
+      "org": null,
+      "summary": "식당 사장님의 식자재 발주 시간을 5분으로 줄이고 원가를 15% 낮추는 AI 에이전트 ‘알파카(Alpaca)’",
+      "sourceUrl": "https://www.donga.com/news/It/article/all/20260924/134731921/1"
+    },
+    {
+      "id": "d37bc9244c001388",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2026,
+      "round": "혁신창업리그",
+      "award": "장려상",
+      "category": null,
+      "title": "SOOO",
+      "team": "주식회사 마케마케",
+      "org": null,
+      "summary": "‘덜어내고 채우는’ 글로벌 두피·헤어케어 브랜드 ‘SOOO’",
+      "sourceUrl": "https://www.donga.com/news/It/article/all/20260924/134731921/1"
+    },
+    {
+      "id": "4112a3216f7a587e",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2026,
+      "round": "혁신창업리그",
+      "award": "장려상",
+      "category": null,
+      "title": "Safety Nova",
+      "team": "주식회사 린솔",
+      "org": null,
+      "summary": "AI 기반 비가시 위험 탐지 플랫폼 ‘Safety Nova’",
+      "sourceUrl": "https://www.donga.com/news/It/article/all/20260924/134731921/1"
+    },
+    {
+      "id": "bb9f7b479a033023",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2026,
+      "round": "혁신창업리그",
+      "award": "장려상",
+      "category": null,
+      "title": "신장 기능회복 의료기기",
+      "team": "주식회사 오랜드바이오",
+      "org": null,
+      "summary": "투석이나 신장이식 단계로 넘어가는 것을 막는 신장 기능회복 의료기기",
+      "sourceUrl": "https://www.donga.com/news/It/article/all/20260924/134731921/1"
+    },
+    {
+      "id": "abb00b9d74622212",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2026,
+      "round": "AI리그",
+      "award": "최우수상",
+      "category": null,
+      "title": "합성소비자 기반 AI 리서치 솔루션",
+      "team": "주식회사 인텔리시아",
+      "org": null,
+      "summary": "합성소비자 기반 AI 리서치 솔루션",
+      "sourceUrl": "https://www.donga.com/news/It/article/all/20260924/134731921/1"
+    },
+    {
+      "id": "bf2133d9d7bf6874",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2026,
+      "round": "AI리그",
+      "award": "우수상",
+      "category": null,
+      "title": "피지컬 AI 기능안전 머신비전 솔루션",
+      "team": "주식회사 에이드올",
+      "org": null,
+      "summary": "피지컬 AI 기능안전 머신비전 솔루션",
+      "sourceUrl": "https://www.donga.com/news/It/article/all/20260924/134731921/1"
+    },
+    {
+      "id": "f831e673513e3a92",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2026,
+      "round": "AI리그",
+      "award": "장려상",
+      "category": null,
+      "title": "온디바이스 Edge Agentic LLM 플랫폼",
+      "team": "주식회사 트레이스위브",
+      "org": null,
+      "summary": "온디바이스 Edge Agentic LLM 플랫폼",
+      "sourceUrl": "https://www.donga.com/news/It/article/all/20260924/134731921/1"
+    },
+    {
+      "id": "a7f68a9c44a74555",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2026,
+      "round": "AI리그",
+      "award": "장려상",
+      "category": null,
+      "title": "온톨로지 기반 기업용 AI 에이전트 플랫폼",
+      "team": "주식회사 서버키트",
+      "org": null,
+      "summary": "온톨로지 기반 기업용 AI 에이전트 플랫폼",
+      "sourceUrl": "https://www.donga.com/news/It/article/all/20260924/134731921/1"
+    },
+    {
+      "id": "f0ad70e732992354",
+      "competition": "k-startup",
+      "competitionName": "도전! K-스타트업",
+      "year": 2026,
+      "round": "AI리그",
+      "award": "장려상",
+      "category": null,
+      "title": "멀티모달 AI 기반 선박 안전관리 시스템",
+      "team": "주식회사 링크스인공지능",
+      "org": null,
+      "summary": "멀티모달 AI 기반 선박 안전관리 시스템",
+      "sourceUrl": "https://www.donga.com/news/It/article/all/20260924/134731921/1"
     }
   ]
 }

@@ -4,7 +4,7 @@
   "tier": "auto",
   "method": "한국발명진흥회(KIPA)가 공개하는 연도별 수상현황 정적 페이지(kipa.org/kinpex/prize_history_{연도}.jsp, 2006~2025년 각각 존재)를 순회하며 표(table.prize_table)를 HTML 파싱. 창의적종합설계경진대회와는 별개의 대회로, 두 대회를 모두 자동 수집 대상에 포함한다.",
   "homepage": "https://www.kipa.org/kinpex/",
-  "updatedAt": "2026-10-22T08:28:40.860Z",
+  "updatedAt": "2026-10-22T10:45:37.506Z",
   "lastSuccessAt": "2026-09-30T06:57:35.639Z",
   "count": 2094,
   "lastRun": {
@@ -24,7 +24,7 @@
       "title": "복수의 트랜스듀서가 상호 교호적으로 초음파를 조사하는 것을 이용한 뇌 림프계의 노폐물 배출 촉진을 위한 초음파장치",
       "team": null,
       "org": "주식회사 딥슨바이오",
-      "summary": null,
+      "summary": "발명특허 대전에서 영예의 대통령상을 받은 딥슨바이오는 저주파 초음파를 이용해 뇌 림프계의 노폐물 배출을 촉진하는 장치를 개발했다. 치매와 알츠하이머 등 뇌 질환의 안전하고 효과적인 예방과 치료가 가능해 초고령화 시대 성장이 기대되고 있다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2025.jsp"
     },
     {
@@ -38,7 +38,7 @@
       "title": "신경망 프로세싱 유닛",
       "team": null,
       "org": "주식회사 딥엑스",
-      "summary": null,
+      "summary": "국무총리상은 인공지능(AI) 연산을 효율적으로 처리하기 위한 시스템 반도체인 ‘신경망 프로세싱 유닛(NPU)’을 개발한 딥엑스와 정형외과 수술용 쐐기형 제거 드라이버인 ‘나사 제거 장치’의 우수성을 인정받은 이노올쏘가 공동 수상했다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2025.jsp"
     },
     {
@@ -52,7 +52,7 @@
       "title": "나사 제거장치",
       "team": null,
       "org": "이노올쏘 유한회사",
-      "summary": null,
+      "summary": "국무총리상은 인공지능(AI) 연산을 효율적으로 처리하기 위한 시스템 반도체인 ‘신경망 프로세싱 유닛(NPU)’을 개발한 딥엑스와 정형외과 수술용 쐐기형 제거 드라이버인 ‘나사 제거 장치’의 우수성을 인정받은 이노올쏘가 공동 수상했다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2025.jsp"
     },
     {
@@ -1284,7 +1284,7 @@
       "title": "광 효율을 개선한 증강 현실용 광학 장치",
       "team": null,
       "org": "주식회사 레티널",
-      "summary": null,
+      "summary": "AR 스마트 안경은 렌즈 내부에 화상 광을 반사해 광 효율·시야각·명암비·균일도·투과율을 증가시켰다. 특히 소형 배터리 장착으로 낮은 발열과 부피·무게를 줄여 일상에서도 편리하게 사용할 수 있다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2024.jsp"
     },
     {
@@ -1298,7 +1298,7 @@
       "title": "빔포밍 장치",
       "team": null,
       "org": "주식회사 엠피웨이브",
-      "summary": null,
+      "summary": "국무총리상은 2차 오염, 성능저하 없는 친환경 녹조 제거 기술을 개발한 백상원 월드워터 대표와 생활 현장에서 발생하는 소음을 제거할 수 있는 음성 신호 기술을 선보인 엠피웨이브가 각각 수상했다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2024.jsp"
     },
     {
@@ -1312,7 +1312,7 @@
       "title": "수질 정화용 성형체의 제조방법",
       "team": "백상원",
       "org": "월드워터",
-      "summary": null,
+      "summary": "국무총리상은 2차 오염, 성능저하 없는 친환경 녹조 제거 기술을 개발한 백상원 월드워터 대표와 생활 현장에서 발생하는 소음을 제거할 수 있는 음성 신호 기술을 선보인 엠피웨이브가 각각 수상했다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2024.jsp"
     },
     {
@@ -1424,7 +1424,7 @@
       "title": "시야 각도, 방향 및 거리에 따른 시인 특성을 활용한 위조방지시트 및 이의 제조방법과 인식방법",
       "team": null,
       "org": "한국조폐공사",
-      "summary": null,
+      "summary": "'색변환잠상 보안인쇄기술'은 일반적인 인쇄방법을 통해 구현할 수 있는 혁신적인 기술이며, 인쇄물을 기울이거나 움직일 때 색상의 변화와 숨겨진 문자·문양이 드러나 소비자가 육안으로 진품 여부를 확인할 수 있어 가품 방지에 효과적이다. 특히, 디지털 인쇄 방식을 활용해 가변 패턴 구현이 용이하며 다품종 소량 인쇄에도 적합하다는 장점이 있다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2024.jsp"
     },
     {
@@ -2530,7 +2530,7 @@
       "title": "감염 예방을 위한 오염 지수 판단 장치 및 판단 방법",
       "team": null,
       "org": "주식회사 그린온",
-      "summary": null,
+      "summary": "타겟 위치의 오염과 관련된 오염 정보를 수집하고, 오염 정보를 설정 기준에 따라 규격화된 오염 정보를 이용해서 타겟의 오염 지수를 판단하는 장치입니다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2023.jsp"
     },
     {
@@ -2544,7 +2544,7 @@
       "title": "집진장치",
       "team": null,
       "org": "한국철도기술연구원",
-      "summary": null,
+      "summary": "소음저감형 팬리스 집진장치 개발을 통해 지하철 승객 이용 공간의 미세먼지와 소음을 동시에 저감시켜줍니다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2023.jsp"
     },
     {
@@ -2558,7 +2558,7 @@
       "title": "광센서 및 이를 포함하는 전자 장치",
       "team": null,
       "org": "주식회사 루트센서",
-      "summary": null,
+      "summary": "광센서의 입사 각도에 따른 감도 변화를 완화하여 태양광을 포함하여 입사되는 광원의 세기가 입사각도 변화에 무관하게 감도를 매우 정밀하게 측정할 수 있는 전자 장치입니다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2023.jsp"
     },
     {
@@ -5022,7 +5022,7 @@
       "title": "산화물계 고체전해질 및 황화물계 고체전해질이 코팅된 양극활물질 및 이를 포함하는 전고체전지",
       "team": null,
       "org": "(주)티디엘",
-      "summary": null,
+      "summary": "전극의 저항 증가문제를 해결하고, 전지 성능을 향상시킨 주식회사 티디엘의 ‘전고체 전지’가 수상한다. 전고체 전지는 전지 구성요소 전체를 고체화한 전지로, 기존 리튬이온전지의 발화·폭발 위험성을 현저히 낮춰 안정성이 높은 전지를 말한다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2022.jsp"
     },
     {
@@ -5036,7 +5036,7 @@
       "title": "건축용 외장 패널 및 그 조립 구조",
       "team": "곽인학",
       "org": "㈜광스틸",
-      "summary": null,
+      "summary": "국무총리상은 주식회사 광스틸의 화재의 확산을 방지하는 ‘건축용 외장 패널’과, 삼성전자 사내벤처 기업인 주식회사 망고슬래브의 미세발열 제어기술이 반영된 ‘무선 모발 관리기’가 공동으로 수상한다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2022.jsp"
     },
     {
@@ -5050,7 +5050,7 @@
       "title": "듀얼 히터가 탑재된 무선 헤어 스트레이트너",
       "team": null,
       "org": "망고슬래브 주식회사",
-      "summary": null,
+      "summary": "국무총리상은 주식회사 광스틸의 화재의 확산을 방지하는 ‘건축용 외장 패널’과, 삼성전자 사내벤처 기업인 주식회사 망고슬래브의 미세발열 제어기술이 반영된 ‘무선 모발 관리기’가 공동으로 수상한다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2022.jsp"
     },
     {
@@ -6324,7 +6324,7 @@
       "title": "인공각막 제조용 금형 및 이를 이용한 인공각막의 제조방법",
       "team": null,
       "org": "주식회사 티이바이오스",
-      "summary": null,
+      "summary": "올해 발명특허대전(제40회)에서 1등 상인 대통령상은 ㈜티이바이오스의 기증각막의 이식 부작용과 기증자 부족 문제를 해결하기 위해 발명한 ‘인공각막 제조방법’이 수상의 영예를 안았다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2021.jsp"
     },
     {
@@ -6338,7 +6338,7 @@
       "title": "파킨슨 병 진단 장치 및 방법",
       "team": null,
       "org": "주식회사 휴런",
-      "summary": null,
+      "summary": "또 국무총리상은 ㈜휴런의 자기 공명 영상(MRI)을 활용해 파킨슨 병을 쉽고 빠르게 진단할 수 있는 ‘파킨슨병 진단 장치 및 방법’과, 한국표준과학연구원의 반도체 제조 불량을 실시간으로 진단할 수 있는 측정 장치가 공동으로 수상했다.",
       "sourceUrl": "https://www.kipa.org/kinpex/prize_history_2021.jsp"
     },
     {

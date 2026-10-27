@@ -4,7 +4,7 @@
   "tier": "auto",
   "method": "농림축산식품부 공공데이터포털의 역대 수상작 게시판(data.mafra.go.kr/contest/winnerListNew.do)을 페이지네이션 순회하며 HTML 파싱. 정주영 창업경진대회는 아산나눔재단이 선발팀 명단을 구조화된 형태로 전혀 공개하지 않아(현재 사이트는 모집 안내 페이지뿐) 여전히 수동 정리 대상이며, 이 대회는 그와 별개로 구조화된 공개 아카이브가 있어 추가로 자동 수집 대상에 포함한다.",
   "homepage": "https://data.mafra.go.kr/contest/winnerListNew.do",
-  "updatedAt": "2026-10-22T08:28:19.739Z",
+  "updatedAt": "2026-10-22T10:33:33.172564Z",
   "lastSuccessAt": "2026-09-30T06:57:37.490Z",
   "count": 147,
   "lastRun": {
@@ -23,7 +23,7 @@
       "category": "제품 및 서비스 개발",
       "title": "AI 기반 가축전염병 사전 방역 네비게이션",
       "team": "zyra",
-      "org": null,
+      "org": "전북대학교 수의과대학",
       "summary": "공공데이터와 AI로 가축 전염병을 발병 전에 예측하는 '사전 방역 네비게이션'입니다.",
       "sourceUrl": "https://data.mafra.go.kr/contest/winnerListNew.do"
     },
@@ -37,7 +37,7 @@
       "category": "아이디어 기획(공공데이터)",
       "title": "돈방 기침 AI 모니터링/조기 경보 시스템",
       "team": "한벳AI",
-      "org": null,
+      "org": "전북대학교 수의과대학",
       "summary": "1. 양돈 농장 내 각 돈방에 마이크를 설치하고, 스마트팜코리아 공공 음성 데이터로 훈련한 AI가 기침 소리를 실시간 분류한다.\n2. 단순 기침 횟수 감지에 그치지 않고, 인접 돈방으로 퍼져나가는 시간적 순서와 방향을 추적하여 전파 패턴 가중치를 산출한다.\n3. 가중치 점수가 임계치를 초과하면 경보를 발령하고, 해당 농장 담당 수의사에게 음성 클립과 패턴 분석 데이터를 자동 전송하여 원격 1차 진단을 즉각 개시한다.\n4. 기침 감지 → 전파 패턴 추적 → 감염 확률 산출 → 수의사 연동이 하나의 플랫폼에서 완결되는 24시간 무인 조기 경보 인프라다.",
       "sourceUrl": "https://data.mafra.go.kr/contest/winnerListNew.do"
     },
@@ -65,7 +65,7 @@
       "category": "제품 및 서비스 개발",
       "title": "Harvest Mind",
       "team": "Harvest Mind",
-      "org": null,
+      "org": "서울대학교 농업생명과학대학 바이오시스템공학과, (주)이삭엔지니어링",
       "summary": "수확 로봇이 '무엇을·어디를·어떻게 자를지'를 스스로 판단하는 수확 로봇 전용 AI 소프트웨어, 곧 '로봇의 두뇌'입니다. 우리는 로봇 팔·카메라 같은 하드웨어를 만들지 않고, 어떤 로봇에도 얹을 수 있는 판단 소프트웨어를 공급합니다(ROS2 SDK·설치형 박스 또는 소프트웨어 납품)",
       "sourceUrl": "https://data.mafra.go.kr/contest/winnerListNew.do"
     },
